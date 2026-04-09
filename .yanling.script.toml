@@ -1,0 +1,62 @@
+# 脚本元信息
+[info]
+# 脚本包名,建议直接用RepoName作为脚本包名，有且仅有该包名的脚本可以被引入和调用
+package = "script"
+# 脚本描述，介绍脚本的功能和用途
+description = "脚本配置文件，定义脚本的元信息和依赖要求"
+# 脚本主题标签列表，如["web automation", "data extraction"]
+topics = ["script", "configuration", "metadata"]
+# 脚本官方网站
+website = "https://yanling.org"
+# 脚本作者
+author = "Your Name"
+# 脚本作者邮箱
+email = "sssxyd@gmail.com"
+# 脚本适配的设备列表，如["windows", "mac", "ubuntu"]
+devices = ["windows", "mac", "ubuntu"]
+# 脚本需要的言灵引擎版本号
+engine_version = "1.0.0"
+
+# 脚本变量列表
+[[var]]
+name = "shopName"
+abstract = "你自己的店铺名称"
+type = "string"
+default = "雪莲大药房"
+required = true
+save = true
+
+[[var]]
+name = "exportDir"
+abstract = "数据导出目录"
+type = "filepath"
+default = "d:/data"
+required = true
+save = true
+
+# 操作的GUI程序列表
+[[gui]]
+id = "meituan"
+name = "美团微信小程序"
+launcher = "WeChat.exe"
+process = "WeChatAppEx.exe"
+url = "weixin://launchapplet?appid=wx9f0c3b9e7cbb1c8&path=pages/index/index"
+
+# 操作的Web程序列表
+[[web]]
+id = "yaofangwang"
+name = "药房网商城"
+url = "https://www.yaofangwang.com/"
+
+# 允许脚本访问的文件系统权限列表
+[[file]]
+url = "file://${exportDir}"
+permission = "rwd"
+abstract = "允许脚本读写数据导出目录"
+
+# 允许脚本访问的API列表
+[[api]]
+url = "https://api.yaofangwang.com/*"
+permission = "rwd"
+abstract = "允许脚本访问药房网API"
+
