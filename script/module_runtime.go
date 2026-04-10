@@ -39,5 +39,6 @@ type ModuleRuntime interface {
 	InvokeApi(specifier string, api string, args ...any) (any, error)                   // 调用本地其他模组的开放API
 	Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error) // 订阅本地其他模组的开放事件
 	Unsubscribe(subscriber Subscriber) error                                            // 取消订阅本地其他模组的开放事件
+	Publish(topic string, data any) error                                               // 发布事件到本地事件总线
 	Vision() extention.VisionExtension                                                  // 获取视觉能力扩展接口
 }
