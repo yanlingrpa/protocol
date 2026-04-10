@@ -161,6 +161,19 @@ func (s *Specifier) String() string {
 	return result
 }
 
+func (s *Specifier) Identifier() string {
+	var result string
+
+	// 构建名称部分
+	if s.Domain != "" {
+		result = fmt.Sprintf("%s/%s/%s", s.Domain, s.Owner, s.Name)
+	} else {
+		result = fmt.Sprintf("%s/%s", s.Owner, s.Name)
+	}
+
+	return result
+}
+
 func ParseSpecifier(spec string) (Specifier, error) {
 	var domain, owner, name, version string
 
