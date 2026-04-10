@@ -3,6 +3,7 @@
 package symbols
 
 import (
+	"github.com/yanlingrpa/protocol/basic"
 	"github.com/yanlingrpa/protocol/extention"
 	"reflect"
 )
@@ -21,18 +22,22 @@ func init() {
 
 // _github_com_yanlingrpa_protocol_extention_VisionExtension is an interface wrapper for VisionExtension type
 type _github_com_yanlingrpa_protocol_extention_VisionExtension struct {
-	IValue       interface{}
-	WImageDetect func(image []byte, prompt string, question string) (string, error)
-	WImageOcr    func(image []byte) (*extention.OcrResult, error)
-	WImageRead   func(image []byte, prompt string, question string) (string, error)
+	IValue  interface{}
+	WDetect func(image []byte, prompt string, question string) (string, error)
+	WLocate func(image []byte, text string) ([]basic.Rect, error)
+	WOcr    func(image []byte) (*extention.OcrResult, error)
+	WRead   func(image []byte, prompt string, question string) (string, error)
 }
 
-func (W _github_com_yanlingrpa_protocol_extention_VisionExtension) ImageDetect(image []byte, prompt string, question string) (string, error) {
-	return W.WImageDetect(image, prompt, question)
+func (W _github_com_yanlingrpa_protocol_extention_VisionExtension) Detect(image []byte, prompt string, question string) (string, error) {
+	return W.WDetect(image, prompt, question)
 }
-func (W _github_com_yanlingrpa_protocol_extention_VisionExtension) ImageOcr(image []byte) (*extention.OcrResult, error) {
-	return W.WImageOcr(image)
+func (W _github_com_yanlingrpa_protocol_extention_VisionExtension) Locate(image []byte, text string) ([]basic.Rect, error) {
+	return W.WLocate(image, text)
 }
-func (W _github_com_yanlingrpa_protocol_extention_VisionExtension) ImageRead(image []byte, prompt string, question string) (string, error) {
-	return W.WImageRead(image, prompt, question)
+func (W _github_com_yanlingrpa_protocol_extention_VisionExtension) Ocr(image []byte) (*extention.OcrResult, error) {
+	return W.WOcr(image)
+}
+func (W _github_com_yanlingrpa_protocol_extention_VisionExtension) Read(image []byte, prompt string, question string) (string, error) {
+	return W.WRead(image, prompt, question)
 }

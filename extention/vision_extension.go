@@ -15,7 +15,8 @@ type OcrResult struct {
 }
 
 type VisionExtension interface {
-	ImageOcr(image []byte) (*OcrResult, error)                         // 对图片进行OCR识别
-	ImageDetect(image []byte, prompt, question string) (string, error) // 对图片进行视觉理解，返回json结果
-	ImageRead(image []byte, prompt, question string) (string, error)   // 对图片进行视觉阅读，返回json结果
+	Ocr(image []byte) (*OcrResult, error)                         // 对图片进行OCR识别
+	Locate(image []byte, text string) ([]basic.Rect, error)       // 对图片进行文本定位，返回文本区域的边界框列表
+	Detect(image []byte, prompt, question string) (string, error) // 对图片进行视觉理解，返回json结果
+	Read(image []byte, prompt, question string) (string, error)   // 对图片进行视觉阅读，返回json结果
 }

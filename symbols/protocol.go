@@ -141,9 +141,10 @@ func init() {
 		"OcrResult": reflect.ValueOf((*extention.OcrResult)(nil)).Elem(), // Export OcrResult struct
 		"OcrWord": reflect.ValueOf((*extention.OcrWord)(nil)).Elem(), // Export OcrWord struct
 		"VisionExtension": reflect.ValueOf((*extention.VisionExtension)(nil)), // Export VisionExtension interface pointer type
-		"VisionExtension.ImageDetect": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("ImageDetect"),
-		"VisionExtension.ImageOcr": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("ImageOcr"),
-		"VisionExtension.ImageRead": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("ImageRead"),
+		"VisionExtension.Detect": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("Detect"),
+		"VisionExtension.Locate": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("Locate"),
+		"VisionExtension.Ocr": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("Ocr"),
+		"VisionExtension.Read": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("Read"),
 	}
 	Symbols["github.com/yanlingrpa/protocol/osgui"] = map[string]reflect.Value{
 		"Alt": reflect.ValueOf(osgui.Alt), // Export Alt constant
@@ -449,7 +450,7 @@ func init() {
 		"ModuleRuntime.Storage": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("Storage"),
 		"ModuleRuntime.Subscribe": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("Subscribe"),
 		"ModuleRuntime.Unsubscribe": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("Unsubscribe"),
-		"ModuleRuntime.VisionExtension": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("VisionExtension"),
+		"ModuleRuntime.Vision": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("Vision"),
 		"ParseSpecifier": reflect.ValueOf(script.ParseSpecifier), // Export ParseSpecifier function
 		"ScriptVariable": reflect.ValueOf((*script.ScriptVariable)(nil)).Elem(), // Export ScriptVariable struct
 		"Specifier": reflect.ValueOf((*script.Specifier)(nil)).Elem(), // Export Specifier struct

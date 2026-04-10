@@ -63,7 +63,7 @@ type _github_com_yanlingrpa_protocol_script_ModuleRuntime struct {
 	WStorage          func() ossys.LocalStorage
 	WSubscribe        func(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error)
 	WUnsubscribe      func(subscriber script.Subscriber) error
-	WVisionExtension  func() extention.VisionExtension
+	WVision           func() extention.VisionExtension
 }
 
 func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
@@ -111,8 +111,8 @@ func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) Subscribe(specifie
 func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) Unsubscribe(subscriber script.Subscriber) error {
 	return W.WUnsubscribe(subscriber)
 }
-func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) VisionExtension() extention.VisionExtension {
-	return W.WVisionExtension()
+func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) Vision() extention.VisionExtension {
+	return W.WVision()
 }
 
 // _github_com_yanlingrpa_protocol_script_Subscriber is an interface wrapper for Subscriber type
