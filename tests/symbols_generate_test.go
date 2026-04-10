@@ -106,7 +106,7 @@ func TestGenerateSymbols(t *testing.T) {
 		packagePath := getPackageKey(goFile, packageName)
 
 		// 跳过根目录的文件（避免创建错误的包路径）
-		if packagePath == "github.com/yanlingrpa/protocol/protocol" {
+		if packagePath == "yanlingrpa.com/yanling/protocol/protocol" {
 			continue
 		}
 
@@ -330,7 +330,7 @@ func TestGenerateSymbolsQuick(t *testing.T) {
 
 		packagePath := getPackageKey(goFile, packageName)
 
-		if packagePath == "github.com/yanlingrpa/protocol/protocol" {
+		if packagePath == "yanlingrpa.com/yanling/protocol/protocol" {
 			continue
 		}
 

@@ -1,6 +1,6 @@
 package extention
 
-import "github.com/yanlingrpa/protocol/basic"
+import "yanlingrpa.com/yanling/protocol/basic"
 
 type OcrWord struct {
 	Text       string         `json:"text"`       // 识别的文本内容

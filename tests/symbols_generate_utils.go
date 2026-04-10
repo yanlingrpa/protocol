@@ -38,10 +38,10 @@ func getPackageKey(goFile, packageName string) string {
 	}
 
 	if len(relevantParts) > 0 {
-		return fmt.Sprintf("github.com/yanlingrpa/protocol/%s", strings.Join(relevantParts, "/"))
+		return fmt.Sprintf("yanlingrpa.com/yanling/protocol/%s", strings.Join(relevantParts, "/"))
 	}
 
-	return fmt.Sprintf("github.com/yanlingrpa/protocol/%s", packageName)
+	return fmt.Sprintf("yanlingrpa.com/yanling/protocol/%s", packageName)
 }
 
 // getReceiverType 从接收者类型中提取类型名称和是否是指针接收器

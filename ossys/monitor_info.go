@@ -1,7 +1,7 @@
 package ossys
 
 import (
-	"github.com/yanlingrpa/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/basic"
 )
 
 type MonitorInfo interface {

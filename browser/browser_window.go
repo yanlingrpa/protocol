@@ -1,7 +1,7 @@
 package browser
 
 import (
-	"github.com/yanlingrpa/protocol/osgui"
+	"yanlingrpa.com/yanling/protocol/osgui"
 )
 
 type BrowserWindow interface {

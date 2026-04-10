@@ -17,7 +17,7 @@ Get-ChildItem -Path $parentDir -Directory | ForEach-Object {
         Write-Host "Processing: $folderName" -ForegroundColor Green
         
         # 执行 yaegi extract 命令
-        yaegi extract "github.com/yanlingrpa/protocol/$folderName"
+        yaegi extract "yanlingrpa.com/yanling/protocol/$folderName"
         
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  Success: extracted $folderName" -ForegroundColor Cyan

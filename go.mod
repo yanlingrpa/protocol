@@ -1,3 +1,3 @@
-module github.com/yanlingrpa/protocol
+module yanlingrpa.com/yanling/protocol
 
 go 1.22

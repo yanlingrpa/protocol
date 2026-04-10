@@ -3,7 +3,7 @@ package osgui
 import (
 	"time"
 
-	"github.com/yanlingrpa/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/basic"
 )
 
 type Locator interface {

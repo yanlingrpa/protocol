@@ -3,7 +3,7 @@ package browser
 import (
 	"time"
 
-	"github.com/yanlingrpa/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/basic"
 )
 
 type BrowserElement interface {

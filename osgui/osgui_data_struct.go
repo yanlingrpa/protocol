@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/yanlingrpa/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/basic"
 )
 
 // type GuiWindow struct {

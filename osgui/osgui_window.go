@@ -1,8 +1,8 @@
 package osgui
 
 import (
-	"github.com/yanlingrpa/protocol/basic"
-	"github.com/yanlingrpa/protocol/ossys"
+	"yanlingrpa.com/yanling/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/ossys"
 )
 
 type GuiWindow interface {

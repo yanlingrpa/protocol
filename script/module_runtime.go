@@ -3,10 +3,10 @@ package script
 import (
 	"time"
 
-	"github.com/yanlingrpa/protocol/browser"
-	"github.com/yanlingrpa/protocol/extention"
-	"github.com/yanlingrpa/protocol/osgui"
-	"github.com/yanlingrpa/protocol/ossys"
+	"yanlingrpa.com/yanling/protocol/browser"
+	"yanlingrpa.com/yanling/protocol/extention"
+	"yanlingrpa.com/yanling/protocol/osgui"
+	"yanlingrpa.com/yanling/protocol/ossys"
 )
 
 type Subscriber interface {
