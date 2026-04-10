@@ -143,7 +143,7 @@ type Specifier struct {
 	Version string `json:"version"` // 模块版本要求，如v1.2.3
 }
 
-func (s *Specifier) String() string {
+func (s Specifier) String() string {
 	var result string
 
 	// 构建名称部分
@@ -161,7 +161,7 @@ func (s *Specifier) String() string {
 	return result
 }
 
-func (s *Specifier) Identifier() string {
+func (s Specifier) Identifier() string {
 	var result string
 
 	// 构建名称部分
@@ -193,6 +193,8 @@ func ParseSpecifier(spec string) (Specifier, error) {
 
 	// 根据段数判断 domain 是否存在
 	switch len(segments) {
+	case 0, 1:
+		return Specifier{}, fmt.Errorf("invalid specifier format: %s, expected 'owner/name' or 'domain/owner/name'", spec)
 	case 2:
 		// owner/name（domain为空）
 		owner = segments[0]
@@ -203,7 +205,9 @@ func ParseSpecifier(spec string) (Specifier, error) {
 		owner = segments[1]
 		name = segments[2]
 	default:
-		return Specifier{}, fmt.Errorf("invalid specifier format: %s, expected 'owner/name' or 'domain/owner/name'", spec)
+		domain = segments[0]
+		owner = segments[1]
+		name = strings.Join(segments[2:], "/") // 允许name中包含/，例如：domain/owner/name/subname
 	}
 
 	// 验证必须字段

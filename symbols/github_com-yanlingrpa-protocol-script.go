@@ -4,6 +4,7 @@ package symbols
 
 import (
 	"github.com/yanlingrpa/protocol/browser"
+	"github.com/yanlingrpa/protocol/extention"
 	"github.com/yanlingrpa/protocol/osgui"
 	"github.com/yanlingrpa/protocol/ossys"
 	"github.com/yanlingrpa/protocol/script"
@@ -62,6 +63,7 @@ type _github_com_yanlingrpa_protocol_script_ModuleRuntime struct {
 	WStorage          func() ossys.LocalStorage
 	WSubscribe        func(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error)
 	WUnsubscribe      func(subscriber script.Subscriber) error
+	WVisionExtension  func() extention.VisionExtension
 }
 
 func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
@@ -108,6 +110,9 @@ func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) Subscribe(specifie
 }
 func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) Unsubscribe(subscriber script.Subscriber) error {
 	return W.WUnsubscribe(subscriber)
+}
+func (W _github_com_yanlingrpa_protocol_script_ModuleRuntime) VisionExtension() extention.VisionExtension {
+	return W.WVisionExtension()
 }
 
 // _github_com_yanlingrpa_protocol_script_Subscriber is an interface wrapper for Subscriber type

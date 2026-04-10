@@ -5,6 +5,7 @@ import (
 
 	"github.com/yanlingrpa/protocol/basic"
 	"github.com/yanlingrpa/protocol/browser"
+	"github.com/yanlingrpa/protocol/extention"
 	"github.com/yanlingrpa/protocol/osgui"
 	"github.com/yanlingrpa/protocol/ossys"
 	"github.com/yanlingrpa/protocol/script"
@@ -135,6 +136,14 @@ func init() {
 		"BrowserWindow.DefaultPage": reflect.ValueOf((*browser.BrowserWindow)(nil)).MethodByName("DefaultPage"),
 		"BrowserWindow.IDTabPage": reflect.ValueOf((*browser.BrowserWindow)(nil)).MethodByName("IDTabPage"),
 		"BrowserWindow.NewTabPage": reflect.ValueOf((*browser.BrowserWindow)(nil)).MethodByName("NewTabPage"),
+	}
+	Symbols["github.com/yanlingrpa/protocol/extention"] = map[string]reflect.Value{
+		"OcrResult": reflect.ValueOf((*extention.OcrResult)(nil)).Elem(), // Export OcrResult struct
+		"OcrWord": reflect.ValueOf((*extention.OcrWord)(nil)).Elem(), // Export OcrWord struct
+		"VisionExtension": reflect.ValueOf((*extention.VisionExtension)(nil)), // Export VisionExtension interface pointer type
+		"VisionExtension.ImageDetect": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("ImageDetect"),
+		"VisionExtension.ImageOcr": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("ImageOcr"),
+		"VisionExtension.ImageRead": reflect.ValueOf((*extention.VisionExtension)(nil)).MethodByName("ImageRead"),
 	}
 	Symbols["github.com/yanlingrpa/protocol/osgui"] = map[string]reflect.Value{
 		"Alt": reflect.ValueOf(osgui.Alt), // Export Alt constant
@@ -440,10 +449,12 @@ func init() {
 		"ModuleRuntime.Storage": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("Storage"),
 		"ModuleRuntime.Subscribe": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("Subscribe"),
 		"ModuleRuntime.Unsubscribe": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("Unsubscribe"),
+		"ModuleRuntime.VisionExtension": reflect.ValueOf((*script.ModuleRuntime)(nil)).MethodByName("VisionExtension"),
 		"ParseSpecifier": reflect.ValueOf(script.ParseSpecifier), // Export ParseSpecifier function
 		"ScriptVariable": reflect.ValueOf((*script.ScriptVariable)(nil)).Elem(), // Export ScriptVariable struct
 		"Specifier": reflect.ValueOf((*script.Specifier)(nil)).Elem(), // Export Specifier struct
-		"Specifier.String": reflect.ValueOf((*script.Specifier).String),
+		"Specifier.Identifier": reflect.ValueOf(script.Specifier.Identifier),
+		"Specifier.String": reflect.ValueOf(script.Specifier.String),
 		"Subscriber": reflect.ValueOf((*script.Subscriber)(nil)), // Export Subscriber interface pointer type
 		"Subscriber.GetSpecifier": reflect.ValueOf((*script.Subscriber)(nil)).MethodByName("GetSpecifier"),
 		"Subscriber.GetTopic": reflect.ValueOf((*script.Subscriber)(nil)).MethodByName("GetTopic"),
