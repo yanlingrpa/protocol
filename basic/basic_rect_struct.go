@@ -355,6 +355,13 @@ func (r Rect) Center() (int, int) {
 	return r.X + r.Width/2, r.Y + r.Height/2
 }
 
+func (r Rect) CenterPoint() Point {
+	return Point{
+		X: r.X + r.Width/2,
+		Y: r.Y + r.Height/2,
+	}
+}
+
 func (r Rect) Contains(x, y int) bool {
 	return x >= r.X && x < r.X+r.Width && y >= r.Y && y < r.Y+r.Height
 }
