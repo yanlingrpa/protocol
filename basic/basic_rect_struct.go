@@ -366,6 +366,10 @@ func (r Rect) Contains(x, y int) bool {
 	return x >= r.X && x < r.X+r.Width && y >= r.Y && y < r.Y+r.Height
 }
 
+func (r Rect) ContainsPoint(p Point) bool {
+	return r.Contains(p.X, p.Y)
+}
+
 func MergeOverlappingRectangles(rectangles []Rect) []Rect {
 	if len(rectangles) == 0 {
 		return nil
