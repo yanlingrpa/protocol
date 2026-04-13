@@ -37,7 +37,7 @@ func init() {
 		"UrlPermission":    reflect.ValueOf((*script.UrlPermission)(nil)),
 		"VariableDataType": reflect.ValueOf((*script.VariableDataType)(nil)),
 		"WebApplication":   reflect.ValueOf((*script.WebApplication)(nil)),
-		"YanLingScript":    reflect.ValueOf((*script.YanLingScript)(nil)),
+		"YScript":          reflect.ValueOf((*script.YScript)(nil)),
 
 		// interface wrapper definitions
 		"_ModuleRuntime": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_script_ModuleRuntime)(nil)),

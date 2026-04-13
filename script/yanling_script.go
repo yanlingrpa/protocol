@@ -223,7 +223,7 @@ func ParseSpecifier(spec string) (Specifier, error) {
 	}, nil
 }
 
-type YanLingScript struct {
+type YScript struct {
 	Module    ModuleInfo       `toml:"module" json:"module"`   // 脚本模组基本信息
 	GuiApps   []GuiApplication `toml:"gui" json:"gui_apps"`    // 需要操作的GUI应用列表
 	WebApps   []WebApplication `toml:"web" json:"web_apps"`    // 需要操作的Web应用列表
