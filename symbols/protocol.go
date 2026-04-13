@@ -429,7 +429,7 @@ func init() {
 		"ScriptLogger.Warn": reflect.ValueOf((*ossys.ScriptLogger)(nil)).MethodByName("Warn"),
 	}
 	Symbols["yanlingrpa.com/yanling/protocol/script"] = map[string]reflect.Value{
-		"ApiParameter": reflect.ValueOf((*script.ApiParameter)(nil)).Elem(), // Export ApiParameter struct
+		"Argument": reflect.ValueOf((*script.Argument)(nil)).Elem(), // Export Argument struct
 		"Event": reflect.ValueOf((*script.Event)(nil)).Elem(), // Export Event struct
 		"EventHandler": reflect.ValueOf((*script.EventHandler)(nil)).Elem(), // Export EventHandler type
 		"ExportApi": reflect.ValueOf((*script.ExportApi)(nil)).Elem(), // Export ExportApi struct
@@ -458,6 +458,8 @@ func init() {
 		"ScriptVariable": reflect.ValueOf((*script.ScriptVariable)(nil)).Elem(), // Export ScriptVariable struct
 		"Specifier": reflect.ValueOf((*script.Specifier)(nil)).Elem(), // Export Specifier struct
 		"Specifier.Identifier": reflect.ValueOf(script.Specifier.Identifier),
+		"Specifier.IsPseudoVersion": reflect.ValueOf(script.Specifier.IsPseudoVersion),
+		"Specifier.ModulePath": reflect.ValueOf(script.Specifier.ModulePath),
 		"Specifier.String": reflect.ValueOf(script.Specifier.String),
 		"Subscriber": reflect.ValueOf((*script.Subscriber)(nil)), // Export Subscriber interface pointer type
 		"Subscriber.GetSpecifier": reflect.ValueOf((*script.Subscriber)(nil)).MethodByName("GetSpecifier"),
