@@ -4,7 +4,6 @@ package symbols
 
 import (
 	"reflect"
-
 	"yanlingrpa.com/yanling/protocol/basic"
 	"yanlingrpa.com/yanling/protocol/extention"
 )
@@ -22,21 +21,21 @@ func init() {
 // _yanlingrpa_com_yanling_protocol_extention_VisionExtension is an interface wrapper for VisionExtension type
 type _yanlingrpa_com_yanling_protocol_extention_VisionExtension struct {
 	IValue  interface{}
-	WDetect func(image []byte, prompt string, question string) (string, error)
-	WLocate func(image []byte, text string) ([]basic.Rect, error)
+	WDetect func(image []byte, instruction string, schema string) (string, error)
+	WLocate func(image []byte, texts ...string) ([]basic.Rect, error)
 	WOcr    func(image []byte) (*basic.OcrResult, error)
-	WRead   func(image []byte, prompt string, question string) (string, error)
+	WRead   func(image []byte, instruction string, schema string) (string, error)
 }
 
-func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Detect(image []byte, prompt string, question string) (string, error) {
-	return W.WDetect(image, prompt, question)
+func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Detect(image []byte, instruction string, schema string) (string, error) {
+	return W.WDetect(image, instruction, schema)
 }
-func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Locate(image []byte, text string) ([]basic.Rect, error) {
-	return W.WLocate(image, text)
+func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Locate(image []byte, texts ...string) ([]basic.Rect, error) {
+	return W.WLocate(image, texts...)
 }
 func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Ocr(image []byte) (*basic.OcrResult, error) {
 	return W.WOcr(image)
 }
-func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Read(image []byte, prompt string, question string) (string, error) {
-	return W.WRead(image, prompt, question)
+func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Read(image []byte, instruction string, schema string) (string, error) {
+	return W.WRead(image, instruction, schema)
 }

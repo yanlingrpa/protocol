@@ -410,11 +410,8 @@ func init() {
 		"ScriptLogger.Warn": reflect.ValueOf((*ossys.ScriptLogger)(nil)).MethodByName("Warn"),
 	}
 	Symbols["yanlingrpa.com/yanling/protocol/script"] = map[string]reflect.Value{
-		"Argument": reflect.ValueOf((*script.Argument)(nil)).Elem(), // Export Argument struct
 		"Event": reflect.ValueOf((*script.Event)(nil)).Elem(), // Export Event struct
 		"EventHandler": reflect.ValueOf((*script.EventHandler)(nil)).Elem(), // Export EventHandler type
-		"ExportApi": reflect.ValueOf((*script.ExportApi)(nil)).Elem(), // Export ExportApi struct
-		"ExportTopic": reflect.ValueOf((*script.ExportTopic)(nil)).Elem(), // Export ExportTopic struct
 		"GuiApplication": reflect.ValueOf((*script.GuiApplication)(nil)).Elem(), // Export GuiApplication struct
 		"ModuleInfo": reflect.ValueOf((*script.ModuleInfo)(nil)).Elem(), // Export ModuleInfo struct
 		"ModuleRuntime": reflect.ValueOf((*script.ModuleRuntime)(nil)), // Export ModuleRuntime interface pointer type

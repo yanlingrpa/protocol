@@ -4,8 +4,6 @@ package symbols
 
 import (
 	"reflect"
-	"time"
-
 	"yanlingrpa.com/yanling/protocol/basic"
 )
 
@@ -25,46 +23,5 @@ func init() {
 		"Point":     reflect.ValueOf((*basic.Point)(nil)),
 		"Rect":      reflect.ValueOf((*basic.Rect)(nil)),
 		"Size":      reflect.ValueOf((*basic.Size)(nil)),
-
-		// interface wrapper definitions
-		"_Task": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_basic_Task)(nil)),
 	}
-}
-
-// _yanlingrpa_com_yanling_protocol_basic_Task is an interface wrapper for Task type
-type _yanlingrpa_com_yanling_protocol_basic_Task struct {
-	IValue         interface{}
-	WGetExpiredAt  func() time.Time
-	WGetGuid       func() string
-	WGetMaxRetries func() int
-	WGetParams     func() map[string]any
-	WGetPayload    func() string
-	WGetProjectId  func() string
-	WGetRetryCount func() int
-	WGetScriptId   func() string
-}
-
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetExpiredAt() time.Time {
-	return W.WGetExpiredAt()
-}
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetGuid() string {
-	return W.WGetGuid()
-}
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetMaxRetries() int {
-	return W.WGetMaxRetries()
-}
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetParams() map[string]any {
-	return W.WGetParams()
-}
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetPayload() string {
-	return W.WGetPayload()
-}
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetProjectId() string {
-	return W.WGetProjectId()
-}
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetRetryCount() int {
-	return W.WGetRetryCount()
-}
-func (W _yanlingrpa_com_yanling_protocol_basic_Task) GetScriptId() string {
-	return W.WGetScriptId()
 }

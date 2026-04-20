@@ -8,12 +8,15 @@ Set-Location -Path $PSScriptRoot
 # 获取上一级目录
 $parentDir = Split-Path -Parent $PSScriptRoot
 
+# 需要排除的目录
+$excludedFolders = @("tests", "symbols", "doc", "cmd")
+
 # 遍历上一级目录下的所有文件夹
 Get-ChildItem -Path $parentDir -Directory | ForEach-Object {
     $folderName = $_.Name
     
-    # 排除 tests 和 symbols 目录
-    if ($folderName -ne "tests" -and $folderName -ne "symbols") {
+    # 排除指定目录
+    if ($excludedFolders -notcontains $folderName) {
         Write-Host "Processing: $folderName" -ForegroundColor Green
         
         # 执行 yaegi extract 命令

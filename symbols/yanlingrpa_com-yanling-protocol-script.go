@@ -23,11 +23,8 @@ func init() {
 		"VariableString":   reflect.ValueOf(script.VariableString),
 
 		// type definitions
-		"Argument":         reflect.ValueOf((*script.Argument)(nil)),
 		"Event":            reflect.ValueOf((*script.Event)(nil)),
 		"EventHandler":     reflect.ValueOf((*script.EventHandler)(nil)),
-		"ExportApi":        reflect.ValueOf((*script.ExportApi)(nil)),
-		"ExportTopic":      reflect.ValueOf((*script.ExportTopic)(nil)),
 		"GuiApplication":   reflect.ValueOf((*script.GuiApplication)(nil)),
 		"ModuleInfo":       reflect.ValueOf((*script.ModuleInfo)(nil)),
 		"ModuleRuntime":    reflect.ValueOf((*script.ModuleRuntime)(nil)),

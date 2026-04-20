@@ -59,7 +59,7 @@ func TestGenerateSymbols(t *testing.T) {
 		}
 
 		// 跳过 tests 目录和 symbols.go 文件
-		if strings.Contains(path, "tests") || strings.Contains(path, "symbols") || strings.HasSuffix(path, "symbols.go") {
+		if strings.Contains(path, "tests") || strings.Contains(path, "doc") || strings.Contains(path, "cmd") || strings.Contains(path, "symbols") || strings.HasSuffix(path, "symbols.go") {
 			if info.IsDir() {
 				return filepath.SkipDir
 			}
