@@ -1,5 +1,7 @@
 package symbols
 
+//go:generate go run ../cmd/generate-symbols
+
 // var Symbols = make(map[string]map[string]reflect.Value)
 
 // 手工操作
