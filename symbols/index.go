@@ -1,5 +1,7 @@
 package symbols
 
+import "reflect"
+
 //go:generate go run ../cmd/generate-symbols
 
 // var Symbols = make(map[string]map[string]reflect.Value)
@@ -18,3 +20,5 @@ package symbols
 // Walk()          // 高危，遍历文件系统
 // WalkDir()       // 高危，遍历文件系统
 // WalkFunc        // Walk 的回调类型，关联 Walk 方法
+
+var Symbols = make(map[string]map[string]reflect.Value)
