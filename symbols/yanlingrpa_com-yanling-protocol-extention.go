@@ -4,6 +4,7 @@ package symbols
 
 import (
 	"reflect"
+
 	"yanlingrpa.com/yanling/protocol/basic"
 	"yanlingrpa.com/yanling/protocol/extention"
 )
@@ -11,8 +12,6 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/extention/extention"] = map[string]reflect.Value{
 		// type definitions
-		"OcrResult":       reflect.ValueOf((*extention.OcrResult)(nil)),
-		"OcrWord":         reflect.ValueOf((*extention.OcrWord)(nil)),
 		"VisionExtension": reflect.ValueOf((*extention.VisionExtension)(nil)),
 
 		// interface wrapper definitions
@@ -25,7 +24,7 @@ type _yanlingrpa_com_yanling_protocol_extention_VisionExtension struct {
 	IValue  interface{}
 	WDetect func(image []byte, prompt string, question string) (string, error)
 	WLocate func(image []byte, text string) ([]basic.Rect, error)
-	WOcr    func(image []byte) (*extention.OcrResult, error)
+	WOcr    func(image []byte) (*basic.OcrResult, error)
 	WRead   func(image []byte, prompt string, question string) (string, error)
 }
 
@@ -35,7 +34,7 @@ func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Detect(image
 func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Locate(image []byte, text string) ([]basic.Rect, error) {
 	return W.WLocate(image, text)
 }
-func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Ocr(image []byte) (*extention.OcrResult, error) {
+func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Ocr(image []byte) (*basic.OcrResult, error) {
 	return W.WOcr(image)
 }
 func (W _yanlingrpa_com_yanling_protocol_extention_VisionExtension) Read(image []byte, prompt string, question string) (string, error) {

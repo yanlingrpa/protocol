@@ -5,6 +5,7 @@ package symbols
 import (
 	"reflect"
 	"time"
+
 	"yanlingrpa.com/yanling/protocol/basic"
 )
 
@@ -18,14 +19,12 @@ func init() {
 		"MinAreaRect":                reflect.ValueOf(basic.MinAreaRect),
 
 		// type definitions
-		"DispatchTaskData": reflect.ValueOf((*basic.DispatchTaskData)(nil)),
-		"FPoint":           reflect.ValueOf((*basic.FPoint)(nil)),
-		"OcrResult":        reflect.ValueOf((*basic.OcrResult)(nil)),
-		"OcrText":          reflect.ValueOf((*basic.OcrText)(nil)),
-		"Point":            reflect.ValueOf((*basic.Point)(nil)),
-		"Rect":             reflect.ValueOf((*basic.Rect)(nil)),
-		"Size":             reflect.ValueOf((*basic.Size)(nil)),
-		"Task":             reflect.ValueOf((*basic.Task)(nil)),
+		"FPoint":    reflect.ValueOf((*basic.FPoint)(nil)),
+		"OcrResult": reflect.ValueOf((*basic.OcrResult)(nil)),
+		"OcrText":   reflect.ValueOf((*basic.OcrText)(nil)),
+		"Point":     reflect.ValueOf((*basic.Point)(nil)),
+		"Rect":      reflect.ValueOf((*basic.Rect)(nil)),
+		"Size":      reflect.ValueOf((*basic.Size)(nil)),
 
 		// interface wrapper definitions
 		"_Task": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_basic_Task)(nil)),

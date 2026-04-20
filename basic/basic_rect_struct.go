@@ -2,13 +2,31 @@ package basic
 
 import "sort"
 
+/*
+* Rect 表示一个矩形区域，定义了左上角坐标和宽高
+ */
 type Rect struct {
-	X      int `json:"x"`
-	Y      int `json:"y"`
-	Width  int `json:"width"`
+	/*
+	* X 表示矩形左上角的 X 坐标
+	 */
+	X int `json:"x"`
+	/*
+	* Y 表示矩形左上角的 Y 坐标
+	 */
+	Y int `json:"y"`
+	/*
+	* Width 表示矩形宽度
+	 */
+	Width int `json:"width"`
+	/*
+	* Height 表示矩形高度
+	 */
 	Height int `json:"height"`
 }
 
+/*
+* Position 返回矩形的左上角位置
+ */
 func (r Rect) Position() Point {
 	return Point{
 		X: r.X,
@@ -16,6 +34,9 @@ func (r Rect) Position() Point {
 	}
 }
 
+/*
+* Size 返回矩形的宽高信息
+ */
 func (r Rect) Size() Size {
 	return Size{
 		Width:  r.Width,
@@ -23,6 +44,10 @@ func (r Rect) Size() Size {
 	}
 }
 
+/*
+* Compare 比较两个矩形的大小关系，返回 -1 表示小于，0 表示等于，1 表示大于
+* 比较优先级：面积 > X 坐标 > Y 坐标 > 宽度 > 高度
+ */
 func (r Rect) Compare(another Rect) int {
 	if r.Size().Area() != another.Size().Area() {
 		if r.Size().Area() < another.Size().Area() {
@@ -57,6 +82,10 @@ func (r Rect) Compare(another Rect) int {
 	return 0
 }
 
+/*
+* SubRect 从矩形内部提取一个子矩形，指定子矩形的相对位置和大小
+* 自动检查边界，防止越界
+ */
 func (r Rect) SubRect(x, y, width, height int) Rect {
 	if x < 0 {
 		x = 0
@@ -80,6 +109,9 @@ func (r Rect) SubRect(x, y, width, height int) Rect {
 	}
 }
 
+/*
+* LeftPercent 从左边保留指定百分比的宽度，返回左侧矩形
+ */
 func (r Rect) LeftPercent(percent float32) Rect {
 	if percent < 0 {
 		percent = 0
@@ -89,15 +121,9 @@ func (r Rect) LeftPercent(percent float32) Rect {
 	return r.LeftPixel(int(float32(r.Width) * percent))
 }
 
-func (r Rect) ExLeftPercent(percent float32) Rect {
-	if percent < 0 {
-		percent = 0
-	} else if percent > 1 {
-		percent = 1
-	}
-	return r.ExLeftPixel(int(float32(r.Width) * percent))
-}
-
+/*
+* LeftPixel 从左边保留指定像素宽度，返回左侧矩形
+ */
 func (r Rect) LeftPixel(pixel int) Rect {
 	if pixel < 0 {
 		pixel = 0
@@ -112,20 +138,9 @@ func (r Rect) LeftPixel(pixel int) Rect {
 	}
 }
 
-func (r Rect) ExLeftPixel(pixel int) Rect {
-	if pixel < 0 {
-		pixel = 0
-	} else if pixel > r.Width {
-		pixel = r.Width
-	}
-	return Rect{
-		X:      r.X + pixel,
-		Y:      r.Y,
-		Width:  r.Width - pixel,
-		Height: r.Height,
-	}
-}
-
+/*
+* RightPercent 从右边保留指定百分比的宽度，返回右侧矩形
+ */
 func (r Rect) RightPercent(percent float32) Rect {
 	if percent < 0 {
 		percent = 0
@@ -135,15 +150,9 @@ func (r Rect) RightPercent(percent float32) Rect {
 	return r.RightPixel(int(float32(r.Width) * percent))
 }
 
-func (r Rect) ExRightPercent(percent float32) Rect {
-	if percent < 0 {
-		percent = 0
-	} else if percent > 1 {
-		percent = 1
-	}
-	return r.ExRightPixel(int(float32(r.Width) * percent))
-}
-
+/*
+* RightPixel 从右边保留指定像素宽度，返回右侧矩形
+ */
 func (r Rect) RightPixel(pixel int) Rect {
 	if pixel < 0 {
 		pixel = 0
@@ -158,43 +167,9 @@ func (r Rect) RightPixel(pixel int) Rect {
 	}
 }
 
-func (r Rect) ExRightPixel(pixel int) Rect {
-	if pixel < 0 {
-		pixel = 0
-	} else if pixel > r.Width {
-		pixel = r.Width
-	}
-	return Rect{
-		X:      r.X,
-		Y:      r.Y,
-		Width:  r.Width - pixel,
-		Height: r.Height,
-	}
-}
-
-func (r Rect) CenterPercent(percent float32) Rect {
-	if percent < 0 {
-		percent = 0
-	} else if percent > 1 {
-		percent = 1
-	}
-	return r.CenterPixel(int(float32(r.Width) * percent))
-}
-
-func (r Rect) CenterPixel(pixel int) Rect {
-	if pixel < 0 {
-		pixel = 0
-	} else if pixel > r.Width {
-		pixel = r.Width
-	}
-	return Rect{
-		X:      r.X + (r.Width-pixel)/2,
-		Y:      r.Y,
-		Width:  pixel,
-		Height: r.Height,
-	}
-}
-
+/*
+* HeaderPercent 从顶部保留指定百分比的高度，返回顶部矩形
+ */
 func (r Rect) HeaderPercent(percent float32) Rect {
 	if percent < 0 {
 		percent = 0
@@ -204,15 +179,9 @@ func (r Rect) HeaderPercent(percent float32) Rect {
 	return r.HeaderPixel(int(float32(r.Height) * percent))
 }
 
-func (r Rect) ExHeaderPercent(percent float32) Rect {
-	if percent < 0 {
-		percent = 0
-	} else if percent > 1 {
-		percent = 1
-	}
-	return r.ExHeaderPixel(int(float32(r.Height) * percent))
-}
-
+/*
+* HeaderPixel 从顶部保留指定像素高度，返回顶部矩形
+ */
 func (r Rect) HeaderPixel(pixel int) Rect {
 	if pixel < 0 {
 		pixel = 0
@@ -227,20 +196,9 @@ func (r Rect) HeaderPixel(pixel int) Rect {
 	}
 }
 
-func (r Rect) ExHeaderPixel(pixel int) Rect {
-	if pixel < 0 {
-		pixel = 0
-	} else if pixel > r.Height {
-		pixel = r.Height
-	}
-	return Rect{
-		X:      r.X,
-		Y:      r.Y + pixel,
-		Width:  r.Width,
-		Height: r.Height - pixel,
-	}
-}
-
+/*
+* FooterPercent 从底部保留指定百分比的高度，返回底部矩形
+ */
 func (r Rect) FooterPercent(percent float32) Rect {
 	if percent < 0 {
 		percent = 0
@@ -250,15 +208,9 @@ func (r Rect) FooterPercent(percent float32) Rect {
 	return r.FooterPixel(int(float32(r.Height) * percent))
 }
 
-func (r Rect) ExFooterPercent(percent float32) Rect {
-	if percent < 0 {
-		percent = 0
-	} else if percent > 1 {
-		percent = 1
-	}
-	return r.ExFooterPixel(int(float32(r.Height) * percent))
-}
-
+/*
+* FooterPixel 从底部保留指定像素高度，返回底部矩形
+ */
 func (r Rect) FooterPixel(pixel int) Rect {
 	if pixel < 0 {
 		pixel = 0
@@ -273,43 +225,9 @@ func (r Rect) FooterPixel(pixel int) Rect {
 	}
 }
 
-func (r Rect) ExFooterPixel(pixel int) Rect {
-	if pixel < 0 {
-		pixel = 0
-	} else if pixel > r.Height {
-		pixel = r.Height
-	}
-	return Rect{
-		X:      r.X,
-		Y:      r.Y,
-		Width:  r.Width,
-		Height: r.Height - pixel,
-	}
-}
-
-func (r Rect) MainPercent(percent float32) Rect {
-	if percent < 0 {
-		percent = 0
-	} else if percent > 1 {
-		percent = 1
-	}
-	return r.MainPixel(int(float32(r.Height) * percent))
-}
-
-func (r Rect) MainPixel(pixel int) Rect {
-	if pixel < 0 {
-		pixel = 0
-	} else if pixel > r.Height {
-		pixel = r.Height
-	}
-	return Rect{
-		X:      r.X,
-		Y:      r.Y + (r.Height-pixel)/2,
-		Width:  r.Width,
-		Height: pixel,
-	}
-}
-
+/*
+* IsOverlapping 检查两个矩形是否重叠
+ */
 func (r Rect) IsOverlapping(another Rect) bool {
 	if r.X > another.X+another.Width || another.X > r.X+r.Width {
 		return false
@@ -320,10 +238,16 @@ func (r Rect) IsOverlapping(another Rect) bool {
 	return true
 }
 
+/*
+* IsEmpty 检查矩形是否为空（宽度或高度为 0 或负数）
+ */
 func (r Rect) IsEmpty() bool {
 	return r.Width <= 0 || r.Height <= 0
 }
 
+/*
+* Merge 将两个矩形合并为包含两者的最小矩形
+ */
 func (r Rect) Merge(another Rect) Rect {
 	if r.IsEmpty() {
 		return another
@@ -339,6 +263,9 @@ func (r Rect) Merge(another Rect) Rect {
 	}
 }
 
+/*
+* Intersect 计算两个矩形的交集
+ */
 func (r Rect) Intersect(another Rect) Rect {
 	if r.IsEmpty() || another.IsEmpty() {
 		return Rect{}
@@ -351,10 +278,9 @@ func (r Rect) Intersect(another Rect) Rect {
 	}
 }
 
-func (r Rect) Center() (int, int) {
-	return r.X + r.Width/2, r.Y + r.Height/2
-}
-
+/*
+* CenterPoint 返回矩形的中心点
+ */
 func (r Rect) CenterPoint() Point {
 	return Point{
 		X: r.X + r.Width/2,
@@ -362,14 +288,23 @@ func (r Rect) CenterPoint() Point {
 	}
 }
 
+/*
+* Contains 检查点 (x, y) 是否在矩形内部
+ */
 func (r Rect) Contains(x, y int) bool {
 	return x >= r.X && x < r.X+r.Width && y >= r.Y && y < r.Y+r.Height
 }
 
+/*
+* ContainsPoint 检查点 p 是否在矩形内部
+ */
 func (r Rect) ContainsPoint(p Point) bool {
 	return r.Contains(p.X, p.Y)
 }
 
+/*
+* MergeOverlappingRectangles 将重叠的矩形合并为一个
+ */
 func MergeOverlappingRectangles(rectangles []Rect) []Rect {
 	if len(rectangles) == 0 {
 		return nil
@@ -391,6 +326,9 @@ func MergeOverlappingRectangles(rectangles []Rect) []Rect {
 	return merged
 }
 
+/*
+* MergeAllRectangles 将所有矩形合并为一个包含所有矩形的最小矩形
+ */
 func MergeAllRectangles(rectangles []Rect) Rect {
 	if len(rectangles) == 0 {
 		return Rect{}
@@ -402,6 +340,9 @@ func MergeAllRectangles(rectangles []Rect) Rect {
 	return merged
 }
 
+/*
+* MinAreaRect 返回面积最小的矩形
+ */
 func MinAreaRect(rectangles []Rect) Rect {
 	if len(rectangles) == 0 {
 		return Rect{}
@@ -418,6 +359,9 @@ func MinAreaRect(rectangles []Rect) Rect {
 	return rectangles[minIdx]
 }
 
+/*
+* MaxAreaRect 返回面积最大的矩形
+ */
 func MaxAreaRect(rectangles []Rect) Rect {
 	if len(rectangles) == 0 {
 		return Rect{}
@@ -434,6 +378,10 @@ func MaxAreaRect(rectangles []Rect) Rect {
 	return rectangles[maxIdx]
 }
 
+/*
+* MergeGroupRectangles 将多个矩形组中的矩形进行各种组合方式合并
+* 返回所有可能的合并结果，按面积从小到大排序
+ */
 func MergeGroupRectangles(groupRects ...[]Rect) []Rect {
 	if len(groupRects) == 0 {
 		return nil
@@ -452,7 +400,9 @@ func MergeGroupRectangles(groupRects ...[]Rect) []Rect {
 	}
 	dfs(0, nil)
 
-	// 用 map 去重
+	/*
+	* 用 map 去重
+	 */
 	uniqueMap := make(map[Rect]struct{})
 	uniqueResults := make([]Rect, 0, len(results))
 	for _, r := range results {

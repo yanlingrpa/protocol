@@ -1,23 +1,5 @@
 package osgui
 
-type GraphicShape string
-
-const (
-	GraphicShape_Rectangle   GraphicShape = "rectangle"
-	GraphicShape_Circle      GraphicShape = "circle"
-	GraphicShape_Ellipse     GraphicShape = "ellipse"
-	GraphicShape_Triangle    GraphicShape = "triangle"
-	GraphicShape_Star        GraphicShape = "star"
-	GraphicShape_Pentagon    GraphicShape = "pentagon"
-	GraphicShape_CircleCross GraphicShape = "circle_cross"
-	GraphicShape_ArrowLeft   GraphicShape = "arrow_left"
-	GraphicShape_ArrowUp     GraphicShape = "arrow_up"
-	GraphicShape_ArrowRight  GraphicShape = "arrow_right"
-	GraphicShape_ArrowDown   GraphicShape = "arrow_down"
-	GraphicShape_PlusSign    GraphicShape = "plus_sign"
-	GraphicShape_CrossSign   GraphicShape = "cross_sign"
-)
-
 type Keyboard string
 
 const (
