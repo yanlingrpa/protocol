@@ -1,0 +1,345 @@
+{
+  "module": "yanlingrpa.com/yanling/protocol",
+  "package": {
+    "name": "script",
+    "import_path": "yanlingrpa.com/yanling/protocol/script",
+    "interfaces": [
+      {
+        "name": "ModuleRuntime",
+        "doc": "ModuleRuntime 定义脚本运行时上下文能力\n该接口提供窗口访问、系统能力、缓存、变量与事件总线访问能力",
+        "methods": [
+          {
+            "name": "BrowserWindow",
+            "doc": "BrowserWindow 根据窗口 ID 获取浏览器窗口",
+            "params": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "browser.BrowserWindow"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "BrowserWindow(id string) (browser.BrowserWindow, bool)"
+          },
+          {
+            "name": "CurrentSpecifier",
+            "doc": "CurrentSpecifier 获取当前正在执行脚本的规范说明",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "CurrentSpecifier() string"
+          },
+          {
+            "name": "DeviceInfo",
+            "doc": "DeviceInfo 获取设备信息能力接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.DeviceInfo"
+              }
+            ],
+            "signature": "DeviceInfo() ossys.DeviceInfo"
+          },
+          {
+            "name": "FileSystem",
+            "doc": "FileSystem 获取本地文件系统接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.LocalFilesystem"
+              }
+            ],
+            "signature": "FileSystem() ossys.LocalFilesystem"
+          },
+          {
+            "name": "GetCacheData",
+            "doc": "GetCacheData 获取运行时临时存储数据",
+            "params": [
+              {
+                "name": "key",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "GetCacheData(key string) (any, bool)"
+          },
+          {
+            "name": "GetVariable",
+            "doc": "GetVariable 获取脚本变量值",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "GetVariable(name string) (any, bool)"
+          },
+          {
+            "name": "GuiWindow",
+            "doc": "GuiWindow 根据窗口 ID 获取 GUI 窗口",
+            "params": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "osgui.GuiWindow"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "GuiWindow(id string) (osgui.GuiWindow, bool)"
+          },
+          {
+            "name": "HostSpecifier",
+            "doc": "HostSpecifier 获取启动引擎执行的入口脚本规范说明",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "HostSpecifier() string"
+          },
+          {
+            "name": "HttpClient",
+            "doc": "HttpClient 获取 HTTP 客户端接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.HttpClient"
+              }
+            ],
+            "signature": "HttpClient() ossys.HttpClient"
+          },
+          {
+            "name": "InvokeApi",
+            "doc": "InvokeApi 调用本地其他模组的开放 API",
+            "params": [
+              {
+                "name": "specifier",
+                "type": "string"
+              },
+              {
+                "name": "api",
+                "type": "string"
+              },
+              {
+                "name": "args",
+                "type": "...any"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "InvokeApi(specifier string, api string, args ...any) (any, error)"
+          },
+          {
+            "name": "Logger",
+            "doc": "Logger 获取脚本日志记录器",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.ScriptLogger"
+              }
+            ],
+            "signature": "Logger() ossys.ScriptLogger"
+          },
+          {
+            "name": "Publish",
+            "doc": "Publish 发布事件到本地事件总线",
+            "params": [
+              {
+                "name": "topic",
+                "type": "string"
+              },
+              {
+                "name": "data",
+                "type": "any"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Publish(topic string, data any) error"
+          },
+          {
+            "name": "SetCacheData",
+            "doc": "SetCacheData 在运行时临时存储任意数据",
+            "params": [
+              {
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "type": "any"
+              }
+            ],
+            "results": [],
+            "signature": "SetCacheData(key string, value any)"
+          },
+          {
+            "name": "Storage",
+            "doc": "Storage 获取项目本地存储接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.LocalStorage"
+              }
+            ],
+            "signature": "Storage() ossys.LocalStorage"
+          },
+          {
+            "name": "Subscribe",
+            "doc": "Subscribe 订阅本地其他模组的开放事件",
+            "params": [
+              {
+                "name": "specifier",
+                "type": "string"
+              },
+              {
+                "name": "topic",
+                "type": "string"
+              },
+              {
+                "name": "handler",
+                "type": "EventHandler"
+              }
+            ],
+            "results": [
+              {
+                "type": "Subscriber"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error)"
+          },
+          {
+            "name": "Unsubscribe",
+            "doc": "Unsubscribe 取消订阅本地其他模组的开放事件",
+            "params": [
+              {
+                "name": "subscriber",
+                "type": "Subscriber"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Unsubscribe(subscriber Subscriber) error"
+          },
+          {
+            "name": "Vision",
+            "doc": "Vision 获取视觉能力扩展接口",
+            "params": [],
+            "results": [
+              {
+                "type": "extention.VisionExtension"
+              }
+            ],
+            "signature": "Vision() extention.VisionExtension"
+          }
+        ]
+      },
+      {
+        "name": "Subscriber",
+        "doc": "Subscriber 定义事件订阅者信息\n用于标识订阅来源、主题与状态",
+        "methods": [
+          {
+            "name": "GetSpecifier",
+            "doc": "GetSpecifier 获取Topic所属模块标识",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetSpecifier() string"
+          },
+          {
+            "name": "GetTopic",
+            "doc": "GetTopic 获取订阅的事件主题",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetTopic() string"
+          },
+          {
+            "name": "IsActive",
+            "doc": "IsActive 判断订阅是否仍然有效",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "IsActive() bool"
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "name": "ParseSpecifier",
+        "doc": "ParseSpecifier 解析模块标识符字符串\n支持 owner/name 或 domain/owner/name 两种形式，可带 @version",
+        "params": [
+          {
+            "name": "spec",
+            "type": "string"
+          }
+        ],
+        "results": [
+          {
+            "type": "Specifier"
+          },
+          {
+            "type": "error"
+          }
+        ],
+        "signature": "ParseSpecifier(spec string) (Specifier, error)"
+      }
+    ]
+  }
+}

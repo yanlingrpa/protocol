@@ -1,0 +1,927 @@
+{
+  "module": "yanlingrpa.com/yanling/protocol",
+  "package": {
+    "name": "ossys",
+    "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+    "interfaces": [
+      {
+        "name": "DeviceInfo",
+        "doc": "DeviceInfo 定义设备信息查询能力\n该接口用于获取操作系统、硬件、用户与显示器相关信息",
+        "methods": [
+          {
+            "name": "DeviceId",
+            "doc": "DeviceId 获取设备唯一标识符\n返回值可用于设备维度的身份区分",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "DeviceId() string"
+          },
+          {
+            "name": "DeviceName",
+            "doc": "DeviceName 获取设备名称\n返回值通常为系统设置中的设备名",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "DeviceName() string"
+          },
+          {
+            "name": "GetComputerName",
+            "doc": "GetComputerName 获取计算机名称\n返回值为主机名或系统计算机名",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetComputerName() string"
+          },
+          {
+            "name": "GetGpuMemoryMB",
+            "doc": "GetGpuMemoryMB 获取 GPU 显存大小\n返回值单位为 MB",
+            "params": [],
+            "results": [
+              {
+                "type": "int"
+              }
+            ],
+            "signature": "GetGpuMemoryMB() int"
+          },
+          {
+            "name": "GetMonitors",
+            "doc": "GetMonitors 获取所有显示器信息\n返回值为显示器信息列表",
+            "params": [],
+            "results": [
+              {
+                "type": "[]MonitorInfo"
+              }
+            ],
+            "signature": "GetMonitors() []MonitorInfo"
+          },
+          {
+            "name": "GetPrimaryMonitor",
+            "doc": "GetPrimaryMonitor 获取主显示器信息\n返回值为当前系统主显示器",
+            "params": [],
+            "results": [
+              {
+                "type": "MonitorInfo"
+              }
+            ],
+            "signature": "GetPrimaryMonitor() MonitorInfo"
+          },
+          {
+            "name": "GetUserName",
+            "doc": "GetUserName 获取当前用户名称\n返回值为当前登录账户名",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetUserName() string"
+          },
+          {
+            "name": "HasNvidiaGPU",
+            "doc": "HasNvidiaGPU 判断是否存在 Nvidia GPU\n返回 true 表示检测到 Nvidia 显卡",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "HasNvidiaGPU() bool"
+          },
+          {
+            "name": "NumLogicCPU",
+            "doc": "NumLogicCPU 获取逻辑 CPU 核心数\n返回值为逻辑处理器数量",
+            "params": [],
+            "results": [
+              {
+                "type": "int"
+              }
+            ],
+            "signature": "NumLogicCPU() int"
+          },
+          {
+            "name": "OS",
+            "doc": "OS 获取操作系统名称\n返回值示例：Windows、Linux、Darwin",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "OS() string"
+          },
+          {
+            "name": "OSVersion",
+            "doc": "OSVersion 获取操作系统版本\n返回值通常为系统版本字符串",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "OSVersion() string"
+          }
+        ]
+      },
+      {
+        "name": "HttpClient",
+        "doc": "HttpClient 定义 HTTP 请求与域名级配置能力\n该接口支持 Cookie、Header 管理以及常见请求与上传下载操作",
+        "methods": [
+          {
+            "name": "DeleteDomainCookie",
+            "doc": "DeleteDomainCookie 删除指定域名下的 Cookie\n可一次删除多个 Cookie 名称",
+            "params": [
+              {
+                "name": "domain",
+                "type": "string"
+              },
+              {
+                "name": "cookieNames",
+                "type": "...string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "DeleteDomainCookie(domain string, cookieNames ...string) error"
+          },
+          {
+            "name": "DeleteDomainHeader",
+            "doc": "DeleteDomainHeader 删除指定域名下的 Header\n可一次删除多个 Header 名称",
+            "params": [
+              {
+                "name": "domain",
+                "type": "string"
+              },
+              {
+                "name": "headerNames",
+                "type": "...string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "DeleteDomainHeader(domain string, headerNames ...string) error"
+          },
+          {
+            "name": "DownloadFile",
+            "doc": "DownloadFile 下载文件并返回本地路径\nheaders 参数用于附加下载请求头",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "DownloadFile(url string, headers map[string]string) (string, error)"
+          },
+          {
+            "name": "Get",
+            "doc": "Get 发送 HTTP GET 请求\nheaders 参数用于覆盖或补充请求头",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]byte"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Get(url string, headers map[string]string) ([]byte, error)"
+          },
+          {
+            "name": "GetDomainCookies",
+            "doc": "GetDomainCookies 获取指定域名的 Cookie\n返回域名下已保存的 Cookie 键值对",
+            "params": [
+              {
+                "name": "domain",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "map[string]string"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "GetDomainCookies(domain string) (map[string]string, error)"
+          },
+          {
+            "name": "GetDomainHeaders",
+            "doc": "GetDomainHeaders 获取指定域名的默认 Header\n返回域名下已配置的请求头键值对",
+            "params": [
+              {
+                "name": "domain",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "map[string]string"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "GetDomainHeaders(domain string) (map[string]string, error)"
+          },
+          {
+            "name": "Post",
+            "doc": "Post 发送 HTTP POST 原始数据请求\nbody 参数为请求体字节数组",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "body",
+                "type": "[]byte"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]byte"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Post(url string, body []byte, headers map[string]string) ([]byte, error)"
+          },
+          {
+            "name": "PostForm",
+            "doc": "PostForm 发送 HTTP 表单请求\nparams 参数将以表单格式提交",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "params",
+                "type": "map[string]any"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]byte"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "PostForm(url string, params map[string]any, headers map[string]string) ([]byte, error)"
+          },
+          {
+            "name": "PostJson",
+            "doc": "PostJson 发送 HTTP JSON 请求\nparams 参数将编码为 JSON 作为请求体",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "params",
+                "type": "map[string]any"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]byte"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "PostJson(url string, params map[string]any, headers map[string]string) ([]byte, error)"
+          },
+          {
+            "name": "SetDomainCookies",
+            "doc": "SetDomainCookies 设置指定域名的 Cookie\ncookies 使用键值对表示 Cookie 名称和值",
+            "params": [
+              {
+                "name": "domain",
+                "type": "string"
+              },
+              {
+                "name": "cookies",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "SetDomainCookies(domain string, cookies map[string]string) error"
+          },
+          {
+            "name": "SetDomainHeaders",
+            "doc": "SetDomainHeaders 设置指定域名的默认 Header\nheaders 使用键值对表示请求头",
+            "params": [
+              {
+                "name": "domain",
+                "type": "string"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "SetDomainHeaders(domain string, headers map[string]string) error"
+          },
+          {
+            "name": "UploadData",
+            "doc": "UploadData 上传内存中的文件数据\nfileName 为上传文件名，fileData 为上传内容",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "fileName",
+                "type": "string"
+              },
+              {
+                "name": "fileData",
+                "type": "[]byte"
+              },
+              {
+                "name": "params",
+                "type": "map[string]any"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]byte"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "UploadData(url string, fileName string, fileData []byte, params map[string]any, headers map[string]string) ([]byte, error)"
+          },
+          {
+            "name": "UploadFile",
+            "doc": "UploadFile 上传本地文件\nfilePath 为本地文件路径，params 为附加表单参数",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "filePath",
+                "type": "string"
+              },
+              {
+                "name": "params",
+                "type": "map[string]any"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]byte"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "UploadFile(url string, filePath string, params map[string]any, headers map[string]string) ([]byte, error)"
+          }
+        ]
+      },
+      {
+        "name": "LocalFilesystem",
+        "doc": "LocalFilesystem 定义本地文件系统操作能力\n该接口覆盖路径处理、文件读写与目录管理等常见场景",
+        "methods": [
+          {
+            "name": "CopyFile",
+            "doc": "CopyFile 复制文件\nsrc 为源文件，dst 为目标文件",
+            "params": [
+              {
+                "name": "src",
+                "type": "string"
+              },
+              {
+                "name": "dst",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "CopyFile(src string, dst string) error"
+          },
+          {
+            "name": "CreateTmpFile",
+            "doc": "CreateTmpFile 创建临时文件\nexpiredAt 表示临时文件过期时间，返回文件路径",
+            "params": [
+              {
+                "name": "expiredAt",
+                "type": "time.Time"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "CreateTmpFile(expiredAt time.Time) (string, error)"
+          },
+          {
+            "name": "IsDir",
+            "doc": "IsDir 检查路径是否为目录\n返回是否为目录以及可能的错误",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "IsDir(path string) (bool, error)"
+          },
+          {
+            "name": "IsFile",
+            "doc": "IsFile 检查路径是否为文件\n返回是否为文件以及可能的错误",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "IsFile(path string) (bool, error)"
+          },
+          {
+            "name": "JoinDataPath",
+            "doc": "JoinDataPath 从数据目录开始拼接路径\n返回拼接后的完整路径字符串",
+            "params": [
+              {
+                "name": "path",
+                "type": "...string"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "JoinDataPath(path ...string) string"
+          },
+          {
+            "name": "MkdirAll",
+            "doc": "MkdirAll 递归创建目录\n若目录已存在，行为由具体实现决定",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "MkdirAll(path string) error"
+          },
+          {
+            "name": "PathExists",
+            "doc": "PathExists 检查路径是否存在\n返回是否存在以及可能的错误",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "PathExists(path string) (bool, error)"
+          },
+          {
+            "name": "ReadFile",
+            "doc": "ReadFile 读取文件内容\n返回读取到的字节数据和可能的错误",
+            "params": [
+              {
+                "name": "filePath",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]byte"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "ReadFile(filePath string) ([]byte, error)"
+          },
+          {
+            "name": "Remove",
+            "doc": "Remove 删除文件或文件夹\npath 为待删除的目标路径",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Remove(path string) error"
+          },
+          {
+            "name": "RemoveAll",
+            "doc": "RemoveAll 递归删除目录及其所有内容\npath 为待递归删除的目录路径",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "RemoveAll(path string) error"
+          },
+          {
+            "name": "Rename",
+            "doc": "Rename 重命名或移动文件或目录\nsrc 为源路径，dst 为目标路径",
+            "params": [
+              {
+                "name": "src",
+                "type": "string"
+              },
+              {
+                "name": "dst",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Rename(src string, dst string) error"
+          },
+          {
+            "name": "WriteFile",
+            "doc": "WriteFile 写入文件内容\ndata 为待写入的字节数据",
+            "params": [
+              {
+                "name": "filePath",
+                "type": "string"
+              },
+              {
+                "name": "data",
+                "type": "[]byte"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WriteFile(filePath string, data []byte) error"
+          }
+        ]
+      },
+      {
+        "name": "LocalStorage",
+        "doc": "LocalStorage 定义本地键值存储能力\n该接口支持单值与批量读写，以及过期时间设置",
+        "methods": [
+          {
+            "name": "Del",
+            "doc": "Del 删除一个或多个键\n返回实际删除的键数量",
+            "params": [
+              {
+                "name": "keys",
+                "type": "...string"
+              }
+            ],
+            "results": [
+              {
+                "type": "int"
+              }
+            ],
+            "signature": "Del(keys ...string) int"
+          },
+          {
+            "name": "Get",
+            "doc": "Get 获取指定键对应的值\n若键不存在，返回值由具体实现决定",
+            "params": [
+              {
+                "name": "key",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "Get(key string) string"
+          },
+          {
+            "name": "Keys",
+            "doc": "Keys 获取当前存储中的所有键\n返回键名列表",
+            "params": [],
+            "results": [
+              {
+                "type": "[]string"
+              }
+            ],
+            "signature": "Keys() []string"
+          },
+          {
+            "name": "MGet",
+            "doc": "MGet 批量获取多个键的值\n返回键值映射结果",
+            "params": [
+              {
+                "name": "keys",
+                "type": "...string"
+              }
+            ],
+            "results": [
+              {
+                "type": "map[string]string"
+              }
+            ],
+            "signature": "MGet(keys ...string) map[string]string"
+          },
+          {
+            "name": "MSet",
+            "doc": "MSet 批量设置多个键值\ndata 为待写入的键值映射",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]string"
+              }
+            ],
+            "results": [],
+            "signature": "MSet(data map[string]string)"
+          },
+          {
+            "name": "MSetEx",
+            "doc": "MSetEx 批量设置多个带过期时间的键值\nexpiredAt 为统一过期时间戳",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]string"
+              },
+              {
+                "name": "expiredAt",
+                "type": "int64"
+              }
+            ],
+            "results": [],
+            "signature": "MSetEx(data map[string]string, expiredAt int64)"
+          },
+          {
+            "name": "Set",
+            "doc": "Set 设置键值对\nkey 为键名，value 为值",
+            "params": [
+              {
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "type": "string"
+              }
+            ],
+            "results": [],
+            "signature": "Set(key string, value string)"
+          },
+          {
+            "name": "SetEx",
+            "doc": "SetEx 设置带过期时间的键值对\nexpiredAt 为过期时间戳",
+            "params": [
+              {
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "type": "string"
+              },
+              {
+                "name": "expiredAt",
+                "type": "int64"
+              }
+            ],
+            "results": [],
+            "signature": "SetEx(key string, value string, expiredAt int64)"
+          }
+        ]
+      },
+      {
+        "name": "MonitorInfo",
+        "doc": "MonitorInfo 定义显示器信息查询能力\n该接口用于获取边界、工作区、DPI 与主屏标识",
+        "methods": [
+          {
+            "name": "GetBounds",
+            "doc": "GetBounds 获取屏幕边界位置和大小\n返回值为显示器完整边界矩形",
+            "params": [],
+            "results": [
+              {
+                "type": "basic.Rect"
+              }
+            ],
+            "signature": "GetBounds() basic.Rect"
+          },
+          {
+            "name": "GetDPI",
+            "doc": "GetDPI 获取屏幕 DPI 缩放信息\n返回值为水平 DPI 或缩放相关数值",
+            "params": [],
+            "results": [
+              {
+                "type": "uint32"
+              }
+            ],
+            "signature": "GetDPI() uint32"
+          },
+          {
+            "name": "GetWorkArea",
+            "doc": "GetWorkArea 获取屏幕工作区位置和大小\n工作区通常不包含任务栏等系统占用区域",
+            "params": [],
+            "results": [
+              {
+                "type": "basic.Rect"
+              }
+            ],
+            "signature": "GetWorkArea() basic.Rect"
+          },
+          {
+            "name": "IsPrimary",
+            "doc": "IsPrimary 判断是否为主屏幕\n返回 true 表示当前显示器为主显示器",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "IsPrimary() bool"
+          }
+        ]
+      },
+      {
+        "name": "ScriptLogger",
+        "doc": "ScriptLogger 定义脚本运行日志能力\n该接口提供按级别输出格式化日志的方法",
+        "methods": [
+          {
+            "name": "Debug",
+            "doc": "Debug 输出调试级别日志\nformat 为格式字符串，args 为格式化参数",
+            "params": [
+              {
+                "name": "format",
+                "type": "string"
+              },
+              {
+                "name": "args",
+                "type": "...any"
+              }
+            ],
+            "results": [],
+            "signature": "Debug(format string, args ...any)"
+          },
+          {
+            "name": "Error",
+            "doc": "Error 输出错误级别日志\nformat 为格式字符串，args 为格式化参数",
+            "params": [
+              {
+                "name": "format",
+                "type": "string"
+              },
+              {
+                "name": "args",
+                "type": "...any"
+              }
+            ],
+            "results": [],
+            "signature": "Error(format string, args ...any)"
+          },
+          {
+            "name": "Info",
+            "doc": "Info 输出信息级别日志\nformat 为格式字符串，args 为格式化参数",
+            "params": [
+              {
+                "name": "format",
+                "type": "string"
+              },
+              {
+                "name": "args",
+                "type": "...any"
+              }
+            ],
+            "results": [],
+            "signature": "Info(format string, args ...any)"
+          },
+          {
+            "name": "Warn",
+            "doc": "Warn 输出警告级别日志\nformat 为格式字符串，args 为格式化参数",
+            "params": [
+              {
+                "name": "format",
+                "type": "string"
+              },
+              {
+                "name": "args",
+                "type": "...any"
+              }
+            ],
+            "results": [],
+            "signature": "Warn(format string, args ...any)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,812 @@
+{
+  "module": "yanlingrpa.com/yanling/protocol",
+  "packages": [
+    {
+      "name": "basic",
+      "import_path": "yanlingrpa.com/yanling/protocol/basic",
+      "structs": [
+        {
+          "name": "FPoint",
+          "doc": "FPoint 表示一个二维浮点坐标点",
+          "fields": [
+            {
+              "name": "X",
+              "type": "float64",
+              "tag": "json:\"x\"",
+              "doc": "元素的 X 坐标，以像素为单位"
+            },
+            {
+              "name": "Y",
+              "type": "float64",
+              "tag": "json:\"y\"",
+              "doc": "元素的 Y 坐标，以像素为单位"
+            }
+          ]
+        },
+        {
+          "name": "OcrResult",
+          "doc": "OcrResult 表示整张图像的 OCR 识别结果",
+          "fields": [
+            {
+              "name": "Height",
+              "type": "int",
+              "tag": "json:\"height\"",
+              "doc": "Height 表示图像高度"
+            },
+            {
+              "name": "Texts",
+              "type": "[]OcrText",
+              "tag": "json:\"texts\"",
+              "doc": "Texts 表示识别出的文本列表"
+            },
+            {
+              "name": "Width",
+              "type": "int",
+              "tag": "json:\"width\"",
+              "doc": "Width 表示图像宽度"
+            }
+          ]
+        },
+        {
+          "name": "OcrText",
+          "doc": "OcrText 表示单条 OCR 文本识别结果",
+          "fields": [
+            {
+              "name": "Confidence",
+              "type": "float64",
+              "tag": "json:\"confidence\"",
+              "doc": "Confidence 表示识别置信度"
+            },
+            {
+              "name": "Rect",
+              "type": "Rect",
+              "tag": "json:\"rect\"",
+              "doc": "Rect 表示文本所在的矩形区域"
+            },
+            {
+              "name": "Text",
+              "type": "string",
+              "tag": "json:\"text\"",
+              "doc": "Text 表示识别出的文本内容"
+            }
+          ]
+        },
+        {
+          "name": "Point",
+          "doc": "Point 表示一个二维整数坐标点",
+          "fields": [
+            {
+              "name": "X",
+              "type": "int",
+              "tag": "json:\"x\"",
+              "doc": "X 表示横坐标"
+            },
+            {
+              "name": "Y",
+              "type": "int",
+              "tag": "json:\"y\"",
+              "doc": "Y 表示纵坐标"
+            }
+          ]
+        },
+        {
+          "name": "Rect",
+          "doc": "Rect 表示一个矩形区域，定义了左上角坐标和宽高",
+          "fields": [
+            {
+              "name": "Height",
+              "type": "int",
+              "tag": "json:\"height\"",
+              "doc": "Height 表示矩形高度"
+            },
+            {
+              "name": "Width",
+              "type": "int",
+              "tag": "json:\"width\"",
+              "doc": "Width 表示矩形宽度"
+            },
+            {
+              "name": "X",
+              "type": "int",
+              "tag": "json:\"x\"",
+              "doc": "X 表示矩形左上角的 X 坐标"
+            },
+            {
+              "name": "Y",
+              "type": "int",
+              "tag": "json:\"y\"",
+              "doc": "Y 表示矩形左上角的 Y 坐标"
+            }
+          ],
+          "methods": [
+            {
+              "name": "CenterPoint",
+              "doc": "CenterPoint 返回矩形的中心点",
+              "params": [],
+              "results": [
+                {
+                  "type": "Point"
+                }
+              ],
+              "signature": "CenterPoint() Point"
+            },
+            {
+              "name": "Compare",
+              "doc": "Compare 比较两个矩形的大小关系，返回 -1 表示小于，0 表示等于，1 表示大于\n比较优先级：面积 \u003e X 坐标 \u003e Y 坐标 \u003e 宽度 \u003e 高度",
+              "params": [
+                {
+                  "name": "another",
+                  "type": "Rect"
+                }
+              ],
+              "results": [
+                {
+                  "type": "int"
+                }
+              ],
+              "signature": "Compare(another Rect) int"
+            },
+            {
+              "name": "Contains",
+              "doc": "Contains 检查点 (x, y) 是否在矩形内部",
+              "params": [
+                {
+                  "name": "x",
+                  "type": "int"
+                },
+                {
+                  "name": "y",
+                  "type": "int"
+                }
+              ],
+              "results": [
+                {
+                  "type": "bool"
+                }
+              ],
+              "signature": "Contains(x int, y int) bool"
+            },
+            {
+              "name": "ContainsPoint",
+              "doc": "ContainsPoint 检查点 p 是否在矩形内部",
+              "params": [
+                {
+                  "name": "p",
+                  "type": "Point"
+                }
+              ],
+              "results": [
+                {
+                  "type": "bool"
+                }
+              ],
+              "signature": "ContainsPoint(p Point) bool"
+            },
+            {
+              "name": "FooterPercent",
+              "doc": "FooterPercent 从底部保留指定百分比的高度，返回底部矩形",
+              "params": [
+                {
+                  "name": "percent",
+                  "type": "float32"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "FooterPercent(percent float32) Rect"
+            },
+            {
+              "name": "FooterPixel",
+              "doc": "FooterPixel 从底部保留指定像素高度，返回底部矩形",
+              "params": [
+                {
+                  "name": "pixel",
+                  "type": "int"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "FooterPixel(pixel int) Rect"
+            },
+            {
+              "name": "HeaderPercent",
+              "doc": "HeaderPercent 从顶部保留指定百分比的高度，返回顶部矩形",
+              "params": [
+                {
+                  "name": "percent",
+                  "type": "float32"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "HeaderPercent(percent float32) Rect"
+            },
+            {
+              "name": "HeaderPixel",
+              "doc": "HeaderPixel 从顶部保留指定像素高度，返回顶部矩形",
+              "params": [
+                {
+                  "name": "pixel",
+                  "type": "int"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "HeaderPixel(pixel int) Rect"
+            },
+            {
+              "name": "Intersect",
+              "doc": "Intersect 计算两个矩形的交集",
+              "params": [
+                {
+                  "name": "another",
+                  "type": "Rect"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "Intersect(another Rect) Rect"
+            },
+            {
+              "name": "IsEmpty",
+              "doc": "IsEmpty 检查矩形是否为空（宽度或高度为 0 或负数）",
+              "params": [],
+              "results": [
+                {
+                  "type": "bool"
+                }
+              ],
+              "signature": "IsEmpty() bool"
+            },
+            {
+              "name": "IsOverlapping",
+              "doc": "IsOverlapping 检查两个矩形是否重叠",
+              "params": [
+                {
+                  "name": "another",
+                  "type": "Rect"
+                }
+              ],
+              "results": [
+                {
+                  "type": "bool"
+                }
+              ],
+              "signature": "IsOverlapping(another Rect) bool"
+            },
+            {
+              "name": "LeftPercent",
+              "doc": "LeftPercent 从左边保留指定百分比的宽度，返回左侧矩形",
+              "params": [
+                {
+                  "name": "percent",
+                  "type": "float32"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "LeftPercent(percent float32) Rect"
+            },
+            {
+              "name": "LeftPixel",
+              "doc": "LeftPixel 从左边保留指定像素宽度，返回左侧矩形",
+              "params": [
+                {
+                  "name": "pixel",
+                  "type": "int"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "LeftPixel(pixel int) Rect"
+            },
+            {
+              "name": "Merge",
+              "doc": "Merge 将两个矩形合并为包含两者的最小矩形",
+              "params": [
+                {
+                  "name": "another",
+                  "type": "Rect"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "Merge(another Rect) Rect"
+            },
+            {
+              "name": "Position",
+              "doc": "Position 返回矩形的左上角位置",
+              "params": [],
+              "results": [
+                {
+                  "type": "Point"
+                }
+              ],
+              "signature": "Position() Point"
+            },
+            {
+              "name": "RightPercent",
+              "doc": "RightPercent 从右边保留指定百分比的宽度，返回右侧矩形",
+              "params": [
+                {
+                  "name": "percent",
+                  "type": "float32"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "RightPercent(percent float32) Rect"
+            },
+            {
+              "name": "RightPixel",
+              "doc": "RightPixel 从右边保留指定像素宽度，返回右侧矩形",
+              "params": [
+                {
+                  "name": "pixel",
+                  "type": "int"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "RightPixel(pixel int) Rect"
+            },
+            {
+              "name": "Size",
+              "doc": "Size 返回矩形的宽高信息",
+              "params": [],
+              "results": [
+                {
+                  "type": "Size"
+                }
+              ],
+              "signature": "Size() Size"
+            },
+            {
+              "name": "SubRect",
+              "doc": "SubRect 从矩形内部提取一个子矩形，指定子矩形的相对位置和大小\n自动检查边界，防止越界",
+              "params": [
+                {
+                  "name": "x",
+                  "type": "int"
+                },
+                {
+                  "name": "y",
+                  "type": "int"
+                },
+                {
+                  "name": "width",
+                  "type": "int"
+                },
+                {
+                  "name": "height",
+                  "type": "int"
+                }
+              ],
+              "results": [
+                {
+                  "type": "Rect"
+                }
+              ],
+              "signature": "SubRect(x int, y int, width int, height int) Rect"
+            }
+          ]
+        },
+        {
+          "name": "Size",
+          "doc": "Size 表示宽度和高度",
+          "fields": [
+            {
+              "name": "Height",
+              "type": "int",
+              "tag": "json:\"height\"",
+              "doc": "Height 表示高度"
+            },
+            {
+              "name": "Width",
+              "type": "int",
+              "tag": "json:\"width\"",
+              "doc": "Width 表示宽度"
+            }
+          ],
+          "methods": [
+            {
+              "name": "Area",
+              "doc": "Area 返回尺寸的面积",
+              "params": [],
+              "results": [
+                {
+                  "type": "int"
+                }
+              ],
+              "signature": "Area() int"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "structs": [
+        {
+          "name": "Event",
+          "doc": "Event 定义本地事件总线的事件数据",
+          "fields": [
+            {
+              "name": "Data",
+              "type": "any",
+              "doc": "Data 事件数据"
+            },
+            {
+              "name": "OccuredAt",
+              "type": "time.Time",
+              "doc": "OccuredAt 事件发生时间"
+            },
+            {
+              "name": "Topic",
+              "type": "string",
+              "doc": "Topic 事件主题"
+            }
+          ]
+        },
+        {
+          "name": "GuiApplication",
+          "doc": "GuiApplication 定义 GUI 应用配置",
+          "fields": [
+            {
+              "name": "Id",
+              "type": "string",
+              "tag": "toml:\"id\" json:\"id\"",
+              "doc": "Id GUI 应用的唯一标识符"
+            },
+            {
+              "name": "Launcher",
+              "type": "string",
+              "tag": "toml:\"launcher\" json:\"launcher\"",
+              "doc": "Launcher 启动器命令或路径"
+            },
+            {
+              "name": "Name",
+              "type": "string",
+              "tag": "toml:\"name\" json:\"name\"",
+              "doc": "Name GUI 应用名称"
+            },
+            {
+              "name": "Process",
+              "type": "string",
+              "tag": "toml:\"process\" json:\"process\"",
+              "doc": "Process GUI 窗口所属的进程名称"
+            },
+            {
+              "name": "Url",
+              "type": "string",
+              "tag": "toml:\"url\" json:\"url\"",
+              "doc": "Url 打开 GUI 窗口的 URL，例如 weixin://launchapplet?appid=xxxx"
+            }
+          ]
+        },
+        {
+          "name": "ModuleInfo",
+          "doc": "ModuleInfo 定义脚本模组元信息",
+          "fields": [
+            {
+              "name": "Author",
+              "type": "string",
+              "tag": "toml:\"author\" json:\"author\"",
+              "doc": "Author 作者"
+            },
+            {
+              "name": "Description",
+              "type": "string",
+              "tag": "toml:\"description\" json:\"description\"",
+              "doc": "Description 脚本描述，介绍脚本的功能和用途"
+            },
+            {
+              "name": "Devices",
+              "type": "[]string",
+              "tag": "toml:\"devices\" json:\"devices\"",
+              "doc": "Devices 适用的设备列表，如 [\"windows\", \"mac\", \"ubuntu\"]"
+            },
+            {
+              "name": "Email",
+              "type": "string",
+              "tag": "toml:\"email\" json:\"email\"",
+              "doc": "Email 联系方式"
+            },
+            {
+              "name": "EngineVersion",
+              "type": "string",
+              "tag": "toml:\"engine_version\" json:\"engine_version\"",
+              "doc": "EngineVersion 引擎版本要求"
+            },
+            {
+              "name": "License",
+              "type": "string",
+              "tag": "toml:\"license\" json:\"license\"",
+              "doc": "License 许可证，根据 LICENSE 文件或声明"
+            },
+            {
+              "name": "Package",
+              "type": "string",
+              "tag": "toml:\"package\" json:\"package\"",
+              "doc": "Package 脚本包名，有且仅有该包名的脚本可以被引入和调用"
+            },
+            {
+              "name": "Specifier",
+              "type": "string",
+              "tag": "json:\"specifier\"",
+              "doc": "Specifier 模块标识符，包含域、所有者、名称和版本，从 go.mod 文件中解析得到"
+            },
+            {
+              "name": "Tags",
+              "type": "[]string",
+              "tag": "toml:\"tags\" json:\"tags\"",
+              "doc": "Tags 脚本主题标签列表，如 [\"web automation\", \"data extraction\"]"
+            },
+            {
+              "name": "UpdateTime",
+              "type": "string",
+              "tag": "json:\"update_time\"",
+              "doc": "UpdateTime 更新时间，最后一次提交时间，格式为 RFC3339"
+            },
+            {
+              "name": "Website",
+              "type": "string",
+              "tag": "toml:\"website\" json:\"website\"",
+              "doc": "Website 脚本官方网站"
+            }
+          ]
+        },
+        {
+          "name": "ScriptVariable",
+          "doc": "ScriptVariable 定义脚本变量配置",
+          "fields": [
+            {
+              "name": "Abstract",
+              "type": "string",
+              "tag": "toml:\"abstract\" json:\"abstract\"",
+              "doc": "Abstract 变量描述"
+            },
+            {
+              "name": "Default",
+              "type": "string",
+              "tag": "toml:\"default\" json:\"default\"",
+              "doc": "Default 变量默认值"
+            },
+            {
+              "name": "Name",
+              "type": "string",
+              "tag": "toml:\"name\" json:\"name\"",
+              "doc": "Name 变量名称"
+            },
+            {
+              "name": "Required",
+              "type": "bool",
+              "tag": "toml:\"required\" json:\"required\"",
+              "doc": "Required 是否必填"
+            },
+            {
+              "name": "Save",
+              "type": "bool",
+              "tag": "toml:\"save\" json:\"save\"",
+              "doc": "Save 是否保存到项目存储"
+            },
+            {
+              "name": "Type",
+              "type": "VariableDataType",
+              "tag": "toml:\"type\" json:\"type\"",
+              "doc": "Type 变量类型，如 string、integer、boolean、json 等"
+            }
+          ]
+        },
+        {
+          "name": "Specifier",
+          "doc": "Specifier 定义模块规范说明",
+          "fields": [
+            {
+              "name": "Domain",
+              "type": "string",
+              "tag": "json:\"domain\"",
+              "doc": "Domain 模块来源域，如 github.com"
+            },
+            {
+              "name": "Name",
+              "type": "string",
+              "tag": "json:\"name\"",
+              "doc": "Name 模块名称，如 utils"
+            },
+            {
+              "name": "Owner",
+              "type": "string",
+              "tag": "json:\"owner\"",
+              "doc": "Owner 模块所有者，如 github 用户名"
+            },
+            {
+              "name": "Version",
+              "type": "string",
+              "tag": "json:\"version\"",
+              "doc": "Version 模块版本要求，如 v1.2.3"
+            }
+          ],
+          "methods": [
+            {
+              "name": "Identifier",
+              "doc": "Identifier 返回不包含版本信息的模块标识符\n格式为 \"domain/owner/name\" 或 \"owner/name\"",
+              "params": [],
+              "results": [
+                {
+                  "type": "string"
+                }
+              ],
+              "signature": "Identifier() string"
+            },
+            {
+              "name": "IsPseudoVersion",
+              "doc": "IsPseudoVersion 判断当前 Specifier 的版本是否为 Go 伪版本格式\nGo 伪版本格式: v0.0.0-yyyymmddhhmmss-commithash",
+              "params": [],
+              "results": [
+                {
+                  "type": "bool"
+                }
+              ],
+              "signature": "IsPseudoVersion() bool"
+            },
+            {
+              "name": "ModulePath",
+              "doc": "ModulePath 基于给定根目录生成模块路径\n其中 name 部分如果包含 /，会被按多层目录拼接",
+              "params": [
+                {
+                  "name": "modPath",
+                  "type": "string"
+                }
+              ],
+              "results": [
+                {
+                  "type": "string"
+                }
+              ],
+              "signature": "ModulePath(modPath string) string"
+            },
+            {
+              "name": "String",
+              "doc": "String 返回完整的模块标识符字符串，格式为 \"domain/owner/name@version\" 或 \"owner/name@version\"\n其中 name 部分如果包含 /，也会被正确处理，例如 \"domain/owner/name/subname@version\"",
+              "params": [],
+              "results": [
+                {
+                  "type": "string"
+                }
+              ],
+              "signature": "String() string"
+            }
+          ]
+        },
+        {
+          "name": "UrlPermission",
+          "doc": "UrlPermission 定义网络访问权限",
+          "fields": [
+            {
+              "name": "Abstract",
+              "type": "string",
+              "tag": "toml:\"abstract\" json:\"abstract\"",
+              "doc": "Abstract 权限说明"
+            },
+            {
+              "name": "Permission",
+              "type": "string",
+              "tag": "toml:\"permission\" json:\"permission\"",
+              "doc": "Permission 访问权限，r、w、d、rw、rwd 等"
+            },
+            {
+              "name": "Url",
+              "type": "string",
+              "tag": "toml:\"url\" json:\"url\"",
+              "doc": "Url URL 模式，支持通配符(*)和脚本变量 ${var_name}"
+            }
+          ]
+        },
+        {
+          "name": "WebApplication",
+          "doc": "WebApplication 定义浏览器应用配置",
+          "fields": [
+            {
+              "name": "Id",
+              "type": "string",
+              "tag": "toml:\"id\" json:\"id\"",
+              "doc": "Id 浏览器应用的唯一标识符"
+            },
+            {
+              "name": "Name",
+              "type": "string",
+              "tag": "toml:\"name\" json:\"name\"",
+              "doc": "Name 浏览器应用名称"
+            },
+            {
+              "name": "Url",
+              "type": "string",
+              "tag": "toml:\"url\" json:\"url\"",
+              "doc": "Url 浏览器应用 URL，例如 https://www.google.com"
+            }
+          ]
+        },
+        {
+          "name": "YScript",
+          "doc": "YScript 定义脚本配置总结构",
+          "fields": [
+            {
+              "name": "ApiPerms",
+              "type": "[]UrlPermission",
+              "tag": "toml:\"api\" json:\"api_perms\"",
+              "doc": "ApiPerms 网络接口授权列表"
+            },
+            {
+              "name": "FilePerms",
+              "type": "[]UrlPermission",
+              "tag": "toml:\"file\" json:\"file_perms\"",
+              "doc": "FilePerms 文件系统授权列表"
+            },
+            {
+              "name": "GuiApps",
+              "type": "[]GuiApplication",
+              "tag": "toml:\"gui\" json:\"gui_apps\"",
+              "doc": "GuiApps 需要操作的 GUI 应用列表"
+            },
+            {
+              "name": "Module",
+              "type": "ModuleInfo",
+              "tag": "toml:\"module\" json:\"module\"",
+              "doc": "Module 脚本模组基本信息"
+            },
+            {
+              "name": "Requires",
+              "type": "[]string",
+              "tag": "json:\"requires\"",
+              "doc": "Requires 模块依赖列表"
+            },
+            {
+              "name": "Variables",
+              "type": "[]ScriptVariable",
+              "tag": "toml:\"var\" json:\"variables\"",
+              "doc": "Variables 脚本全局变量定义列表"
+            },
+            {
+              "name": "WebApps",
+              "type": "[]WebApplication",
+              "tag": "toml:\"web\" json:\"web_apps\"",
+              "doc": "WebApps 需要操作的 Web 应用列表"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

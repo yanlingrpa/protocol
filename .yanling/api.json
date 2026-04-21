@@ -1,0 +1,35 @@
+{
+  "module": "yanlingrpa.com/yanling/protocol",
+  "packages": [
+    {
+      "name": "basic",
+      "import_path": "yanlingrpa.com/yanling/protocol/basic",
+      "api_file": "api/basic.json"
+    },
+    {
+      "name": "browser",
+      "import_path": "yanlingrpa.com/yanling/protocol/browser",
+      "api_file": "api/browser.json"
+    },
+    {
+      "name": "extention",
+      "import_path": "yanlingrpa.com/yanling/protocol/extention",
+      "api_file": "api/extention.json"
+    },
+    {
+      "name": "osgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+      "api_file": "api/osgui.json"
+    },
+    {
+      "name": "ossys",
+      "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+      "api_file": "api/ossys.json"
+    },
+    {
+      "name": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "api_file": "api/script.json"
+    }
+  ]
+}
