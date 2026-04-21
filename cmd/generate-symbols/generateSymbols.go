@@ -16,10 +16,11 @@ const modulePrefix = "yanlingrpa.com/yanling/protocol"
 
 // excludedDirs are skipped during folder collection.
 var excludedDirs = map[string]struct{}{
-	"tests":   {},
-	"symbols": {},
-	"doc":     {},
-	"cmd":     {},
+	".yanling": {},
+	"cmd":      {},
+	"doc":      {},
+	"tests":    {},
+	"symbols":  {},
 }
 
 func main() {
