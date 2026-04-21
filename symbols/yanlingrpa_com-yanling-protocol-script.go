@@ -5,7 +5,7 @@ package symbols
 import (
 	"reflect"
 	"yanlingrpa.com/yanling/protocol/browser"
-	"yanlingrpa.com/yanling/protocol/extention"
+	"yanlingrpa.com/yanling/protocol/extension"
 	"yanlingrpa.com/yanling/protocol/osgui"
 	"yanlingrpa.com/yanling/protocol/ossys"
 	"yanlingrpa.com/yanling/protocol/script"
@@ -61,7 +61,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WStorage          func() ossys.LocalStorage
 	WSubscribe        func(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error)
 	WUnsubscribe      func(subscriber script.Subscriber) error
-	WVision           func() extention.VisionExtension
+	WVision           func() extension.VisionExtension
 }
 
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
@@ -112,7 +112,7 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Subscribe(specifi
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Unsubscribe(subscriber script.Subscriber) error {
 	return W.WUnsubscribe(subscriber)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Vision() extention.VisionExtension {
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Vision() extension.VisionExtension {
 	return W.WVision()
 }
 

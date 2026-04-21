@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"yanlingrpa.com/yanling/protocol/browser"
-	"yanlingrpa.com/yanling/protocol/extention"
+	"yanlingrpa.com/yanling/protocol/extension"
 	"yanlingrpa.com/yanling/protocol/osgui"
 	"yanlingrpa.com/yanling/protocol/ossys"
 )
@@ -123,5 +123,5 @@ type ModuleRuntime interface {
 	/*
 	* Vision 获取视觉能力扩展接口
 	 */
-	Vision() extention.VisionExtension
+	Vision() extension.VisionExtension
 }

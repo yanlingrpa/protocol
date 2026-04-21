@@ -36,7 +36,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 	WContainsElement  func(target browser.BrowserElement) (bool, error)
 	WDisabled         func() (bool, error)
 	WDoubleClick      func() error
-	WEvalute          func(jsCode string, arg ...any) (any, error)
+	WEvaluate         func(jsCode string, arg ...any) (any, error)
 	WFocus            func()
 	WFramePage        func() (browser.BrowserFramePage, error)
 	WGetAttribute     func(name string) (string, error)
@@ -85,8 +85,8 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Disabled() (boo
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) DoubleClick() error {
 	return W.WDoubleClick()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Evalute(jsCode string, arg ...any) (any, error) {
-	return W.WEvalute(jsCode, arg...)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Evaluate(jsCode string, arg ...any) (any, error) {
+	return W.WEvaluate(jsCode, arg...)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Focus() {
 	W.WFocus()

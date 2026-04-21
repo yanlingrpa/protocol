@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T06:15:15Z",
+  "generated_at": "2026-04-21T06:34:46Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -55,9 +55,9 @@
         ]
       },
       {
-        "path": "yanlingrpa.com/yanling/protocol/extention",
+        "path": "yanlingrpa.com/yanling/protocol/extension",
         "aliases": [
-          "extention"
+          "extension"
         ]
       },
       {
@@ -76,7 +76,7 @@
     "dependencies": [
       "time",
       "yanlingrpa.com/yanling/protocol/browser",
-      "yanlingrpa.com/yanling/protocol/extention",
+      "yanlingrpa.com/yanling/protocol/extension",
       "yanlingrpa.com/yanling/protocol/osgui",
       "yanlingrpa.com/yanling/protocol/ossys"
     ],
@@ -882,15 +882,15 @@
             "params": [],
             "results": [
               {
-                "type": "extention.VisionExtension"
+                "type": "extension.VisionExtension"
               }
             ],
-            "signature": "Vision() extention.VisionExtension",
+            "signature": "Vision() extension.VisionExtension",
             "type_refs": [
               {
-                "expr": "extention.VisionExtension",
-                "import_path": "yanlingrpa.com/yanling/protocol/extention",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/extention.VisionExtension"
+                "expr": "extension.VisionExtension",
+                "import_path": "yanlingrpa.com/yanling/protocol/extension",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/extension.VisionExtension"
               }
             ]
           }
@@ -926,9 +926,9 @@
             "builtin": true
           },
           {
-            "expr": "extention.VisionExtension",
-            "import_path": "yanlingrpa.com/yanling/protocol/extention",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/extention.VisionExtension"
+            "expr": "extension.VisionExtension",
+            "import_path": "yanlingrpa.com/yanling/protocol/extension",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/extension.VisionExtension"
           },
           {
             "expr": "osgui.GuiWindow",

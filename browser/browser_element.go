@@ -153,7 +153,7 @@ type BrowserElement interface {
 	/*
 	* 在当前元素上下文中执行 JavaScript 代码
 	 */
-	Evalute(jsCode string, arg ...any) (any, error)
+	Evaluate(jsCode string, arg ...any) (any, error)
 	/*
 	* 获取当前元素的 XPath 表达式
 	 */

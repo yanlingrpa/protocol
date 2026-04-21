@@ -1,4 +1,4 @@
-package extention
+package extension
 
 import "yanlingrpa.com/yanling/protocol/basic"
 

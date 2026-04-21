@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T06:15:15Z",
+  "generated_at": "2026-04-21T06:34:46Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "browser",
@@ -177,7 +177,7 @@
             ]
           },
           {
-            "name": "Evalute",
+            "name": "Evaluate",
             "doc": "在当前元素上下文中执行 JavaScript 代码",
             "params": [
               {
@@ -197,7 +197,7 @@
                 "type": "error"
               }
             ],
-            "signature": "Evalute(jsCode string, arg ...any) (any, error)",
+            "signature": "Evaluate(jsCode string, arg ...any) (any, error)",
             "type_refs": [
               {
                 "expr": "any",

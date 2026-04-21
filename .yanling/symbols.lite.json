@@ -1,6 +1,6 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T06:15:15Z",
+  "generated_at": "2026-04-21T06:34:46Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 6,
@@ -225,18 +225,18 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json"
     },
     {
-      "id": "yanlingrpa.com/yanling/protocol/extention#VisionExtension",
+      "id": "yanlingrpa.com/yanling/protocol/extension#VisionExtension",
       "name": "VisionExtension",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/extention.VisionExtension",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/extension.VisionExtension",
       "kind": "interface",
-      "package": "extention",
-      "import_path": "yanlingrpa.com/yanling/protocol/extention",
+      "package": "extension",
+      "import_path": "yanlingrpa.com/yanling/protocol/extension",
       "source": {
-        "file": "extention/vision_extension.go",
+        "file": "extension/vision_extension.go",
         "line": 5,
         "column": 6
       },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__extention.json"
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__extension.json"
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/osgui#Alt",
