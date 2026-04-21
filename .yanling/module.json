@@ -1,0 +1,123 @@
+{
+  "$schema": "../schema/yanling.machine-first.v1/module.schema.json",
+  "schema_version": "yanling.machine-first/v1",
+  "generated_at": "2026-04-21T06:15:15Z",
+  "module": "yanlingrpa.com/yanling/protocol",
+  "counts": {
+    "packages": 6,
+    "symbols": 198,
+    "interfaces": 15,
+    "structs": 14,
+    "functions": 6,
+    "methods": 232,
+    "named_types": 2,
+    "func_types": 1,
+    "consts": 160
+  },
+  "files": {
+    "symbol_index": "symbols.json",
+    "symbol_index_lite": "symbols.lite.json",
+    "package_dir": "packages"
+  },
+  "packages": [
+    {
+      "name": "basic",
+      "import_path": "yanlingrpa.com/yanling/protocol/basic",
+      "directory": "/basic",
+      "counts": {
+        "symbols": 11,
+        "structs": 6,
+        "functions": 5,
+        "methods": 20
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__basic.json"
+    },
+    {
+      "name": "browser",
+      "import_path": "yanlingrpa.com/yanling/protocol/browser",
+      "directory": "/browser",
+      "counts": {
+        "symbols": 4,
+        "interfaces": 4,
+        "methods": 63
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json",
+      "dependencies": [
+        "net/url",
+        "time",
+        "yanlingrpa.com/yanling/protocol/basic",
+        "yanlingrpa.com/yanling/protocol/osgui"
+      ]
+    },
+    {
+      "name": "extention",
+      "import_path": "yanlingrpa.com/yanling/protocol/extention",
+      "directory": "/extention",
+      "counts": {
+        "symbols": 1,
+        "interfaces": 1,
+        "methods": 4
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__extention.json",
+      "dependencies": [
+        "yanlingrpa.com/yanling/protocol/basic"
+      ]
+    },
+    {
+      "name": "osgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+      "directory": "/osgui",
+      "counts": {
+        "symbols": 157,
+        "interfaces": 2,
+        "methods": 67,
+        "named_types": 1,
+        "consts": 154
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json",
+      "dependencies": [
+        "time",
+        "yanlingrpa.com/yanling/protocol/basic",
+        "yanlingrpa.com/yanling/protocol/ossys"
+      ]
+    },
+    {
+      "name": "ossys",
+      "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+      "directory": "/ossys",
+      "counts": {
+        "symbols": 6,
+        "interfaces": 6,
+        "methods": 52
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json",
+      "dependencies": [
+        "time",
+        "yanlingrpa.com/yanling/protocol/basic"
+      ]
+    },
+    {
+      "name": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "directory": "/script",
+      "counts": {
+        "symbols": 19,
+        "interfaces": 2,
+        "structs": 8,
+        "functions": 1,
+        "methods": 26,
+        "named_types": 1,
+        "func_types": 1,
+        "consts": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
+      "dependencies": [
+        "time",
+        "yanlingrpa.com/yanling/protocol/browser",
+        "yanlingrpa.com/yanling/protocol/extention",
+        "yanlingrpa.com/yanling/protocol/osgui",
+        "yanlingrpa.com/yanling/protocol/ossys"
+      ]
+    }
+  ]
+}

@@ -21,6 +21,7 @@ var excludedDirs = map[string]struct{}{
 	"doc":      {},
 	"tests":    {},
 	"symbols":  {},
+	"schema":   {},
 }
 
 func main() {

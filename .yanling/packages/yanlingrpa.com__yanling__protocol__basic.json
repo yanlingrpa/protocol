@@ -1,0 +1,1098 @@
+{
+  "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
+  "schema_version": "yanling.machine-first/v1",
+  "generated_at": "2026-04-21T06:15:15Z",
+  "module": "yanlingrpa.com/yanling/protocol",
+  "package": {
+    "name": "basic",
+    "import_path": "yanlingrpa.com/yanling/protocol/basic",
+    "directory": "/basic",
+    "files": [
+      "basic/basic_data_struct.go",
+      "basic/basic_rect_struct.go"
+    ],
+    "imports": [
+      {
+        "path": "sort",
+        "aliases": [
+          "sort"
+        ]
+      }
+    ],
+    "counts": {
+      "symbols": 11,
+      "structs": 6,
+      "functions": 5,
+      "methods": 20
+    },
+    "symbols": [
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#FPoint",
+        "name": "FPoint",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.FPoint",
+        "kind": "struct",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "FPoint 表示一个二维浮点坐标点",
+        "signature": "type FPoint struct",
+        "source": {
+          "file": "basic/basic_data_struct.go",
+          "line": 20,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "X",
+            "type": "float64",
+            "tag": "json:\"x\"",
+            "doc": "元素的 X 坐标，以像素为单位",
+            "type_refs": [
+              {
+                "expr": "float64",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Y",
+            "type": "float64",
+            "tag": "json:\"y\"",
+            "doc": "元素的 Y 坐标，以像素为单位",
+            "type_refs": [
+              {
+                "expr": "float64",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "float64",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#MaxAreaRect",
+        "name": "MaxAreaRect",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.MaxAreaRect",
+        "kind": "function",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "MaxAreaRect 返回面积最大的矩形",
+        "signature": "MaxAreaRect(rectangles []Rect) Rect",
+        "source": {
+          "file": "basic/basic_rect_struct.go",
+          "line": 365,
+          "column": 1
+        },
+        "params": [
+          {
+            "name": "rectangles",
+            "type": "[]Rect"
+          }
+        ],
+        "results": [
+          {
+            "type": "Rect"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#MergeAllRectangles",
+        "name": "MergeAllRectangles",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.MergeAllRectangles",
+        "kind": "function",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "MergeAllRectangles 将所有矩形合并为一个包含所有矩形的最小矩形",
+        "signature": "MergeAllRectangles(rectangles []Rect) Rect",
+        "source": {
+          "file": "basic/basic_rect_struct.go",
+          "line": 332,
+          "column": 1
+        },
+        "params": [
+          {
+            "name": "rectangles",
+            "type": "[]Rect"
+          }
+        ],
+        "results": [
+          {
+            "type": "Rect"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#MergeGroupRectangles",
+        "name": "MergeGroupRectangles",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.MergeGroupRectangles",
+        "kind": "function",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "MergeGroupRectangles 将多个矩形组中的矩形进行各种组合方式合并\n返回所有可能的合并结果，按面积从小到大排序",
+        "signature": "MergeGroupRectangles(groupRects ...[]Rect) []Rect",
+        "source": {
+          "file": "basic/basic_rect_struct.go",
+          "line": 385,
+          "column": 1
+        },
+        "params": [
+          {
+            "name": "groupRects",
+            "type": "...[]Rect"
+          }
+        ],
+        "results": [
+          {
+            "type": "[]Rect"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#MergeOverlappingRectangles",
+        "name": "MergeOverlappingRectangles",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.MergeOverlappingRectangles",
+        "kind": "function",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "MergeOverlappingRectangles 将重叠的矩形合并为一个",
+        "signature": "MergeOverlappingRectangles(rectangles []Rect) []Rect",
+        "source": {
+          "file": "basic/basic_rect_struct.go",
+          "line": 308,
+          "column": 1
+        },
+        "params": [
+          {
+            "name": "rectangles",
+            "type": "[]Rect"
+          }
+        ],
+        "results": [
+          {
+            "type": "[]Rect"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#MinAreaRect",
+        "name": "MinAreaRect",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.MinAreaRect",
+        "kind": "function",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "MinAreaRect 返回面积最小的矩形",
+        "signature": "MinAreaRect(rectangles []Rect) Rect",
+        "source": {
+          "file": "basic/basic_rect_struct.go",
+          "line": 346,
+          "column": 1
+        },
+        "params": [
+          {
+            "name": "rectangles",
+            "type": "[]Rect"
+          }
+        ],
+        "results": [
+          {
+            "type": "Rect"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#OcrResult",
+        "name": "OcrResult",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult",
+        "kind": "struct",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "OcrResult 表示整张图像的 OCR 识别结果",
+        "signature": "type OcrResult struct",
+        "source": {
+          "file": "basic/basic_data_struct.go",
+          "line": 73,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Height",
+            "type": "int",
+            "tag": "json:\"height\"",
+            "doc": "Height 表示图像高度",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Texts",
+            "type": "[]OcrText",
+            "tag": "json:\"texts\"",
+            "doc": "Texts 表示识别出的文本列表",
+            "type_refs": [
+              {
+                "expr": "OcrText",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrText",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "Width",
+            "type": "int",
+            "tag": "json:\"width\"",
+            "doc": "Width 表示图像宽度",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "OcrText",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrText",
+            "local": true
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#OcrText",
+        "name": "OcrText",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrText",
+        "kind": "struct",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "OcrText 表示单条 OCR 文本识别结果",
+        "signature": "type OcrText struct",
+        "source": {
+          "file": "basic/basic_data_struct.go",
+          "line": 55,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Confidence",
+            "type": "float64",
+            "tag": "json:\"confidence\"",
+            "doc": "Confidence 表示识别置信度",
+            "type_refs": [
+              {
+                "expr": "float64",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Rect",
+            "type": "Rect",
+            "tag": "json:\"rect\"",
+            "doc": "Rect 表示文本所在的矩形区域",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "Text",
+            "type": "string",
+            "tag": "json:\"text\"",
+            "doc": "Text 表示识别出的文本内容",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+            "local": true
+          },
+          {
+            "expr": "float64",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#Point",
+        "name": "Point",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point",
+        "kind": "struct",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "Point 表示一个二维整数坐标点",
+        "signature": "type Point struct",
+        "source": {
+          "file": "basic/basic_data_struct.go",
+          "line": 6,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "X",
+            "type": "int",
+            "tag": "json:\"x\"",
+            "doc": "X 表示横坐标",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Y",
+            "type": "int",
+            "tag": "json:\"y\"",
+            "doc": "Y 表示纵坐标",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "int",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#Rect",
+        "name": "Rect",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+        "kind": "struct",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "Rect 表示一个矩形区域，定义了左上角坐标和宽高",
+        "signature": "type Rect struct",
+        "source": {
+          "file": "basic/basic_rect_struct.go",
+          "line": 8,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Height",
+            "type": "int",
+            "tag": "json:\"height\"",
+            "doc": "Height 表示矩形高度",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Width",
+            "type": "int",
+            "tag": "json:\"width\"",
+            "doc": "Width 表示矩形宽度",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "X",
+            "type": "int",
+            "tag": "json:\"x\"",
+            "doc": "X 表示矩形左上角的 X 坐标",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Y",
+            "type": "int",
+            "tag": "json:\"y\"",
+            "doc": "Y 表示矩形左上角的 Y 坐标",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "methods": [
+          {
+            "name": "CenterPoint",
+            "doc": "CenterPoint 返回矩形的中心点",
+            "params": [],
+            "results": [
+              {
+                "type": "Point"
+              }
+            ],
+            "signature": "CenterPoint() Point",
+            "type_refs": [
+              {
+                "expr": "Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "Compare",
+            "doc": "Compare 比较两个矩形的大小关系，返回 -1 表示小于，0 表示等于，1 表示大于\n比较优先级：面积 \u003e X 坐标 \u003e Y 坐标 \u003e 宽度 \u003e 高度",
+            "params": [
+              {
+                "name": "another",
+                "type": "Rect"
+              }
+            ],
+            "results": [
+              {
+                "type": "int"
+              }
+            ],
+            "signature": "Compare(another Rect) int",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Contains",
+            "doc": "Contains 检查点 (x, y) 是否在矩形内部",
+            "params": [
+              {
+                "name": "x",
+                "type": "int"
+              },
+              {
+                "name": "y",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "Contains(x int, y int) bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ContainsPoint",
+            "doc": "ContainsPoint 检查点 p 是否在矩形内部",
+            "params": [
+              {
+                "name": "p",
+                "type": "Point"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "ContainsPoint(p Point) bool",
+            "type_refs": [
+              {
+                "expr": "Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point",
+                "local": true
+              },
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "FooterPercent",
+            "doc": "FooterPercent 从底部保留指定百分比的高度，返回底部矩形",
+            "params": [
+              {
+                "name": "percent",
+                "type": "float32"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "FooterPercent(percent float32) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "float32",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "FooterPixel",
+            "doc": "FooterPixel 从底部保留指定像素高度，返回底部矩形",
+            "params": [
+              {
+                "name": "pixel",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "FooterPixel(pixel int) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "HeaderPercent",
+            "doc": "HeaderPercent 从顶部保留指定百分比的高度，返回顶部矩形",
+            "params": [
+              {
+                "name": "percent",
+                "type": "float32"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "HeaderPercent(percent float32) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "float32",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "HeaderPixel",
+            "doc": "HeaderPixel 从顶部保留指定像素高度，返回顶部矩形",
+            "params": [
+              {
+                "name": "pixel",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "HeaderPixel(pixel int) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Intersect",
+            "doc": "Intersect 计算两个矩形的交集",
+            "params": [
+              {
+                "name": "another",
+                "type": "Rect"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "Intersect(another Rect) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "IsEmpty",
+            "doc": "IsEmpty 检查矩形是否为空（宽度或高度为 0 或负数）",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "IsEmpty() bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "IsOverlapping",
+            "doc": "IsOverlapping 检查两个矩形是否重叠",
+            "params": [
+              {
+                "name": "another",
+                "type": "Rect"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "IsOverlapping(another Rect) bool",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "LeftPercent",
+            "doc": "LeftPercent 从左边保留指定百分比的宽度，返回左侧矩形",
+            "params": [
+              {
+                "name": "percent",
+                "type": "float32"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "LeftPercent(percent float32) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "float32",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "LeftPixel",
+            "doc": "LeftPixel 从左边保留指定像素宽度，返回左侧矩形",
+            "params": [
+              {
+                "name": "pixel",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "LeftPixel(pixel int) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Merge",
+            "doc": "Merge 将两个矩形合并为包含两者的最小矩形",
+            "params": [
+              {
+                "name": "another",
+                "type": "Rect"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "Merge(another Rect) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "Position",
+            "doc": "Position 返回矩形的左上角位置",
+            "params": [],
+            "results": [
+              {
+                "type": "Point"
+              }
+            ],
+            "signature": "Position() Point",
+            "type_refs": [
+              {
+                "expr": "Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "RightPercent",
+            "doc": "RightPercent 从右边保留指定百分比的宽度，返回右侧矩形",
+            "params": [
+              {
+                "name": "percent",
+                "type": "float32"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "RightPercent(percent float32) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "float32",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "RightPixel",
+            "doc": "RightPixel 从右边保留指定像素宽度，返回右侧矩形",
+            "params": [
+              {
+                "name": "pixel",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "RightPixel(pixel int) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Size",
+            "doc": "Size 返回矩形的宽高信息",
+            "params": [],
+            "results": [
+              {
+                "type": "Size"
+              }
+            ],
+            "signature": "Size() Size",
+            "type_refs": [
+              {
+                "expr": "Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "SubRect",
+            "doc": "SubRect 从矩形内部提取一个子矩形，指定子矩形的相对位置和大小\n自动检查边界，防止越界",
+            "params": [
+              {
+                "name": "x",
+                "type": "int"
+              },
+              {
+                "name": "y",
+                "type": "int"
+              },
+              {
+                "name": "width",
+                "type": "int"
+              },
+              {
+                "name": "height",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "Rect"
+              }
+            ],
+            "signature": "SubRect(x int, y int, width int, height int) Rect",
+            "type_refs": [
+              {
+                "expr": "Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+                "local": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Point",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point",
+            "local": true
+          },
+          {
+            "expr": "Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect",
+            "local": true
+          },
+          {
+            "expr": "Size",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size",
+            "local": true
+          },
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "float32",
+            "builtin": true
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/basic#Size",
+        "name": "Size",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size",
+        "kind": "struct",
+        "package": "basic",
+        "import_path": "yanlingrpa.com/yanling/protocol/basic",
+        "doc": "Size 表示宽度和高度",
+        "signature": "type Size struct",
+        "source": {
+          "file": "basic/basic_data_struct.go",
+          "line": 34,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Height",
+            "type": "int",
+            "tag": "json:\"height\"",
+            "doc": "Height 表示高度",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Width",
+            "type": "int",
+            "tag": "json:\"width\"",
+            "doc": "Width 表示宽度",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "methods": [
+          {
+            "name": "Area",
+            "doc": "Area 返回尺寸的面积",
+            "params": [],
+            "results": [
+              {
+                "type": "int"
+              }
+            ],
+            "signature": "Area() int",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "int",
+            "builtin": true
+          }
+        ]
+      }
+    ]
+  }
+}

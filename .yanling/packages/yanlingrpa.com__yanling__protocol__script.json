@@ -1,0 +1,1848 @@
+{
+  "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
+  "schema_version": "yanling.machine-first/v1",
+  "generated_at": "2026-04-21T06:15:15Z",
+  "module": "yanlingrpa.com/yanling/protocol",
+  "package": {
+    "name": "script",
+    "import_path": "yanlingrpa.com/yanling/protocol/script",
+    "directory": "/script",
+    "files": [
+      "script/module_runtime.go",
+      "script/yanling_script.go"
+    ],
+    "imports": [
+      {
+        "path": "encoding/json",
+        "aliases": [
+          "json"
+        ]
+      },
+      {
+        "path": "fmt",
+        "aliases": [
+          "fmt"
+        ]
+      },
+      {
+        "path": "path/filepath",
+        "aliases": [
+          "filepath"
+        ]
+      },
+      {
+        "path": "strconv",
+        "aliases": [
+          "strconv"
+        ]
+      },
+      {
+        "path": "strings",
+        "aliases": [
+          "strings"
+        ]
+      },
+      {
+        "path": "time",
+        "aliases": [
+          "time"
+        ]
+      },
+      {
+        "path": "yanlingrpa.com/yanling/protocol/browser",
+        "aliases": [
+          "browser"
+        ]
+      },
+      {
+        "path": "yanlingrpa.com/yanling/protocol/extention",
+        "aliases": [
+          "extention"
+        ]
+      },
+      {
+        "path": "yanlingrpa.com/yanling/protocol/osgui",
+        "aliases": [
+          "osgui"
+        ]
+      },
+      {
+        "path": "yanlingrpa.com/yanling/protocol/ossys",
+        "aliases": [
+          "ossys"
+        ]
+      }
+    ],
+    "dependencies": [
+      "time",
+      "yanlingrpa.com/yanling/protocol/browser",
+      "yanlingrpa.com/yanling/protocol/extention",
+      "yanlingrpa.com/yanling/protocol/osgui",
+      "yanlingrpa.com/yanling/protocol/ossys"
+    ],
+    "counts": {
+      "symbols": 19,
+      "interfaces": 2,
+      "structs": 8,
+      "functions": 1,
+      "methods": 26,
+      "named_types": 1,
+      "func_types": 1,
+      "consts": 6
+    },
+    "symbols": [
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#Event",
+        "name": "Event",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.Event",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "Event 定义本地事件总线的事件数据",
+        "signature": "type Event struct",
+        "source": {
+          "file": "script/module_runtime.go",
+          "line": 34,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Data",
+            "type": "any",
+            "doc": "Data 事件数据",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "OccuredAt",
+            "type": "time.Time",
+            "doc": "OccuredAt 事件发生时间",
+            "type_refs": [
+              {
+                "expr": "time.Time",
+                "import_path": "time",
+                "qualified_name": "time.Time"
+              }
+            ]
+          },
+          {
+            "name": "Topic",
+            "type": "string",
+            "doc": "Topic 事件主题",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          },
+          {
+            "expr": "time.Time",
+            "import_path": "time",
+            "qualified_name": "time.Time"
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#EventHandler",
+        "name": "EventHandler",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.EventHandler",
+        "kind": "func_type",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "EventHandler 定义事件处理函数签名",
+        "signature": "type EventHandler func(event Event)",
+        "underlying_type": "func(event Event)",
+        "source": {
+          "file": "script/module_runtime.go",
+          "line": 52,
+          "column": 6
+        },
+        "params": [
+          {
+            "name": "event",
+            "type": "Event"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Event",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.Event",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#GuiApplication",
+        "name": "GuiApplication",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.GuiApplication",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "GuiApplication 定义 GUI 应用配置",
+        "signature": "type GuiApplication struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 96,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Id",
+            "type": "string",
+            "tag": "toml:\"id\" json:\"id\"",
+            "doc": "Id GUI 应用的唯一标识符",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Launcher",
+            "type": "string",
+            "tag": "toml:\"launcher\" json:\"launcher\"",
+            "doc": "Launcher 启动器命令或路径",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "tag": "toml:\"name\" json:\"name\"",
+            "doc": "Name GUI 应用名称",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Process",
+            "type": "string",
+            "tag": "toml:\"process\" json:\"process\"",
+            "doc": "Process GUI 窗口所属的进程名称",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Url",
+            "type": "string",
+            "tag": "toml:\"url\" json:\"url\"",
+            "doc": "Url 打开 GUI 窗口的 URL，例如 weixin://launchapplet?appid=xxxx",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#ModuleInfo",
+        "name": "ModuleInfo",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "ModuleInfo 定义脚本模组元信息",
+        "signature": "type ModuleInfo struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 46,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Author",
+            "type": "string",
+            "tag": "toml:\"author\" json:\"author\"",
+            "doc": "Author 作者",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Description",
+            "type": "string",
+            "tag": "toml:\"description\" json:\"description\"",
+            "doc": "Description 脚本描述，介绍脚本的功能和用途",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Devices",
+            "type": "[]string",
+            "tag": "toml:\"devices\" json:\"devices\"",
+            "doc": "Devices 适用的设备列表，如 [\"windows\", \"mac\", \"ubuntu\"]",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Email",
+            "type": "string",
+            "tag": "toml:\"email\" json:\"email\"",
+            "doc": "Email 联系方式",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "EngineVersion",
+            "type": "string",
+            "tag": "toml:\"engine_version\" json:\"engine_version\"",
+            "doc": "EngineVersion 引擎版本要求",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "License",
+            "type": "string",
+            "tag": "toml:\"license\" json:\"license\"",
+            "doc": "License 许可证，根据 LICENSE 文件或声明",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Package",
+            "type": "string",
+            "tag": "toml:\"package\" json:\"package\"",
+            "doc": "Package 脚本包名，有且仅有该包名的脚本可以被引入和调用",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Specifier",
+            "type": "string",
+            "tag": "json:\"specifier\"",
+            "doc": "Specifier 模块标识符，包含域、所有者、名称和版本，从 go.mod 文件中解析得到",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Tags",
+            "type": "[]string",
+            "tag": "toml:\"tags\" json:\"tags\"",
+            "doc": "Tags 脚本主题标签列表，如 [\"web automation\", \"data extraction\"]",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "UpdateTime",
+            "type": "string",
+            "tag": "json:\"update_time\"",
+            "doc": "UpdateTime 更新时间，最后一次提交时间，格式为 RFC3339",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Website",
+            "type": "string",
+            "tag": "toml:\"website\" json:\"website\"",
+            "doc": "Website 脚本官方网站",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#ModuleRuntime",
+        "name": "ModuleRuntime",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleRuntime",
+        "kind": "interface",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "ModuleRuntime 定义脚本运行时上下文能力\n该接口提供窗口访问、系统能力、缓存、变量与事件总线访问能力",
+        "signature": "type ModuleRuntime interface",
+        "source": {
+          "file": "script/module_runtime.go",
+          "line": 58,
+          "column": 6
+        },
+        "methods": [
+          {
+            "name": "BrowserWindow",
+            "doc": "BrowserWindow 根据窗口 ID 获取浏览器窗口",
+            "params": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "browser.BrowserWindow"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "BrowserWindow(id string) (browser.BrowserWindow, bool)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "browser.BrowserWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow"
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "CurrentSpecifier",
+            "doc": "CurrentSpecifier 获取当前正在执行脚本的规范说明",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "CurrentSpecifier() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "DeviceInfo",
+            "doc": "DeviceInfo 获取设备信息能力接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.DeviceInfo"
+              }
+            ],
+            "signature": "DeviceInfo() ossys.DeviceInfo",
+            "type_refs": [
+              {
+                "expr": "ossys.DeviceInfo",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.DeviceInfo"
+              }
+            ]
+          },
+          {
+            "name": "FileSystem",
+            "doc": "FileSystem 获取本地文件系统接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.LocalFilesystem"
+              }
+            ],
+            "signature": "FileSystem() ossys.LocalFilesystem",
+            "type_refs": [
+              {
+                "expr": "ossys.LocalFilesystem",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalFilesystem"
+              }
+            ]
+          },
+          {
+            "name": "GetCacheData",
+            "doc": "GetCacheData 获取运行时临时存储数据",
+            "params": [
+              {
+                "name": "key",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "GetCacheData(key string) (any, bool)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetVariable",
+            "doc": "GetVariable 获取脚本变量值",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "GetVariable(name string) (any, bool)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GuiWindow",
+            "doc": "GuiWindow 根据窗口 ID 获取 GUI 窗口",
+            "params": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "osgui.GuiWindow"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "GuiWindow(id string) (osgui.GuiWindow, bool)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "osgui.GuiWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow"
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "HostSpecifier",
+            "doc": "HostSpecifier 获取启动引擎执行的入口脚本规范说明",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "HostSpecifier() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "HttpClient",
+            "doc": "HttpClient 获取 HTTP 客户端接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.HttpClient"
+              }
+            ],
+            "signature": "HttpClient() ossys.HttpClient",
+            "type_refs": [
+              {
+                "expr": "ossys.HttpClient",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpClient"
+              }
+            ]
+          },
+          {
+            "name": "InvokeApi",
+            "doc": "InvokeApi 调用本地其他模组的开放 API",
+            "params": [
+              {
+                "name": "specifier",
+                "type": "string"
+              },
+              {
+                "name": "api",
+                "type": "string"
+              },
+              {
+                "name": "args",
+                "type": "...any"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "InvokeApi(specifier string, api string, args ...any) (any, error)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Logger",
+            "doc": "Logger 获取脚本日志记录器",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.ScriptLogger"
+              }
+            ],
+            "signature": "Logger() ossys.ScriptLogger",
+            "type_refs": [
+              {
+                "expr": "ossys.ScriptLogger",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.ScriptLogger"
+              }
+            ]
+          },
+          {
+            "name": "Publish",
+            "doc": "Publish 发布事件到本地事件总线",
+            "params": [
+              {
+                "name": "topic",
+                "type": "string"
+              },
+              {
+                "name": "data",
+                "type": "any"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Publish(topic string, data any) error",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "SetCacheData",
+            "doc": "SetCacheData 在运行时临时存储任意数据",
+            "params": [
+              {
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "type": "any"
+              }
+            ],
+            "results": [],
+            "signature": "SetCacheData(key string, value any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Storage",
+            "doc": "Storage 获取项目本地存储接口",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.LocalStorage"
+              }
+            ],
+            "signature": "Storage() ossys.LocalStorage",
+            "type_refs": [
+              {
+                "expr": "ossys.LocalStorage",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalStorage"
+              }
+            ]
+          },
+          {
+            "name": "Subscribe",
+            "doc": "Subscribe 订阅本地其他模组的开放事件",
+            "params": [
+              {
+                "name": "specifier",
+                "type": "string"
+              },
+              {
+                "name": "topic",
+                "type": "string"
+              },
+              {
+                "name": "handler",
+                "type": "EventHandler"
+              }
+            ],
+            "results": [
+              {
+                "type": "Subscriber"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error)",
+            "type_refs": [
+              {
+                "expr": "EventHandler",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.EventHandler",
+                "local": true
+              },
+              {
+                "expr": "Subscriber",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.Subscriber",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Unsubscribe",
+            "doc": "Unsubscribe 取消订阅本地其他模组的开放事件",
+            "params": [
+              {
+                "name": "subscriber",
+                "type": "Subscriber"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Unsubscribe(subscriber Subscriber) error",
+            "type_refs": [
+              {
+                "expr": "Subscriber",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.Subscriber",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Vision",
+            "doc": "Vision 获取视觉能力扩展接口",
+            "params": [],
+            "results": [
+              {
+                "type": "extention.VisionExtension"
+              }
+            ],
+            "signature": "Vision() extention.VisionExtension",
+            "type_refs": [
+              {
+                "expr": "extention.VisionExtension",
+                "import_path": "yanlingrpa.com/yanling/protocol/extention",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/extention.VisionExtension"
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "EventHandler",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.EventHandler",
+            "local": true
+          },
+          {
+            "expr": "Subscriber",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.Subscriber",
+            "local": true
+          },
+          {
+            "expr": "any",
+            "builtin": true
+          },
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "browser.BrowserWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow"
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "extention.VisionExtension",
+            "import_path": "yanlingrpa.com/yanling/protocol/extention",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/extention.VisionExtension"
+          },
+          {
+            "expr": "osgui.GuiWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow"
+          },
+          {
+            "expr": "ossys.DeviceInfo",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.DeviceInfo"
+          },
+          {
+            "expr": "ossys.HttpClient",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpClient"
+          },
+          {
+            "expr": "ossys.LocalFilesystem",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalFilesystem"
+          },
+          {
+            "expr": "ossys.LocalStorage",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalStorage"
+          },
+          {
+            "expr": "ossys.ScriptLogger",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.ScriptLogger"
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#ParseSpecifier",
+        "name": "ParseSpecifier",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ParseSpecifier",
+        "kind": "function",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "ParseSpecifier 解析模块标识符字符串\n支持 owner/name 或 domain/owner/name 两种形式，可带 @version",
+        "signature": "ParseSpecifier(spec string) (Specifier, error)",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 395,
+          "column": 1
+        },
+        "params": [
+          {
+            "name": "spec",
+            "type": "string"
+          }
+        ],
+        "results": [
+          {
+            "type": "Specifier"
+          },
+          {
+            "type": "error"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Specifier",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
+            "local": true
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#ScriptVariable",
+        "name": "ScriptVariable",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "ScriptVariable 定义脚本变量配置",
+        "signature": "type ScriptVariable struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 140,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Abstract",
+            "type": "string",
+            "tag": "toml:\"abstract\" json:\"abstract\"",
+            "doc": "Abstract 变量描述",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Default",
+            "type": "string",
+            "tag": "toml:\"default\" json:\"default\"",
+            "doc": "Default 变量默认值",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "tag": "toml:\"name\" json:\"name\"",
+            "doc": "Name 变量名称",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Required",
+            "type": "bool",
+            "tag": "toml:\"required\" json:\"required\"",
+            "doc": "Required 是否必填",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Save",
+            "type": "bool",
+            "tag": "toml:\"save\" json:\"save\"",
+            "doc": "Save 是否保存到项目存储",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Type",
+            "type": "VariableDataType",
+            "tag": "toml:\"type\" json:\"type\"",
+            "doc": "Type 变量类型，如 string、integer、boolean、json 等",
+            "type_refs": [
+              {
+                "expr": "VariableDataType",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+                "local": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "VariableDataType",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+            "local": true
+          },
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#Specifier",
+        "name": "Specifier",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "Specifier 定义模块规范说明",
+        "signature": "type Specifier struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 249,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Domain",
+            "type": "string",
+            "tag": "json:\"domain\"",
+            "doc": "Domain 模块来源域，如 github.com",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "tag": "json:\"name\"",
+            "doc": "Name 模块名称，如 utils",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Owner",
+            "type": "string",
+            "tag": "json:\"owner\"",
+            "doc": "Owner 模块所有者，如 github 用户名",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Version",
+            "type": "string",
+            "tag": "json:\"version\"",
+            "doc": "Version 模块版本要求，如 v1.2.3",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "methods": [
+          {
+            "name": "Identifier",
+            "doc": "Identifier 返回不包含版本信息的模块标识符\n格式为 \"domain/owner/name\" 或 \"owner/name\"",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "Identifier() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "IsPseudoVersion",
+            "doc": "IsPseudoVersion 判断当前 Specifier 的版本是否为 Go 伪版本格式\nGo 伪版本格式: v0.0.0-yyyymmddhhmmss-commithash",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "IsPseudoVersion() bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ModulePath",
+            "doc": "ModulePath 基于给定根目录生成模块路径\n其中 name 部分如果包含 /，会被按多层目录拼接",
+            "params": [
+              {
+                "name": "modPath",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "ModulePath(modPath string) string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "String",
+            "doc": "String 返回完整的模块标识符字符串，格式为 \"domain/owner/name@version\" 或 \"owner/name@version\"\n其中 name 部分如果包含 /，也会被正确处理，例如 \"domain/owner/name/subname@version\"",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "String() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#Subscriber",
+        "name": "Subscriber",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.Subscriber",
+        "kind": "interface",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "Subscriber 定义事件订阅者信息\n用于标识订阅来源、主题与状态",
+        "signature": "type Subscriber interface",
+        "source": {
+          "file": "script/module_runtime.go",
+          "line": 16,
+          "column": 6
+        },
+        "methods": [
+          {
+            "name": "GetSpecifier",
+            "doc": "GetSpecifier 获取Topic所属模块标识",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetSpecifier() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetTopic",
+            "doc": "GetTopic 获取订阅的事件主题",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetTopic() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "IsActive",
+            "doc": "IsActive 判断订阅是否仍然有效",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "IsActive() bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#UrlPermission",
+        "name": "UrlPermission",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.UrlPermission",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "UrlPermission 定义网络访问权限",
+        "signature": "type UrlPermission struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 231,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Abstract",
+            "type": "string",
+            "tag": "toml:\"abstract\" json:\"abstract\"",
+            "doc": "Abstract 权限说明",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Permission",
+            "type": "string",
+            "tag": "toml:\"permission\" json:\"permission\"",
+            "doc": "Permission 访问权限，r、w、d、rw、rwd 等",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Url",
+            "type": "string",
+            "tag": "toml:\"url\" json:\"url\"",
+            "doc": "Url URL 模式，支持通配符(*)和脚本变量 ${var_name}",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#VariableBoolean",
+        "name": "VariableBoolean",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableBoolean",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "VariableBoolean 布尔类型",
+        "signature": "const VariableBoolean VariableDataType = \"boolean\"",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 20,
+          "column": 2
+        },
+        "const_type": "VariableDataType",
+        "const_value": "\"boolean\"",
+        "type_refs": [
+          {
+            "expr": "VariableDataType",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#VariableDataType",
+        "name": "VariableDataType",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+        "kind": "named_type",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "VariableDataType 定义脚本变量的数据类型",
+        "signature": "type VariableDataType string",
+        "underlying_type": "string",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 14,
+          "column": 6
+        },
+        "methods": [
+          {
+            "name": "Parse",
+            "doc": "Parse 将字符串解析为对应的数据类型值\n解析失败时返回原始字符串",
+            "params": [
+              {
+                "name": "value",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              }
+            ],
+            "signature": "Parse(value string) any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToString",
+            "doc": "ToString 将任意值转换为对应类型的字符串表示\n转换失败时返回 fmt.Sprintf(\"%v\", value)",
+            "params": [
+              {
+                "name": "value",
+                "type": "any"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "ToString(value any) string",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#VariableFilePath",
+        "name": "VariableFilePath",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableFilePath",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "VariableFilePath 文件路径类型",
+        "signature": "const VariableFilePath VariableDataType = \"filepath\"",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 28,
+          "column": 2
+        },
+        "const_type": "VariableDataType",
+        "const_value": "\"filepath\"",
+        "type_refs": [
+          {
+            "expr": "VariableDataType",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#VariableInteger",
+        "name": "VariableInteger",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableInteger",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "VariableInteger 整数类型",
+        "signature": "const VariableInteger VariableDataType = \"integer\"",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 32,
+          "column": 2
+        },
+        "const_type": "VariableDataType",
+        "const_value": "\"integer\"",
+        "type_refs": [
+          {
+            "expr": "VariableDataType",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#VariableJson",
+        "name": "VariableJson",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableJson",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "VariableJson JSON 对象类型",
+        "signature": "const VariableJson VariableDataType = \"json\"",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 40,
+          "column": 2
+        },
+        "const_type": "VariableDataType",
+        "const_value": "\"json\"",
+        "type_refs": [
+          {
+            "expr": "VariableDataType",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#VariableNumber",
+        "name": "VariableNumber",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableNumber",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "VariableNumber 浮点数类型",
+        "signature": "const VariableNumber VariableDataType = \"number\"",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 36,
+          "column": 2
+        },
+        "const_type": "VariableDataType",
+        "const_value": "\"number\"",
+        "type_refs": [
+          {
+            "expr": "VariableDataType",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#VariableString",
+        "name": "VariableString",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableString",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "VariableString 字符串类型",
+        "signature": "const VariableString VariableDataType = \"string\"",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 24,
+          "column": 2
+        },
+        "const_type": "VariableDataType",
+        "const_value": "\"string\"",
+        "type_refs": [
+          {
+            "expr": "VariableDataType",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
+            "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#WebApplication",
+        "name": "WebApplication",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "WebApplication 定义浏览器应用配置",
+        "signature": "type WebApplication struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 122,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Id",
+            "type": "string",
+            "tag": "toml:\"id\" json:\"id\"",
+            "doc": "Id 浏览器应用的唯一标识符",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "tag": "toml:\"name\" json:\"name\"",
+            "doc": "Name 浏览器应用名称",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Url",
+            "type": "string",
+            "tag": "toml:\"url\" json:\"url\"",
+            "doc": "Url 浏览器应用 URL，例如 https://www.google.com",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#YScript",
+        "name": "YScript",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.YScript",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "YScript 定义脚本配置总结构",
+        "signature": "type YScript struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 459,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "ApiPerms",
+            "type": "[]UrlPermission",
+            "tag": "toml:\"api\" json:\"api_perms\"",
+            "doc": "ApiPerms 网络接口授权列表",
+            "type_refs": [
+              {
+                "expr": "UrlPermission",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.UrlPermission",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "FilePerms",
+            "type": "[]UrlPermission",
+            "tag": "toml:\"file\" json:\"file_perms\"",
+            "doc": "FilePerms 文件系统授权列表",
+            "type_refs": [
+              {
+                "expr": "UrlPermission",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.UrlPermission",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "GuiApps",
+            "type": "[]GuiApplication",
+            "tag": "toml:\"gui\" json:\"gui_apps\"",
+            "doc": "GuiApps 需要操作的 GUI 应用列表",
+            "type_refs": [
+              {
+                "expr": "GuiApplication",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.GuiApplication",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "Module",
+            "type": "ModuleInfo",
+            "tag": "toml:\"module\" json:\"module\"",
+            "doc": "Module 脚本模组基本信息",
+            "type_refs": [
+              {
+                "expr": "ModuleInfo",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "Requires",
+            "type": "[]string",
+            "tag": "json:\"requires\"",
+            "doc": "Requires 模块依赖列表",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Variables",
+            "type": "[]ScriptVariable",
+            "tag": "toml:\"var\" json:\"variables\"",
+            "doc": "Variables 脚本全局变量定义列表",
+            "type_refs": [
+              {
+                "expr": "ScriptVariable",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "WebApps",
+            "type": "[]WebApplication",
+            "tag": "toml:\"web\" json:\"web_apps\"",
+            "doc": "WebApps 需要操作的 Web 应用列表",
+            "type_refs": [
+              {
+                "expr": "WebApplication",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
+                "local": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "GuiApplication",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.GuiApplication",
+            "local": true
+          },
+          {
+            "expr": "ModuleInfo",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
+            "local": true
+          },
+          {
+            "expr": "ScriptVariable",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
+            "local": true
+          },
+          {
+            "expr": "UrlPermission",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.UrlPermission",
+            "local": true
+          },
+          {
+            "expr": "WebApplication",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
+            "local": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,12 +1,58 @@
 {
+  "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
+  "schema_version": "yanling.machine-first/v1",
+  "generated_at": "2026-04-21T06:15:15Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "ossys",
     "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-    "interfaces": [
+    "directory": "/ossys",
+    "files": [
+      "ossys/device_info.go",
+      "ossys/http_client.go",
+      "ossys/local_filesystem.go",
+      "ossys/local_storage.go",
+      "ossys/monitor_info.go",
+      "ossys/script_logger.go"
+    ],
+    "imports": [
       {
+        "path": "time",
+        "aliases": [
+          "time"
+        ]
+      },
+      {
+        "path": "yanlingrpa.com/yanling/protocol/basic",
+        "aliases": [
+          "basic"
+        ]
+      }
+    ],
+    "dependencies": [
+      "time",
+      "yanlingrpa.com/yanling/protocol/basic"
+    ],
+    "counts": {
+      "symbols": 6,
+      "interfaces": 6,
+      "methods": 52
+    },
+    "symbols": [
+      {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#DeviceInfo",
         "name": "DeviceInfo",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.DeviceInfo",
+        "kind": "interface",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
         "doc": "DeviceInfo 定义设备信息查询能力\n该接口用于获取操作系统、硬件、用户与显示器相关信息",
+        "signature": "type DeviceInfo interface",
+        "source": {
+          "file": "ossys/device_info.go",
+          "line": 7,
+          "column": 6
+        },
         "methods": [
           {
             "name": "DeviceId",
@@ -17,7 +63,13 @@
                 "type": "string"
               }
             ],
-            "signature": "DeviceId() string"
+            "signature": "DeviceId() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "DeviceName",
@@ -28,7 +80,13 @@
                 "type": "string"
               }
             ],
-            "signature": "DeviceName() string"
+            "signature": "DeviceName() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "GetComputerName",
@@ -39,7 +97,13 @@
                 "type": "string"
               }
             ],
-            "signature": "GetComputerName() string"
+            "signature": "GetComputerName() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "GetGpuMemoryMB",
@@ -50,7 +114,13 @@
                 "type": "int"
               }
             ],
-            "signature": "GetGpuMemoryMB() int"
+            "signature": "GetGpuMemoryMB() int",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "GetMonitors",
@@ -61,7 +131,15 @@
                 "type": "[]MonitorInfo"
               }
             ],
-            "signature": "GetMonitors() []MonitorInfo"
+            "signature": "GetMonitors() []MonitorInfo",
+            "type_refs": [
+              {
+                "expr": "MonitorInfo",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo",
+                "local": true
+              }
+            ]
           },
           {
             "name": "GetPrimaryMonitor",
@@ -72,7 +150,15 @@
                 "type": "MonitorInfo"
               }
             ],
-            "signature": "GetPrimaryMonitor() MonitorInfo"
+            "signature": "GetPrimaryMonitor() MonitorInfo",
+            "type_refs": [
+              {
+                "expr": "MonitorInfo",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo",
+                "local": true
+              }
+            ]
           },
           {
             "name": "GetUserName",
@@ -83,7 +169,13 @@
                 "type": "string"
               }
             ],
-            "signature": "GetUserName() string"
+            "signature": "GetUserName() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "HasNvidiaGPU",
@@ -94,7 +186,13 @@
                 "type": "bool"
               }
             ],
-            "signature": "HasNvidiaGPU() bool"
+            "signature": "HasNvidiaGPU() bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "NumLogicCPU",
@@ -105,7 +203,13 @@
                 "type": "int"
               }
             ],
-            "signature": "NumLogicCPU() int"
+            "signature": "NumLogicCPU() int",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "OS",
@@ -116,7 +220,13 @@
                 "type": "string"
               }
             ],
-            "signature": "OS() string"
+            "signature": "OS() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "OSVersion",
@@ -127,13 +237,50 @@
                 "type": "string"
               }
             ],
-            "signature": "OSVersion() string"
+            "signature": "OSVersion() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "MonitorInfo",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo",
+            "local": true
+          },
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
           }
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#HttpClient",
         "name": "HttpClient",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpClient",
+        "kind": "interface",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
         "doc": "HttpClient 定义 HTTP 请求与域名级配置能力\n该接口支持 Cookie、Header 管理以及常见请求与上传下载操作",
+        "signature": "type HttpClient interface",
+        "source": {
+          "file": "ossys/http_client.go",
+          "line": 7,
+          "column": 6
+        },
         "methods": [
           {
             "name": "DeleteDomainCookie",
@@ -153,7 +300,17 @@
                 "type": "error"
               }
             ],
-            "signature": "DeleteDomainCookie(domain string, cookieNames ...string) error"
+            "signature": "DeleteDomainCookie(domain string, cookieNames ...string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "DeleteDomainHeader",
@@ -173,7 +330,17 @@
                 "type": "error"
               }
             ],
-            "signature": "DeleteDomainHeader(domain string, headerNames ...string) error"
+            "signature": "DeleteDomainHeader(domain string, headerNames ...string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "DownloadFile",
@@ -196,7 +363,17 @@
                 "type": "error"
               }
             ],
-            "signature": "DownloadFile(url string, headers map[string]string) (string, error)"
+            "signature": "DownloadFile(url string, headers map[string]string) (string, error)",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Get",
@@ -219,7 +396,21 @@
                 "type": "error"
               }
             ],
-            "signature": "Get(url string, headers map[string]string) ([]byte, error)"
+            "signature": "Get(url string, headers map[string]string) ([]byte, error)",
+            "type_refs": [
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "GetDomainCookies",
@@ -238,7 +429,17 @@
                 "type": "error"
               }
             ],
-            "signature": "GetDomainCookies(domain string) (map[string]string, error)"
+            "signature": "GetDomainCookies(domain string) (map[string]string, error)",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "GetDomainHeaders",
@@ -257,7 +458,17 @@
                 "type": "error"
               }
             ],
-            "signature": "GetDomainHeaders(domain string) (map[string]string, error)"
+            "signature": "GetDomainHeaders(domain string) (map[string]string, error)",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Post",
@@ -284,7 +495,21 @@
                 "type": "error"
               }
             ],
-            "signature": "Post(url string, body []byte, headers map[string]string) ([]byte, error)"
+            "signature": "Post(url string, body []byte, headers map[string]string) ([]byte, error)",
+            "type_refs": [
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "PostForm",
@@ -311,7 +536,25 @@
                 "type": "error"
               }
             ],
-            "signature": "PostForm(url string, params map[string]any, headers map[string]string) ([]byte, error)"
+            "signature": "PostForm(url string, params map[string]any, headers map[string]string) ([]byte, error)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "PostJson",
@@ -338,7 +581,25 @@
                 "type": "error"
               }
             ],
-            "signature": "PostJson(url string, params map[string]any, headers map[string]string) ([]byte, error)"
+            "signature": "PostJson(url string, params map[string]any, headers map[string]string) ([]byte, error)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "SetDomainCookies",
@@ -358,7 +619,17 @@
                 "type": "error"
               }
             ],
-            "signature": "SetDomainCookies(domain string, cookies map[string]string) error"
+            "signature": "SetDomainCookies(domain string, cookies map[string]string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "SetDomainHeaders",
@@ -378,7 +649,17 @@
                 "type": "error"
               }
             ],
-            "signature": "SetDomainHeaders(domain string, headers map[string]string) error"
+            "signature": "SetDomainHeaders(domain string, headers map[string]string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "UploadData",
@@ -413,7 +694,25 @@
                 "type": "error"
               }
             ],
-            "signature": "UploadData(url string, fileName string, fileData []byte, params map[string]any, headers map[string]string) ([]byte, error)"
+            "signature": "UploadData(url string, fileName string, fileData []byte, params map[string]any, headers map[string]string) ([]byte, error)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "UploadFile",
@@ -444,13 +743,60 @@
                 "type": "error"
               }
             ],
-            "signature": "UploadFile(url string, filePath string, params map[string]any, headers map[string]string) ([]byte, error)"
+            "signature": "UploadFile(url string, filePath string, params map[string]any, headers map[string]string) ([]byte, error)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
+          {
+            "expr": "byte",
+            "builtin": true
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
           }
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#LocalFilesystem",
         "name": "LocalFilesystem",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalFilesystem",
+        "kind": "interface",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
         "doc": "LocalFilesystem 定义本地文件系统操作能力\n该接口覆盖路径处理、文件读写与目录管理等常见场景",
+        "signature": "type LocalFilesystem interface",
+        "source": {
+          "file": "ossys/local_filesystem.go",
+          "line": 9,
+          "column": 6
+        },
         "methods": [
           {
             "name": "CopyFile",
@@ -470,7 +816,17 @@
                 "type": "error"
               }
             ],
-            "signature": "CopyFile(src string, dst string) error"
+            "signature": "CopyFile(src string, dst string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "CreateTmpFile",
@@ -489,7 +845,22 @@
                 "type": "error"
               }
             ],
-            "signature": "CreateTmpFile(expiredAt time.Time) (string, error)"
+            "signature": "CreateTmpFile(expiredAt time.Time) (string, error)",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Time",
+                "import_path": "time",
+                "qualified_name": "time.Time"
+              }
+            ]
           },
           {
             "name": "IsDir",
@@ -508,7 +879,21 @@
                 "type": "error"
               }
             ],
-            "signature": "IsDir(path string) (bool, error)"
+            "signature": "IsDir(path string) (bool, error)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "IsFile",
@@ -527,7 +912,21 @@
                 "type": "error"
               }
             ],
-            "signature": "IsFile(path string) (bool, error)"
+            "signature": "IsFile(path string) (bool, error)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "JoinDataPath",
@@ -543,7 +942,13 @@
                 "type": "string"
               }
             ],
-            "signature": "JoinDataPath(path ...string) string"
+            "signature": "JoinDataPath(path ...string) string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "MkdirAll",
@@ -559,7 +964,17 @@
                 "type": "error"
               }
             ],
-            "signature": "MkdirAll(path string) error"
+            "signature": "MkdirAll(path string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "PathExists",
@@ -578,7 +993,21 @@
                 "type": "error"
               }
             ],
-            "signature": "PathExists(path string) (bool, error)"
+            "signature": "PathExists(path string) (bool, error)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "ReadFile",
@@ -597,7 +1026,21 @@
                 "type": "error"
               }
             ],
-            "signature": "ReadFile(filePath string) ([]byte, error)"
+            "signature": "ReadFile(filePath string) ([]byte, error)",
+            "type_refs": [
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Remove",
@@ -613,7 +1056,17 @@
                 "type": "error"
               }
             ],
-            "signature": "Remove(path string) error"
+            "signature": "Remove(path string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "RemoveAll",
@@ -629,7 +1082,17 @@
                 "type": "error"
               }
             ],
-            "signature": "RemoveAll(path string) error"
+            "signature": "RemoveAll(path string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Rename",
@@ -649,7 +1112,17 @@
                 "type": "error"
               }
             ],
-            "signature": "Rename(src string, dst string) error"
+            "signature": "Rename(src string, dst string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "WriteFile",
@@ -669,13 +1142,61 @@
                 "type": "error"
               }
             ],
-            "signature": "WriteFile(filePath string, data []byte) error"
+            "signature": "WriteFile(filePath string, data []byte) error",
+            "type_refs": [
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "byte",
+            "builtin": true
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          },
+          {
+            "expr": "time.Time",
+            "import_path": "time",
+            "qualified_name": "time.Time"
           }
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#LocalStorage",
         "name": "LocalStorage",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalStorage",
+        "kind": "interface",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
         "doc": "LocalStorage 定义本地键值存储能力\n该接口支持单值与批量读写，以及过期时间设置",
+        "signature": "type LocalStorage interface",
+        "source": {
+          "file": "ossys/local_storage.go",
+          "line": 7,
+          "column": 6
+        },
         "methods": [
           {
             "name": "Del",
@@ -691,7 +1212,17 @@
                 "type": "int"
               }
             ],
-            "signature": "Del(keys ...string) int"
+            "signature": "Del(keys ...string) int",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Get",
@@ -707,7 +1238,13 @@
                 "type": "string"
               }
             ],
-            "signature": "Get(key string) string"
+            "signature": "Get(key string) string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Keys",
@@ -718,7 +1255,13 @@
                 "type": "[]string"
               }
             ],
-            "signature": "Keys() []string"
+            "signature": "Keys() []string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "MGet",
@@ -734,7 +1277,13 @@
                 "type": "map[string]string"
               }
             ],
-            "signature": "MGet(keys ...string) map[string]string"
+            "signature": "MGet(keys ...string) map[string]string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "MSet",
@@ -746,7 +1295,13 @@
               }
             ],
             "results": [],
-            "signature": "MSet(data map[string]string)"
+            "signature": "MSet(data map[string]string)",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "MSetEx",
@@ -762,7 +1317,17 @@
               }
             ],
             "results": [],
-            "signature": "MSetEx(data map[string]string, expiredAt int64)"
+            "signature": "MSetEx(data map[string]string, expiredAt int64)",
+            "type_refs": [
+              {
+                "expr": "int64",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Set",
@@ -778,7 +1343,13 @@
               }
             ],
             "results": [],
-            "signature": "Set(key string, value string)"
+            "signature": "Set(key string, value string)",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "SetEx",
@@ -798,13 +1369,48 @@
               }
             ],
             "results": [],
-            "signature": "SetEx(key string, value string, expiredAt int64)"
+            "signature": "SetEx(key string, value string, expiredAt int64)",
+            "type_refs": [
+              {
+                "expr": "int64",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "int",
+            "builtin": true
+          },
+          {
+            "expr": "int64",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
           }
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#MonitorInfo",
         "name": "MonitorInfo",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo",
+        "kind": "interface",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
         "doc": "MonitorInfo 定义显示器信息查询能力\n该接口用于获取边界、工作区、DPI 与主屏标识",
+        "signature": "type MonitorInfo interface",
+        "source": {
+          "file": "ossys/monitor_info.go",
+          "line": 11,
+          "column": 6
+        },
         "methods": [
           {
             "name": "GetBounds",
@@ -815,7 +1421,14 @@
                 "type": "basic.Rect"
               }
             ],
-            "signature": "GetBounds() basic.Rect"
+            "signature": "GetBounds() basic.Rect",
+            "type_refs": [
+              {
+                "expr": "basic.Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+              }
+            ]
           },
           {
             "name": "GetDPI",
@@ -826,7 +1439,13 @@
                 "type": "uint32"
               }
             ],
-            "signature": "GetDPI() uint32"
+            "signature": "GetDPI() uint32",
+            "type_refs": [
+              {
+                "expr": "uint32",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "GetWorkArea",
@@ -837,7 +1456,14 @@
                 "type": "basic.Rect"
               }
             ],
-            "signature": "GetWorkArea() basic.Rect"
+            "signature": "GetWorkArea() basic.Rect",
+            "type_refs": [
+              {
+                "expr": "basic.Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+              }
+            ]
           },
           {
             "name": "IsPrimary",
@@ -848,13 +1474,45 @@
                 "type": "bool"
               }
             ],
-            "signature": "IsPrimary() bool"
+            "signature": "IsPrimary() bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "basic.Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+          },
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "uint32",
+            "builtin": true
           }
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#ScriptLogger",
         "name": "ScriptLogger",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.ScriptLogger",
+        "kind": "interface",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
         "doc": "ScriptLogger 定义脚本运行日志能力\n该接口提供按级别输出格式化日志的方法",
+        "signature": "type ScriptLogger interface",
+        "source": {
+          "file": "ossys/script_logger.go",
+          "line": 7,
+          "column": 6
+        },
         "methods": [
           {
             "name": "Debug",
@@ -870,7 +1528,17 @@
               }
             ],
             "results": [],
-            "signature": "Debug(format string, args ...any)"
+            "signature": "Debug(format string, args ...any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Error",
@@ -886,7 +1554,17 @@
               }
             ],
             "results": [],
-            "signature": "Error(format string, args ...any)"
+            "signature": "Error(format string, args ...any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Info",
@@ -902,7 +1580,17 @@
               }
             ],
             "results": [],
-            "signature": "Info(format string, args ...any)"
+            "signature": "Info(format string, args ...any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "Warn",
@@ -918,7 +1606,27 @@
               }
             ],
             "results": [],
-            "signature": "Warn(format string, args ...any)"
+            "signature": "Warn(format string, args ...any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
           }
         ]
       }

@@ -10,89 +10,215 @@ import (
 	"go/printer"
 	"go/token"
 	"os"
+	"path"
 	"path/filepath"
 	"sort"
 	"strings"
 	"time"
 )
 
-var excludedDirs = map[string]struct{}{
+const schemaVersion = "yanling.machine-first/v1"
+
+const (
+	moduleSchemaRef  = "../schema/yanling.machine-first.v1/module.schema.json"
+	symbolsSchemaRef = "../schema/yanling.machine-first.v1/symbols.schema.json"
+	packageSchemaRef = "../../schema/yanling.machine-first.v1/package.schema.json"
+)
+
+var excludedTopLevelDirs = map[string]struct{}{
 	".yanling": {},
 	"cmd":      {},
 	"doc":      {},
 	"tests":    {},
 	"symbols":  {},
+	"schema":   {},
+}
+
+var builtinTypes = map[string]struct{}{
+	"any":         {},
+	"bool":        {},
+	"byte":        {},
+	"comparable":  {},
+	"complex64":   {},
+	"complex128":  {},
+	"error":       {},
+	"float32":     {},
+	"float64":     {},
+	"int":         {},
+	"int8":        {},
+	"int16":       {},
+	"int32":       {},
+	"int64":       {},
+	"interface{}": {},
+	"rune":        {},
+	"string":      {},
+	"uint":        {},
+	"uint8":       {},
+	"uint16":      {},
+	"uint32":      {},
+	"uint64":      {},
+	"uintptr":     {},
 }
 
 type packageAggregate struct {
-	Name       string
-	ImportPath string
-	RelDir     string
-	Files      []string
-	Interfaces []InterfaceDoc
-	Functions  []FunctionDoc
-	Structs    map[string]*StructDoc
+	Name           string
+	ImportPath     string
+	RelDir         string
+	Doc            string
+	Files          []string
+	PackageImports map[string]map[string]struct{}
+	Symbols        map[string]*SymbolDoc
+	PendingMethods map[string][]MethodDoc
 }
 
-type apiOutput struct {
-	Module   string            `json:"module"`
-	Packages []apiIndexPackage `json:"packages"`
+type fileContext struct {
+	RelPath string
+	Imports map[string]string
 }
 
-type apiIndexPackage struct {
-	Name       string `json:"name"`
-	ImportPath string `json:"import_path"`
-	APIFile    string `json:"api_file"`
+type SourceDoc struct {
+	File   string `json:"file"`
+	Line   int    `json:"line"`
+	Column int    `json:"column"`
 }
 
-type apiPackage struct {
-	Name       string         `json:"name"`
-	ImportPath string         `json:"import_path"`
-	Interfaces []InterfaceDoc `json:"interfaces,omitempty"`
-	Functions  []FunctionDoc  `json:"functions,omitempty"`
+type CountsDoc struct {
+	Packages    int `json:"packages,omitempty"`
+	Symbols     int `json:"symbols,omitempty"`
+	Interfaces  int `json:"interfaces,omitempty"`
+	Structs     int `json:"structs,omitempty"`
+	Functions   int `json:"functions,omitempty"`
+	Methods     int `json:"methods,omitempty"`
+	NamedTypes  int `json:"named_types,omitempty"`
+	TypeAliases int `json:"type_aliases,omitempty"`
+	FuncTypes   int `json:"func_types,omitempty"`
+	Consts      int `json:"consts,omitempty"`
 }
 
-type apiPackageOutput struct {
-	Module  string     `json:"module"`
-	Package apiPackage `json:"package"`
+type ModuleOutput struct {
+	SchemaRef     string               `json:"$schema,omitempty"`
+	SchemaVersion string               `json:"schema_version"`
+	GeneratedAt   string               `json:"generated_at"`
+	Module        string               `json:"module"`
+	Counts        CountsDoc            `json:"counts"`
+	Files         ModuleFilesDoc       `json:"files"`
+	Packages      []ModulePackageEntry `json:"packages"`
 }
 
-type splitAPIDoc struct {
-	FileName string
-	Doc      apiPackageOutput
+type ModuleFilesDoc struct {
+	SymbolIndex     string `json:"symbol_index"`
+	SymbolIndexLite string `json:"symbol_index_lite,omitempty"`
+	PackageDir      string `json:"package_dir"`
 }
 
-type structOutput struct {
-	Module   string          `json:"module"`
-	Packages []structPackage `json:"packages"`
+type ModulePackageEntry struct {
+	Name         string    `json:"name"`
+	ImportPath   string    `json:"import_path"`
+	Directory    string    `json:"directory"`
+	Doc          string    `json:"doc,omitempty"`
+	Counts       CountsDoc `json:"counts"`
+	PackageFile  string    `json:"package_file"`
+	Dependencies []string  `json:"dependencies,omitempty"`
 }
 
-type structPackage struct {
-	Name       string      `json:"name"`
-	ImportPath string      `json:"import_path"`
-	Structs    []StructDoc `json:"structs"`
+type SymbolsOutput struct {
+	SchemaRef     string             `json:"$schema,omitempty"`
+	SchemaVersion string             `json:"schema_version"`
+	GeneratedAt   string             `json:"generated_at"`
+	Module        string             `json:"module"`
+	Counts        CountsDoc          `json:"counts"`
+	Symbols       []SymbolIndexEntry `json:"symbols"`
 }
 
-type InterfaceDoc struct {
-	Name    string      `json:"name"`
-	Doc     string      `json:"doc,omitempty"`
-	Methods []MethodDoc `json:"methods,omitempty"`
+type SymbolsLiteOutput struct {
+	SchemaVersion string                 `json:"schema_version"`
+	GeneratedAt   string                 `json:"generated_at"`
+	Module        string                 `json:"module"`
+	Counts        CountsDoc              `json:"counts"`
+	Symbols       []SymbolLiteIndexEntry `json:"symbols"`
 }
 
-type FunctionDoc struct {
-	Name      string     `json:"name"`
-	Doc       string     `json:"doc,omitempty"`
-	Params    []ParamDoc `json:"params"`
-	Results   []ParamDoc `json:"results"`
-	Signature string     `json:"signature"`
+type SymbolLiteIndexEntry struct {
+	ID            string    `json:"id"`
+	Name          string    `json:"name"`
+	QualifiedName string    `json:"qualified_name"`
+	Kind          string    `json:"kind"`
+	Package       string    `json:"package"`
+	ImportPath    string    `json:"import_path"`
+	Source        SourceDoc `json:"source"`
+	PackageFile   string    `json:"package_file"`
+}
+
+type SymbolIndexEntry struct {
+	ID            string       `json:"id"`
+	Name          string       `json:"name"`
+	QualifiedName string       `json:"qualified_name"`
+	Kind          string       `json:"kind"`
+	Package       string       `json:"package"`
+	ImportPath    string       `json:"import_path"`
+	Doc           string       `json:"doc,omitempty"`
+	Signature     string       `json:"signature,omitempty"`
+	Source        SourceDoc    `json:"source"`
+	PackageFile   string       `json:"package_file"`
+	TypeRefs      []TypeRefDoc `json:"type_refs,omitempty"`
+	MethodCount   int          `json:"method_count,omitempty"`
+	FieldCount    int          `json:"field_count,omitempty"`
+}
+
+type PackageOutput struct {
+	SchemaRef     string     `json:"$schema,omitempty"`
+	SchemaVersion string     `json:"schema_version"`
+	GeneratedAt   string     `json:"generated_at"`
+	Module        string     `json:"module"`
+	Package       PackageDoc `json:"package"`
+}
+
+type PackageDoc struct {
+	Name         string          `json:"name"`
+	ImportPath   string          `json:"import_path"`
+	Directory    string          `json:"directory"`
+	Doc          string          `json:"doc,omitempty"`
+	Files        []string        `json:"files"`
+	Imports      []PackageImport `json:"imports,omitempty"`
+	Dependencies []string        `json:"dependencies,omitempty"`
+	Counts       CountsDoc       `json:"counts"`
+	Symbols      []SymbolDoc     `json:"symbols"`
+}
+
+type PackageImport struct {
+	Path    string   `json:"path"`
+	Aliases []string `json:"aliases,omitempty"`
+}
+
+type SymbolDoc struct {
+	ID             string            `json:"id"`
+	Name           string            `json:"name"`
+	QualifiedName  string            `json:"qualified_name"`
+	Kind           string            `json:"kind"`
+	Package        string            `json:"package"`
+	ImportPath     string            `json:"import_path"`
+	Doc            string            `json:"doc,omitempty"`
+	Signature      string            `json:"signature,omitempty"`
+	UnderlyingType string            `json:"underlying_type,omitempty"`
+	Alias          bool              `json:"alias,omitempty"`
+	Source         SourceDoc         `json:"source"`
+	Params         []ParamDoc        `json:"params,omitempty"`
+	Results        []ParamDoc        `json:"results,omitempty"`
+	Fields         []FieldDoc        `json:"fields,omitempty"`
+	Methods        []MethodDoc       `json:"methods,omitempty"`
+	Embeds         []EmbeddedTypeDoc `json:"embeds,omitempty"`
+	ConstType      string            `json:"const_type,omitempty"`
+	ConstValue     string            `json:"const_value,omitempty"`
+	TypeRefs       []TypeRefDoc      `json:"type_refs,omitempty"`
 }
 
 type MethodDoc struct {
-	Name      string     `json:"name"`
-	Doc       string     `json:"doc,omitempty"`
-	Params    []ParamDoc `json:"params"`
-	Results   []ParamDoc `json:"results"`
-	Signature string     `json:"signature"`
+	Name      string       `json:"name"`
+	Doc       string       `json:"doc,omitempty"`
+	Params    []ParamDoc   `json:"params"`
+	Results   []ParamDoc   `json:"results"`
+	Signature string       `json:"signature"`
+	TypeRefs  []TypeRefDoc `json:"type_refs,omitempty"`
 }
 
 type ParamDoc struct {
@@ -100,19 +226,27 @@ type ParamDoc struct {
 	Type string `json:"type"`
 }
 
-type StructDoc struct {
-	Name    string      `json:"name"`
-	Doc     string      `json:"doc,omitempty"`
-	Fields  []FieldDoc  `json:"fields"`
-	Methods []MethodDoc `json:"methods,omitempty"`
+type FieldDoc struct {
+	Name     string       `json:"name,omitempty"`
+	Type     string       `json:"type"`
+	Tag      string       `json:"tag,omitempty"`
+	Doc      string       `json:"doc,omitempty"`
+	Embedded bool         `json:"embedded,omitempty"`
+	TypeRefs []TypeRefDoc `json:"type_refs,omitempty"`
 }
 
-type FieldDoc struct {
-	Name     string `json:"name,omitempty"`
-	Type     string `json:"type"`
-	Tag      string `json:"tag,omitempty"`
-	Doc      string `json:"doc,omitempty"`
-	Embedded bool   `json:"embedded,omitempty"`
+type EmbeddedTypeDoc struct {
+	Type          string `json:"type"`
+	ImportPath    string `json:"import_path,omitempty"`
+	QualifiedName string `json:"qualified_name,omitempty"`
+}
+
+type TypeRefDoc struct {
+	Expr          string `json:"expr"`
+	ImportPath    string `json:"import_path,omitempty"`
+	QualifiedName string `json:"qualified_name,omitempty"`
+	Local         bool   `json:"local,omitempty"`
+	Builtin       bool   `json:"builtin,omitempty"`
 }
 
 func main() {
@@ -128,14 +262,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	aggMap, err := scanPackages(rootDir, moduleName)
+	packages, err := scanPackages(rootDir, moduleName)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to scan packages: %v\n", err)
 		os.Exit(1)
 	}
 
-	packages := buildSortedPackages(aggMap)
-	apiIndexDoc, splitAPIDocs, structDoc := buildOutputs(moduleName, packages)
+	generatedAt := time.Now().UTC().Format(time.RFC3339)
+	moduleDoc, symbolsDoc, packageDocs := buildOutputs(moduleName, packages, generatedAt)
 
 	outputDir := filepath.Join(rootDir, ".yanling")
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
@@ -143,41 +277,40 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := writeJSON(filepath.Join(outputDir, "api.json"), apiIndexDoc); err != nil {
-		fmt.Fprintf(os.Stderr, "failed to write api.json: %v\n", err)
+	if err := cleanupOutputDir(outputDir); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to cleanup output directory: %v\n", err)
 		os.Exit(1)
 	}
 
-	apiDir := filepath.Join(outputDir, "api")
-	if err := os.RemoveAll(apiDir); err != nil {
-		fmt.Fprintf(os.Stderr, "failed to clean api output directory: %v\n", err)
+	if err := writeJSON(filepath.Join(outputDir, "module.json"), moduleDoc); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to write module.json: %v\n", err)
 		os.Exit(1)
 	}
-	if err := os.MkdirAll(apiDir, 0755); err != nil {
-		fmt.Fprintf(os.Stderr, "failed to create api output directory: %v\n", err)
+	if err := writeJSON(filepath.Join(outputDir, "symbols.json"), symbolsDoc); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to write symbols.json: %v\n", err)
 		os.Exit(1)
 	}
-	for _, split := range splitAPIDocs {
-		if err := writeJSON(filepath.Join(apiDir, split.FileName), split.Doc); err != nil {
-			fmt.Fprintf(os.Stderr, "failed to write split api file %s: %v\n", split.FileName, err)
+	if err := writeJSON(filepath.Join(outputDir, "symbols.lite.json"), buildSymbolsLite(symbolsDoc)); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to write symbols.lite.json: %v\n", err)
+		os.Exit(1)
+	}
+
+	packagesDir := filepath.Join(outputDir, "packages")
+	if err := os.MkdirAll(packagesDir, 0755); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to create packages output directory: %v\n", err)
+		os.Exit(1)
+	}
+	for _, pkg := range packageDocs {
+		if err := writeJSON(filepath.Join(packagesDir, packageFileName(pkg.Package.ImportPath)), pkg); err != nil {
+			fmt.Fprintf(os.Stderr, "failed to write package file for %s: %v\n", pkg.Package.ImportPath, err)
 			os.Exit(1)
 		}
 	}
 
-	if err := writeJSON(filepath.Join(outputDir, "struct.json"), structDoc); err != nil {
-		fmt.Fprintf(os.Stderr, "failed to write struct.json: %v\n", err)
-		os.Exit(1)
-	}
-
-	if err := writeInfoMD(filepath.Join(outputDir, "info.md"), moduleName, packages); err != nil {
-		fmt.Fprintf(os.Stderr, "failed to write info.md: %v\n", err)
-		os.Exit(1)
-	}
-
-	fmt.Printf("generated %s\n", filepath.Join(outputDir, "info.md"))
-	fmt.Printf("generated %s\n", filepath.Join(outputDir, "api.json"))
-	fmt.Printf("generated %s\n", filepath.Join(outputDir, "api"))
-	fmt.Printf("generated %s\n", filepath.Join(outputDir, "struct.json"))
+	fmt.Printf("generated %s\n", filepath.Join(outputDir, "module.json"))
+	fmt.Printf("generated %s\n", filepath.Join(outputDir, "symbols.json"))
+	fmt.Printf("generated %s\n", filepath.Join(outputDir, "symbols.lite.json"))
+	fmt.Printf("generated %s\n", packagesDir)
 }
 
 func findProjectRoot() (string, error) {
@@ -218,26 +351,18 @@ func parseModuleName(goModPath string) (string, error) {
 	return "", errors.New("module line not found in go.mod")
 }
 
-func scanPackages(rootDir, moduleName string) (map[string]*packageAggregate, error) {
+func scanPackages(rootDir, moduleName string) ([]*packageAggregate, error) {
 	fset := token.NewFileSet()
 	packages := make(map[string]*packageAggregate)
 
-	err := filepath.WalkDir(rootDir, func(path string, d os.DirEntry, walkErr error) error {
+	err := filepath.WalkDir(rootDir, func(filePath string, d os.DirEntry, walkErr error) error {
 		if walkErr != nil {
 			return walkErr
 		}
 
 		if d.IsDir() {
-			name := d.Name()
-			if name == ".git" || strings.HasPrefix(name, ".") {
-				if path != rootDir {
-					return filepath.SkipDir
-				}
-			}
-			if _, ok := excludedDirs[name]; ok {
-				if path != rootDir {
-					return filepath.SkipDir
-				}
+			if shouldSkipDir(rootDir, filePath, d.Name()) {
+				return filepath.SkipDir
 			}
 			return nil
 		}
@@ -246,13 +371,13 @@ func scanPackages(rootDir, moduleName string) (map[string]*packageAggregate, err
 			return nil
 		}
 
-		relPath, err := filepath.Rel(rootDir, path)
+		relPath, err := filepath.Rel(rootDir, filePath)
 		if err != nil {
 			return err
 		}
 		relPath = filepath.ToSlash(relPath)
 
-		fileAst, err := parser.ParseFile(fset, path, nil, parser.ParseComments)
+		fileAst, err := parser.ParseFile(fset, filePath, nil, parser.ParseComments)
 		if err != nil {
 			return fmt.Errorf("parse %s: %w", relPath, err)
 		}
@@ -269,71 +394,107 @@ func scanPackages(rootDir, moduleName string) (map[string]*packageAggregate, err
 		pkg := packages[importPath]
 		if pkg == nil {
 			pkg = &packageAggregate{
-				Name:       fileAst.Name.Name,
-				ImportPath: importPath,
-				RelDir:     relDir,
-				Structs:    make(map[string]*StructDoc),
+				Name:           fileAst.Name.Name,
+				ImportPath:     importPath,
+				RelDir:         relDir,
+				PackageImports: make(map[string]map[string]struct{}),
+				Symbols:        make(map[string]*SymbolDoc),
+				PendingMethods: make(map[string][]MethodDoc),
 			}
 			packages[importPath] = pkg
 		}
 		pkg.Files = append(pkg.Files, relPath)
+		if pkg.Doc == "" {
+			pkg.Doc = cleanComment(pickDoc(fileAst.Doc, nil))
+		}
 
-		extractDeclarations(pkg, fileAst, relPath)
+		ctx := fileContext{
+			RelPath: relPath,
+			Imports: buildImportMap(fileAst),
+		}
+		mergePackageImports(pkg, ctx.Imports)
+		extractDeclarations(pkg, fileAst, ctx, fset)
 		return nil
 	})
-
 	if err != nil {
 		return nil, err
 	}
 
+	result := make([]*packageAggregate, 0, len(packages))
 	for _, pkg := range packages {
-		sort.Strings(pkg.Files)
+		finalizePackage(pkg)
+		result = append(result, pkg)
 	}
 
-	return packages, nil
+	sort.Slice(result, func(i, j int) bool {
+		return result[i].ImportPath < result[j].ImportPath
+	})
+	return result, nil
 }
 
-func extractDeclarations(pkg *packageAggregate, fileAst *ast.File, relPath string) {
+func shouldSkipDir(rootDir, dirPath, name string) bool {
+	if dirPath == rootDir {
+		return false
+	}
+
+	if name == ".git" || strings.HasPrefix(name, ".") {
+		return true
+	}
+
+	relPath, err := filepath.Rel(rootDir, dirPath)
+	if err != nil {
+		return false
+	}
+	relPath = filepath.ToSlash(relPath)
+	if relPath == "." {
+		return false
+	}
+
+	topLevelDir := strings.Split(relPath, "/")[0]
+	_, excluded := excludedTopLevelDirs[topLevelDir]
+	return excluded
+}
+
+func buildImportMap(fileAst *ast.File) map[string]string {
+	imports := make(map[string]string)
+	for _, spec := range fileAst.Imports {
+		importPath := strings.Trim(spec.Path.Value, "\"")
+		alias := path.Base(importPath)
+		if spec.Name != nil {
+			alias = spec.Name.Name
+		}
+		imports[alias] = importPath
+	}
+	return imports
+}
+
+func mergePackageImports(pkg *packageAggregate, imports map[string]string) {
+	for alias, importPath := range imports {
+		aliases := pkg.PackageImports[importPath]
+		if aliases == nil {
+			aliases = make(map[string]struct{})
+			pkg.PackageImports[importPath] = aliases
+		}
+		aliases[alias] = struct{}{}
+	}
+}
+
+func extractDeclarations(pkg *packageAggregate, fileAst *ast.File, ctx fileContext, fset *token.FileSet) {
 	for _, decl := range fileAst.Decls {
 		switch d := decl.(type) {
 		case *ast.GenDecl:
-			if d.Tok != token.TYPE {
-				continue
-			}
-			for _, spec := range d.Specs {
-				typeSpec, ok := spec.(*ast.TypeSpec)
-				if !ok || !typeSpec.Name.IsExported() {
-					continue
-				}
-
-				switch t := typeSpec.Type.(type) {
-				case *ast.InterfaceType:
-					iface := InterfaceDoc{
-						Name:    typeSpec.Name.Name,
-						Doc:     cleanComment(pickDoc(d.Doc, typeSpec.Doc)),
-						Methods: extractInterfaceMethods(t),
-					}
-					sortMethods(iface.Methods)
-					pkg.Interfaces = append(pkg.Interfaces, iface)
-				case *ast.StructType:
-					fields := extractStructFields(t)
-					structDoc := &StructDoc{
-						Name:    typeSpec.Name.Name,
-						Doc:     cleanComment(pickDoc(d.Doc, typeSpec.Doc)),
-						Fields:  fields,
-						Methods: []MethodDoc{},
-					}
-					sortFields(structDoc.Fields)
-					pkg.Structs[typeSpec.Name.Name] = structDoc
-				}
+			switch d.Tok {
+			case token.TYPE:
+				extractTypeDecls(pkg, d, ctx, fset)
+			case token.CONST:
+				extractConstDecls(pkg, d, ctx, fset)
 			}
 		case *ast.FuncDecl:
 			if d.Name == nil || !d.Name.IsExported() {
 				continue
 			}
 			if d.Recv == nil {
-				fn := buildFunctionDoc(d)
-				pkg.Functions = append(pkg.Functions, fn)
+				addSymbol(pkg, buildFunctionSymbol(pkg, d, ctx, fset))
 				continue
 			}
 
@@ -341,27 +502,129 @@ func extractDeclarations(pkg *packageAggregate, fileAst *ast.File, relPath strin
 			if receiverType == "" {
 				continue
 			}
-			if structDoc, ok := pkg.Structs[receiverType]; ok {
-				method := buildMethodDoc(d)
-				structDoc.Methods = append(structDoc.Methods, method)
-			}
+			attachMethod(pkg, receiverType, buildMethodDoc(d, ctx, pkg.ImportPath))
 		}
 	}
 }
 
-func buildFunctionDoc(fn *ast.FuncDecl) FunctionDoc {
-	params := extractFieldList(fn.Type.Params)
-	results := extractFieldList(fn.Type.Results)
-	return FunctionDoc{
-		Name:      fn.Name.Name,
-		Doc:       cleanComment(pickDoc(fn.Doc, nil)),
-		Params:    params,
-		Results:   results,
-		Signature: buildSignature(fn.Name.Name, params, results),
+func extractTypeDecls(pkg *packageAggregate, decl *ast.GenDecl, ctx fileContext, fset *token.FileSet) {
+	for _, spec := range decl.Specs {
+		typeSpec, ok := spec.(*ast.TypeSpec)
+		if !ok || !typeSpec.Name.IsExported() {
+			continue
+		}
+
+		doc := cleanComment(pickDoc(typeSpec.Doc, decl.Doc))
+		source := sourceForNode(fset, ctx.RelPath, typeSpec.Pos())
+		if typeSpec.Assign.IsValid() {
+			addSymbol(pkg, buildAliasSymbol(pkg, typeSpec, doc, source, ctx))
+			continue
+		}
+
+		var symbol *SymbolDoc
+		switch t := typeSpec.Type.(type) {
+		case *ast.InterfaceType:
+			symbol = buildInterfaceSymbol(pkg, typeSpec.Name.Name, t, doc, source, ctx)
+		case *ast.StructType:
+			symbol = buildStructSymbol(pkg, typeSpec.Name.Name, t, doc, source, ctx)
+		case *ast.FuncType:
+			symbol = buildFuncTypeSymbol(pkg, typeSpec.Name.Name, t, doc, source, ctx)
+		default:
+			symbol = buildNamedTypeSymbol(pkg, typeSpec.Name.Name, typeSpec.Type, doc, source, ctx)
+		}
+		addSymbol(pkg, symbol)
 	}
 }
 
-func buildMethodDoc(fn *ast.FuncDecl) MethodDoc {
+func extractConstDecls(pkg *packageAggregate, decl *ast.GenDecl, ctx fileContext, fset *token.FileSet) {
+	lastType := ""
+	var lastValues []string
+
+	for _, spec := range decl.Specs {
+		valueSpec, ok := spec.(*ast.ValueSpec)
+		if !ok {
+			continue
+		}
+
+		typeText := lastType
+		if valueSpec.Type != nil {
+			typeText = exprToString(valueSpec.Type)
+			lastType = typeText
+		}
+
+		values := lastValues
+		if len(valueSpec.Values) > 0 {
+			values = make([]string, 0, len(valueSpec.Values))
+			for _, value := range valueSpec.Values {
+				values = append(values, exprToString(value))
+			}
+			lastValues = values
+		}
+
+		doc := cleanComment(pickDoc(valueSpec.Doc, decl.Doc))
+		typeRefs := collectTypeRefs(valueSpec.Type, ctx.Imports, pkg.ImportPath)
+		for idx, name := range valueSpec.Names {
+			if !name.IsExported() {
+				continue
+			}
+
+			valueText := ""
+			switch {
+			case len(values) == len(valueSpec.Names):
+				valueText = values[idx]
+			case len(values) == 1:
+				valueText = values[0]
+			case idx < len(values):
+				valueText = values[idx]
+			}
+
+			signature := "const " + name.Name
+			if typeText != "" {
+				signature += " " + typeText
+			}
+			if valueText != "" {
+				signature += " = " + valueText
+			}
+
+			addSymbol(pkg, &SymbolDoc{
+				ID:            symbolID(pkg.ImportPath, name.Name),
+				Name:          name.Name,
+				QualifiedName: qualifiedName(pkg.ImportPath, name.Name),
+				Kind:          "const",
+				Package:       pkg.Name,
+				ImportPath:    pkg.ImportPath,
+				Doc:           doc,
+				Signature:     signature,
+				ConstType:     typeText,
+				ConstValue:    valueText,
+				Source:        sourceForNode(fset, ctx.RelPath, name.Pos()),
+				TypeRefs:      append([]TypeRefDoc{}, typeRefs...),
+			})
+		}
+	}
+}
+
+func buildFunctionSymbol(pkg *packageAggregate, fn *ast.FuncDecl, ctx fileContext, fset *token.FileSet) *SymbolDoc {
+	params := extractFieldList(fn.Type.Params)
+	results := extractFieldList(fn.Type.Results)
+	name := fn.Name.Name
+	return &SymbolDoc{
+		ID:            symbolID(pkg.ImportPath, name),
+		Name:          name,
+		QualifiedName: qualifiedName(pkg.ImportPath, name),
+		Kind:          "function",
+		Package:       pkg.Name,
+		ImportPath:    pkg.ImportPath,
+		Doc:           cleanComment(pickDoc(fn.Doc, nil)),
+		Signature:     buildSignature(name, params, results),
+		Source:        sourceForNode(fset, ctx.RelPath, fn.Pos()),
+		Params:        params,
+		Results:       results,
+		TypeRefs:      collectFuncTypeRefs(fn.Type, ctx.Imports, pkg.ImportPath),
+	}
+}
+
+func buildMethodDoc(fn *ast.FuncDecl, ctx fileContext, localImportPath string) MethodDoc {
 	params := extractFieldList(fn.Type.Params)
 	results := extractFieldList(fn.Type.Results)
 	return MethodDoc{
@@ -370,38 +633,136 @@ func buildMethodDoc(fn *ast.FuncDecl) MethodDoc {
 		Params:    params,
 		Results:   results,
 		Signature: buildSignature(fn.Name.Name, params, results),
+		TypeRefs:  collectFuncTypeRefs(fn.Type, ctx.Imports, localImportPath),
 	}
 }
 
-func extractInterfaceMethods(iface *ast.InterfaceType) []MethodDoc {
-	if iface.Methods == nil {
-		return []MethodDoc{}
-	}
-
-	methods := make([]MethodDoc, 0, len(iface.Methods.List))
-	for _, m := range iface.Methods.List {
-		if len(m.Names) == 0 {
-			continue
+func buildInterfaceSymbol(pkg *packageAggregate, name string, iface *ast.InterfaceType, doc string, source SourceDoc, ctx fileContext) *SymbolDoc {
+	methods := make([]MethodDoc, 0)
+	embeds := make([]EmbeddedTypeDoc, 0)
+	typeRefs := make([]TypeRefDoc, 0)
+	if iface.Methods != nil {
+		for _, field := range iface.Methods.List {
+			if len(field.Names) == 0 {
+				typeText := exprToString(field.Type)
+				embeds = append(embeds, buildEmbeddedTypeDoc(field.Type, typeText, ctx.Imports, pkg.ImportPath))
+				typeRefs = append(typeRefs, collectTypeRefs(field.Type, ctx.Imports, pkg.ImportPath)...)
+				continue
+			}
+			funcType, ok := field.Type.(*ast.FuncType)
+			if !ok {
+				continue
+			}
+			params := extractFieldList(funcType.Params)
+			results := extractFieldList(funcType.Results)
+			methodRefs := collectFuncTypeRefs(funcType, ctx.Imports, pkg.ImportPath)
+			typeRefs = append(typeRefs, methodRefs...)
+			methods = append(methods, MethodDoc{
+				Name:      field.Names[0].Name,
+				Doc:       cleanComment(pickDoc(field.Doc, field.Comment)),
+				Params:    params,
+				Results:   results,
+				Signature: buildSignature(field.Names[0].Name, params, results),
+				TypeRefs:  methodRefs,
+			})
 		}
-		name := m.Names[0].Name
-		funcType, ok := m.Type.(*ast.FuncType)
-		if !ok {
-			continue
-		}
-		params := extractFieldList(funcType.Params)
-		results := extractFieldList(funcType.Results)
-		methods = append(methods, MethodDoc{
-			Name:      name,
-			Doc:       cleanComment(pickDoc(m.Doc, nil)),
-			Params:    params,
-			Results:   results,
-			Signature: buildSignature(name, params, results),
-		})
 	}
-	return methods
+	sortMethods(methods)
+	sortEmbeddedTypes(embeds)
+	return &SymbolDoc{
+		ID:            symbolID(pkg.ImportPath, name),
+		Name:          name,
+		QualifiedName: qualifiedName(pkg.ImportPath, name),
+		Kind:          "interface",
+		Package:       pkg.Name,
+		ImportPath:    pkg.ImportPath,
+		Doc:           doc,
+		Signature:     "type " + name + " interface",
+		Source:        source,
+		Methods:       methods,
+		Embeds:        embeds,
+		TypeRefs:      dedupeTypeRefs(typeRefs),
+	}
 }
 
-func extractStructFields(st *ast.StructType) []FieldDoc {
+func buildStructSymbol(pkg *packageAggregate, name string, st *ast.StructType, doc string, source SourceDoc, ctx fileContext) *SymbolDoc {
+	fields := extractStructFields(st, ctx.Imports, pkg.ImportPath)
+	return &SymbolDoc{
+		ID:            symbolID(pkg.ImportPath, name),
+		Name:          name,
+		QualifiedName: qualifiedName(pkg.ImportPath, name),
+		Kind:          "struct",
+		Package:       pkg.Name,
+		ImportPath:    pkg.ImportPath,
+		Doc:           doc,
+		Signature:     "type " + name + " struct",
+		Source:        source,
+		Fields:        fields,
+		Methods:       []MethodDoc{},
+		TypeRefs:      fieldTypeRefs(fields),
+	}
+}
+
+func buildFuncTypeSymbol(pkg *packageAggregate, name string, fnType *ast.FuncType, doc string, source SourceDoc, ctx fileContext) *SymbolDoc {
+	params := extractFieldList(fnType.Params)
+	results := extractFieldList(fnType.Results)
+	underlying := exprToString(fnType)
+	return &SymbolDoc{
+		ID:             symbolID(pkg.ImportPath, name),
+		Name:           name,
+		QualifiedName:  qualifiedName(pkg.ImportPath, name),
+		Kind:           "func_type",
+		Package:        pkg.Name,
+		ImportPath:     pkg.ImportPath,
+		Doc:            doc,
+		Signature:      buildTypeSignature(name, false, underlying),
+		UnderlyingType: underlying,
+		Source:         source,
+		Params:         params,
+		Results:        results,
+		Methods:        []MethodDoc{},
+		TypeRefs:       collectFuncTypeRefs(fnType, ctx.Imports, pkg.ImportPath),
+	}
+}
+
+func buildNamedTypeSymbol(pkg *packageAggregate, name string, expr ast.Expr, doc string, source SourceDoc, ctx fileContext) *SymbolDoc {
+	underlying := exprToString(expr)
+	return &SymbolDoc{
+		ID:             symbolID(pkg.ImportPath, name),
+		Name:           name,
+		QualifiedName:  qualifiedName(pkg.ImportPath, name),
+		Kind:           "named_type",
+		Package:        pkg.Name,
+		ImportPath:     pkg.ImportPath,
+		Doc:            doc,
+		Signature:      buildTypeSignature(name, false, underlying),
+		UnderlyingType: underlying,
+		Source:         source,
+		Methods:        []MethodDoc{},
+		TypeRefs:       collectTypeRefs(expr, ctx.Imports, pkg.ImportPath),
+	}
+}
+
+func buildAliasSymbol(pkg *packageAggregate, typeSpec *ast.TypeSpec, doc string, source SourceDoc, ctx fileContext) *SymbolDoc {
+	underlying := exprToString(typeSpec.Type)
+	return &SymbolDoc{
+		ID:             symbolID(pkg.ImportPath, typeSpec.Name.Name),
+		Name:           typeSpec.Name.Name,
+		QualifiedName:  qualifiedName(pkg.ImportPath, typeSpec.Name.Name),
+		Kind:           "type_alias",
+		Package:        pkg.Name,
+		ImportPath:     pkg.ImportPath,
+		Doc:            doc,
+		Signature:      buildTypeSignature(typeSpec.Name.Name, true, underlying),
+		UnderlyingType: underlying,
+		Alias:          true,
+		Source:         source,
+		Methods:        []MethodDoc{},
+		TypeRefs:       collectTypeRefs(typeSpec.Type, ctx.Imports, pkg.ImportPath),
+	}
+}
+
+func extractStructFields(st *ast.StructType, imports map[string]string, localImportPath string) []FieldDoc {
 	if st.Fields == nil {
 		return []FieldDoc{}
 	}
@@ -414,18 +775,19 @@ func extractStructFields(st *ast.StructType) []FieldDoc {
 		if field.Tag != nil {
 			tag = strings.Trim(field.Tag.Value, "`")
 		}
+		typeRefs := collectTypeRefs(field.Type, imports, localImportPath)
 
 		if len(field.Names) == 0 {
 			if !isExportedEmbedded(field.Type) {
 				continue
 			}
-			embeddedName := embeddedFieldName(field.Type)
 			fields = append(fields, FieldDoc{
-				Name:     embeddedName,
+				Name:     embeddedFieldName(field.Type),
 				Type:     typeText,
 				Tag:      tag,
 				Doc:      doc,
 				Embedded: true,
+				TypeRefs: typeRefs,
 			})
 			continue
 		}
@@ -435,13 +797,15 @@ func extractStructFields(st *ast.StructType) []FieldDoc {
 				continue
 			}
 			fields = append(fields, FieldDoc{
-				Name: name.Name,
-				Type: typeText,
-				Tag:  tag,
-				Doc:  doc,
+				Name:     name.Name,
+				Type:     typeText,
+				Tag:      tag,
+				Doc:      doc,
+				TypeRefs: typeRefs,
 			})
 		}
 	}
+	sortFields(fields)
 	return fields
 }
 
@@ -462,6 +826,382 @@ func extractFieldList(list *ast.FieldList) []ParamDoc {
 		}
 	}
 	return items
+}
+
+func collectFuncTypeRefs(fnType *ast.FuncType, imports map[string]string, localImportPath string) []TypeRefDoc {
+	if fnType == nil {
+		return nil
+	}
+	refs := make([]TypeRefDoc, 0)
+	refs = append(refs, collectFieldListTypeRefs(fnType.Params, imports, localImportPath)...)
+	refs = append(refs, collectFieldListTypeRefs(fnType.Results, imports, localImportPath)...)
+	return dedupeTypeRefs(refs)
+}
+
+func collectFieldListTypeRefs(list *ast.FieldList, imports map[string]string, localImportPath string) []TypeRefDoc {
+	if list == nil {
+		return nil
+	}
+	refs := make([]TypeRefDoc, 0)
+	for _, field := range list.List {
+		refs = append(refs, collectTypeRefs(field.Type, imports, localImportPath)...)
+	}
+	return refs
+}
+
+func collectTypeRefs(expr ast.Expr, imports map[string]string, localImportPath string) []TypeRefDoc {
+	if expr == nil {
+		return nil
+	}
+
+	refs := make(map[string]TypeRefDoc)
+	var visit func(ast.Expr)
+	visit = func(current ast.Expr) {
+		switch t := current.(type) {
+		case *ast.Ident:
+			if t.Name == "" {
+				return
+			}
+			if _, ok := builtinTypes[t.Name]; ok {
+				refs["builtin:"+t.Name] = TypeRefDoc{Expr: t.Name, Builtin: true}
+				return
+			}
+			refs["local:"+t.Name] = TypeRefDoc{
+				Expr:          t.Name,
+				ImportPath:    localImportPath,
+				QualifiedName: qualifiedName(localImportPath, t.Name),
+				Local:         true,
+			}
+		case *ast.SelectorExpr:
+			if pkgIdent, ok := t.X.(*ast.Ident); ok {
+				if importPath, found := imports[pkgIdent.Name]; found {
+					exprText := exprToString(t)
+					refs["import:"+exprText] = TypeRefDoc{
+						Expr:          exprText,
+						ImportPath:    importPath,
+						QualifiedName: qualifiedName(importPath, t.Sel.Name),
+					}
+					return
+				}
+			}
+			visit(t.X)
+		case *ast.StarExpr:
+			visit(t.X)
+		case *ast.ArrayType:
+			visit(t.Elt)
+		case *ast.MapType:
+			visit(t.Key)
+			visit(t.Value)
+		case *ast.ChanType:
+			visit(t.Value)
+		case *ast.Ellipsis:
+			visit(t.Elt)
+		case *ast.FuncType:
+			for _, ref := range collectFuncTypeRefs(t, imports, localImportPath) {
+				refs[typeRefKey(ref)] = ref
+			}
+		case *ast.InterfaceType:
+			if t.Methods != nil {
+				for _, field := range t.Methods.List {
+					visit(field.Type)
+				}
+			}
+		case *ast.StructType:
+			if t.Fields != nil {
+				for _, field := range t.Fields.List {
+					visit(field.Type)
+				}
+			}
+		case *ast.IndexExpr:
+			visit(t.X)
+			visit(t.Index)
+		case *ast.IndexListExpr:
+			visit(t.X)
+			for _, index := range t.Indices {
+				visit(index)
+			}
+		case *ast.ParenExpr:
+			visit(t.X)
+		}
+	}
+
+	visit(expr)
+	items := make([]TypeRefDoc, 0, len(refs))
+	for _, ref := range refs {
+		items = append(items, ref)
+	}
+	return sortTypeRefs(items)
+}
+
+func addSymbol(pkg *packageAggregate, symbol *SymbolDoc) {
+	if symbol.Methods == nil && (symbol.Kind == "struct" || symbol.Kind == "named_type" || symbol.Kind == "func_type" || symbol.Kind == "type_alias") {
+		symbol.Methods = []MethodDoc{}
+	}
+	pkg.Symbols[symbol.Name] = symbol
+	if methods, ok := pkg.PendingMethods[symbol.Name]; ok {
+		symbol.Methods = append(symbol.Methods, methods...)
+		sortMethods(symbol.Methods)
+		symbol.TypeRefs = dedupeTypeRefs(append(symbol.TypeRefs, typeRefsFromMethods(symbol.Methods)...))
+		delete(pkg.PendingMethods, symbol.Name)
+	}
+}
+
+func attachMethod(pkg *packageAggregate, receiver string, method MethodDoc) {
+	if symbol, ok := pkg.Symbols[receiver]; ok {
+		symbol.Methods = append(symbol.Methods, method)
+		sortMethods(symbol.Methods)
+		symbol.TypeRefs = dedupeTypeRefs(append(symbol.TypeRefs, method.TypeRefs...))
+		return
+	}
+	pkg.PendingMethods[receiver] = append(pkg.PendingMethods[receiver], method)
+}
+
+func finalizePackage(pkg *packageAggregate) {
+	sort.Strings(pkg.Files)
+	for _, methods := range pkg.PendingMethods {
+		sortMethods(methods)
+	}
+	for _, symbol := range pkg.Symbols {
+		sortMethods(symbol.Methods)
+		symbol.TypeRefs = dedupeTypeRefs(symbol.TypeRefs)
+		sortFields(symbol.Fields)
+		sortEmbeddedTypes(symbol.Embeds)
+	}
+}
+
+func buildOutputs(moduleName string, packages []*packageAggregate, generatedAt string) (ModuleOutput, SymbolsOutput, []PackageOutput) {
+	moduleDoc := ModuleOutput{
+		SchemaRef:     moduleSchemaRef,
+		SchemaVersion: schemaVersion,
+		GeneratedAt:   generatedAt,
+		Module:        moduleName,
+		Files: ModuleFilesDoc{
+			SymbolIndex:     "symbols.json",
+			SymbolIndexLite: "symbols.lite.json",
+			PackageDir:      "packages",
+		},
+		Packages: make([]ModulePackageEntry, 0, len(packages)),
+	}
+
+	symbolsDoc := SymbolsOutput{
+		SchemaRef:     symbolsSchemaRef,
+		SchemaVersion: schemaVersion,
+		GeneratedAt:   generatedAt,
+		Module:        moduleName,
+		Symbols:       make([]SymbolIndexEntry, 0),
+	}
+
+	packageDocs := make([]PackageOutput, 0, len(packages))
+	allCounts := CountsDoc{Packages: len(packages)}
+
+	for _, pkg := range packages {
+		symbols := sortedSymbols(pkg.Symbols)
+		pkgCounts := countSymbols(symbols)
+		dependencies := packageDependencies(symbols, pkg.ImportPath)
+		packageFile := filepath.ToSlash(filepath.Join("packages", packageFileName(pkg.ImportPath)))
+
+		moduleDoc.Packages = append(moduleDoc.Packages, ModulePackageEntry{
+			Name:         pkg.Name,
+			ImportPath:   pkg.ImportPath,
+			Directory:    packageDirectory(pkg.RelDir),
+			Doc:          oneLineDoc(pkg.Doc),
+			Counts:       pkgCounts,
+			PackageFile:  packageFile,
+			Dependencies: dependencies,
+		})
+
+		packageDocs = append(packageDocs, PackageOutput{
+			SchemaRef:     packageSchemaRef,
+			SchemaVersion: schemaVersion,
+			GeneratedAt:   generatedAt,
+			Module:        moduleName,
+			Package: PackageDoc{
+				Name:         pkg.Name,
+				ImportPath:   pkg.ImportPath,
+				Directory:    packageDirectory(pkg.RelDir),
+				Doc:          pkg.Doc,
+				Files:        append([]string{}, pkg.Files...),
+				Imports:      packageImports(pkg.PackageImports),
+				Dependencies: dependencies,
+				Counts:       pkgCounts,
+				Symbols:      cloneSymbols(symbols),
+			},
+		})
+
+		for _, symbol := range symbols {
+			symbolsDoc.Symbols = append(symbolsDoc.Symbols, SymbolIndexEntry{
+				ID:            symbol.ID,
+				Name:          symbol.Name,
+				QualifiedName: symbol.QualifiedName,
+				Kind:          symbol.Kind,
+				Package:       symbol.Package,
+				ImportPath:    symbol.ImportPath,
+				Doc:           oneLineDoc(symbol.Doc),
+				Signature:     symbol.Signature,
+				Source:        symbol.Source,
+				PackageFile:   packageFile,
+				TypeRefs:      append([]TypeRefDoc{}, symbol.TypeRefs...),
+				MethodCount:   len(symbol.Methods),
+				FieldCount:    len(symbol.Fields),
+			})
+		}
+
+		accumulateCounts(&allCounts, pkgCounts)
+	}
+
+	moduleDoc.Counts = allCounts
+	symbolsDoc.Counts = allCounts
+	return moduleDoc, symbolsDoc, packageDocs
+}
+
+func buildSymbolsLite(full SymbolsOutput) SymbolsLiteOutput {
+	lite := SymbolsLiteOutput{
+		SchemaVersion: full.SchemaVersion,
+		GeneratedAt:   full.GeneratedAt,
+		Module:        full.Module,
+		Counts:        full.Counts,
+		Symbols:       make([]SymbolLiteIndexEntry, 0, len(full.Symbols)),
+	}
+
+	for _, symbol := range full.Symbols {
+		lite.Symbols = append(lite.Symbols, SymbolLiteIndexEntry{
+			ID:            symbol.ID,
+			Name:          symbol.Name,
+			QualifiedName: symbol.QualifiedName,
+			Kind:          symbol.Kind,
+			Package:       symbol.Package,
+			ImportPath:    symbol.ImportPath,
+			Source:        symbol.Source,
+			PackageFile:   symbol.PackageFile,
+		})
+	}
+
+	return lite
+}
+
+func sortedSymbols(items map[string]*SymbolDoc) []*SymbolDoc {
+	symbols := make([]*SymbolDoc, 0, len(items))
+	for _, symbol := range items {
+		symbols = append(symbols, symbol)
+	}
+	sort.Slice(symbols, func(i, j int) bool {
+		if symbols[i].Name == symbols[j].Name {
+			return symbols[i].Kind < symbols[j].Kind
+		}
+		return symbols[i].Name < symbols[j].Name
+	})
+	return symbols
+}
+
+func cloneSymbols(symbols []*SymbolDoc) []SymbolDoc {
+	result := make([]SymbolDoc, 0, len(symbols))
+	for _, symbol := range symbols {
+		cloned := *symbol
+		cloned.Params = append([]ParamDoc{}, symbol.Params...)
+		cloned.Results = append([]ParamDoc{}, symbol.Results...)
+		cloned.Fields = append([]FieldDoc{}, symbol.Fields...)
+		cloned.Methods = append([]MethodDoc{}, symbol.Methods...)
+		cloned.Embeds = append([]EmbeddedTypeDoc{}, symbol.Embeds...)
+		cloned.TypeRefs = append([]TypeRefDoc{}, symbol.TypeRefs...)
+		result = append(result, cloned)
+	}
+	return result
+}
+
+func countSymbols(symbols []*SymbolDoc) CountsDoc {
+	counts := CountsDoc{Symbols: len(symbols)}
+	for _, symbol := range symbols {
+		switch symbol.Kind {
+		case "interface":
+			counts.Interfaces++
+		case "struct":
+			counts.Structs++
+		case "function":
+			counts.Functions++
+		case "named_type":
+			counts.NamedTypes++
+		case "type_alias":
+			counts.TypeAliases++
+		case "func_type":
+			counts.FuncTypes++
+		case "const":
+			counts.Consts++
+		}
+		counts.Methods += len(symbol.Methods)
+	}
+	return counts
+}
+
+func accumulateCounts(total *CountsDoc, current CountsDoc) {
+	total.Symbols += current.Symbols
+	total.Interfaces += current.Interfaces
+	total.Structs += current.Structs
+	total.Functions += current.Functions
+	total.Methods += current.Methods
+	total.NamedTypes += current.NamedTypes
+	total.TypeAliases += current.TypeAliases
+	total.FuncTypes += current.FuncTypes
+	total.Consts += current.Consts
+}
+
+func packageDependencies(symbols []*SymbolDoc, localImportPath string) []string {
+	deps := make(map[string]struct{})
+	for _, symbol := range symbols {
+		for _, ref := range symbol.TypeRefs {
+			if ref.ImportPath == "" || ref.ImportPath == localImportPath {
+				continue
+			}
+			deps[ref.ImportPath] = struct{}{}
+		}
+	}
+	items := make([]string, 0, len(deps))
+	for dep := range deps {
+		items = append(items, dep)
+	}
+	sort.Strings(items)
+	return items
+}
+
+func packageImports(imports map[string]map[string]struct{}) []PackageImport {
+	items := make([]PackageImport, 0, len(imports))
+	for importPath, aliasesMap := range imports {
+		aliases := make([]string, 0, len(aliasesMap))
+		for alias := range aliasesMap {
+			aliases = append(aliases, alias)
+		}
+		sort.Strings(aliases)
+		items = append(items, PackageImport{Path: importPath, Aliases: aliases})
+	}
+	sort.Slice(items, func(i, j int) bool {
+		return items[i].Path < items[j].Path
+	})
+	return items
+}
+
+func buildEmbeddedTypeDoc(expr ast.Expr, typeText string, imports map[string]string, localImportPath string) EmbeddedTypeDoc {
+	refs := collectTypeRefs(expr, imports, localImportPath)
+	item := EmbeddedTypeDoc{Type: typeText}
+	if len(refs) > 0 {
+		item.ImportPath = refs[0].ImportPath
+		item.QualifiedName = refs[0].QualifiedName
+	}
+	return item
+}
+
+func fieldTypeRefs(fields []FieldDoc) []TypeRefDoc {
+	refs := make([]TypeRefDoc, 0)
+	for _, field := range fields {
+		refs = append(refs, field.TypeRefs...)
+	}
+	return dedupeTypeRefs(refs)
+}
+
+func typeRefsFromMethods(methods []MethodDoc) []TypeRefDoc {
+	refs := make([]TypeRefDoc, 0)
+	for _, method := range methods {
+		refs = append(refs, method.TypeRefs...)
+	}
+	return dedupeTypeRefs(refs)
 }
 
 func buildSignature(name string, params, results []ParamDoc) string {
@@ -494,6 +1234,13 @@ func buildSignature(name string, params, results []ParamDoc) string {
 	}
 }
 
+func buildTypeSignature(name string, alias bool, underlying string) string {
+	if alias {
+		return "type " + name + " = " + underlying
+	}
+	return "type " + name + " " + underlying
+}
+
 func receiverTypeName(recv *ast.FieldList) string {
 	if recv == nil || len(recv.List) == 0 {
 		return ""
@@ -511,6 +1258,9 @@ func receiverTypeName(recv *ast.FieldList) string {
 }
 
 func exprToString(expr ast.Expr) string {
+	if expr == nil {
+		return ""
+	}
 	return nodeToString(token.NewFileSet(), expr)
 }
 
@@ -581,93 +1331,86 @@ func sortFields(fields []FieldDoc) {
 	})
 }
 
-func buildSortedPackages(aggMap map[string]*packageAggregate) []*packageAggregate {
-	packages := make([]*packageAggregate, 0, len(aggMap))
-	for _, pkg := range aggMap {
-		sort.Slice(pkg.Interfaces, func(i, j int) bool {
-			return pkg.Interfaces[i].Name < pkg.Interfaces[j].Name
-		})
-		sort.Slice(pkg.Functions, func(i, j int) bool {
-			return pkg.Functions[i].Name < pkg.Functions[j].Name
-		})
-		for _, st := range pkg.Structs {
-			sortMethods(st.Methods)
-			sortFields(st.Fields)
+func sortEmbeddedTypes(items []EmbeddedTypeDoc) {
+	sort.Slice(items, func(i, j int) bool {
+		if items[i].Type == items[j].Type {
+			return items[i].QualifiedName < items[j].QualifiedName
 		}
-		packages = append(packages, pkg)
-	}
-
-	sort.Slice(packages, func(i, j int) bool {
-		return packages[i].ImportPath < packages[j].ImportPath
+		return items[i].Type < items[j].Type
 	})
-	return packages
 }
 
-func buildOutputs(moduleName string, packages []*packageAggregate) (apiOutput, []splitAPIDoc, structOutput) {
-	apiDoc := apiOutput{
-		Module:   moduleName,
-		Packages: make([]apiIndexPackage, 0, len(packages)),
+func dedupeTypeRefs(items []TypeRefDoc) []TypeRefDoc {
+	unique := make(map[string]TypeRefDoc)
+	for _, item := range items {
+		unique[typeRefKey(item)] = item
 	}
-	splitDocs := make([]splitAPIDoc, 0, len(packages))
-	structDoc := structOutput{
-		Module:   moduleName,
-		Packages: make([]structPackage, 0, len(packages)),
+	result := make([]TypeRefDoc, 0, len(unique))
+	for _, item := range unique {
+		result = append(result, item)
 	}
-
-	for _, pkg := range packages {
-		interfaces := append([]InterfaceDoc{}, pkg.Interfaces...)
-		functions := append([]FunctionDoc{}, pkg.Functions...)
-
-		apiPkg := apiPackage{
-			Name:       pkg.Name,
-			ImportPath: pkg.ImportPath,
-			Interfaces: interfaces,
-			Functions:  functions,
-		}
-		apiFile := apiPackageFileName(pkg)
-		apiDoc.Packages = append(apiDoc.Packages, apiIndexPackage{
-			Name:       pkg.Name,
-			ImportPath: pkg.ImportPath,
-			APIFile:    filepath.ToSlash(filepath.Join("api", apiFile)),
-		})
-		splitDocs = append(splitDocs, splitAPIDoc{
-			FileName: apiFile,
-			Doc: apiPackageOutput{
-				Module:  moduleName,
-				Package: apiPkg,
-			},
-		})
-
-		structNames := make([]string, 0, len(pkg.Structs))
-		for name := range pkg.Structs {
-			structNames = append(structNames, name)
-		}
-		sort.Strings(structNames)
-		structs := make([]StructDoc, 0, len(structNames))
-		for _, name := range structNames {
-			structs = append(structs, *pkg.Structs[name])
-		}
-		if len(structs) == 0 {
-			continue
-		}
-
-		structDoc.Packages = append(structDoc.Packages, structPackage{
-			Name:       pkg.Name,
-			ImportPath: pkg.ImportPath,
-			Structs:    structs,
-		})
-	}
-
-	return apiDoc, splitDocs, structDoc
+	return sortTypeRefs(result)
 }
 
-func apiPackageFileName(pkg *packageAggregate) string {
-	if pkg.RelDir == "" {
-		return "root.json"
+func sortTypeRefs(items []TypeRefDoc) []TypeRefDoc {
+	sort.Slice(items, func(i, j int) bool {
+		if items[i].Expr == items[j].Expr {
+			return items[i].QualifiedName < items[j].QualifiedName
+		}
+		return items[i].Expr < items[j].Expr
+	})
+	return items
+}
+
+func typeRefKey(item TypeRefDoc) string {
+	return item.Expr + "|" + item.ImportPath + "|" + item.QualifiedName
+}
+
+func qualifiedName(importPath, name string) string {
+	return importPath + "." + name
+}
+
+func symbolID(importPath, name string) string {
+	return importPath + "#" + name
+}
+
+func sourceForNode(fset *token.FileSet, relPath string, pos token.Pos) SourceDoc {
+	position := fset.Position(pos)
+	return SourceDoc{
+		File:   relPath,
+		Line:   position.Line,
+		Column: position.Column,
 	}
-	name := strings.ReplaceAll(pkg.RelDir, "/", "__")
-	name = strings.ReplaceAll(name, "\\", "__")
-	return name + ".json"
+}
+
+func packageDirectory(relDir string) string {
+	if relDir == "" {
+		return "/"
+	}
+	return "/" + relDir
+}
+
+func packageFileName(importPath string) string {
+	return strings.ReplaceAll(importPath, "/", "__") + ".json"
+}
+
+func cleanupOutputDir(outputDir string) error {
+	paths := []string{
+		filepath.Join(outputDir, "api"),
+		filepath.Join(outputDir, "packages"),
+		filepath.Join(outputDir, "api.json"),
+		filepath.Join(outputDir, "struct.json"),
+		filepath.Join(outputDir, "info.md"),
+		filepath.Join(outputDir, "module.json"),
+		filepath.Join(outputDir, "symbols.json"),
+		filepath.Join(outputDir, "symbols.lite.json"),
+	}
+	for _, item := range paths {
+		if err := os.RemoveAll(item); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func writeJSON(path string, data any) error {
@@ -679,96 +1422,13 @@ func writeJSON(path string, data any) error {
 	return os.WriteFile(path, content, 0644)
 }
 
-func writeInfoMD(path, moduleName string, packages []*packageAggregate) error {
-	var sb strings.Builder
-	now := time.Now().UTC().Format(time.RFC3339)
-
-	totalInterfaces := 0
-	totalFunctions := 0
-	totalStructs := 0
-	for _, pkg := range packages {
-		totalInterfaces += len(pkg.Interfaces)
-		totalFunctions += len(pkg.Functions)
-		totalStructs += len(pkg.Structs)
-	}
-
-	sb.WriteString("# Module Overview\n\n")
-	sb.WriteString(fmt.Sprintf("- Module: `%s`\n", moduleName))
-	sb.WriteString(fmt.Sprintf("- Generated At: `%s`\n", now))
-	sb.WriteString(fmt.Sprintf("- Packages: `%d`\n", len(packages)))
-	sb.WriteString(fmt.Sprintf("- Public Interfaces: `%d`\n", totalInterfaces))
-	sb.WriteString(fmt.Sprintf("- Public Functions: `%d`\n", totalFunctions))
-	sb.WriteString(fmt.Sprintf("- Exported Structs: `%d`\n\n", totalStructs))
-
-	sb.WriteString("## Packages\n\n")
-	for _, pkg := range packages {
-		sb.WriteString(fmt.Sprintf("### %s\n\n", pkg.ImportPath))
-		sb.WriteString(fmt.Sprintf("- Package Name: `%s`\n", pkg.Name))
-		if pkg.RelDir == "" {
-			sb.WriteString("- Directory: `/`\n")
-		} else {
-			sb.WriteString(fmt.Sprintf("- Directory: `/%s`\n", pkg.RelDir))
-		}
-		sb.WriteString(fmt.Sprintf("- Interfaces: `%d`\n", len(pkg.Interfaces)))
-		sb.WriteString(fmt.Sprintf("- Functions: `%d`\n", len(pkg.Functions)))
-		sb.WriteString(fmt.Sprintf("- Structs: `%d`\n\n", len(pkg.Structs)))
-
-		if len(pkg.Interfaces) > 0 {
-			sb.WriteString("Public Interfaces:\n")
-			for _, iface := range pkg.Interfaces {
-				desc := oneLineDoc(iface.Doc)
-				if desc == "" {
-					sb.WriteString(fmt.Sprintf("- `%s`\n", iface.Name))
-				} else {
-					sb.WriteString(fmt.Sprintf("- `%s`: %s\n", iface.Name, desc))
-				}
-			}
-			sb.WriteString("\n")
-		}
-
-		if len(pkg.Functions) > 0 {
-			sb.WriteString("Public Functions:\n")
-			for _, fn := range pkg.Functions {
-				desc := oneLineDoc(fn.Doc)
-				if desc == "" {
-					sb.WriteString(fmt.Sprintf("- `%s`\n", fn.Signature))
-				} else {
-					sb.WriteString(fmt.Sprintf("- `%s`: %s\n", fn.Signature, desc))
-				}
-			}
-			sb.WriteString("\n")
-		}
-
-		if len(pkg.Structs) > 0 {
-			structNames := make([]string, 0, len(pkg.Structs))
-			for name := range pkg.Structs {
-				structNames = append(structNames, name)
-			}
-			sort.Strings(structNames)
-			sb.WriteString("Exported Structs:\n")
-			for _, name := range structNames {
-				st := pkg.Structs[name]
-				desc := oneLineDoc(st.Doc)
-				if desc == "" {
-					sb.WriteString(fmt.Sprintf("- `%s`\n", st.Name))
-				} else {
-					sb.WriteString(fmt.Sprintf("- `%s`: %s\n", st.Name, desc))
-				}
-			}
-			sb.WriteString("\n")
-		}
-	}
-
-	return os.WriteFile(path, []byte(sb.String()), 0644)
-}
-
 func oneLineDoc(text string) string {
 	if text == "" {
 		return ""
 	}
 	parts := strings.Split(text, "\n")
-	for _, p := range parts {
-		trimmed := strings.TrimSpace(p)
+	for _, part := range parts {
+		trimmed := strings.TrimSpace(part)
 		if trimmed != "" {
 			return trimmed
 		}
