@@ -3,7 +3,7 @@ package osgui
 type Keyboard string
 
 const (
-	// 字母键
+	// Letter keys
 	KeyA Keyboard = "a"
 	KeyB Keyboard = "b"
 	KeyC Keyboard = "c"
@@ -58,7 +58,7 @@ const (
 	CapY Keyboard = "Y"
 	CapZ Keyboard = "Z"
 
-	// 数字键
+	// Number keys
 	Key0 Keyboard = "0"
 	Key1 Keyboard = "1"
 	Key2 Keyboard = "2"

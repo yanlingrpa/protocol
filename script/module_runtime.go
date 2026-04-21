@@ -10,118 +10,119 @@ import (
 )
 
 /*
-* Subscriber 定义事件订阅者信息
-* 用于标识订阅来源、主题与状态
+* Subscriber defines event subscriber information.
+* It is used to identify subscription source, topic, and status.
  */
 type Subscriber interface {
 	/*
-	* GetSpecifier 获取Topic所属模块标识
+	* GetSpecifier gets the module specifier that owns the topic.
 	 */
 	GetSpecifier() string
 	/*
-	* GetTopic 获取订阅的事件主题
+	* GetTopic gets the subscribed event topic.
 	 */
 	GetTopic() string
 	/*
-	* IsActive 判断订阅是否仍然有效
+	* IsActive indicates whether the subscription is still active.
 	 */
 	IsActive() bool
 }
 
 /*
-* Event 定义本地事件总线的事件数据
+* Event defines event data for the local event bus.
  */
 type Event struct {
 	/*
-	* Topic 事件主题
+	* Topic is the event topic.
 	 */
 	Topic string
 	/*
-	* Data 事件数据
+	* Data is the event payload.
 	 */
 	Data any
 	/*
-	* OccuredAt 事件发生时间
+	* OccuredAt is the event occurrence time.
 	 */
 	OccuredAt time.Time
 }
 
 /*
-* EventHandler 定义事件处理函数签名
+* EventHandler defines the event handler function signature.
  */
 type EventHandler func(event Event)
 
 /*
-* ModuleRuntime 定义脚本运行时上下文能力
-* 该接口提供窗口访问、系统能力、缓存、变量与事件总线访问能力
+* ModuleRuntime defines script runtime context capabilities.
+* This interface provides access to windows, system services, cache, variables,
+* and the local event bus.
  */
 type ModuleRuntime interface {
 	/*
-	* HostSpecifier 获取启动引擎执行的入口脚本规范说明
+	* HostSpecifier gets the specifier of the entry script launched by the engine.
 	 */
 	HostSpecifier() string
 	/*
-	* CurrentSpecifier 获取当前正在执行脚本的规范说明
+	* CurrentSpecifier gets the specifier of the currently executing script.
 	 */
 	CurrentSpecifier() string
 	/*
-	* GuiWindow 根据窗口 ID 获取 GUI 窗口
+	* GuiWindow gets a GUI window by window ID.
 	 */
 	GuiWindow(id string) (osgui.GuiWindow, bool)
 	/*
-	* BrowserWindow 根据窗口 ID 获取浏览器窗口
+	* BrowserWindow gets a browser window by window ID.
 	 */
 	BrowserWindow(id string) (browser.BrowserWindow, bool)
 	/*
-	* DeviceInfo 获取设备信息能力接口
+	* DeviceInfo gets the device information capability interface.
 	 */
 	DeviceInfo() ossys.DeviceInfo
 	/*
-	* Logger 获取脚本日志记录器
+	* Logger gets the script logger.
 	 */
 	Logger() ossys.ScriptLogger
 	/*
-	* Storage 获取项目本地存储接口
+	* Storage gets the project local storage interface.
 	 */
 	Storage() ossys.LocalStorage
 	/*
-	* HttpClient 获取 HTTP 客户端接口
+	* HttpClient gets the HTTP client interface.
 	 */
 	HttpClient() ossys.HttpClient
 	/*
-	* FileSystem 获取本地文件系统接口
+	* FileSystem gets the local filesystem interface.
 	 */
 	FileSystem() ossys.LocalFilesystem
 	/*
-	* SetCacheData 在运行时临时存储任意数据
+	* SetCacheData temporarily stores arbitrary data at runtime.
 	 */
 	SetCacheData(key string, value any)
 	/*
-	* GetCacheData 获取运行时临时存储数据
+	* GetCacheData gets data temporarily stored at runtime.
 	 */
 	GetCacheData(key string) (any, bool)
 	/*
-	* GetVariable 获取脚本变量值
+	* GetVariable gets a script variable value.
 	 */
 	GetVariable(name string) (any, bool)
 	/*
-	* InvokeApi 调用本地其他模组的开放 API
+	* InvokeApi calls an exposed API from another local module.
 	 */
 	InvokeApi(specifier string, api string, args ...any) (any, error)
 	/*
-	* Subscribe 订阅本地其他模组的开放事件
+	* Subscribe subscribes to an exposed event from another local module.
 	 */
 	Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error)
 	/*
-	* Unsubscribe 取消订阅本地其他模组的开放事件
+	* Unsubscribe cancels a subscription to an exposed event from another local module.
 	 */
 	Unsubscribe(subscriber Subscriber) error
 	/*
-	* Publish 发布事件到本地事件总线
+	* Publish publishes an event to the local event bus.
 	 */
 	Publish(topic string, data any) error
 	/*
-	* Vision 获取视觉能力扩展接口
+	* Vision gets the vision capability extension interface.
 	 */
 	Vision() extension.VisionExtension
 }

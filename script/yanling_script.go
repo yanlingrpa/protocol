@@ -9,164 +9,165 @@ import (
 )
 
 /*
-* VariableDataType 定义脚本变量的数据类型
+* VariableDataType defines data types for script variables.
  */
 type VariableDataType string
 
 const (
 	/*
-	* VariableBoolean 布尔类型
+	* VariableBoolean boolean type.
 	 */
 	VariableBoolean VariableDataType = "boolean"
 	/*
-	* VariableString 字符串类型
+	* VariableString string type.
 	 */
 	VariableString VariableDataType = "string"
 	/*
-	* VariableFilePath 文件路径类型
+	* VariableFilePath file path type.
 	 */
 	VariableFilePath VariableDataType = "filepath"
 	/*
-	* VariableInteger 整数类型
+	* VariableInteger integer type.
 	 */
 	VariableInteger VariableDataType = "integer"
 	/*
-	* VariableNumber 浮点数类型
+	* VariableNumber floating-point number type.
 	 */
 	VariableNumber VariableDataType = "number"
 	/*
-	* VariableJson JSON 对象类型
+	* VariableJson JSON object type.
 	 */
 	VariableJson VariableDataType = "json"
 )
 
 /*
-* ModuleInfo 定义脚本模组元信息
+* ModuleInfo defines script module metadata.
  */
 type ModuleInfo struct {
 	/*
-	* Specifier 模块标识符，包含域、所有者、名称和版本，从 go.mod 文件中解析得到
+	* Specifier is the module identifier, including domain, owner, name, and version,
+	* parsed from the go.mod file.
 	 */
 	Specifier string `json:"specifier"`
 	/*
-	* Package 脚本包名，有且仅有该包名的脚本可以被引入和调用
+	* Package is the script package name. Only scripts under this package can be imported and called.
 	 */
-	Package string `toml:"package" json:"package"`
+	Package string `json:"package"`
 	/*
-	* Description 脚本描述，介绍脚本的功能和用途
+	* Description describes script functionality and usage.
 	 */
-	Description string `toml:"description" json:"description"`
+	Description string `json:"description"`
 	/*
-	* Tags 脚本主题标签列表，如 ["web automation", "data extraction"]
+	* Tags is a list of script topic tags, for example ["web automation", "data extraction"].
 	 */
-	Tags []string `toml:"tags" json:"tags"`
+	Tags []string `json:"tags"`
 	/*
-	* Website 脚本官方网站
+	* Website is the official website of the script.
 	 */
-	Website string `toml:"website" json:"website"`
+	Website string `json:"website"`
 	/*
-	* UpdateTime 更新时间，最后一次提交时间，格式为 RFC3339
+	* UpdateTime is the last update time (last commit time), formatted as RFC3339.
 	 */
 	UpdateTime string `json:"update_time"`
 	/*
-	* Author 作者
+	* Author is the script author.
 	 */
-	Author string `toml:"author" json:"author"`
+	Author string `json:"author"`
 	/*
-	* Email 联系方式
+	* Email is the contact address.
 	 */
-	Email string `toml:"email" json:"email"`
+	Email string `json:"email"`
 	/*
-	* License 许可证，根据 LICENSE 文件或声明
+	* License is the license, based on the LICENSE file or declaration.
 	 */
-	License string `toml:"license" json:"license"`
+	License string `json:"license"`
 	/*
-	* Devices 适用的设备列表，如 ["windows", "mac", "ubuntu"]
+	* Devices is the list of applicable devices, for example ["windows", "mac", "ubuntu"].
 	 */
-	Devices []string `toml:"devices" json:"devices"`
+	Devices []string `json:"devices"`
 	/*
-	* EngineVersion 引擎版本要求
+	* EngineVersion is the required engine version.
 	 */
-	EngineVersion string `toml:"engine_version" json:"engine_version"`
+	EngineVersion string `json:"engine_version"`
 }
 
 /*
-* GuiApplication 定义 GUI 应用配置
+* GuiApplication defines GUI application configuration.
  */
 type GuiApplication struct {
 	/*
-	* Id GUI 应用的唯一标识符
+	* Id is the unique identifier of the GUI application.
 	 */
-	Id string `toml:"id" json:"id"`
+	Id string `json:"id"`
 	/*
-	* Name GUI 应用名称
+	* Name is the GUI application name.
 	 */
-	Name string `toml:"name" json:"name"`
+	Name string `json:"name"`
 	/*
-	* Launcher 启动器命令或路径
+	* Launcher is the launcher command or path.
 	 */
-	Launcher string `toml:"launcher" json:"launcher"`
+	Launcher string `json:"launcher"`
 	/*
-	* Process GUI 窗口所属的进程名称
+	* Process is the process name associated with the GUI window.
 	 */
-	Process string `toml:"process" json:"process"`
+	Process string `json:"process"`
 	/*
-	* Url 打开 GUI 窗口的 URL，例如 weixin://launchapplet?appid=xxxx
+	* Url is the URL used to open the GUI window, for example weixin://launchapplet?appid=xxxx.
 	 */
-	Url string `toml:"url" json:"url"`
+	Url string `json:"url"`
 }
 
 /*
-* WebApplication 定义浏览器应用配置
+* WebApplication defines browser application configuration.
  */
 type WebApplication struct {
 	/*
-	* Id 浏览器应用的唯一标识符
+	* Id is the unique identifier of the browser application.
 	 */
-	Id string `toml:"id" json:"id"`
+	Id string `json:"id"`
 	/*
-	* Name 浏览器应用名称
+	* Name is the browser application name.
 	 */
-	Name string `toml:"name" json:"name"`
+	Name string `json:"name"`
 	/*
-	* Url 浏览器应用 URL，例如 https://www.google.com
+	* Url is the browser application URL, for example https://www.google.com.
 	 */
-	Url string `toml:"url" json:"url"`
+	Url string `json:"url"`
 }
 
 /*
-* ScriptVariable 定义脚本变量配置
+* ScriptVariable defines script variable configuration.
  */
 type ScriptVariable struct {
 	/*
-	* Name 变量名称
+	* Name is the variable name.
 	 */
-	Name string `toml:"name" json:"name"`
+	Name string `json:"name"`
 	/*
-	* Abstract 变量描述
+	* Abstract is the variable description.
 	 */
-	Abstract string `toml:"abstract" json:"abstract"`
+	Abstract string `json:"abstract"`
 	/*
-	* Type 变量类型，如 string、integer、boolean、json 等
+	* Type is the variable type, such as string, integer, boolean, or json.
 	 */
-	Type VariableDataType `toml:"type" json:"type"`
+	Type VariableDataType `json:"type"`
 	/*
-	* Default 变量默认值
+	* Default is the default value of the variable.
 	 */
-	Default string `toml:"default" json:"default"`
+	Default string `json:"default"`
 	/*
-	* Required 是否必填
+	* Required indicates whether the variable is required.
 	 */
-	Required bool `toml:"required" json:"required"`
+	Required bool `json:"required"`
 	/*
-	* Save 是否保存到项目存储
+	* Save indicates whether to save the variable to project storage.
 	 */
-	Save bool `toml:"save" json:"save"`
+	Save bool `json:"save"`
 }
 
 /*
-* Parse 将字符串解析为对应的数据类型值
-* 解析失败时返回原始字符串
+* Parse parses a string into a value of the corresponding data type.
+* If parsing fails, it returns the original string.
  */
 func (vdt VariableDataType) Parse(value string) any {
 	switch vdt {
@@ -193,8 +194,8 @@ func (vdt VariableDataType) Parse(value string) any {
 }
 
 /*
-* ToString 将任意值转换为对应类型的字符串表示
-* 转换失败时返回 fmt.Sprintf("%v", value)
+* ToString converts any value into the string representation of the corresponding type.
+* If conversion fails, it returns fmt.Sprintf("%v", value).
  */
 func (vdt VariableDataType) ToString(value any) string {
 	switch vdt {
@@ -226,54 +227,56 @@ func (vdt VariableDataType) ToString(value any) string {
 }
 
 /*
-* UrlPermission 定义网络访问权限
+* UrlPermission defines network access permissions.
  */
 type UrlPermission struct {
 	/*
-	* Url URL 模式，支持通配符(*)和脚本变量 ${var_name}
+	* Url is the URL pattern, supporting wildcard (*) and script variable ${var_name}.
 	 */
-	Url string `toml:"url" json:"url"`
+	Url string `json:"url"`
 	/*
-	* Permission 访问权限，r、w、d、rw、rwd 等
+	* Permission is the access permission, such as r, w, d, rw, or rwd.
 	 */
-	Permission string `toml:"permission" json:"permission"`
+	Permission string `json:"permission"`
 	/*
-	* Abstract 权限说明
+	* Abstract is the permission description.
 	 */
-	Abstract string `toml:"abstract" json:"abstract"`
+	Abstract string `json:"abstract"`
 }
 
 /*
-* Specifier 定义模块规范说明
+* Specifier defines module specification information.
  */
 type Specifier struct {
 	/*
-	* Domain 模块来源域，如 github.com
+	* Domain is the source domain of the module, such as github.com.
 	 */
 	Domain string `json:"domain"`
 	/*
-	* Owner 模块所有者，如 github 用户名
+	* Owner is the module owner, such as a GitHub username.
 	 */
 	Owner string `json:"owner"`
 	/*
-	* Name 模块名称，如 utils
+	* Name is the module name, such as utils.
 	 */
 	Name string `json:"name"`
 	/*
-	* Version 模块版本要求，如 v1.2.3
+	* Version is the required module version, such as v1.2.3.
 	 */
 	Version string `json:"version"`
 }
 
 /*
-* String 返回完整的模块标识符字符串，格式为 "domain/owner/name@version" 或 "owner/name@version"
-* 其中 name 部分如果包含 /，也会被正确处理，例如 "domain/owner/name/subname@version"
+* String returns the full module specifier string in the format
+* "domain/owner/name@version" or "owner/name@version".
+* If the name part contains "/", it is also handled correctly,
+* for example "domain/owner/name/subname@version".
  */
 func (s Specifier) String() string {
 	var result string
 
 	/*
-	* 构建名称部分
+	* Build the name part.
 	 */
 	if s.Domain != "" {
 		result = fmt.Sprintf("%s/%s/%s", s.Domain, s.Owner, s.Name)
@@ -282,7 +285,7 @@ func (s Specifier) String() string {
 	}
 
 	/*
-	* 如果有版本，添加版本号
+	* Append version if present.
 	 */
 	if s.Version != "" {
 		result = fmt.Sprintf("%s@%s", result, s.Version)
@@ -292,8 +295,9 @@ func (s Specifier) String() string {
 }
 
 /*
-* IsPseudoVersion 判断当前 Specifier 的版本是否为 Go 伪版本格式
-* Go 伪版本格式: v0.0.0-yyyymmddhhmmss-commithash
+* IsPseudoVersion checks whether the version of the current Specifier
+* uses the Go pseudo-version format.
+* Go pseudo-version format: v0.0.0-yyyymmddhhmmss-commithash.
  */
 func (s Specifier) IsPseudoVersion() bool {
 	if s.Version == "" {
@@ -301,19 +305,19 @@ func (s Specifier) IsPseudoVersion() bool {
 	}
 
 	/*
-	* Go 伪版本格式: v0.0.0-yyyymmddhhmmss-commithash
+	* Go pseudo-version format: v0.0.0-yyyymmddhhmmss-commithash.
 	 */
 	if !strings.HasPrefix(s.Version, "v0.0.0-") {
 		return false
 	}
 
 	/*
-	* 移除 v0.0.0- 前缀
+	* Remove the v0.0.0- prefix.
 	 */
 	suffix := strings.TrimPrefix(s.Version, "v0.0.0-")
 
 	/*
-	* 按 - 分割，应该得到 [时间戳, hash]
+	* Split by '-', should get [timestamp, hash].
 	 */
 	parts := strings.Split(suffix, "-")
 	if len(parts) != 2 {
@@ -323,7 +327,7 @@ func (s Specifier) IsPseudoVersion() bool {
 	timestamp, hash := parts[0], parts[1]
 
 	/*
-	* 检查时间戳: 14 位数字 (yyyymmddhhmmss)
+	* Validate timestamp: 14 digits (yyyymmddhhmmss).
 	 */
 	if len(timestamp) != 14 {
 		return false
@@ -333,7 +337,7 @@ func (s Specifier) IsPseudoVersion() bool {
 	}
 
 	/*
-	* 检查 hash: 十六进制字符串，长度 10-12 位
+	* Validate hash: hexadecimal string with length 10-12.
 	 */
 	if len(hash) < 10 || len(hash) > 12 {
 		return false
@@ -346,8 +350,8 @@ func (s Specifier) IsPseudoVersion() bool {
 }
 
 /*
-* ModulePath 基于给定根目录生成模块路径
-* 其中 name 部分如果包含 /，会被按多层目录拼接
+* ModulePath generates a module path based on the given root directory.
+* If the name part contains "/", it is joined as nested directories.
  */
 func (s Specifier) ModulePath(modPath string) string {
 	path := modPath
@@ -370,14 +374,14 @@ func (s Specifier) ModulePath(modPath string) string {
 }
 
 /*
-* Identifier 返回不包含版本信息的模块标识符
-* 格式为 "domain/owner/name" 或 "owner/name"
+* Identifier returns the module identifier without version information.
+* Format: "domain/owner/name" or "owner/name".
  */
 func (s Specifier) Identifier() string {
 	var result string
 
 	/*
-	* 构建名称部分
+	* Build the name part.
 	 */
 	if s.Domain != "" {
 		result = fmt.Sprintf("%s/%s/%s", s.Domain, s.Owner, s.Name)
@@ -389,14 +393,14 @@ func (s Specifier) Identifier() string {
 }
 
 /*
-* ParseSpecifier 解析模块标识符字符串
-* 支持 owner/name 或 domain/owner/name 两种形式，可带 @version
+* ParseSpecifier parses a module specifier string.
+* It supports owner/name or domain/owner/name, optionally with @version.
  */
 func ParseSpecifier(spec string) (Specifier, error) {
 	var domain, owner, name, version string
 
 	/*
-	* 先按 @ 分割，分离 version
+	* First split by '@' to separate version.
 	 */
 	atParts := strings.Split(spec, "@")
 	if len(atParts) > 2 {
@@ -409,25 +413,25 @@ func ParseSpecifier(spec string) (Specifier, error) {
 	}
 
 	/*
-	* 按 / 分割名称部分
+	* Split the name part by '/'.
 	 */
 	segments := strings.Split(nameParts, "/")
 
 	/*
-	* 根据段数判断 domain 是否存在
+	* Determine whether domain exists based on segment count.
 	 */
 	switch len(segments) {
 	case 0, 1:
 		return Specifier{}, fmt.Errorf("invalid specifier format: %s, expected 'owner/name' or 'domain/owner/name'", spec)
 	case 2:
 		/*
-		* owner/name（domain 为空）
+		* owner/name (domain is empty).
 		 */
 		owner = segments[0]
 		name = segments[1]
 	case 3:
 		/*
-		* domain/owner/name
+		* domain/owner/name.
 		 */
 		domain = segments[0]
 		owner = segments[1]
@@ -439,7 +443,7 @@ func ParseSpecifier(spec string) (Specifier, error) {
 	}
 
 	/*
-	* 验证必须字段
+	* Validate required fields.
 	 */
 	if owner == "" || name == "" {
 		return Specifier{}, fmt.Errorf("invalid specifier format: %s, owner and name are required", spec)
@@ -454,35 +458,31 @@ func ParseSpecifier(spec string) (Specifier, error) {
 }
 
 /*
-* YScript 定义脚本配置总结构
+* YScript defines the top-level script configuration structure.
  */
 type YScript struct {
 	/*
-	* Module 脚本模组基本信息
+	* Module is the basic script module information.
 	 */
-	Module ModuleInfo `toml:"module" json:"module"`
+	Module ModuleInfo `json:"module"`
 	/*
-	* GuiApps 需要操作的 GUI 应用列表
+	* GuiApps is the list of GUI applications to operate.
 	 */
-	GuiApps []GuiApplication `toml:"gui" json:"gui_apps"`
+	GuiApps []GuiApplication `json:"gui_apps"`
 	/*
-	* WebApps 需要操作的 Web 应用列表
+	* WebApps is the list of web applications to operate.
 	 */
-	WebApps []WebApplication `toml:"web" json:"web_apps"`
+	WebApps []WebApplication `json:"web_apps"`
 	/*
-	* Variables 脚本全局变量定义列表
+	* Variables is the list of global script variable definitions.
 	 */
-	Variables []ScriptVariable `toml:"var" json:"variables"`
+	Variables []ScriptVariable `json:"variables"`
 	/*
-	* FilePerms 文件系统授权列表
+	* FilePerms is the list of filesystem permissions.
 	 */
-	FilePerms []UrlPermission `toml:"file" json:"file_perms"`
+	FilePerms []UrlPermission `json:"file_perms"`
 	/*
-	* ApiPerms 网络接口授权列表
+	* ApiPerms is the list of network API permissions.
 	 */
-	ApiPerms []UrlPermission `toml:"api" json:"api_perms"`
-	/*
-	* Requires 模块依赖列表
-	 */
-	Requires []string `json:"requires"`
+	ApiPerms []UrlPermission `json:"api_perms"`
 }

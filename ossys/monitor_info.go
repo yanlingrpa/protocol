@@ -5,31 +5,31 @@ import (
 )
 
 /*
-* MonitorInfo 定义显示器信息查询能力
-* 该接口用于获取边界、工作区、DPI 与主屏标识
+* MonitorInfo defines capabilities for querying monitor information.
+* This interface is used to get bounds, work area, DPI, and primary-screen status.
  */
 type MonitorInfo interface {
 	/*
-	* GetBounds 获取屏幕边界位置和大小
-	* 返回值为显示器完整边界矩形
+	* GetBounds gets the monitor bounds position and size.
+	* Returns the full monitor bounds rectangle.
 	 */
 	GetBounds() basic.Rect
 
 	/*
-	* GetWorkArea 获取屏幕工作区位置和大小
-	* 工作区通常不包含任务栏等系统占用区域
+	* GetWorkArea gets the monitor work-area position and size.
+	* The work area usually excludes system-occupied areas such as the taskbar.
 	 */
 	GetWorkArea() basic.Rect
 
 	/*
-	* GetDPI 获取屏幕 DPI 缩放信息
-	* 返回值为水平 DPI 或缩放相关数值
+	* GetDPI gets DPI scaling information of the monitor.
+	* The return value is horizontal DPI or a related scaling value.
 	 */
 	GetDPI() uint32
 
 	/*
-	* IsPrimary 判断是否为主屏幕
-	* 返回 true 表示当前显示器为主显示器
+	* IsPrimary indicates whether this is the primary monitor.
+	* Returns true when the current monitor is the primary monitor.
 	 */
 	IsPrimary() bool
 }

@@ -6,117 +6,118 @@ import (
 )
 
 /*
-* GuiWindow 定义了一个图形界面窗口的接口，提供了获取窗口信息、操作窗口、模拟输入等功能
+* GuiWindow defines the interface of a GUI window, providing methods for window information,
+* window operations, and simulated input.
  */
 type GuiWindow interface {
 	/*
-	* 获取窗口唯一标识符
+	* Gets the unique identifier of the window.
 	 */
 	GetID() string
 	/*
-	* 启动窗口的程序路径
+	* Gets the executable path of the process that launched the window.
 	 */
 	GetInitiatorPath() string
 	/*
-	* 窗口自身的程序路径
+	* Gets the application path associated with the window itself.
 	 */
 	GetWindowSchema() string
 	/*
-	* 获取窗口句柄
+	* Gets the native window handle.
 	 */
 	GetHwnd() uintptr
 	/*
-	* 获取窗口标题
+	* Gets the window title.
 	 */
 	GetWindowTitle() string
 	/*
-	* 输出当前窗口的信息为键值对
+	* Exports current window information as key-value pairs.
 	 */
 	ToMap() map[string]any
 	/*
-	* 获取窗口自身在屏幕上的位置和大小
+	* Gets the window rectangle in screen coordinates.
 	 */
 	GetWindowRect() basic.Rect
 	/*
-	* 获取窗口客户区在屏幕上的位置和大小
+	* Gets the client-area rectangle in screen coordinates.
 	 */
 	GetClientRect() basic.Rect
 
-	/* 对当前窗体所在区域进行截图，返回图片的字节数组
-	* gray: 是否为灰度图
+	/* Captures a snapshot of the current window area and returns image bytes.
+	* gray: Whether to use grayscale.
 	 */
 	Snapshot(gray bool) ([]byte, error)
 
 	/*
-	* 移动窗口到指定位置
+	* Moves the window to the specified position.
 	 */
 	MoveTo(global_x, global_y int) (bool, error)
 	/*
-	* 调整窗口大小
+	* Resizes the window.
 	 */
 	ResizeTo(width, height int) (bool, error)
 	/*
-	* 激活窗口
+	* Activates the window.
 	 */
 	Activate() (bool, error)
 	/*
-	* 取消激活窗口
+	* Deactivates the window.
 	 */
 	DeActivate() (bool, error)
 
 	/*
-	* 获取窗口的客户区定位器
+	* Gets the locator for the window client area.
 	 */
 	BodyLocator() (Locator, error)
 	/*
-	* 获取指定区域的定位器，仅取得该区域在窗体内的部分
+	* Gets a locator for the specified rectangle, clipped to the window bounds.
 	 */
 	RectLocator(rect basic.Rect) (Locator, error)
 
-	/* 将窗体内的相对位置转换为屏幕上的绝对位置
-	* window_pos: 窗体内的相对位置
-	* return: 屏幕上的绝对位置
+	/* Converts a window-relative position to an absolute screen position.
+	* window_pos: Relative position inside the window.
+	* return: Absolute position on the screen.
 	 */
 	TransToScreen(window_pos *basic.Point) *basic.Point
 
-	/* 将屏幕上的绝对位置转换为窗体内的相对位置
-	* screen_pos: 屏幕上的绝对位置
-	* return: 窗体内的相对位置, 如果点不在窗体内则返回nil
+	/* Converts an absolute screen position to a window-relative position.
+	* screen_pos: Absolute position on the screen.
+	* return: Relative position inside the window; returns nil if the point is outside the window.
 	 */
 	TransFromScreen(screen_pos *basic.Point) *basic.Point
 
 	/*
-	* 获取鼠标在当前窗体内的相对位置, 如果鼠标不在窗体内则返回nil
+	* Gets the mouse position relative to the current window; returns nil if outside the window.
 	 */
 	GetWindowCursorPos() *basic.Point
 	/*
-	* 获取当前输入法光标在当前窗体内的相对位置, 如果光标不在窗体内则返回nil
+	* Gets the current IME caret position relative to the window; returns nil if outside the window.
 	 */
 	GetWindowCaretPos() *basic.Point
 
 	/*
-	* 模拟键盘输入
-	* keys: 要输入的按键序列 （例如：ctrl + alt + del）
-	* 支持的按键见Keyboard类型定义
+	* Simulates keyboard input.
+	* keys: Key sequence to input (for example: ctrl + alt + del).
+	* Supported keys are defined by the Keyboard type.
 	 */
 	PressKeys(keys ...Keyboard) error
 
 	/*
-	* 读取剪贴板内容
+	* Reads clipboard text.
 	 */
 	ReadClipboard() (string, error)
 	/*
-	* 写入剪贴板内容
+	* Writes text to the clipboard.
 	 */
 	WriteClipboard(text string) error
 
 	/*
-	* 获取窗口所在的显示器信息
+	* Gets information about the monitor that contains the window.
 	 */
 	GetMonitor() ossys.MonitorInfo
 
 	/*
-	* 关闭窗口
+	* Closes the window.
 	 */
 	Close() error
 }

@@ -3,29 +3,29 @@ package basic
 import "sort"
 
 /*
-* Rect 表示一个矩形区域，定义了左上角坐标和宽高
+* Rect represents a rectangular region, defined by the top-left coordinate and width/height.
  */
 type Rect struct {
 	/*
-	* X 表示矩形左上角的 X 坐标
+	* X is the X coordinate of the rectangle's top-left corner.
 	 */
 	X int `json:"x"`
 	/*
-	* Y 表示矩形左上角的 Y 坐标
+	* Y is the Y coordinate of the rectangle's top-left corner.
 	 */
 	Y int `json:"y"`
 	/*
-	* Width 表示矩形宽度
+	* Width represents the rectangle width.
 	 */
 	Width int `json:"width"`
 	/*
-	* Height 表示矩形高度
+	* Height represents the rectangle height.
 	 */
 	Height int `json:"height"`
 }
 
 /*
-* Position 返回矩形的左上角位置
+* Position returns the top-left position of the rectangle.
  */
 func (r Rect) Position() Point {
 	return Point{
@@ -35,7 +35,7 @@ func (r Rect) Position() Point {
 }
 
 /*
-* Size 返回矩形的宽高信息
+* Size returns the width and height of the rectangle.
  */
 func (r Rect) Size() Size {
 	return Size{
@@ -45,8 +45,8 @@ func (r Rect) Size() Size {
 }
 
 /*
-* Compare 比较两个矩形的大小关系，返回 -1 表示小于，0 表示等于，1 表示大于
-* 比较优先级：面积 > X 坐标 > Y 坐标 > 宽度 > 高度
+* Compare compares two rectangles and returns -1 for less than, 0 for equal, and 1 for greater than.
+* Comparison priority: area > X coordinate > Y coordinate > width > height.
  */
 func (r Rect) Compare(another Rect) int {
 	if r.Size().Area() != another.Size().Area() {
@@ -83,8 +83,8 @@ func (r Rect) Compare(another Rect) int {
 }
 
 /*
-* SubRect 从矩形内部提取一个子矩形，指定子矩形的相对位置和大小
-* 自动检查边界，防止越界
+* SubRect extracts a sub-rectangle from within the rectangle using relative position and size.
+* It automatically checks boundaries to prevent out-of-range values.
  */
 func (r Rect) SubRect(x, y, width, height int) Rect {
 	if x < 0 {
@@ -110,7 +110,7 @@ func (r Rect) SubRect(x, y, width, height int) Rect {
 }
 
 /*
-* LeftPercent 从左边保留指定百分比的宽度，返回左侧矩形
+* LeftPercent keeps a given percentage of width from the left side and returns that rectangle.
  */
 func (r Rect) LeftPercent(percent float32) Rect {
 	if percent < 0 {
@@ -122,7 +122,7 @@ func (r Rect) LeftPercent(percent float32) Rect {
 }
 
 /*
-* LeftPixel 从左边保留指定像素宽度，返回左侧矩形
+* LeftPixel keeps a given pixel width from the left side and returns that rectangle.
  */
 func (r Rect) LeftPixel(pixel int) Rect {
 	if pixel < 0 {
@@ -139,7 +139,7 @@ func (r Rect) LeftPixel(pixel int) Rect {
 }
 
 /*
-* RightPercent 从右边保留指定百分比的宽度，返回右侧矩形
+* RightPercent keeps a given percentage of width from the right side and returns that rectangle.
  */
 func (r Rect) RightPercent(percent float32) Rect {
 	if percent < 0 {
@@ -151,7 +151,7 @@ func (r Rect) RightPercent(percent float32) Rect {
 }
 
 /*
-* RightPixel 从右边保留指定像素宽度，返回右侧矩形
+* RightPixel keeps a given pixel width from the right side and returns that rectangle.
  */
 func (r Rect) RightPixel(pixel int) Rect {
 	if pixel < 0 {
@@ -168,7 +168,7 @@ func (r Rect) RightPixel(pixel int) Rect {
 }
 
 /*
-* HeaderPercent 从顶部保留指定百分比的高度，返回顶部矩形
+* HeaderPercent keeps a given percentage of height from the top and returns that rectangle.
  */
 func (r Rect) HeaderPercent(percent float32) Rect {
 	if percent < 0 {
@@ -180,7 +180,7 @@ func (r Rect) HeaderPercent(percent float32) Rect {
 }
 
 /*
-* HeaderPixel 从顶部保留指定像素高度，返回顶部矩形
+* HeaderPixel keeps a given pixel height from the top and returns that rectangle.
  */
 func (r Rect) HeaderPixel(pixel int) Rect {
 	if pixel < 0 {
@@ -197,7 +197,7 @@ func (r Rect) HeaderPixel(pixel int) Rect {
 }
 
 /*
-* FooterPercent 从底部保留指定百分比的高度，返回底部矩形
+* FooterPercent keeps a given percentage of height from the bottom and returns that rectangle.
  */
 func (r Rect) FooterPercent(percent float32) Rect {
 	if percent < 0 {
@@ -209,7 +209,7 @@ func (r Rect) FooterPercent(percent float32) Rect {
 }
 
 /*
-* FooterPixel 从底部保留指定像素高度，返回底部矩形
+* FooterPixel keeps a given pixel height from the bottom and returns that rectangle.
  */
 func (r Rect) FooterPixel(pixel int) Rect {
 	if pixel < 0 {
@@ -226,7 +226,7 @@ func (r Rect) FooterPixel(pixel int) Rect {
 }
 
 /*
-* IsOverlapping 检查两个矩形是否重叠
+* IsOverlapping checks whether two rectangles overlap.
  */
 func (r Rect) IsOverlapping(another Rect) bool {
 	if r.X > another.X+another.Width || another.X > r.X+r.Width {
@@ -239,14 +239,14 @@ func (r Rect) IsOverlapping(another Rect) bool {
 }
 
 /*
-* IsEmpty 检查矩形是否为空（宽度或高度为 0 或负数）
+* IsEmpty checks whether the rectangle is empty (width or height is 0 or negative).
  */
 func (r Rect) IsEmpty() bool {
 	return r.Width <= 0 || r.Height <= 0
 }
 
 /*
-* Merge 将两个矩形合并为包含两者的最小矩形
+* Merge combines two rectangles into the smallest rectangle containing both.
  */
 func (r Rect) Merge(another Rect) Rect {
 	if r.IsEmpty() {
@@ -264,7 +264,7 @@ func (r Rect) Merge(another Rect) Rect {
 }
 
 /*
-* Intersect 计算两个矩形的交集
+* Intersect computes the intersection of two rectangles.
  */
 func (r Rect) Intersect(another Rect) Rect {
 	if r.IsEmpty() || another.IsEmpty() {
@@ -279,7 +279,7 @@ func (r Rect) Intersect(another Rect) Rect {
 }
 
 /*
-* CenterPoint 返回矩形的中心点
+* CenterPoint returns the center point of the rectangle.
  */
 func (r Rect) CenterPoint() Point {
 	return Point{
@@ -289,21 +289,21 @@ func (r Rect) CenterPoint() Point {
 }
 
 /*
-* Contains 检查点 (x, y) 是否在矩形内部
+* Contains checks whether point (x, y) lies inside the rectangle.
  */
 func (r Rect) Contains(x, y int) bool {
 	return x >= r.X && x < r.X+r.Width && y >= r.Y && y < r.Y+r.Height
 }
 
 /*
-* ContainsPoint 检查点 p 是否在矩形内部
+* ContainsPoint checks whether point p lies inside the rectangle.
  */
 func (r Rect) ContainsPoint(p Point) bool {
 	return r.Contains(p.X, p.Y)
 }
 
 /*
-* MergeOverlappingRectangles 将重叠的矩形合并为一个
+* MergeOverlappingRectangles merges overlapping rectangles.
  */
 func MergeOverlappingRectangles(rectangles []Rect) []Rect {
 	if len(rectangles) == 0 {
@@ -327,7 +327,7 @@ func MergeOverlappingRectangles(rectangles []Rect) []Rect {
 }
 
 /*
-* MergeAllRectangles 将所有矩形合并为一个包含所有矩形的最小矩形
+* MergeAllRectangles merges all rectangles into the smallest rectangle containing all of them.
  */
 func MergeAllRectangles(rectangles []Rect) Rect {
 	if len(rectangles) == 0 {
@@ -341,7 +341,7 @@ func MergeAllRectangles(rectangles []Rect) Rect {
 }
 
 /*
-* MinAreaRect 返回面积最小的矩形
+* MinAreaRect returns the rectangle with the smallest area.
  */
 func MinAreaRect(rectangles []Rect) Rect {
 	if len(rectangles) == 0 {
@@ -360,7 +360,7 @@ func MinAreaRect(rectangles []Rect) Rect {
 }
 
 /*
-* MaxAreaRect 返回面积最大的矩形
+* MaxAreaRect returns the rectangle with the largest area.
  */
 func MaxAreaRect(rectangles []Rect) Rect {
 	if len(rectangles) == 0 {
@@ -379,8 +379,8 @@ func MaxAreaRect(rectangles []Rect) Rect {
 }
 
 /*
-* MergeGroupRectangles 将多个矩形组中的矩形进行各种组合方式合并
-* 返回所有可能的合并结果，按面积从小到大排序
+* MergeGroupRectangles merges rectangles from multiple groups in all possible combinations.
+* It returns all possible merged results, sorted by area from small to large.
  */
 func MergeGroupRectangles(groupRects ...[]Rect) []Rect {
 	if len(groupRects) == 0 {
@@ -401,7 +401,7 @@ func MergeGroupRectangles(groupRects ...[]Rect) []Rect {
 	dfs(0, nil)
 
 	/*
-	* 用 map 去重
+	* Deduplicate using a map.
 	 */
 	uniqueMap := make(map[Rect]struct{})
 	uniqueResults := make([]Rect, 0, len(results))

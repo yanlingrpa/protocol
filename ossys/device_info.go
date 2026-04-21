@@ -1,73 +1,73 @@
 package ossys
 
 /*
-* DeviceInfo 定义设备信息查询能力
-* 该接口用于获取操作系统、硬件、用户与显示器相关信息
+* DeviceInfo defines capabilities for querying device information.
+* This interface is used to retrieve information related to the OS, hardware, user, and monitors.
  */
 type DeviceInfo interface {
 	/*
-	* OS 获取操作系统名称
-	* 返回值示例：Windows、Linux、Darwin
+	* OS gets the operating system name.
+	* Example return values: Windows, Linux, Darwin.
 	 */
 	OS() string
 
 	/*
-	* OSVersion 获取操作系统版本
-	* 返回值通常为系统版本字符串
+	* OSVersion gets the operating system version.
+	* The return value is usually a system version string.
 	 */
 	OSVersion() string
 
 	/*
-	* DeviceId 获取设备唯一标识符
-	* 返回值可用于设备维度的身份区分
+	* DeviceId gets the unique device identifier.
+	* The return value can be used to distinguish device identity.
 	 */
 	DeviceId() string
 
 	/*
-	* DeviceName 获取设备名称
-	* 返回值通常为系统设置中的设备名
+	* DeviceName gets the device name.
+	* The return value is usually the device name configured in system settings.
 	 */
 	DeviceName() string
 
 	/*
-	* NumLogicCPU 获取逻辑 CPU 核心数
-	* 返回值为逻辑处理器数量
+	* NumLogicCPU gets the number of logical CPU cores.
+	* The return value is the number of logical processors.
 	 */
 	NumLogicCPU() int
 
 	/*
-	* HasNvidiaGPU 判断是否存在 Nvidia GPU
-	* 返回 true 表示检测到 Nvidia 显卡
+	* HasNvidiaGPU checks whether an Nvidia GPU exists.
+	* Returns true if an Nvidia graphics card is detected.
 	 */
 	HasNvidiaGPU() bool
 
 	/*
-	* GetGpuMemoryMB 获取 GPU 显存大小
-	* 返回值单位为 MB
+	* GetGpuMemoryMB gets GPU memory size.
+	* The return value is in MB.
 	 */
 	GetGpuMemoryMB() int
 
 	/*
-	* GetComputerName 获取计算机名称
-	* 返回值为主机名或系统计算机名
+	* GetComputerName gets the computer name.
+	* The return value is the hostname or system computer name.
 	 */
 	GetComputerName() string
 
 	/*
-	* GetUserName 获取当前用户名称
-	* 返回值为当前登录账户名
+	* GetUserName gets the current user name.
+	* The return value is the name of the currently logged-in account.
 	 */
 	GetUserName() string
 
 	/*
-	* GetMonitors 获取所有显示器信息
-	* 返回值为显示器信息列表
+	* GetMonitors gets information for all monitors.
+	* The return value is a list of monitor information.
 	 */
 	GetMonitors() []MonitorInfo
 
 	/*
-	* GetPrimaryMonitor 获取主显示器信息
-	* 返回值为当前系统主显示器
+	* GetPrimaryMonitor gets information for the primary monitor.
+	* The return value is the current system primary monitor.
 	 */
 	GetPrimaryMonitor() MonitorInfo
 }

@@ -1,86 +1,86 @@
 package basic
 
 /*
-* Point 表示一个二维整数坐标点
+* Point represents a 2D integer coordinate point.
  */
 type Point struct {
 	/*
-	* X 表示横坐标
+	* X is the horizontal coordinate.
 	 */
 	X int `json:"x"`
 	/*
-	* Y 表示纵坐标
+	* Y is the vertical coordinate.
 	 */
 	Y int `json:"y"`
 }
 
 /*
-* FPoint 表示一个二维浮点坐标点
+* FPoint represents a 2D floating-point coordinate point.
  */
 type FPoint struct {
 	/*
-	* 元素的 X 坐标，以像素为单位
+	* X coordinate of the element, in pixels.
 	 */
 	X float64 `json:"x"`
 	/*
-	* 元素的 Y 坐标，以像素为单位
+	* Y coordinate of the element, in pixels.
 	 */
 	Y float64 `json:"y"`
 }
 
 /*
-* Size 表示宽度和高度
+* Size represents width and height.
  */
 type Size struct {
 	/*
-	* Width 表示宽度
+	* Width represents the width.
 	 */
 	Width int `json:"width"`
 	/*
-	* Height 表示高度
+	* Height represents the height.
 	 */
 	Height int `json:"height"`
 }
 
 /*
-* Area 返回尺寸的面积
+* Area returns the area of the size.
  */
 func (s Size) Area() int {
 	return s.Width * s.Height
 }
 
 /*
-* OcrText 表示单条 OCR 文本识别结果
+* OcrText represents a single OCR text recognition result.
  */
 type OcrText struct {
 	/*
-	* Text 表示识别出的文本内容
+	* Text is the recognized text content.
 	 */
 	Text string `json:"text"`
 	/*
-	* Rect 表示文本所在的矩形区域
+	* Rect is the rectangular area where the text is located.
 	 */
 	Rect Rect `json:"rect"`
 	/*
-	* Confidence 表示识别置信度
+	* Confidence is the recognition confidence score.
 	 */
 	Confidence float64 `json:"confidence"`
 }
 
 /*
-* OcrResult 表示整张图像的 OCR 识别结果
+* OcrResult represents the OCR recognition result of the entire image.
  */
 type OcrResult struct {
 	/*
-	* Width 表示图像宽度
+	* Width is the image width.
 	 */
 	Width int `json:"width"`
 	/*
-	* Height 表示图像高度
+	* Height is the image height.
 	 */
 	Height int `json:"height"`
 	/*
-	* Texts 表示识别出的文本列表
+	* Texts is the list of recognized text items.
 	 */
 	Texts []OcrText `json:"texts"`
 }

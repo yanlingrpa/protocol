@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T06:39:47Z",
+  "generated_at": "2026-04-21T09:57:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "browser",
@@ -58,7 +58,7 @@
         "kind": "interface",
         "package": "browser",
         "import_path": "yanlingrpa.com/yanling/protocol/browser",
-        "doc": "BrowserElement 定义浏览器元素的通用操作接口",
+        "doc": "BrowserElement defines the common operation interface for browser elements.",
         "signature": "type BrowserElement interface",
         "source": {
           "file": "browser/browser_element.go",
@@ -68,7 +68,7 @@
         "methods": [
           {
             "name": "Blur",
-            "doc": "让当前元素失去焦点",
+            "doc": "Removes focus from the current element.",
             "params": [],
             "results": [
               {
@@ -85,7 +85,7 @@
           },
           {
             "name": "Click",
-            "doc": "对当前元素执行单击操作",
+            "doc": "Performs a single-click on the current element.",
             "params": [],
             "results": [
               {
@@ -102,7 +102,7 @@
           },
           {
             "name": "ContainsElement",
-            "doc": "检查当前元素是否包含目标元素",
+            "doc": "Checks whether the current element contains the target element.",
             "params": [
               {
                 "name": "target",
@@ -137,7 +137,7 @@
           },
           {
             "name": "Disabled",
-            "doc": "检查当前元素是否处于禁用状态",
+            "doc": "Checks whether the current element is disabled.",
             "params": [],
             "results": [
               {
@@ -161,7 +161,7 @@
           },
           {
             "name": "DoubleClick",
-            "doc": "对当前元素执行双击操作",
+            "doc": "Performs a double-click on the current element.",
             "params": [],
             "results": [
               {
@@ -178,7 +178,7 @@
           },
           {
             "name": "Evaluate",
-            "doc": "在当前元素上下文中执行 JavaScript 代码",
+            "doc": "Executes JavaScript code in the context of the current element.",
             "params": [
               {
                 "name": "jsCode",
@@ -215,14 +215,14 @@
           },
           {
             "name": "Focus",
-            "doc": "让当前元素获得输入焦点，通常用于输入框、按钮等可交互元素",
+            "doc": "Gives the current element input focus, usually for interactive elements such as input boxes and buttons.",
             "params": [],
             "results": [],
             "signature": "Focus()"
           },
           {
             "name": "FramePage",
-            "doc": "返回当前元素关联的内嵌框架页面",
+            "doc": "Returns the embedded frame page associated with the current element.",
             "params": [],
             "results": [
               {
@@ -248,7 +248,7 @@
           },
           {
             "name": "GetAttribute",
-            "doc": "获取当前元素的属性值",
+            "doc": "Gets the attribute value of the current element.",
             "params": [
               {
                 "name": "name",
@@ -277,7 +277,7 @@
           },
           {
             "name": "GetProperty",
-            "doc": "获取当前元素的属性对象值",
+            "doc": "Gets the property value of the current element.",
             "params": [
               {
                 "name": "name",
@@ -310,7 +310,7 @@
           },
           {
             "name": "GetXPath",
-            "doc": "获取当前元素的 XPath 表达式",
+            "doc": "Gets the XPath expression of the current element.",
             "params": [
               {
                 "name": "optimized",
@@ -343,7 +343,7 @@
           },
           {
             "name": "Hover",
-            "doc": "将鼠标悬停到当前元素上",
+            "doc": "Moves the mouse cursor over the current element.",
             "params": [],
             "results": [
               {
@@ -360,7 +360,7 @@
           },
           {
             "name": "Html",
-            "doc": "获取当前元素的 HTML 内容",
+            "doc": "Gets the HTML content of the current element.",
             "params": [],
             "results": [
               {
@@ -384,7 +384,7 @@
           },
           {
             "name": "Input",
-            "doc": "向当前元素输入文本",
+            "doc": "Inputs text into the current element.",
             "params": [
               {
                 "name": "text",
@@ -410,7 +410,7 @@
           },
           {
             "name": "Interactable",
-            "doc": "返回当前元素可交互的位置坐标",
+            "doc": "Returns an interactable position coordinate for the current element.",
             "params": [],
             "results": [
               {
@@ -435,7 +435,7 @@
           },
           {
             "name": "MatchByCss",
-            "doc": "检查当前元素是否匹配指定 CSS 选择器",
+            "doc": "Checks whether the current element matches the specified CSS selector.",
             "params": [
               {
                 "name": "selector",
@@ -468,7 +468,7 @@
           },
           {
             "name": "MoveMouseOut",
-            "doc": "将鼠标从当前元素移出",
+            "doc": "Moves the mouse cursor out of the current element.",
             "params": [],
             "results": [
               {
@@ -485,7 +485,7 @@
           },
           {
             "name": "RightClick",
-            "doc": "对当前元素执行右键单击操作",
+            "doc": "Performs a right-click on the current element.",
             "params": [],
             "results": [
               {
@@ -502,7 +502,7 @@
           },
           {
             "name": "ScrollIntoView",
-            "doc": "将当前元素滚动到浏览器窗口的可视区域内",
+            "doc": "Scrolls the current element into the visible area of the browser window.",
             "params": [],
             "results": [
               {
@@ -519,7 +519,7 @@
           },
           {
             "name": "SelectAllText",
-            "doc": "选择当前元素中的全部文本",
+            "doc": "Selects all text within the current element.",
             "params": [],
             "results": [
               {
@@ -536,7 +536,7 @@
           },
           {
             "name": "SelectByCss",
-            "doc": "按 CSS 选择器选择或取消选择子项",
+            "doc": "Selects or deselects options by CSS selectors.",
             "params": [
               {
                 "name": "selectors",
@@ -570,7 +570,7 @@
           },
           {
             "name": "SelectByRegex",
-            "doc": "按正则规则选择或取消选择子项",
+            "doc": "Selects or deselects options by regular-expression rules.",
             "params": [
               {
                 "name": "regexes",
@@ -604,7 +604,7 @@
           },
           {
             "name": "SelectByText",
-            "doc": "按显示文本选择或取消选择子项",
+            "doc": "Selects or deselects options by displayed text.",
             "params": [
               {
                 "name": "texts",
@@ -638,7 +638,7 @@
           },
           {
             "name": "SelectText",
-            "doc": "按正则规则选择当前元素中的文本",
+            "doc": "Selects text within the current element by a regular-expression rule.",
             "params": [
               {
                 "name": "regex",
@@ -664,7 +664,7 @@
           },
           {
             "name": "SetAttribute",
-            "doc": "设置当前元素的属性值",
+            "doc": "Sets the attribute value of the current element.",
             "params": [
               {
                 "name": "name",
@@ -694,7 +694,7 @@
           },
           {
             "name": "SetFiles",
-            "doc": "为文件输入类元素设置上传文件列表",
+            "doc": "Sets the upload file list for file-input elements.",
             "params": [
               {
                 "name": "filePaths",
@@ -720,7 +720,7 @@
           },
           {
             "name": "SetProperty",
-            "doc": "设置当前元素的属性对象值",
+            "doc": "Sets the property value of the current element.",
             "params": [
               {
                 "name": "name",
@@ -754,7 +754,7 @@
           },
           {
             "name": "Tap",
-            "doc": "对当前元素执行触屏点击操作",
+            "doc": "Performs a tap action on the current element.",
             "params": [],
             "results": [
               {
@@ -771,7 +771,7 @@
           },
           {
             "name": "Text",
-            "doc": "获取当前元素的文本内容",
+            "doc": "Gets the text content of the current element.",
             "params": [],
             "results": [
               {
@@ -795,7 +795,7 @@
           },
           {
             "name": "Visible",
-            "doc": "检查当前元素是否可见",
+            "doc": "Checks whether the current element is visible.",
             "params": [],
             "results": [
               {
@@ -819,7 +819,7 @@
           },
           {
             "name": "WaitEnabled",
-            "doc": "等待当前元素变为可用",
+            "doc": "Waits until the current element becomes enabled.",
             "params": [],
             "results": [
               {
@@ -836,7 +836,7 @@
           },
           {
             "name": "WaitInteractable",
-            "doc": "等待当前元素变为可交互，并返回可交互位置",
+            "doc": "Waits until the current element becomes interactable and returns an interactable position.",
             "params": [],
             "results": [
               {
@@ -861,7 +861,7 @@
           },
           {
             "name": "WaitInvisible",
-            "doc": "等待当前元素变为不可见",
+            "doc": "Waits until the current element becomes invisible.",
             "params": [],
             "results": [
               {
@@ -878,7 +878,7 @@
           },
           {
             "name": "WaitStable",
-            "doc": "等待当前元素在指定时间内保持稳定",
+            "doc": "Waits until the current element remains stable for the specified duration.",
             "params": [
               {
                 "name": "stableTime",
@@ -905,7 +905,7 @@
           },
           {
             "name": "WaitStableRAF",
-            "doc": "等待当前元素在 requestAnimationFrame 维度上稳定",
+            "doc": "Waits until the current element is stable across requestAnimationFrame ticks.",
             "params": [],
             "results": [
               {
@@ -922,7 +922,7 @@
           },
           {
             "name": "WaitVisible",
-            "doc": "等待当前元素变为可见",
+            "doc": "Waits until the current element becomes visible.",
             "params": [],
             "results": [
               {
@@ -939,7 +939,7 @@
           },
           {
             "name": "WaitWritable",
-            "doc": "等待当前元素变为可输入",
+            "doc": "Waits until the current element becomes writable.",
             "params": [],
             "results": [
               {
@@ -1003,7 +1003,7 @@
         "kind": "interface",
         "package": "browser",
         "import_path": "yanlingrpa.com/yanling/protocol/browser",
-        "doc": "BrowserFramePage 定义浏览器页面或框架页的通用接口",
+        "doc": "BrowserFramePage defines the common interface for browser pages or frame pages.",
         "signature": "type BrowserFramePage interface",
         "source": {
           "file": "browser/browser_framepage.go",
@@ -1013,7 +1013,7 @@
         "methods": [
           {
             "name": "Evaluate",
-            "doc": "在当前页面上下文中执行 JavaScript 代码",
+            "doc": "Executes JavaScript code in the context of the current page.",
             "params": [
               {
                 "name": "jsCode",
@@ -1050,7 +1050,7 @@
           },
           {
             "name": "GetDomain",
-            "doc": "获取当前页面域名",
+            "doc": "Gets the domain of the current page.",
             "params": [],
             "results": [
               {
@@ -1067,7 +1067,7 @@
           },
           {
             "name": "GetID",
-            "doc": "获取当前页面唯一标识",
+            "doc": "Gets the unique identifier of the current page.",
             "params": [],
             "results": [
               {
@@ -1084,7 +1084,7 @@
           },
           {
             "name": "GetTitle",
-            "doc": "获取当前页面标题",
+            "doc": "Gets the title of the current page.",
             "params": [],
             "results": [
               {
@@ -1101,7 +1101,7 @@
           },
           {
             "name": "GetURL",
-            "doc": "获取当前页面 URL",
+            "doc": "Gets the URL of the current page.",
             "params": [],
             "results": [
               {
@@ -1119,7 +1119,7 @@
           },
           {
             "name": "IsFrame",
-            "doc": "判断当前页面是否为 iframe 或 frame",
+            "doc": "Determines whether the current page is an iframe or frame.",
             "params": [],
             "results": [
               {
@@ -1136,7 +1136,7 @@
           },
           {
             "name": "QuerySelector",
-            "doc": "查询匹配指定 CSS 选择器的单个元素",
+            "doc": "Queries a single element matching the specified CSS selector.",
             "params": [
               {
                 "name": "selector",
@@ -1180,7 +1180,7 @@
           },
           {
             "name": "QuerySelectorAll",
-            "doc": "查询匹配指定 CSS 选择器的全部元素",
+            "doc": "Queries all elements matching the specified CSS selector.",
             "params": [
               {
                 "name": "selector",
@@ -1224,7 +1224,7 @@
           },
           {
             "name": "QueryXPath",
-            "doc": "查询匹配指定 XPath 的单个元素",
+            "doc": "Queries a single element matching the specified XPath.",
             "params": [
               {
                 "name": "xpath",
@@ -1268,7 +1268,7 @@
           },
           {
             "name": "QueryXPathAll",
-            "doc": "查询匹配指定 XPath 的全部元素",
+            "doc": "Queries all elements matching the specified XPath.",
             "params": [
               {
                 "name": "xpath",
@@ -1312,7 +1312,7 @@
           },
           {
             "name": "Reload",
-            "doc": "重新加载当前页面，并等待到指定超时",
+            "doc": "Reloads the current page and waits up to the specified timeout.",
             "params": [
               {
                 "name": "timeout",
@@ -1339,7 +1339,7 @@
           },
           {
             "name": "WaitSelector",
-            "doc": "等待匹配指定 CSS 选择器的元素出现",
+            "doc": "Waits for an element matching the specified CSS selector to appear.",
             "params": [
               {
                 "name": "selector",
@@ -1424,7 +1424,7 @@
         "kind": "interface",
         "package": "browser",
         "import_path": "yanlingrpa.com/yanling/protocol/browser",
-        "doc": "BrowserTabPage 定义浏览器标签页接口",
+        "doc": "BrowserTabPage defines the browser tab page interface.",
         "signature": "type BrowserTabPage interface",
         "source": {
           "file": "browser/browser_tabpage.go",
@@ -1434,7 +1434,7 @@
         "methods": [
           {
             "name": "Activate",
-            "doc": "激活当前标签页",
+            "doc": "Activates the current tab page.",
             "params": [],
             "results": [
               {
@@ -1451,7 +1451,7 @@
           },
           {
             "name": "ClearAllIndexDBFiles",
-            "doc": "清空当前标签页全部 IndexedDB 文件",
+            "doc": "Clears all IndexedDB files for the current tab page.",
             "params": [],
             "results": [
               {
@@ -1468,7 +1468,7 @@
           },
           {
             "name": "ClearCookies",
-            "doc": "清空当前标签页 Cookies",
+            "doc": "Clears cookies for the current tab page.",
             "params": [],
             "results": [
               {
@@ -1485,7 +1485,7 @@
           },
           {
             "name": "ClearLocalStorage",
-            "doc": "清空当前标签页 LocalStorage",
+            "doc": "Clears LocalStorage for the current tab page.",
             "params": [],
             "results": [
               {
@@ -1502,7 +1502,7 @@
           },
           {
             "name": "Destroy",
-            "doc": "销毁当前标签页",
+            "doc": "Destroys the current tab page.",
             "params": [],
             "results": [
               {
@@ -1519,7 +1519,7 @@
           },
           {
             "name": "LoadCookies",
-            "doc": "加载当前标签页 Cookies",
+            "doc": "Loads cookies for the current tab page.",
             "params": [],
             "results": [
               {
@@ -1536,7 +1536,7 @@
           },
           {
             "name": "LoadLocalStorage",
-            "doc": "加载当前标签页 LocalStorage",
+            "doc": "Loads LocalStorage for the current tab page.",
             "params": [],
             "results": [
               {
@@ -1553,7 +1553,7 @@
           },
           {
             "name": "SaveCookies",
-            "doc": "保存当前标签页 Cookies",
+            "doc": "Saves cookies for the current tab page.",
             "params": [],
             "results": [
               {
@@ -1570,7 +1570,7 @@
           },
           {
             "name": "SaveLocalStorage",
-            "doc": "保存当前标签页 LocalStorage",
+            "doc": "Saves LocalStorage for the current tab page.",
             "params": [],
             "results": [
               {
@@ -1587,7 +1587,7 @@
           },
           {
             "name": "WaitForNewTab",
-            "doc": "等待指定 ID 的新标签页出现",
+            "doc": "Waits for a new tab page with the specified ID to appear.",
             "params": [
               {
                 "name": "id",
@@ -1657,7 +1657,7 @@
         "kind": "interface",
         "package": "browser",
         "import_path": "yanlingrpa.com/yanling/protocol/browser",
-        "doc": "BrowserWindow 定义浏览器窗口接口",
+        "doc": "BrowserWindow defines the browser window interface.",
         "signature": "type BrowserWindow interface",
         "source": {
           "file": "browser/browser_window.go",
@@ -1667,7 +1667,7 @@
         "methods": [
           {
             "name": "CurrentPage",
-            "doc": "获取当前活动标签页",
+            "doc": "Gets the currently active tab page.",
             "params": [],
             "results": [
               {
@@ -1686,7 +1686,7 @@
           },
           {
             "name": "DefaultPage",
-            "doc": "获取默认标签页",
+            "doc": "Gets the default tab page.",
             "params": [],
             "results": [
               {
@@ -1705,7 +1705,7 @@
           },
           {
             "name": "IDTabPage",
-            "doc": "按标识获取标签页",
+            "doc": "Gets a tab page by identifier.",
             "params": [],
             "results": [
               {
@@ -1724,7 +1724,7 @@
           },
           {
             "name": "NewTabPage",
-            "doc": "新建标签页并打开指定 URL",
+            "doc": "Creates a new tab page and opens the specified URL.",
             "params": [
               {
                 "name": "id",

@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T06:39:47Z",
+  "generated_at": "2026-04-21T09:57:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "basic",
@@ -33,7 +33,7 @@
         "kind": "struct",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "FPoint 表示一个二维浮点坐标点",
+        "doc": "FPoint represents a 2D floating-point coordinate point.",
         "signature": "type FPoint struct",
         "source": {
           "file": "basic/basic_data_struct.go",
@@ -45,7 +45,7 @@
             "name": "X",
             "type": "float64",
             "tag": "json:\"x\"",
-            "doc": "元素的 X 坐标，以像素为单位",
+            "doc": "X coordinate of the element, in pixels.",
             "type_refs": [
               {
                 "expr": "float64",
@@ -57,7 +57,7 @@
             "name": "Y",
             "type": "float64",
             "tag": "json:\"y\"",
-            "doc": "元素的 Y 坐标，以像素为单位",
+            "doc": "Y coordinate of the element, in pixels.",
             "type_refs": [
               {
                 "expr": "float64",
@@ -80,7 +80,7 @@
         "kind": "function",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "MaxAreaRect 返回面积最大的矩形",
+        "doc": "MaxAreaRect returns the rectangle with the largest area.",
         "signature": "MaxAreaRect(rectangles []Rect) Rect",
         "source": {
           "file": "basic/basic_rect_struct.go",
@@ -114,7 +114,7 @@
         "kind": "function",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "MergeAllRectangles 将所有矩形合并为一个包含所有矩形的最小矩形",
+        "doc": "MergeAllRectangles merges all rectangles into the smallest rectangle containing all of them.",
         "signature": "MergeAllRectangles(rectangles []Rect) Rect",
         "source": {
           "file": "basic/basic_rect_struct.go",
@@ -148,7 +148,7 @@
         "kind": "function",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "MergeGroupRectangles 将多个矩形组中的矩形进行各种组合方式合并\n返回所有可能的合并结果，按面积从小到大排序",
+        "doc": "MergeGroupRectangles merges rectangles from multiple groups in all possible combinations.\nIt returns all possible merged results, sorted by area from small to large.",
         "signature": "MergeGroupRectangles(groupRects ...[]Rect) []Rect",
         "source": {
           "file": "basic/basic_rect_struct.go",
@@ -182,7 +182,7 @@
         "kind": "function",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "MergeOverlappingRectangles 将重叠的矩形合并为一个",
+        "doc": "MergeOverlappingRectangles merges overlapping rectangles.",
         "signature": "MergeOverlappingRectangles(rectangles []Rect) []Rect",
         "source": {
           "file": "basic/basic_rect_struct.go",
@@ -216,7 +216,7 @@
         "kind": "function",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "MinAreaRect 返回面积最小的矩形",
+        "doc": "MinAreaRect returns the rectangle with the smallest area.",
         "signature": "MinAreaRect(rectangles []Rect) Rect",
         "source": {
           "file": "basic/basic_rect_struct.go",
@@ -250,7 +250,7 @@
         "kind": "struct",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "OcrResult 表示整张图像的 OCR 识别结果",
+        "doc": "OcrResult represents the OCR recognition result of the entire image.",
         "signature": "type OcrResult struct",
         "source": {
           "file": "basic/basic_data_struct.go",
@@ -262,7 +262,7 @@
             "name": "Height",
             "type": "int",
             "tag": "json:\"height\"",
-            "doc": "Height 表示图像高度",
+            "doc": "Height is the image height.",
             "type_refs": [
               {
                 "expr": "int",
@@ -274,7 +274,7 @@
             "name": "Texts",
             "type": "[]OcrText",
             "tag": "json:\"texts\"",
-            "doc": "Texts 表示识别出的文本列表",
+            "doc": "Texts is the list of recognized text items.",
             "type_refs": [
               {
                 "expr": "OcrText",
@@ -288,7 +288,7 @@
             "name": "Width",
             "type": "int",
             "tag": "json:\"width\"",
-            "doc": "Width 表示图像宽度",
+            "doc": "Width is the image width.",
             "type_refs": [
               {
                 "expr": "int",
@@ -317,7 +317,7 @@
         "kind": "struct",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "OcrText 表示单条 OCR 文本识别结果",
+        "doc": "OcrText represents a single OCR text recognition result.",
         "signature": "type OcrText struct",
         "source": {
           "file": "basic/basic_data_struct.go",
@@ -329,7 +329,7 @@
             "name": "Confidence",
             "type": "float64",
             "tag": "json:\"confidence\"",
-            "doc": "Confidence 表示识别置信度",
+            "doc": "Confidence is the recognition confidence score.",
             "type_refs": [
               {
                 "expr": "float64",
@@ -341,7 +341,7 @@
             "name": "Rect",
             "type": "Rect",
             "tag": "json:\"rect\"",
-            "doc": "Rect 表示文本所在的矩形区域",
+            "doc": "Rect is the rectangular area where the text is located.",
             "type_refs": [
               {
                 "expr": "Rect",
@@ -355,7 +355,7 @@
             "name": "Text",
             "type": "string",
             "tag": "json:\"text\"",
-            "doc": "Text 表示识别出的文本内容",
+            "doc": "Text is the recognized text content.",
             "type_refs": [
               {
                 "expr": "string",
@@ -388,7 +388,7 @@
         "kind": "struct",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "Point 表示一个二维整数坐标点",
+        "doc": "Point represents a 2D integer coordinate point.",
         "signature": "type Point struct",
         "source": {
           "file": "basic/basic_data_struct.go",
@@ -400,7 +400,7 @@
             "name": "X",
             "type": "int",
             "tag": "json:\"x\"",
-            "doc": "X 表示横坐标",
+            "doc": "X is the horizontal coordinate.",
             "type_refs": [
               {
                 "expr": "int",
@@ -412,7 +412,7 @@
             "name": "Y",
             "type": "int",
             "tag": "json:\"y\"",
-            "doc": "Y 表示纵坐标",
+            "doc": "Y is the vertical coordinate.",
             "type_refs": [
               {
                 "expr": "int",
@@ -435,7 +435,7 @@
         "kind": "struct",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "Rect 表示一个矩形区域，定义了左上角坐标和宽高",
+        "doc": "Rect represents a rectangular region, defined by the top-left coordinate and width/height.",
         "signature": "type Rect struct",
         "source": {
           "file": "basic/basic_rect_struct.go",
@@ -447,7 +447,7 @@
             "name": "Height",
             "type": "int",
             "tag": "json:\"height\"",
-            "doc": "Height 表示矩形高度",
+            "doc": "Height represents the rectangle height.",
             "type_refs": [
               {
                 "expr": "int",
@@ -459,7 +459,7 @@
             "name": "Width",
             "type": "int",
             "tag": "json:\"width\"",
-            "doc": "Width 表示矩形宽度",
+            "doc": "Width represents the rectangle width.",
             "type_refs": [
               {
                 "expr": "int",
@@ -471,7 +471,7 @@
             "name": "X",
             "type": "int",
             "tag": "json:\"x\"",
-            "doc": "X 表示矩形左上角的 X 坐标",
+            "doc": "X is the X coordinate of the rectangle's top-left corner.",
             "type_refs": [
               {
                 "expr": "int",
@@ -483,7 +483,7 @@
             "name": "Y",
             "type": "int",
             "tag": "json:\"y\"",
-            "doc": "Y 表示矩形左上角的 Y 坐标",
+            "doc": "Y is the Y coordinate of the rectangle's top-left corner.",
             "type_refs": [
               {
                 "expr": "int",
@@ -495,7 +495,7 @@
         "methods": [
           {
             "name": "CenterPoint",
-            "doc": "CenterPoint 返回矩形的中心点",
+            "doc": "CenterPoint returns the center point of the rectangle.",
             "params": [],
             "results": [
               {
@@ -514,7 +514,7 @@
           },
           {
             "name": "Compare",
-            "doc": "Compare 比较两个矩形的大小关系，返回 -1 表示小于，0 表示等于，1 表示大于\n比较优先级：面积 \u003e X 坐标 \u003e Y 坐标 \u003e 宽度 \u003e 高度",
+            "doc": "Compare compares two rectangles and returns -1 for less than, 0 for equal, and 1 for greater than.\nComparison priority: area \u003e X coordinate \u003e Y coordinate \u003e width \u003e height.",
             "params": [
               {
                 "name": "another",
@@ -542,7 +542,7 @@
           },
           {
             "name": "Contains",
-            "doc": "Contains 检查点 (x, y) 是否在矩形内部",
+            "doc": "Contains checks whether point (x, y) lies inside the rectangle.",
             "params": [
               {
                 "name": "x",
@@ -572,7 +572,7 @@
           },
           {
             "name": "ContainsPoint",
-            "doc": "ContainsPoint 检查点 p 是否在矩形内部",
+            "doc": "ContainsPoint checks whether point p lies inside the rectangle.",
             "params": [
               {
                 "name": "p",
@@ -600,7 +600,7 @@
           },
           {
             "name": "FooterPercent",
-            "doc": "FooterPercent 从底部保留指定百分比的高度，返回底部矩形",
+            "doc": "FooterPercent keeps a given percentage of height from the bottom and returns that rectangle.",
             "params": [
               {
                 "name": "percent",
@@ -628,7 +628,7 @@
           },
           {
             "name": "FooterPixel",
-            "doc": "FooterPixel 从底部保留指定像素高度，返回底部矩形",
+            "doc": "FooterPixel keeps a given pixel height from the bottom and returns that rectangle.",
             "params": [
               {
                 "name": "pixel",
@@ -656,7 +656,7 @@
           },
           {
             "name": "HeaderPercent",
-            "doc": "HeaderPercent 从顶部保留指定百分比的高度，返回顶部矩形",
+            "doc": "HeaderPercent keeps a given percentage of height from the top and returns that rectangle.",
             "params": [
               {
                 "name": "percent",
@@ -684,7 +684,7 @@
           },
           {
             "name": "HeaderPixel",
-            "doc": "HeaderPixel 从顶部保留指定像素高度，返回顶部矩形",
+            "doc": "HeaderPixel keeps a given pixel height from the top and returns that rectangle.",
             "params": [
               {
                 "name": "pixel",
@@ -712,7 +712,7 @@
           },
           {
             "name": "Intersect",
-            "doc": "Intersect 计算两个矩形的交集",
+            "doc": "Intersect computes the intersection of two rectangles.",
             "params": [
               {
                 "name": "another",
@@ -736,7 +736,7 @@
           },
           {
             "name": "IsEmpty",
-            "doc": "IsEmpty 检查矩形是否为空（宽度或高度为 0 或负数）",
+            "doc": "IsEmpty checks whether the rectangle is empty (width or height is 0 or negative).",
             "params": [],
             "results": [
               {
@@ -753,7 +753,7 @@
           },
           {
             "name": "IsOverlapping",
-            "doc": "IsOverlapping 检查两个矩形是否重叠",
+            "doc": "IsOverlapping checks whether two rectangles overlap.",
             "params": [
               {
                 "name": "another",
@@ -781,7 +781,7 @@
           },
           {
             "name": "LeftPercent",
-            "doc": "LeftPercent 从左边保留指定百分比的宽度，返回左侧矩形",
+            "doc": "LeftPercent keeps a given percentage of width from the left side and returns that rectangle.",
             "params": [
               {
                 "name": "percent",
@@ -809,7 +809,7 @@
           },
           {
             "name": "LeftPixel",
-            "doc": "LeftPixel 从左边保留指定像素宽度，返回左侧矩形",
+            "doc": "LeftPixel keeps a given pixel width from the left side and returns that rectangle.",
             "params": [
               {
                 "name": "pixel",
@@ -837,7 +837,7 @@
           },
           {
             "name": "Merge",
-            "doc": "Merge 将两个矩形合并为包含两者的最小矩形",
+            "doc": "Merge combines two rectangles into the smallest rectangle containing both.",
             "params": [
               {
                 "name": "another",
@@ -861,7 +861,7 @@
           },
           {
             "name": "Position",
-            "doc": "Position 返回矩形的左上角位置",
+            "doc": "Position returns the top-left position of the rectangle.",
             "params": [],
             "results": [
               {
@@ -880,7 +880,7 @@
           },
           {
             "name": "RightPercent",
-            "doc": "RightPercent 从右边保留指定百分比的宽度，返回右侧矩形",
+            "doc": "RightPercent keeps a given percentage of width from the right side and returns that rectangle.",
             "params": [
               {
                 "name": "percent",
@@ -908,7 +908,7 @@
           },
           {
             "name": "RightPixel",
-            "doc": "RightPixel 从右边保留指定像素宽度，返回右侧矩形",
+            "doc": "RightPixel keeps a given pixel width from the right side and returns that rectangle.",
             "params": [
               {
                 "name": "pixel",
@@ -936,7 +936,7 @@
           },
           {
             "name": "Size",
-            "doc": "Size 返回矩形的宽高信息",
+            "doc": "Size returns the width and height of the rectangle.",
             "params": [],
             "results": [
               {
@@ -955,7 +955,7 @@
           },
           {
             "name": "SubRect",
-            "doc": "SubRect 从矩形内部提取一个子矩形，指定子矩形的相对位置和大小\n自动检查边界，防止越界",
+            "doc": "SubRect extracts a sub-rectangle from within the rectangle using relative position and size.\nIt automatically checks boundaries to prevent out-of-range values.",
             "params": [
               {
                 "name": "x",
@@ -1034,7 +1034,7 @@
         "kind": "struct",
         "package": "basic",
         "import_path": "yanlingrpa.com/yanling/protocol/basic",
-        "doc": "Size 表示宽度和高度",
+        "doc": "Size represents width and height.",
         "signature": "type Size struct",
         "source": {
           "file": "basic/basic_data_struct.go",
@@ -1046,7 +1046,7 @@
             "name": "Height",
             "type": "int",
             "tag": "json:\"height\"",
-            "doc": "Height 表示高度",
+            "doc": "Height represents the height.",
             "type_refs": [
               {
                 "expr": "int",
@@ -1058,7 +1058,7 @@
             "name": "Width",
             "type": "int",
             "tag": "json:\"width\"",
-            "doc": "Width 表示宽度",
+            "doc": "Width represents the width.",
             "type_refs": [
               {
                 "expr": "int",
@@ -1070,7 +1070,7 @@
         "methods": [
           {
             "name": "Area",
-            "doc": "Area 返回尺寸的面积",
+            "doc": "Area returns the area of the size.",
             "params": [],
             "results": [
               {

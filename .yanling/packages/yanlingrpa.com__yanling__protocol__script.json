@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T06:39:47Z",
+  "generated_at": "2026-04-21T09:57:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -98,7 +98,7 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "Event 定义本地事件总线的事件数据",
+        "doc": "Event defines event data for the local event bus.",
         "signature": "type Event struct",
         "source": {
           "file": "script/module_runtime.go",
@@ -109,7 +109,7 @@
           {
             "name": "Data",
             "type": "any",
-            "doc": "Data 事件数据",
+            "doc": "Data is the event payload.",
             "type_refs": [
               {
                 "expr": "any",
@@ -120,7 +120,7 @@
           {
             "name": "OccuredAt",
             "type": "time.Time",
-            "doc": "OccuredAt 事件发生时间",
+            "doc": "OccuredAt is the event occurrence time.",
             "type_refs": [
               {
                 "expr": "time.Time",
@@ -132,7 +132,7 @@
           {
             "name": "Topic",
             "type": "string",
-            "doc": "Topic 事件主题",
+            "doc": "Topic is the event topic.",
             "type_refs": [
               {
                 "expr": "string",
@@ -164,7 +164,7 @@
         "kind": "func_type",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "EventHandler 定义事件处理函数签名",
+        "doc": "EventHandler defines the event handler function signature.",
         "signature": "type EventHandler func(event Event)",
         "underlying_type": "func(event Event)",
         "source": {
@@ -194,19 +194,19 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "GuiApplication 定义 GUI 应用配置",
+        "doc": "GuiApplication defines GUI application configuration.",
         "signature": "type GuiApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 96,
+          "line": 97,
           "column": 6
         },
         "fields": [
           {
             "name": "Id",
             "type": "string",
-            "tag": "toml:\"id\" json:\"id\"",
-            "doc": "Id GUI 应用的唯一标识符",
+            "tag": "json:\"id\"",
+            "doc": "Id is the unique identifier of the GUI application.",
             "type_refs": [
               {
                 "expr": "string",
@@ -217,8 +217,8 @@
           {
             "name": "Launcher",
             "type": "string",
-            "tag": "toml:\"launcher\" json:\"launcher\"",
-            "doc": "Launcher 启动器命令或路径",
+            "tag": "json:\"launcher\"",
+            "doc": "Launcher is the launcher command or path.",
             "type_refs": [
               {
                 "expr": "string",
@@ -229,8 +229,8 @@
           {
             "name": "Name",
             "type": "string",
-            "tag": "toml:\"name\" json:\"name\"",
-            "doc": "Name GUI 应用名称",
+            "tag": "json:\"name\"",
+            "doc": "Name is the GUI application name.",
             "type_refs": [
               {
                 "expr": "string",
@@ -241,8 +241,8 @@
           {
             "name": "Process",
             "type": "string",
-            "tag": "toml:\"process\" json:\"process\"",
-            "doc": "Process GUI 窗口所属的进程名称",
+            "tag": "json:\"process\"",
+            "doc": "Process is the process name associated with the GUI window.",
             "type_refs": [
               {
                 "expr": "string",
@@ -253,8 +253,8 @@
           {
             "name": "Url",
             "type": "string",
-            "tag": "toml:\"url\" json:\"url\"",
-            "doc": "Url 打开 GUI 窗口的 URL，例如 weixin://launchapplet?appid=xxxx",
+            "tag": "json:\"url\"",
+            "doc": "Url is the URL used to open the GUI window, for example weixin://launchapplet?appid=xxxx.",
             "type_refs": [
               {
                 "expr": "string",
@@ -277,7 +277,7 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ModuleInfo 定义脚本模组元信息",
+        "doc": "ModuleInfo defines script module metadata.",
         "signature": "type ModuleInfo struct",
         "source": {
           "file": "script/yanling_script.go",
@@ -288,8 +288,8 @@
           {
             "name": "Author",
             "type": "string",
-            "tag": "toml:\"author\" json:\"author\"",
-            "doc": "Author 作者",
+            "tag": "json:\"author\"",
+            "doc": "Author is the script author.",
             "type_refs": [
               {
                 "expr": "string",
@@ -300,8 +300,8 @@
           {
             "name": "Description",
             "type": "string",
-            "tag": "toml:\"description\" json:\"description\"",
-            "doc": "Description 脚本描述，介绍脚本的功能和用途",
+            "tag": "json:\"description\"",
+            "doc": "Description describes script functionality and usage.",
             "type_refs": [
               {
                 "expr": "string",
@@ -312,8 +312,8 @@
           {
             "name": "Devices",
             "type": "[]string",
-            "tag": "toml:\"devices\" json:\"devices\"",
-            "doc": "Devices 适用的设备列表，如 [\"windows\", \"mac\", \"ubuntu\"]",
+            "tag": "json:\"devices\"",
+            "doc": "Devices is the list of applicable devices, for example [\"windows\", \"mac\", \"ubuntu\"].",
             "type_refs": [
               {
                 "expr": "string",
@@ -324,8 +324,8 @@
           {
             "name": "Email",
             "type": "string",
-            "tag": "toml:\"email\" json:\"email\"",
-            "doc": "Email 联系方式",
+            "tag": "json:\"email\"",
+            "doc": "Email is the contact address.",
             "type_refs": [
               {
                 "expr": "string",
@@ -336,8 +336,8 @@
           {
             "name": "EngineVersion",
             "type": "string",
-            "tag": "toml:\"engine_version\" json:\"engine_version\"",
-            "doc": "EngineVersion 引擎版本要求",
+            "tag": "json:\"engine_version\"",
+            "doc": "EngineVersion is the required engine version.",
             "type_refs": [
               {
                 "expr": "string",
@@ -348,8 +348,8 @@
           {
             "name": "License",
             "type": "string",
-            "tag": "toml:\"license\" json:\"license\"",
-            "doc": "License 许可证，根据 LICENSE 文件或声明",
+            "tag": "json:\"license\"",
+            "doc": "License is the license, based on the LICENSE file or declaration.",
             "type_refs": [
               {
                 "expr": "string",
@@ -360,8 +360,8 @@
           {
             "name": "Package",
             "type": "string",
-            "tag": "toml:\"package\" json:\"package\"",
-            "doc": "Package 脚本包名，有且仅有该包名的脚本可以被引入和调用",
+            "tag": "json:\"package\"",
+            "doc": "Package is the script package name. Only scripts under this package can be imported and called.",
             "type_refs": [
               {
                 "expr": "string",
@@ -373,7 +373,7 @@
             "name": "Specifier",
             "type": "string",
             "tag": "json:\"specifier\"",
-            "doc": "Specifier 模块标识符，包含域、所有者、名称和版本，从 go.mod 文件中解析得到",
+            "doc": "Specifier is the module identifier, including domain, owner, name, and version,\nparsed from the go.mod file.",
             "type_refs": [
               {
                 "expr": "string",
@@ -384,8 +384,8 @@
           {
             "name": "Tags",
             "type": "[]string",
-            "tag": "toml:\"tags\" json:\"tags\"",
-            "doc": "Tags 脚本主题标签列表，如 [\"web automation\", \"data extraction\"]",
+            "tag": "json:\"tags\"",
+            "doc": "Tags is a list of script topic tags, for example [\"web automation\", \"data extraction\"].",
             "type_refs": [
               {
                 "expr": "string",
@@ -397,7 +397,7 @@
             "name": "UpdateTime",
             "type": "string",
             "tag": "json:\"update_time\"",
-            "doc": "UpdateTime 更新时间，最后一次提交时间，格式为 RFC3339",
+            "doc": "UpdateTime is the last update time (last commit time), formatted as RFC3339.",
             "type_refs": [
               {
                 "expr": "string",
@@ -408,8 +408,8 @@
           {
             "name": "Website",
             "type": "string",
-            "tag": "toml:\"website\" json:\"website\"",
-            "doc": "Website 脚本官方网站",
+            "tag": "json:\"website\"",
+            "doc": "Website is the official website of the script.",
             "type_refs": [
               {
                 "expr": "string",
@@ -432,17 +432,17 @@
         "kind": "interface",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ModuleRuntime 定义脚本运行时上下文能力\n该接口提供窗口访问、系统能力、缓存、变量与事件总线访问能力",
+        "doc": "ModuleRuntime defines script runtime context capabilities.\nThis interface provides access to windows, system services, cache, variables,\nand the local event bus.",
         "signature": "type ModuleRuntime interface",
         "source": {
           "file": "script/module_runtime.go",
-          "line": 58,
+          "line": 59,
           "column": 6
         },
         "methods": [
           {
             "name": "BrowserWindow",
-            "doc": "BrowserWindow 根据窗口 ID 获取浏览器窗口",
+            "doc": "BrowserWindow gets a browser window by window ID.",
             "params": [
               {
                 "name": "id",
@@ -476,7 +476,7 @@
           },
           {
             "name": "CurrentSpecifier",
-            "doc": "CurrentSpecifier 获取当前正在执行脚本的规范说明",
+            "doc": "CurrentSpecifier gets the specifier of the currently executing script.",
             "params": [],
             "results": [
               {
@@ -493,7 +493,7 @@
           },
           {
             "name": "DeviceInfo",
-            "doc": "DeviceInfo 获取设备信息能力接口",
+            "doc": "DeviceInfo gets the device information capability interface.",
             "params": [],
             "results": [
               {
@@ -511,7 +511,7 @@
           },
           {
             "name": "FileSystem",
-            "doc": "FileSystem 获取本地文件系统接口",
+            "doc": "FileSystem gets the local filesystem interface.",
             "params": [],
             "results": [
               {
@@ -529,7 +529,7 @@
           },
           {
             "name": "GetCacheData",
-            "doc": "GetCacheData 获取运行时临时存储数据",
+            "doc": "GetCacheData gets data temporarily stored at runtime.",
             "params": [
               {
                 "name": "key",
@@ -562,7 +562,7 @@
           },
           {
             "name": "GetVariable",
-            "doc": "GetVariable 获取脚本变量值",
+            "doc": "GetVariable gets a script variable value.",
             "params": [
               {
                 "name": "name",
@@ -595,7 +595,7 @@
           },
           {
             "name": "GuiWindow",
-            "doc": "GuiWindow 根据窗口 ID 获取 GUI 窗口",
+            "doc": "GuiWindow gets a GUI window by window ID.",
             "params": [
               {
                 "name": "id",
@@ -629,7 +629,7 @@
           },
           {
             "name": "HostSpecifier",
-            "doc": "HostSpecifier 获取启动引擎执行的入口脚本规范说明",
+            "doc": "HostSpecifier gets the specifier of the entry script launched by the engine.",
             "params": [],
             "results": [
               {
@@ -646,7 +646,7 @@
           },
           {
             "name": "HttpClient",
-            "doc": "HttpClient 获取 HTTP 客户端接口",
+            "doc": "HttpClient gets the HTTP client interface.",
             "params": [],
             "results": [
               {
@@ -664,7 +664,7 @@
           },
           {
             "name": "InvokeApi",
-            "doc": "InvokeApi 调用本地其他模组的开放 API",
+            "doc": "InvokeApi calls an exposed API from another local module.",
             "params": [
               {
                 "name": "specifier",
@@ -705,7 +705,7 @@
           },
           {
             "name": "Logger",
-            "doc": "Logger 获取脚本日志记录器",
+            "doc": "Logger gets the script logger.",
             "params": [],
             "results": [
               {
@@ -723,7 +723,7 @@
           },
           {
             "name": "Publish",
-            "doc": "Publish 发布事件到本地事件总线",
+            "doc": "Publish publishes an event to the local event bus.",
             "params": [
               {
                 "name": "topic",
@@ -757,7 +757,7 @@
           },
           {
             "name": "SetCacheData",
-            "doc": "SetCacheData 在运行时临时存储任意数据",
+            "doc": "SetCacheData temporarily stores arbitrary data at runtime.",
             "params": [
               {
                 "name": "key",
@@ -783,7 +783,7 @@
           },
           {
             "name": "Storage",
-            "doc": "Storage 获取项目本地存储接口",
+            "doc": "Storage gets the project local storage interface.",
             "params": [],
             "results": [
               {
@@ -801,7 +801,7 @@
           },
           {
             "name": "Subscribe",
-            "doc": "Subscribe 订阅本地其他模组的开放事件",
+            "doc": "Subscribe subscribes to an exposed event from another local module.",
             "params": [
               {
                 "name": "specifier",
@@ -850,7 +850,7 @@
           },
           {
             "name": "Unsubscribe",
-            "doc": "Unsubscribe 取消订阅本地其他模组的开放事件",
+            "doc": "Unsubscribe cancels a subscription to an exposed event from another local module.",
             "params": [
               {
                 "name": "subscriber",
@@ -878,7 +878,7 @@
           },
           {
             "name": "Vision",
-            "doc": "Vision 获取视觉能力扩展接口",
+            "doc": "Vision gets the vision capability extension interface.",
             "params": [],
             "results": [
               {
@@ -973,11 +973,11 @@
         "kind": "function",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ParseSpecifier 解析模块标识符字符串\n支持 owner/name 或 domain/owner/name 两种形式，可带 @version",
+        "doc": "ParseSpecifier parses a module specifier string.\nIt supports owner/name or domain/owner/name, optionally with @version.",
         "signature": "ParseSpecifier(spec string) (Specifier, error)",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 395,
+          "line": 399,
           "column": 1
         },
         "params": [
@@ -1018,19 +1018,19 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ScriptVariable 定义脚本变量配置",
+        "doc": "ScriptVariable defines script variable configuration.",
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 140,
+          "line": 141,
           "column": 6
         },
         "fields": [
           {
             "name": "Abstract",
             "type": "string",
-            "tag": "toml:\"abstract\" json:\"abstract\"",
-            "doc": "Abstract 变量描述",
+            "tag": "json:\"abstract\"",
+            "doc": "Abstract is the variable description.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1041,8 +1041,8 @@
           {
             "name": "Default",
             "type": "string",
-            "tag": "toml:\"default\" json:\"default\"",
-            "doc": "Default 变量默认值",
+            "tag": "json:\"default\"",
+            "doc": "Default is the default value of the variable.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1053,8 +1053,8 @@
           {
             "name": "Name",
             "type": "string",
-            "tag": "toml:\"name\" json:\"name\"",
-            "doc": "Name 变量名称",
+            "tag": "json:\"name\"",
+            "doc": "Name is the variable name.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1065,8 +1065,8 @@
           {
             "name": "Required",
             "type": "bool",
-            "tag": "toml:\"required\" json:\"required\"",
-            "doc": "Required 是否必填",
+            "tag": "json:\"required\"",
+            "doc": "Required indicates whether the variable is required.",
             "type_refs": [
               {
                 "expr": "bool",
@@ -1077,8 +1077,8 @@
           {
             "name": "Save",
             "type": "bool",
-            "tag": "toml:\"save\" json:\"save\"",
-            "doc": "Save 是否保存到项目存储",
+            "tag": "json:\"save\"",
+            "doc": "Save indicates whether to save the variable to project storage.",
             "type_refs": [
               {
                 "expr": "bool",
@@ -1089,8 +1089,8 @@
           {
             "name": "Type",
             "type": "VariableDataType",
-            "tag": "toml:\"type\" json:\"type\"",
-            "doc": "Type 变量类型，如 string、integer、boolean、json 等",
+            "tag": "json:\"type\"",
+            "doc": "Type is the variable type, such as string, integer, boolean, or json.",
             "type_refs": [
               {
                 "expr": "VariableDataType",
@@ -1125,11 +1125,11 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "Specifier 定义模块规范说明",
+        "doc": "Specifier defines module specification information.",
         "signature": "type Specifier struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 249,
+          "line": 250,
           "column": 6
         },
         "fields": [
@@ -1137,7 +1137,7 @@
             "name": "Domain",
             "type": "string",
             "tag": "json:\"domain\"",
-            "doc": "Domain 模块来源域，如 github.com",
+            "doc": "Domain is the source domain of the module, such as github.com.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1149,7 +1149,7 @@
             "name": "Name",
             "type": "string",
             "tag": "json:\"name\"",
-            "doc": "Name 模块名称，如 utils",
+            "doc": "Name is the module name, such as utils.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1161,7 +1161,7 @@
             "name": "Owner",
             "type": "string",
             "tag": "json:\"owner\"",
-            "doc": "Owner 模块所有者，如 github 用户名",
+            "doc": "Owner is the module owner, such as a GitHub username.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1173,7 +1173,7 @@
             "name": "Version",
             "type": "string",
             "tag": "json:\"version\"",
-            "doc": "Version 模块版本要求，如 v1.2.3",
+            "doc": "Version is the required module version, such as v1.2.3.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1185,7 +1185,7 @@
         "methods": [
           {
             "name": "Identifier",
-            "doc": "Identifier 返回不包含版本信息的模块标识符\n格式为 \"domain/owner/name\" 或 \"owner/name\"",
+            "doc": "Identifier returns the module identifier without version information.\nFormat: \"domain/owner/name\" or \"owner/name\".",
             "params": [],
             "results": [
               {
@@ -1202,7 +1202,7 @@
           },
           {
             "name": "IsPseudoVersion",
-            "doc": "IsPseudoVersion 判断当前 Specifier 的版本是否为 Go 伪版本格式\nGo 伪版本格式: v0.0.0-yyyymmddhhmmss-commithash",
+            "doc": "IsPseudoVersion checks whether the version of the current Specifier\nuses the Go pseudo-version format.\nGo pseudo-version format: v0.0.0-yyyymmddhhmmss-commithash.",
             "params": [],
             "results": [
               {
@@ -1219,7 +1219,7 @@
           },
           {
             "name": "ModulePath",
-            "doc": "ModulePath 基于给定根目录生成模块路径\n其中 name 部分如果包含 /，会被按多层目录拼接",
+            "doc": "ModulePath generates a module path based on the given root directory.\nIf the name part contains \"/\", it is joined as nested directories.",
             "params": [
               {
                 "name": "modPath",
@@ -1241,7 +1241,7 @@
           },
           {
             "name": "String",
-            "doc": "String 返回完整的模块标识符字符串，格式为 \"domain/owner/name@version\" 或 \"owner/name@version\"\n其中 name 部分如果包含 /，也会被正确处理，例如 \"domain/owner/name/subname@version\"",
+            "doc": "String returns the full module specifier string in the format\n\"domain/owner/name@version\" or \"owner/name@version\".\nIf the name part contains \"/\", it is also handled correctly,\nfor example \"domain/owner/name/subname@version\".",
             "params": [],
             "results": [
               {
@@ -1275,7 +1275,7 @@
         "kind": "interface",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "Subscriber 定义事件订阅者信息\n用于标识订阅来源、主题与状态",
+        "doc": "Subscriber defines event subscriber information.\nIt is used to identify subscription source, topic, and status.",
         "signature": "type Subscriber interface",
         "source": {
           "file": "script/module_runtime.go",
@@ -1285,7 +1285,7 @@
         "methods": [
           {
             "name": "GetSpecifier",
-            "doc": "GetSpecifier 获取Topic所属模块标识",
+            "doc": "GetSpecifier gets the module specifier that owns the topic.",
             "params": [],
             "results": [
               {
@@ -1302,7 +1302,7 @@
           },
           {
             "name": "GetTopic",
-            "doc": "GetTopic 获取订阅的事件主题",
+            "doc": "GetTopic gets the subscribed event topic.",
             "params": [],
             "results": [
               {
@@ -1319,7 +1319,7 @@
           },
           {
             "name": "IsActive",
-            "doc": "IsActive 判断订阅是否仍然有效",
+            "doc": "IsActive indicates whether the subscription is still active.",
             "params": [],
             "results": [
               {
@@ -1353,19 +1353,19 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "UrlPermission 定义网络访问权限",
+        "doc": "UrlPermission defines network access permissions.",
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 231,
+          "line": 232,
           "column": 6
         },
         "fields": [
           {
             "name": "Abstract",
             "type": "string",
-            "tag": "toml:\"abstract\" json:\"abstract\"",
-            "doc": "Abstract 权限说明",
+            "tag": "json:\"abstract\"",
+            "doc": "Abstract is the permission description.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1376,8 +1376,8 @@
           {
             "name": "Permission",
             "type": "string",
-            "tag": "toml:\"permission\" json:\"permission\"",
-            "doc": "Permission 访问权限，r、w、d、rw、rwd 等",
+            "tag": "json:\"permission\"",
+            "doc": "Permission is the access permission, such as r, w, d, rw, or rwd.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1388,8 +1388,8 @@
           {
             "name": "Url",
             "type": "string",
-            "tag": "toml:\"url\" json:\"url\"",
-            "doc": "Url URL 模式，支持通配符(*)和脚本变量 ${var_name}",
+            "tag": "json:\"url\"",
+            "doc": "Url is the URL pattern, supporting wildcard (*) and script variable ${var_name}.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1412,7 +1412,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableBoolean 布尔类型",
+        "doc": "VariableBoolean boolean type.",
         "signature": "const VariableBoolean VariableDataType = \"boolean\"",
         "source": {
           "file": "script/yanling_script.go",
@@ -1437,7 +1437,7 @@
         "kind": "named_type",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableDataType 定义脚本变量的数据类型",
+        "doc": "VariableDataType defines data types for script variables.",
         "signature": "type VariableDataType string",
         "underlying_type": "string",
         "source": {
@@ -1448,7 +1448,7 @@
         "methods": [
           {
             "name": "Parse",
-            "doc": "Parse 将字符串解析为对应的数据类型值\n解析失败时返回原始字符串",
+            "doc": "Parse parses a string into a value of the corresponding data type.\nIf parsing fails, it returns the original string.",
             "params": [
               {
                 "name": "value",
@@ -1474,7 +1474,7 @@
           },
           {
             "name": "ToString",
-            "doc": "ToString 将任意值转换为对应类型的字符串表示\n转换失败时返回 fmt.Sprintf(\"%v\", value)",
+            "doc": "ToString converts any value into the string representation of the corresponding type.\nIf conversion fails, it returns fmt.Sprintf(\"%v\", value).",
             "params": [
               {
                 "name": "value",
@@ -1517,7 +1517,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableFilePath 文件路径类型",
+        "doc": "VariableFilePath file path type.",
         "signature": "const VariableFilePath VariableDataType = \"filepath\"",
         "source": {
           "file": "script/yanling_script.go",
@@ -1542,7 +1542,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableInteger 整数类型",
+        "doc": "VariableInteger integer type.",
         "signature": "const VariableInteger VariableDataType = \"integer\"",
         "source": {
           "file": "script/yanling_script.go",
@@ -1567,7 +1567,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableJson JSON 对象类型",
+        "doc": "VariableJson JSON object type.",
         "signature": "const VariableJson VariableDataType = \"json\"",
         "source": {
           "file": "script/yanling_script.go",
@@ -1592,7 +1592,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableNumber 浮点数类型",
+        "doc": "VariableNumber floating-point number type.",
         "signature": "const VariableNumber VariableDataType = \"number\"",
         "source": {
           "file": "script/yanling_script.go",
@@ -1617,7 +1617,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableString 字符串类型",
+        "doc": "VariableString string type.",
         "signature": "const VariableString VariableDataType = \"string\"",
         "source": {
           "file": "script/yanling_script.go",
@@ -1642,19 +1642,19 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "WebApplication 定义浏览器应用配置",
+        "doc": "WebApplication defines browser application configuration.",
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 122,
+          "line": 123,
           "column": 6
         },
         "fields": [
           {
             "name": "Id",
             "type": "string",
-            "tag": "toml:\"id\" json:\"id\"",
-            "doc": "Id 浏览器应用的唯一标识符",
+            "tag": "json:\"id\"",
+            "doc": "Id is the unique identifier of the browser application.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1665,8 +1665,8 @@
           {
             "name": "Name",
             "type": "string",
-            "tag": "toml:\"name\" json:\"name\"",
-            "doc": "Name 浏览器应用名称",
+            "tag": "json:\"name\"",
+            "doc": "Name is the browser application name.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1677,8 +1677,8 @@
           {
             "name": "Url",
             "type": "string",
-            "tag": "toml:\"url\" json:\"url\"",
-            "doc": "Url 浏览器应用 URL，例如 https://www.google.com",
+            "tag": "json:\"url\"",
+            "doc": "Url is the browser application URL, for example https://www.google.com.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1701,19 +1701,19 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "YScript 定义脚本配置总结构",
+        "doc": "YScript defines the top-level script configuration structure.",
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 459,
+          "line": 463,
           "column": 6
         },
         "fields": [
           {
             "name": "ApiPerms",
             "type": "[]UrlPermission",
-            "tag": "toml:\"api\" json:\"api_perms\"",
-            "doc": "ApiPerms 网络接口授权列表",
+            "tag": "json:\"api_perms\"",
+            "doc": "ApiPerms is the list of network API permissions.",
             "type_refs": [
               {
                 "expr": "UrlPermission",
@@ -1726,8 +1726,8 @@
           {
             "name": "FilePerms",
             "type": "[]UrlPermission",
-            "tag": "toml:\"file\" json:\"file_perms\"",
-            "doc": "FilePerms 文件系统授权列表",
+            "tag": "json:\"file_perms\"",
+            "doc": "FilePerms is the list of filesystem permissions.",
             "type_refs": [
               {
                 "expr": "UrlPermission",
@@ -1740,8 +1740,8 @@
           {
             "name": "GuiApps",
             "type": "[]GuiApplication",
-            "tag": "toml:\"gui\" json:\"gui_apps\"",
-            "doc": "GuiApps 需要操作的 GUI 应用列表",
+            "tag": "json:\"gui_apps\"",
+            "doc": "GuiApps is the list of GUI applications to operate.",
             "type_refs": [
               {
                 "expr": "GuiApplication",
@@ -1754,8 +1754,8 @@
           {
             "name": "Module",
             "type": "ModuleInfo",
-            "tag": "toml:\"module\" json:\"module\"",
-            "doc": "Module 脚本模组基本信息",
+            "tag": "json:\"module\"",
+            "doc": "Module is the basic script module information.",
             "type_refs": [
               {
                 "expr": "ModuleInfo",
@@ -1766,22 +1766,10 @@
             ]
           },
           {
-            "name": "Requires",
-            "type": "[]string",
-            "tag": "json:\"requires\"",
-            "doc": "Requires 模块依赖列表",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
             "name": "Variables",
             "type": "[]ScriptVariable",
-            "tag": "toml:\"var\" json:\"variables\"",
-            "doc": "Variables 脚本全局变量定义列表",
+            "tag": "json:\"variables\"",
+            "doc": "Variables is the list of global script variable definitions.",
             "type_refs": [
               {
                 "expr": "ScriptVariable",
@@ -1794,8 +1782,8 @@
           {
             "name": "WebApps",
             "type": "[]WebApplication",
-            "tag": "toml:\"web\" json:\"web_apps\"",
-            "doc": "WebApps 需要操作的 Web 应用列表",
+            "tag": "json:\"web_apps\"",
+            "doc": "WebApps is the list of web applications to operate.",
             "type_refs": [
               {
                 "expr": "WebApplication",
@@ -1836,10 +1824,6 @@
             "import_path": "yanlingrpa.com/yanling/protocol/script",
             "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
             "local": true
-          },
-          {
-            "expr": "string",
-            "builtin": true
           }
         ]
       }
