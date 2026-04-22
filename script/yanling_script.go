@@ -89,6 +89,11 @@ type ModuleInfo struct {
 	* EngineVersion is the required engine version.
 	 */
 	EngineVersion string `json:"engine_version"`
+
+	/*
+	* ProjectPath is the project path, which is the directory where the script is located.
+	 */
+	ProjectPath string `json:"project_path"`
 }
 
 /*
@@ -478,11 +483,11 @@ type YScript struct {
 	 */
 	Variables []ScriptVariable `json:"variables"`
 	/*
-	* FilePerms is the list of filesystem permissions.
+	* FilePermissions is the list of filesystem permissions.
 	 */
-	FilePerms []UrlPermission `json:"file_perms"`
+	FilePermissions []UrlPermission `json:"file_permissions"`
 	/*
-	* ApiPerms is the list of network API permissions.
+	* ApiPermissions is the list of network API permissions.
 	 */
-	ApiPerms []UrlPermission `json:"api_perms"`
+	ApiPermissions []UrlPermission `json:"api_permissions"`
 }

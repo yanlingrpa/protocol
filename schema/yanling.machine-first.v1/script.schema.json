@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "yanling.machine-first/v1/script.schema.json",
+  "title": "yanling.machine-first/v1 script.json",
+  "description": "Schema for the script.json configuration file of a YanLing RPA script module.",
+  "type": "object",
+  "required": ["module"],
+  "properties": {
+    "module": {
+      "$ref": "#/$defs/ModuleInfo"
+    },
+    "gui_apps": {
+      "type": "array",
+      "description": "List of GUI applications to operate.",
+      "items": { "$ref": "#/$defs/GuiApplication" }
+    },
+    "web_apps": {
+      "type": "array",
+      "description": "List of web applications to operate.",
+      "items": { "$ref": "#/$defs/WebApplication" }
+    },
+    "variables": {
+      "type": "array",
+      "description": "List of global script variable definitions.",
+      "items": { "$ref": "#/$defs/ScriptVariable" }
+    },
+    "file_permissions": {
+      "type": "array",
+      "description": "List of filesystem access permissions.",
+      "items": { "$ref": "#/$defs/UrlPermission" }
+    },
+    "api_permissions": {
+      "type": "array",
+      "description": "List of network API access permissions.",
+      "items": { "$ref": "#/$defs/UrlPermission" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ModuleInfo": {
+      "type": "object",
+      "description": "Script module metadata.",
+      "required": ["specifier", "package"],
+      "properties": {
+        "specifier": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Module identifier including domain, owner, name, and version, parsed from the go.mod file."
+        },
+        "package": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Script package name. Only scripts under this package can be imported and called."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of script functionality and usage."
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of script topic tags, for example [\"web automation\", \"data extraction\"].",
+          "items": { "type": "string" }
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "Official website of the script."
+        },
+        "update_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update time (last commit time), formatted as RFC3339."
+        },
+        "author": {
+          "type": "string",
+          "description": "Script author."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address."
+        },
+        "license": {
+          "type": "string",
+          "description": "License, based on the LICENSE file or declaration."
+        },
+        "devices": {
+          "type": "array",
+          "description": "List of applicable devices, for example [\"windows\", \"mac\", \"ubuntu\"].",
+          "items": { "type": "string" }
+        },
+        "engine_version": {
+          "type": "string",
+          "description": "Required engine version."
+        },
+        "project_path": {
+          "type": "string",
+          "description": "Project path, which is the directory where the script is located."
+        }
+      },
+      "additionalProperties": false
+    },
+    "GuiApplication": {
+      "type": "object",
+      "description": "GUI application configuration.",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier of the GUI application."
+        },
+        "name": {
+          "type": "string",
+          "description": "GUI application name."
+        },
+        "launcher": {
+          "type": "string",
+          "description": "Launcher command or path."
+        },
+        "process": {
+          "type": "string",
+          "description": "Process name associated with the GUI window."
+        },
+        "url": {
+          "type": "string",
+          "description": "URL used to open the GUI window, for example weixin://launchapplet?appid=xxxx."
+        }
+      },
+      "additionalProperties": false
+    },
+    "WebApplication": {
+      "type": "object",
+      "description": "Browser application configuration.",
+      "required": ["id", "url"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier of the browser application."
+        },
+        "name": {
+          "type": "string",
+          "description": "Browser application name."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Browser application URL, for example https://www.google.com."
+        }
+      },
+      "additionalProperties": false
+    },
+    "ScriptVariable": {
+      "type": "object",
+      "description": "Script variable configuration.",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Variable name."
+        },
+        "abstract": {
+          "type": "string",
+          "description": "Variable description."
+        },
+        "type": {
+          "$ref": "#/$defs/VariableDataType"
+        },
+        "default": {
+          "type": "string",
+          "description": "Default value of the variable."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the variable is required.",
+          "default": false
+        },
+        "save": {
+          "type": "boolean",
+          "description": "Whether to save the variable to project storage.",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "VariableDataType": {
+      "type": "string",
+      "description": "Data type of a script variable.",
+      "enum": ["boolean", "string", "filepath", "integer", "number", "json"]
+    },
+    "UrlPermission": {
+      "type": "object",
+      "description": "URL-based access permission entry.",
+      "required": ["url", "permission"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "URL pattern, supporting wildcard (*) and script variable ${var_name}."
+        },
+        "permission": {
+          "type": "string",
+          "description": "Access permission, such as r, w, d, rw, or rwd.",
+          "pattern": "^[rwd]+$"
+        },
+        "abstract": {
+          "type": "string",
+          "description": "Permission description."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
