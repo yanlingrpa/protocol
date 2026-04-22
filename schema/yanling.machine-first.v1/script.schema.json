@@ -92,10 +92,6 @@
         "engine_version": {
           "type": "string",
           "description": "Required engine version."
-        },
-        "project_path": {
-          "type": "string",
-          "description": "Project path, which is the directory where the script is located."
         }
       },
       "additionalProperties": false

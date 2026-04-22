@@ -89,11 +89,6 @@ type ModuleInfo struct {
 	* EngineVersion is the required engine version.
 	 */
 	EngineVersion string `json:"engine_version"`
-
-	/*
-	* ProjectPath is the project path, which is the directory where the script is located.
-	 */
-	ProjectPath string `json:"project_path"`
 }
 
 /*
