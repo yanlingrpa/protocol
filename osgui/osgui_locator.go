@@ -198,13 +198,14 @@ type Locator interface {
 	MouseUp(right bool) error
 
 	/*
-	* Drags from from_locator_point in the current locator to to_locator_point in the target locator.
-	* from_locator_point: Relative start position in current locator; nil means current mouse
-	* position in current locator. If the mouse is outside, the locator center is used.
-	* to_locator_point: Relative end position in target locator; nil means current mouse
-	* position in target locator. If the mouse is outside, the target locator center is used.
+	* Drags from a start position to an end position within the current locator.
+	* Both positions are relative coordinates within the current locator.
+	* from_locator_point: Relative start position within the locator; nil means the current mouse
+	* position in the locator, or the locator center if the mouse is outside.
+	* to_locator_point: Relative end position within the locator; nil means the current mouse
+	* position in the locator, or the locator center if the mouse is outside.
 	 */
-	DragTo(target Locator, from_locator_point *basic.Point, to_locator_point *basic.Point) error
+	DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error
 
 	/*
 	* Attempts to focus the current locator by clicking on the center point.

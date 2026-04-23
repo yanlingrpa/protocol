@@ -290,7 +290,7 @@ type _yanlingrpa_com_yanling_protocol_osgui_Locator struct {
 	WClearText           func() error
 	WClick               func(locator_point *basic.Point) error
 	WDoubleClick         func(locator_point *basic.Point) error
-	WDragTo              func(target osgui.Locator, from_locator_point *basic.Point, to_locator_point *basic.Point) error
+	WDragTo              func(from_locator_point *basic.Point, to_locator_point *basic.Point) error
 	WFocus               func() error
 	WGetBodyRect         func() basic.Rect
 	WGetLocatorCaretPos  func() *basic.Point
@@ -346,8 +346,8 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) Click(locator_point *bas
 func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) DoubleClick(locator_point *basic.Point) error {
 	return W.WDoubleClick(locator_point)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) DragTo(target osgui.Locator, from_locator_point *basic.Point, to_locator_point *basic.Point) error {
-	return W.WDragTo(target, from_locator_point, to_locator_point)
+func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error {
+	return W.WDragTo(from_locator_point, to_locator_point)
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) Focus() error {
 	return W.WFocus()

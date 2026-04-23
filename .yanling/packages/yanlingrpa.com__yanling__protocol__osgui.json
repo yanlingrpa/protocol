@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-23T14:30:21Z",
+  "generated_at": "2026-04-23T14:40:29Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "osgui",
@@ -3783,12 +3783,8 @@
           },
           {
             "name": "DragTo",
-            "doc": "Drags from from_locator_point in the current locator to to_locator_point in the target locator.\nfrom_locator_point: Relative start position in current locator; nil means current mouse\nposition in current locator. If the mouse is outside, the locator center is used.\nto_locator_point: Relative end position in target locator; nil means current mouse\nposition in target locator. If the mouse is outside, the target locator center is used.",
+            "doc": "Drags from a start position to an end position within the current locator.\nBoth positions are relative coordinates within the current locator.\nfrom_locator_point: Relative start position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.\nto_locator_point: Relative end position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.",
             "params": [
-              {
-                "name": "target",
-                "type": "Locator"
-              },
               {
                 "name": "from_locator_point",
                 "type": "*basic.Point"
@@ -3803,14 +3799,8 @@
                 "type": "error"
               }
             ],
-            "signature": "DragTo(target Locator, from_locator_point *basic.Point, to_locator_point *basic.Point) error",
+            "signature": "DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error",
             "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
               {
                 "expr": "basic.Point",
                 "import_path": "yanlingrpa.com/yanling/protocol/basic",

@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-23T14:30:21Z",
+  "generated_at": "2026-04-23T14:40:29Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "browser",
