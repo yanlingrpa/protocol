@@ -106,15 +106,15 @@ type ModuleRuntime interface {
 	 */
 	GetVariable(name string) (any, bool)
 	/*
-	* InvokeApi calls an exposed API from another local module.
+	* IPCInvoke calls an exposed API from another local IPC service.
 	 */
-	InvokeApi(specifier string, api string, args ...any) (any, error)
+	IPCInvoke(specifier string, api string, args ...any) (any, error)
 	/*
-	* Subscribe subscribes to an exposed event from another local module.
+	* Subscribe subscribes to an exposed event from another local IPC service or the current service.
 	 */
 	Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error)
 	/*
-	* Unsubscribe cancels a subscription to an exposed event from another local module.
+	* Unsubscribe cancels a subscription to an exposed event from another local IPC service or the current service.
 	 */
 	Unsubscribe(subscriber Subscriber) error
 	/*

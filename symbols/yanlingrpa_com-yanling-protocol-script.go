@@ -54,7 +54,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WGuiWindow        func(id string) (osgui.GuiWindow, bool)
 	WHostSpecifier    func() string
 	WHttpClient       func() ossys.HttpClient
-	WInvokeApi        func(specifier string, api string, args ...any) (any, error)
+	WIPCInvoke        func(specifier string, api string, args ...any) (any, error)
 	WLogger           func() ossys.ScriptLogger
 	WPublish          func(topic string, data any) error
 	WSetCacheData     func(key string, value any)
@@ -91,8 +91,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HostSpecifier() s
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossys.HttpClient {
 	return W.WHttpClient()
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeApi(specifier string, api string, args ...any) (any, error) {
-	return W.WInvokeApi(specifier, api, args...)
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IPCInvoke(specifier string, api string, args ...any) (any, error) {
+	return W.WIPCInvoke(specifier, api, args...)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Logger() ossys.ScriptLogger {
 	return W.WLogger()

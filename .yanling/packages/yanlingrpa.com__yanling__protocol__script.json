@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T09:57:25Z",
+  "generated_at": "2026-04-23T13:18:55Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -663,8 +663,8 @@
             ]
           },
           {
-            "name": "InvokeApi",
-            "doc": "InvokeApi calls an exposed API from another local module.",
+            "name": "IPCInvoke",
+            "doc": "IPCInvoke calls an exposed API from another local IPC service.",
             "params": [
               {
                 "name": "specifier",
@@ -687,7 +687,7 @@
                 "type": "error"
               }
             ],
-            "signature": "InvokeApi(specifier string, api string, args ...any) (any, error)",
+            "signature": "IPCInvoke(specifier string, api string, args ...any) (any, error)",
             "type_refs": [
               {
                 "expr": "any",
@@ -801,7 +801,7 @@
           },
           {
             "name": "Subscribe",
-            "doc": "Subscribe subscribes to an exposed event from another local module.",
+            "doc": "Subscribe subscribes to an exposed event from another local IPC service or the current service.",
             "params": [
               {
                 "name": "specifier",
@@ -850,7 +850,7 @@
           },
           {
             "name": "Unsubscribe",
-            "doc": "Unsubscribe cancels a subscription to an exposed event from another local module.",
+            "doc": "Unsubscribe cancels a subscription to an exposed event from another local IPC service or the current service.",
             "params": [
               {
                 "name": "subscriber",
@@ -1710,10 +1710,10 @@
         },
         "fields": [
           {
-            "name": "ApiPerms",
+            "name": "ApiPermissions",
             "type": "[]UrlPermission",
-            "tag": "json:\"api_perms\"",
-            "doc": "ApiPerms is the list of network API permissions.",
+            "tag": "json:\"api_permissions\"",
+            "doc": "ApiPermissions is the list of network API permissions.",
             "type_refs": [
               {
                 "expr": "UrlPermission",
@@ -1724,10 +1724,10 @@
             ]
           },
           {
-            "name": "FilePerms",
+            "name": "FilePermissions",
             "type": "[]UrlPermission",
-            "tag": "json:\"file_perms\"",
-            "doc": "FilePerms is the list of filesystem permissions.",
+            "tag": "json:\"file_permissions\"",
+            "doc": "FilePermissions is the list of filesystem permissions.",
             "type_refs": [
               {
                 "expr": "UrlPermission",
@@ -1752,6 +1752,18 @@
             ]
           },
           {
+            "name": "IPCDependencies",
+            "type": "[]string",
+            "tag": "json:\"ipc_dependencies\"",
+            "doc": "IPCDependencies is the list of IPC service dependencies.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "Module",
             "type": "ModuleInfo",
             "tag": "json:\"module\"",
@@ -1762,6 +1774,18 @@
                 "import_path": "yanlingrpa.com/yanling/protocol/script",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
                 "local": true
+              }
+            ]
+          },
+          {
+            "name": "ScriptDependencies",
+            "type": "[]string",
+            "tag": "json:\"script_dependencies\"",
+            "doc": "ScriptDependencies is the list of script module specifiers imported by this script project.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           },
@@ -1824,6 +1848,10 @@
             "import_path": "yanlingrpa.com/yanling/protocol/script",
             "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
             "local": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
           }
         ]
       }

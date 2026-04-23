@@ -485,4 +485,12 @@ type YScript struct {
 	* ApiPermissions is the list of network API permissions.
 	 */
 	ApiPermissions []UrlPermission `json:"api_permissions"`
+	/*
+	* ScriptDependencies is the list of script module specifiers imported by this script project.
+	 */
+	ScriptDependencies []string `json:"script_dependencies"`
+	/*
+	* IPCDependencies is the list of IPC service dependencies.
+	 */
+	IPCDependencies []string `json:"ipc_dependencies"`
 }

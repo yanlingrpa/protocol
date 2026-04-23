@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-21T09:57:25Z",
+  "generated_at": "2026-04-23T13:18:55Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 6,
@@ -5045,9 +5045,13 @@
           "import_path": "yanlingrpa.com/yanling/protocol/script",
           "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
           "local": true
+        },
+        {
+          "expr": "string",
+          "builtin": true
         }
       ],
-      "field_count": 6
+      "field_count": 8
     }
   ]
 }
