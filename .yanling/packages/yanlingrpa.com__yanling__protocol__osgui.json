@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-23T13:18:55Z",
+  "generated_at": "2026-04-23T14:30:21Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "osgui",
@@ -2144,7 +2144,7 @@
           },
           {
             "name": "PressKeys",
-            "doc": "Simulates keyboard input.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
+            "doc": "Simulates keyboard input at the current window.\nThis method will unfocus any control within the window that currently has focus,\nthen set focus to the entire window, and finally send the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
             "params": [
               {
                 "name": "keys",
@@ -3637,6 +3637,40 @@
         },
         "methods": [
           {
+            "name": "CanScrollHorizontal",
+            "doc": "Checks whether horizontal scrolling is supported in the current locator area.\nreturn: true if the locator can scroll horizontally; otherwise false.",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "CanScrollHorizontal() bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "CanScrollVertical",
+            "doc": "Checks whether vertical scrolling is supported in the current locator area.\nreturn: true if the locator can scroll vertically; otherwise false.",
+            "params": [],
+            "results": [
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "CanScrollVertical() bool",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "CardLocator",
             "doc": "Finds card-like sub-locators in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
             "params": [
@@ -3790,7 +3824,7 @@
           },
           {
             "name": "Focus",
-            "doc": "Focuses the current locator.\nIf the mouse is already inside the locator, it is considered focused.\nOtherwise, the mouse is moved to the locator center and clicked to obtain focus.",
+            "doc": "Attempts to focus the current locator by clicking on the center point.\nThe method moves the mouse to the center of the current locator and performs a click.\nNote: This method cannot guarantee success; focus may not be obtained depending on\nthe control's behavior and the current UI state.",
             "params": [],
             "results": [
               {
@@ -3974,46 +4008,12 @@
             ]
           },
           {
-            "name": "IsHorizontalScroller",
-            "doc": "Indicates whether horizontal scrolling is available in the current locator area.\nreturn: true if horizontal scrolling is supported; otherwise false.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "IsHorizontalScroller() bool",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "IsVerticalScroller",
-            "doc": "Indicates whether vertical scrolling is available in the current locator area.\nreturn: true if vertical scrolling is supported; otherwise false.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "IsVerticalScroller() bool",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              }
-            ]
-          },
-          {
             "name": "MouseDown",
-            "doc": "Presses the mouse button down at a specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means the center position of the current locator.",
+            "doc": "Presses the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
             "params": [
               {
-                "name": "locator_point",
-                "type": "*basic.Point"
+                "name": "right",
+                "type": "bool"
               }
             ],
             "results": [
@@ -4021,12 +4021,11 @@
                 "type": "error"
               }
             ],
-            "signature": "MouseDown(locator_point *basic.Point) error",
+            "signature": "MouseDown(right bool) error",
             "type_refs": [
               {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+                "expr": "bool",
+                "builtin": true
               },
               {
                 "expr": "error",
@@ -4063,11 +4062,11 @@
           },
           {
             "name": "MouseUp",
-            "doc": "Releases the mouse button at a specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means the center position of the current locator.",
+            "doc": "Releases the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
             "params": [
               {
-                "name": "locator_point",
-                "type": "*basic.Point"
+                "name": "right",
+                "type": "bool"
               }
             ],
             "results": [
@@ -4075,12 +4074,11 @@
                 "type": "error"
               }
             ],
-            "signature": "MouseUp(locator_point *basic.Point) error",
+            "signature": "MouseUp(right bool) error",
             "type_refs": [
               {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+                "expr": "bool",
+                "builtin": true
               },
               {
                 "expr": "error",
@@ -4124,7 +4122,7 @@
           },
           {
             "name": "PressKeys",
-            "doc": "Simulates keyboard input.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
+            "doc": "Simulates keyboard input at the current locator.\nThis method first attempts to obtain focus for the locator,\nthen sends the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
             "params": [
               {
                 "name": "keys",
@@ -4203,14 +4201,14 @@
           },
           {
             "name": "ScrollHorizontal",
-            "doc": "Performs horizontal scrolling in the current locator area.\nleft: Whether to scroll left; true for left, false for right.\nlines: Number of lines to scroll; larger values scroll farther.",
+            "doc": "Performs horizontal scrolling in the current locator area.\nforward: true to scroll left, false to scroll right.\ndistance: Relative scroll distance; the actual physical scroll distance depends on\nsystem settings, application configuration, and content layout. Larger values result in more scrolling.",
             "params": [
               {
-                "name": "left",
+                "name": "forward",
                 "type": "bool"
               },
               {
-                "name": "lines",
+                "name": "distance",
                 "type": "int"
               }
             ],
@@ -4219,7 +4217,7 @@
                 "type": "error"
               }
             ],
-            "signature": "ScrollHorizontal(left bool, lines int) error",
+            "signature": "ScrollHorizontal(forward bool, distance int) error",
             "type_refs": [
               {
                 "expr": "bool",
@@ -4237,14 +4235,14 @@
           },
           {
             "name": "ScrollVertical",
-            "doc": "Performs vertical scrolling in the current locator area.\nup: Whether to scroll up; true for up, false for down.\nlines: Number of lines to scroll; larger values scroll farther.",
+            "doc": "Performs vertical scrolling in the current locator area.\nforward: true to scroll up, false to scroll down.\ndistance: Relative scroll distance; the actual physical scroll distance depends on\nsystem settings, application configuration, and content layout. Larger values result in more scrolling.",
             "params": [
               {
-                "name": "up",
+                "name": "forward",
                 "type": "bool"
               },
               {
-                "name": "lines",
+                "name": "distance",
                 "type": "int"
               }
             ],
@@ -4253,7 +4251,7 @@
                 "type": "error"
               }
             ],
-            "signature": "ScrollVertical(up bool, lines int) error",
+            "signature": "ScrollVertical(forward bool, distance int) error",
             "type_refs": [
               {
                 "expr": "bool",

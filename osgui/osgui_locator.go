@@ -186,18 +186,16 @@ type Locator interface {
 	MouseMove(locator_point *basic.Point) error
 
 	/*
-	* Presses the mouse button down at a specified position inside the locator.
-	* locator_point: Relative position within the locator.
-	* nil means the center position of the current locator.
+	 * Presses the mouse button at the current mouse position within the locator.
+	 * right: true for right button, false for left button.
 	 */
-	MouseDown(locator_point *basic.Point) error
+	MouseDown(right bool) error
 
 	/*
-	* Releases the mouse button at a specified position inside the locator.
-	* locator_point: Relative position within the locator.
-	* nil means the center position of the current locator.
+	 * Releases the mouse button at the current mouse position within the locator.
+	 * right: true for right button, false for left button.
 	 */
-	MouseUp(locator_point *basic.Point) error
+	MouseUp(right bool) error
 
 	/*
 	* Drags from from_locator_point in the current locator to to_locator_point in the target locator.
@@ -209,9 +207,10 @@ type Locator interface {
 	DragTo(target Locator, from_locator_point *basic.Point, to_locator_point *basic.Point) error
 
 	/*
-	* Focuses the current locator.
-	* If the mouse is already inside the locator, it is considered focused.
-	* Otherwise, the mouse is moved to the locator center and clicked to obtain focus.
+	* Attempts to focus the current locator by clicking on the center point.
+	* The method moves the mouse to the center of the current locator and performs a click.
+	* Note: This method cannot guarantee success; focus may not be obtained depending on
+	* the control's behavior and the current UI state.
 	 */
 	Focus() error
 
@@ -254,7 +253,9 @@ type Locator interface {
 	GetLocatorCaretPos() *basic.Point
 
 	/*
-	* Simulates keyboard input.
+	* Simulates keyboard input at the current locator.
+	* This method first attempts to obtain focus for the locator,
+	* then sends the specified key sequence.
 	* keys: Key sequence to input (for example: ctrl + alt + del).
 	* Supported keys are defined by the Keyboard type.
 	 */
@@ -301,26 +302,28 @@ type Locator interface {
 	ClearText() error
 
 	/*
-	* Indicates whether vertical scrolling is available in the current locator area.
-	* return: true if vertical scrolling is supported; otherwise false.
+	* Checks whether vertical scrolling is supported in the current locator area.
+	* return: true if the locator can scroll vertically; otherwise false.
 	 */
-	IsVerticalScroller() bool
+	CanScrollVertical() bool
 	/*
 	* Performs vertical scrolling in the current locator area.
-	* up: Whether to scroll up; true for up, false for down.
-	* lines: Number of lines to scroll; larger values scroll farther.
+	* forward: true to scroll up, false to scroll down.
+	* distance: Relative scroll distance; the actual physical scroll distance depends on
+	* system settings, application configuration, and content layout. Larger values result in more scrolling.
 	 */
-	ScrollVertical(up bool, lines int) error
+	ScrollVertical(forward bool, distance int) error
 
 	/*
-	* Indicates whether horizontal scrolling is available in the current locator area.
-	* return: true if horizontal scrolling is supported; otherwise false.
+	* Checks whether horizontal scrolling is supported in the current locator area.
+	* return: true if the locator can scroll horizontally; otherwise false.
 	 */
-	IsHorizontalScroller() bool
+	CanScrollHorizontal() bool
 	/*
 	* Performs horizontal scrolling in the current locator area.
-	* left: Whether to scroll left; true for left, false for right.
-	* lines: Number of lines to scroll; larger values scroll farther.
+	* forward: true to scroll left, false to scroll right.
+	* distance: Relative scroll distance; the actual physical scroll distance depends on
+	* system settings, application configuration, and content layout. Larger values result in more scrolling.
 	 */
-	ScrollHorizontal(left bool, lines int) error
+	ScrollHorizontal(forward bool, distance int) error
 }

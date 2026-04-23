@@ -96,7 +96,9 @@ type GuiWindow interface {
 	GetWindowCaretPos() *basic.Point
 
 	/*
-	* Simulates keyboard input.
+	* Simulates keyboard input at the current window.
+	* This method will unfocus any control within the window that currently has focus,
+	* then set focus to the entire window, and finally send the specified key sequence.
 	* keys: Key sequence to input (for example: ctrl + alt + del).
 	* Supported keys are defined by the Keyboard type.
 	 */
