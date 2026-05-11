@@ -490,7 +490,7 @@ type YScript struct {
 	 */
 	ScriptDependencies []string `json:"script_dependencies"`
 	/*
-	* IPCDependencies is the list of IPC service dependencies.
+	* WorkerDependencies is the list of IPC service dependencies.
 	 */
-	IPCDependencies []string `json:"ipc_dependencies"`
+	WorkerDependencies []string `json:"worker_dependencies"`
 }

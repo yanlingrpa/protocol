@@ -1,14 +1,15 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-23T14:40:29Z",
+  "generated_at": "2026-05-11T03:55:27Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
-    "name": "extension",
-    "import_path": "yanlingrpa.com/yanling/protocol/extension",
-    "directory": "/extension",
+    "name": "component",
+    "import_path": "yanlingrpa.com/yanling/protocol/component",
+    "directory": "/component",
     "files": [
-      "extension/vision_extension.go"
+      "component/ocr_worker.go",
+      "component/vision_worker.go"
     ],
     "imports": [
       {
@@ -22,21 +23,86 @@
       "yanlingrpa.com/yanling/protocol/basic"
     ],
     "counts": {
-      "symbols": 1,
-      "interfaces": 1,
-      "methods": 4
+      "symbols": 2,
+      "interfaces": 2,
+      "methods": 5
     },
     "symbols": [
       {
-        "id": "yanlingrpa.com/yanling/protocol/extension#VisionExtension",
-        "name": "VisionExtension",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/extension.VisionExtension",
+        "id": "yanlingrpa.com/yanling/protocol/component#OcrWorker",
+        "name": "OcrWorker",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker",
         "kind": "interface",
-        "package": "extension",
-        "import_path": "yanlingrpa.com/yanling/protocol/extension",
-        "signature": "type VisionExtension interface",
+        "package": "component",
+        "import_path": "yanlingrpa.com/yanling/protocol/component",
+        "signature": "type OcrWorker interface",
         "source": {
-          "file": "extension/vision_extension.go",
+          "file": "component/ocr_worker.go",
+          "line": 5,
+          "column": 6
+        },
+        "methods": [
+          {
+            "name": "OcrImage",
+            "doc": "Performs OCR recognition on an image.\nimage: Byte array of the image.\nreturn: OCR result containing recognized text and corresponding position information.",
+            "params": [
+              {
+                "name": "image",
+                "type": "[]byte"
+              }
+            ],
+            "results": [
+              {
+                "type": "*basic.OcrResult"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "OcrImage(image []byte) (*basic.OcrResult, error)",
+            "type_refs": [
+              {
+                "expr": "basic.OcrResult",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
+              },
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "basic.OcrResult",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
+          },
+          {
+            "expr": "byte",
+            "builtin": true
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/component#VisionWorker",
+        "name": "VisionWorker",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/component.VisionWorker",
+        "kind": "interface",
+        "package": "component",
+        "import_path": "yanlingrpa.com/yanling/protocol/component",
+        "signature": "type VisionWorker interface",
+        "source": {
+          "file": "component/vision_worker.go",
           "line": 5,
           "column": 6
         },

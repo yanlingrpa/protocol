@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-04-23T14:40:29Z",
+  "generated_at": "2026-05-11T03:55:27Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -55,9 +55,9 @@
         ]
       },
       {
-        "path": "yanlingrpa.com/yanling/protocol/extension",
+        "path": "yanlingrpa.com/yanling/protocol/component",
         "aliases": [
-          "extension"
+          "component"
         ]
       },
       {
@@ -76,7 +76,7 @@
     "dependencies": [
       "time",
       "yanlingrpa.com/yanling/protocol/browser",
-      "yanlingrpa.com/yanling/protocol/extension",
+      "yanlingrpa.com/yanling/protocol/component",
       "yanlingrpa.com/yanling/protocol/osgui",
       "yanlingrpa.com/yanling/protocol/ossys"
     ],
@@ -85,7 +85,7 @@
       "interfaces": 2,
       "structs": 8,
       "functions": 1,
-      "methods": 26,
+      "methods": 27,
       "named_types": 1,
       "func_types": 1,
       "consts": 6
@@ -663,20 +663,20 @@
             ]
           },
           {
-            "name": "IPCInvoke",
-            "doc": "IPCInvoke calls an exposed API from another local IPC service.",
+            "name": "InvokeWorker",
+            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe specifier identifies the target worker, and the method is the name of the exposed method to call.\nThe dto is the data transfer object passed as an argument to the method.\nIt returns the result from the method call or an error if the invocation fails.",
             "params": [
               {
                 "name": "specifier",
                 "type": "string"
               },
               {
-                "name": "api",
+                "name": "method",
                 "type": "string"
               },
               {
-                "name": "args",
-                "type": "...any"
+                "name": "dto",
+                "type": "any"
               }
             ],
             "results": [
@@ -687,7 +687,7 @@
                 "type": "error"
               }
             ],
-            "signature": "IPCInvoke(specifier string, api string, args ...any) (any, error)",
+            "signature": "InvokeWorker(specifier string, method string, dto any) (any, error)",
             "type_refs": [
               {
                 "expr": "any",
@@ -722,8 +722,26 @@
             ]
           },
           {
+            "name": "OcrWorker",
+            "doc": "OcrWorker gets the OCR capability worker interface.",
+            "params": [],
+            "results": [
+              {
+                "type": "component.OcrWorker"
+              }
+            ],
+            "signature": "OcrWorker() component.OcrWorker",
+            "type_refs": [
+              {
+                "expr": "component.OcrWorker",
+                "import_path": "yanlingrpa.com/yanling/protocol/component",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker"
+              }
+            ]
+          },
+          {
             "name": "Publish",
-            "doc": "Publish publishes an event to the local event bus.",
+            "doc": "Publish publishes an event to the local event bus.\nThe topic is the name of the event topic to publish, and the data is the event payload.\nIt returns an error if the publication fails.",
             "params": [
               {
                 "name": "topic",
@@ -801,7 +819,7 @@
           },
           {
             "name": "Subscribe",
-            "doc": "Subscribe subscribes to an exposed event from another local IPC service or the current service.",
+            "doc": "Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe specifier identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.\nThe handler is the function that will be called when the event is published.\nIt returns a Subscriber object representing the subscription or an error if the subscription fails.",
             "params": [
               {
                 "name": "specifier",
@@ -850,7 +868,7 @@
           },
           {
             "name": "Unsubscribe",
-            "doc": "Unsubscribe cancels a subscription to an exposed event from another local IPC service or the current service.",
+            "doc": "Unsubscribe cancels a subscription to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe subscriber is the Subscriber object representing the subscription to cancel.",
             "params": [
               {
                 "name": "subscriber",
@@ -877,20 +895,20 @@
             ]
           },
           {
-            "name": "Vision",
-            "doc": "Vision gets the vision capability extension interface.",
+            "name": "VisionWorker",
+            "doc": "VisionWorker gets the vision capability worker interface.",
             "params": [],
             "results": [
               {
-                "type": "extension.VisionExtension"
+                "type": "component.VisionWorker"
               }
             ],
-            "signature": "Vision() extension.VisionExtension",
+            "signature": "VisionWorker() component.VisionWorker",
             "type_refs": [
               {
-                "expr": "extension.VisionExtension",
-                "import_path": "yanlingrpa.com/yanling/protocol/extension",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/extension.VisionExtension"
+                "expr": "component.VisionWorker",
+                "import_path": "yanlingrpa.com/yanling/protocol/component",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/component.VisionWorker"
               }
             ]
           }
@@ -922,13 +940,18 @@
             "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow"
           },
           {
-            "expr": "error",
-            "builtin": true
+            "expr": "component.OcrWorker",
+            "import_path": "yanlingrpa.com/yanling/protocol/component",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker"
           },
           {
-            "expr": "extension.VisionExtension",
-            "import_path": "yanlingrpa.com/yanling/protocol/extension",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/extension.VisionExtension"
+            "expr": "component.VisionWorker",
+            "import_path": "yanlingrpa.com/yanling/protocol/component",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/component.VisionWorker"
+          },
+          {
+            "expr": "error",
+            "builtin": true
           },
           {
             "expr": "osgui.GuiWindow",
@@ -1752,18 +1775,6 @@
             ]
           },
           {
-            "name": "IPCDependencies",
-            "type": "[]string",
-            "tag": "json:\"ipc_dependencies\"",
-            "doc": "IPCDependencies is the list of IPC service dependencies.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
             "name": "Module",
             "type": "ModuleInfo",
             "tag": "json:\"module\"",
@@ -1814,6 +1825,18 @@
                 "import_path": "yanlingrpa.com/yanling/protocol/script",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
                 "local": true
+              }
+            ]
+          },
+          {
+            "name": "WorkerDependencies",
+            "type": "[]string",
+            "tag": "json:\"worker_dependencies\"",
+            "doc": "WorkerDependencies is the list of IPC service dependencies.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           }

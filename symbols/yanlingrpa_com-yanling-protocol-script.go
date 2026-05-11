@@ -5,7 +5,7 @@ package symbols
 import (
 	"reflect"
 	"yanlingrpa.com/yanling/protocol/browser"
-	"yanlingrpa.com/yanling/protocol/extension"
+	"yanlingrpa.com/yanling/protocol/component"
 	"yanlingrpa.com/yanling/protocol/osgui"
 	"yanlingrpa.com/yanling/protocol/ossys"
 	"yanlingrpa.com/yanling/protocol/script"
@@ -54,14 +54,15 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WGuiWindow        func(id string) (osgui.GuiWindow, bool)
 	WHostSpecifier    func() string
 	WHttpClient       func() ossys.HttpClient
-	WIPCInvoke        func(specifier string, api string, args ...any) (any, error)
+	WInvokeWorker     func(specifier string, method string, dto any) (any, error)
 	WLogger           func() ossys.ScriptLogger
+	WOcrWorker        func() component.OcrWorker
 	WPublish          func(topic string, data any) error
 	WSetCacheData     func(key string, value any)
 	WStorage          func() ossys.LocalStorage
 	WSubscribe        func(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error)
 	WUnsubscribe      func(subscriber script.Subscriber) error
-	WVision           func() extension.VisionExtension
+	WVisionWorker     func() component.VisionWorker
 }
 
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
@@ -91,11 +92,14 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HostSpecifier() s
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossys.HttpClient {
 	return W.WHttpClient()
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IPCInvoke(specifier string, api string, args ...any) (any, error) {
-	return W.WIPCInvoke(specifier, api, args...)
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(specifier string, method string, dto any) (any, error) {
+	return W.WInvokeWorker(specifier, method, dto)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Logger() ossys.ScriptLogger {
 	return W.WLogger()
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) OcrWorker() component.OcrWorker {
+	return W.WOcrWorker()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Publish(topic string, data any) error {
 	return W.WPublish(topic, data)
@@ -112,8 +116,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Subscribe(specifi
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Unsubscribe(subscriber script.Subscriber) error {
 	return W.WUnsubscribe(subscriber)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Vision() extension.VisionExtension {
-	return W.WVision()
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) VisionWorker() component.VisionWorker {
+	return W.WVisionWorker()
 }
 
 // _yanlingrpa_com_yanling_protocol_script_Subscriber is an interface wrapper for Subscriber type

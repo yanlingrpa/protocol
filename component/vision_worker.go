@@ -1,8 +1,8 @@
-package extension
+package component
 
 import "yanlingrpa.com/yanling/protocol/basic"
 
-type VisionExtension interface {
+type VisionWorker interface {
 	/*
 	* Performs OCR recognition on an image.
 	* image: Byte array of the image.

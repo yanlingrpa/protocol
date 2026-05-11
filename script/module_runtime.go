@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"yanlingrpa.com/yanling/protocol/browser"
-	"yanlingrpa.com/yanling/protocol/extension"
+	"yanlingrpa.com/yanling/protocol/component"
 	"yanlingrpa.com/yanling/protocol/osgui"
 	"yanlingrpa.com/yanling/protocol/ossys"
 )
@@ -106,23 +106,36 @@ type ModuleRuntime interface {
 	 */
 	GetVariable(name string) (any, bool)
 	/*
-	* IPCInvoke calls an exposed API from another local IPC service.
+	* InvokeWorker calls an exposed method from another local IPC worker.
+	* The specifier identifies the target worker, and the method is the name of the exposed method to call.
+	* The dto is the data transfer object passed as an argument to the method.
+	* It returns the result from the method call or an error if the invocation fails.
 	 */
-	IPCInvoke(specifier string, api string, args ...any) (any, error)
+	InvokeWorker(specifier string, method string, dto any) (any, error)
 	/*
-	* Subscribe subscribes to an exposed event from another local IPC service or the current service.
+	* Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.
+	* The specifier identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.
+	* The handler is the function that will be called when the event is published.
+	* It returns a Subscriber object representing the subscription or an error if the subscription fails.
 	 */
 	Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error)
 	/*
-	* Unsubscribe cancels a subscription to an exposed event from another local IPC service or the current service.
+	* Unsubscribe cancels a subscription to an exposed event from another local IPC worker/yscript or the current worker/yscript.
+	* The subscriber is the Subscriber object representing the subscription to cancel.
 	 */
 	Unsubscribe(subscriber Subscriber) error
 	/*
 	* Publish publishes an event to the local event bus.
+	* The topic is the name of the event topic to publish, and the data is the event payload.
+	* It returns an error if the publication fails.
 	 */
 	Publish(topic string, data any) error
 	/*
-	* Vision gets the vision capability extension interface.
+	* VisionWorker gets the vision capability worker interface.
 	 */
-	Vision() extension.VisionExtension
+	VisionWorker() component.VisionWorker
+	/*
+	* OcrWorker gets the OCR capability worker interface.
+	 */
+	OcrWorker() component.OcrWorker
 }
