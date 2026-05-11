@@ -97,5 +97,9 @@
       "permission": "r",
       "abstract": "Read public metadata from Google APIs."
     }
+  ], 
+  "worker_dependencies": [
+    "ocr",
+    "vision"
   ]
 }

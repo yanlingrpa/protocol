@@ -33,6 +33,11 @@
       "type": "array",
       "description": "List of network API access permissions.",
       "items": { "$ref": "#/$defs/UrlPermission" }
+    },
+    "worker_dependencies": {
+      "type": "array",
+      "description": "List of worker dependencies required by the script.",
+      "items": { "type": "string" }
     }
   },
   "additionalProperties": false,

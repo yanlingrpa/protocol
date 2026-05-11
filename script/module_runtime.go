@@ -105,6 +105,7 @@ type ModuleRuntime interface {
 	* GetVariable gets a script variable value.
 	 */
 	GetVariable(name string) (any, bool)
+
 	/*
 	* InvokeWorker calls an exposed method from another local IPC worker.
 	* The specifier identifies the target worker, and the method is the name of the exposed method to call.
@@ -112,6 +113,7 @@ type ModuleRuntime interface {
 	* It returns the result from the method call or an error if the invocation fails.
 	 */
 	InvokeWorker(specifier string, method string, dto any) (any, error)
+
 	/*
 	* Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.
 	* The specifier identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.
