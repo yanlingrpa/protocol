@@ -20,6 +20,7 @@ var excludedDirs = map[string]struct{}{
 	"cmd":      {},
 	"doc":      {},
 	"internal": {},
+	"proto":    {},
 	"tests":    {},
 	"symbols":  {},
 	"schema":   {},

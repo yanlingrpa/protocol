@@ -1,18 +1,18 @@
 {
   "$schema": "../schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-12T03:48:03Z",
+  "generated_at": "2026-05-12T05:33:37Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
-    "packages": 8,
-    "symbols": 221,
+    "packages": 9,
+    "symbols": 238,
     "interfaces": 20,
-    "structs": 14,
+    "structs": 23,
     "functions": 6,
-    "methods": 261,
-    "named_types": 3,
+    "methods": 372,
+    "named_types": 4,
     "func_types": 1,
-    "consts": 177
+    "consts": 184
   },
   "files": {
     "symbol_index": "symbols.json",
@@ -130,13 +130,29 @@
       ]
     },
     {
+      "name": "proto",
+      "import_path": "yanlingrpa.com/yanling/protocol/proto",
+      "directory": "/proto",
+      "counts": {
+        "symbols": 16,
+        "structs": 8,
+        "methods": 111,
+        "named_types": 1,
+        "consts": 7
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json",
+      "dependencies": [
+        "google.golang.org/protobuf/reflect/protoreflect"
+      ]
+    },
+    {
       "name": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "directory": "/script",
       "counts": {
-        "symbols": 19,
+        "symbols": 20,
         "interfaces": 2,
-        "structs": 8,
+        "structs": 9,
         "functions": 1,
         "methods": 27,
         "named_types": 1,

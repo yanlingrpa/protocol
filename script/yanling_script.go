@@ -104,17 +104,49 @@ type GuiApplication struct {
 	 */
 	Name string `json:"name"`
 	/*
-	* Launcher is the launcher command or path.
+	* Launcher is the launcher command or executable path, for example C:\Program Files\App\app.exe or /usr/bin/app.
 	 */
 	Launcher string `json:"launcher"`
 	/*
-	* Process is the process name associated with the GUI window.
+	* Args is the command-line arguments passed to the launcher, for example ["--headless", "--no-sandbox"].
+	 */
+	Args []string `json:"args,omitempty"`
+	/*
+	* WorkDir is the working directory for the launched application.
+	* If empty, defaults to the directory of the launcher executable.
+	 */
+	WorkDir string `json:"work_dir,omitempty"`
+	/*
+	* Env is a list of environment variables in the format KEY=VALUE, for example ["PATH=/usr/bin", "DEBUG=1"].
+	 */
+	Env []string `json:"env,omitempty"`
+	/*
+	* Process is the process name associated with the GUI window, used for window detection and management.
 	 */
 	Process string `json:"process"`
 	/*
-	* Url is the URL used to open the GUI window, for example weixin://launchapplet?appid=xxxx.
+	* LaunchUri is the URI used to open the GUI window, for example weixin://launchapplet?appid=xxxx.
+	* If provided, the application will be launched and this URI will be opened.
 	 */
-	Url string `json:"url"`
+	LaunchUri string `json:"launch_uri,omitempty"`
+	/*
+	* Timeout is the timeout in milliseconds for launching the application.
+	* If 0, no timeout limit is applied.
+	 */
+	Timeout int `json:"timeout,omitempty"`
+	/*
+	* WaitTime is the wait time in milliseconds after launching the application before returning.
+	* Useful for allowing the GUI to fully initialize.
+	 */
+	WaitTime int `json:"wait_time,omitempty"`
+	/*
+	* WindowWidth is the preferred window width in pixels. If 0, uses default.
+	 */
+	WindowWidth int `json:"window_width,omitempty"`
+	/*
+	* WindowHeight is the preferred window height in pixels. If 0, uses default.
+	 */
+	WindowHeight int `json:"window_height,omitempty"`
 }
 
 /*
@@ -130,9 +162,93 @@ type WebApplication struct {
 	 */
 	Name string `json:"name"`
 	/*
-	* Url is the browser application URL, for example https://www.google.com.
+	* BrowserType is the browser type to use, for example "chrome", "firefox", "edge", "safari".
+	* If empty, defaults to system default browser.
+	 */
+	BrowserType string `json:"browser_type,omitempty"`
+	/*
+	* Url is the browser application URL to open, for example https://www.google.com.
 	 */
 	Url string `json:"url"`
+	/*
+	* Incognito indicates whether to open the browser in private/incognito mode.
+	 */
+	Incognito bool `json:"incognito,omitempty"`
+	/*
+	* Args is a list of additional browser command-line arguments, for example ["--proxy-server=localhost:8080", "--disable-plugins"].
+	 */
+	Args []string `json:"args,omitempty"`
+	/*
+	* UserDataDir is the custom user data directory for the browser profile.
+	* If empty, uses the default profile directory.
+	 */
+	UserDataDir string `json:"user_data_dir,omitempty"`
+	/*
+	* LoadTimeout is the timeout in milliseconds for page loading.
+	* If 0, no timeout limit is applied.
+	 */
+	LoadTimeout int `json:"load_timeout,omitempty"`
+	/*
+	* WaitTime is the wait time in milliseconds after opening the URL before returning.
+	* Useful for allowing the page to fully load.
+	 */
+	WaitTime int `json:"wait_time,omitempty"`
+	/*
+	* WindowWidth is the preferred window width in pixels. If 0, uses default.
+	 */
+	WindowWidth int `json:"window_width,omitempty"`
+	/*
+	* WindowHeight is the preferred window height in pixels. If 0, uses default.
+	 */
+	WindowHeight int `json:"window_height,omitempty"`
+}
+
+/*
+* MobileApplication defines mobile application configuration for Android/iOS devices.
+ */
+type MobileApplication struct {
+	/*
+	* Id is the unique identifier of the mobile application.
+	 */
+	Id string `json:"id"`
+	/*
+	* Name is the mobile application name.
+	 */
+	Name string `json:"name"`
+	/*
+	* Package is the application package name, for example com.example.app.
+	 */
+	Package string `json:"package"`
+	/*
+	* Activity is the Activity class name to launch, for example .MainActivity.
+	* Used with Package to form the component for adb command: adb shell am start -n package/activity.
+	 */
+	Activity string `json:"activity"`
+	/*
+	* Action is the Intent action, for example android.intent.action.MAIN or android.intent.action.VIEW.
+	* If empty, defaults to android.intent.action.MAIN.
+	 */
+	Action string `json:"action,omitempty"`
+	/*
+	* Flags is the Intent flags as a comma-separated list, for example "FLAG_ACTIVITY_NEW_TASK,FLAG_ACTIVITY_CLEAR_TOP".
+	* These are passed to adb with --flags parameter.
+	 */
+	Flags string `json:"flags,omitempty"`
+	/*
+	* Extras is a JSON object containing Intent extras (key-value pairs).
+	* For example: {"key1": "value1", "key2": "value2"}.
+	 */
+	Extras string `json:"extras,omitempty"`
+	/*
+	* Timeout is the timeout in milliseconds for starting the application.
+	* If 0, no timeout limit is applied.
+	 */
+	Timeout int `json:"timeout,omitempty"`
+	/*
+	* WaitTime is the wait time in milliseconds after launching the application before returning.
+	* Useful for allowing the app to fully initialize.
+	 */
+	WaitTime int `json:"wait_time,omitempty"`
 }
 
 /*
@@ -473,6 +589,10 @@ type YScript struct {
 	* WebApps is the list of web applications to operate.
 	 */
 	WebApps []WebApplication `json:"web_apps"`
+	/*
+	* MobileApps is the list of mobile applications to operate.
+	 */
+	MobileApps []MobileApplication `json:"mobile_apps"`
 	/*
 	* Variables is the list of global script variable definitions.
 	 */

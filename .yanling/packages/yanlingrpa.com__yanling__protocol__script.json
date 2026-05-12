@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-12T03:48:03Z",
+  "generated_at": "2026-05-12T05:33:37Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -81,9 +81,9 @@
       "yanlingrpa.com/yanling/protocol/ossys"
     ],
     "counts": {
-      "symbols": 19,
+      "symbols": 20,
       "interfaces": 2,
-      "structs": 8,
+      "structs": 9,
       "functions": 1,
       "methods": 27,
       "named_types": 1,
@@ -203,6 +203,30 @@
         },
         "fields": [
           {
+            "name": "Args",
+            "type": "[]string",
+            "tag": "json:\"args,omitempty\"",
+            "doc": "Args is the command-line arguments passed to the launcher, for example [\"--headless\", \"--no-sandbox\"].",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Env",
+            "type": "[]string",
+            "tag": "json:\"env,omitempty\"",
+            "doc": "Env is a list of environment variables in the format KEY=VALUE, for example [\"PATH=/usr/bin\", \"DEBUG=1\"].",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "Id",
             "type": "string",
             "tag": "json:\"id\"",
@@ -215,10 +239,22 @@
             ]
           },
           {
+            "name": "LaunchUri",
+            "type": "string",
+            "tag": "json:\"launch_uri,omitempty\"",
+            "doc": "LaunchUri is the URI used to open the GUI window, for example weixin://launchapplet?appid=xxxx.\nIf provided, the application will be launched and this URI will be opened.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "Launcher",
             "type": "string",
             "tag": "json:\"launcher\"",
-            "doc": "Launcher is the launcher command or path.",
+            "doc": "Launcher is the launcher command or executable path, for example C:\\Program Files\\App\\app.exe or /usr/bin/app.",
             "type_refs": [
               {
                 "expr": "string",
@@ -242,7 +278,7 @@
             "name": "Process",
             "type": "string",
             "tag": "json:\"process\"",
-            "doc": "Process is the process name associated with the GUI window.",
+            "doc": "Process is the process name associated with the GUI window, used for window detection and management.",
             "type_refs": [
               {
                 "expr": "string",
@@ -251,10 +287,58 @@
             ]
           },
           {
-            "name": "Url",
+            "name": "Timeout",
+            "type": "int",
+            "tag": "json:\"timeout,omitempty\"",
+            "doc": "Timeout is the timeout in milliseconds for launching the application.\nIf 0, no timeout limit is applied.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WaitTime",
+            "type": "int",
+            "tag": "json:\"wait_time,omitempty\"",
+            "doc": "WaitTime is the wait time in milliseconds after launching the application before returning.\nUseful for allowing the GUI to fully initialize.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WindowHeight",
+            "type": "int",
+            "tag": "json:\"window_height,omitempty\"",
+            "doc": "WindowHeight is the preferred window height in pixels. If 0, uses default.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WindowWidth",
+            "type": "int",
+            "tag": "json:\"window_width,omitempty\"",
+            "doc": "WindowWidth is the preferred window width in pixels. If 0, uses default.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WorkDir",
             "type": "string",
-            "tag": "json:\"url\"",
-            "doc": "Url is the URL used to open the GUI window, for example weixin://launchapplet?appid=xxxx.",
+            "tag": "json:\"work_dir,omitempty\"",
+            "doc": "WorkDir is the working directory for the launched application.\nIf empty, defaults to the directory of the launcher executable.",
             "type_refs": [
               {
                 "expr": "string",
@@ -264,6 +348,145 @@
           }
         ],
         "type_refs": [
+          {
+            "expr": "int",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#MobileApplication",
+        "name": "MobileApplication",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.MobileApplication",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "MobileApplication defines mobile application configuration for Android/iOS devices.",
+        "signature": "type MobileApplication struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 209,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Action",
+            "type": "string",
+            "tag": "json:\"action,omitempty\"",
+            "doc": "Action is the Intent action, for example android.intent.action.MAIN or android.intent.action.VIEW.\nIf empty, defaults to android.intent.action.MAIN.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Activity",
+            "type": "string",
+            "tag": "json:\"activity\"",
+            "doc": "Activity is the Activity class name to launch, for example .MainActivity.\nUsed with Package to form the component for adb command: adb shell am start -n package/activity.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Extras",
+            "type": "string",
+            "tag": "json:\"extras,omitempty\"",
+            "doc": "Extras is a JSON object containing Intent extras (key-value pairs).\nFor example: {\"key1\": \"value1\", \"key2\": \"value2\"}.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Flags",
+            "type": "string",
+            "tag": "json:\"flags,omitempty\"",
+            "doc": "Flags is the Intent flags as a comma-separated list, for example \"FLAG_ACTIVITY_NEW_TASK,FLAG_ACTIVITY_CLEAR_TOP\".\nThese are passed to adb with --flags parameter.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Id",
+            "type": "string",
+            "tag": "json:\"id\"",
+            "doc": "Id is the unique identifier of the mobile application.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "tag": "json:\"name\"",
+            "doc": "Name is the mobile application name.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Package",
+            "type": "string",
+            "tag": "json:\"package\"",
+            "doc": "Package is the application package name, for example com.example.app.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Timeout",
+            "type": "int",
+            "tag": "json:\"timeout,omitempty\"",
+            "doc": "Timeout is the timeout in milliseconds for starting the application.\nIf 0, no timeout limit is applied.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WaitTime",
+            "type": "int",
+            "tag": "json:\"wait_time,omitempty\"",
+            "doc": "WaitTime is the wait time in milliseconds after launching the application before returning.\nUseful for allowing the app to fully initialize.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "int",
+            "builtin": true
+          },
           {
             "expr": "string",
             "builtin": true
@@ -1000,7 +1223,7 @@
         "signature": "ParseSpecifier(spec string) (Specifier, error)",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 399,
+          "line": 515,
           "column": 1
         },
         "params": [
@@ -1045,7 +1268,7 @@
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 141,
+          "line": 257,
           "column": 6
         },
         "fields": [
@@ -1152,7 +1375,7 @@
         "signature": "type Specifier struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 250,
+          "line": 366,
           "column": 6
         },
         "fields": [
@@ -1380,7 +1603,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 232,
+          "line": 348,
           "column": 6
         },
         "fields": [
@@ -1669,10 +1892,34 @@
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 123,
+          "line": 155,
           "column": 6
         },
         "fields": [
+          {
+            "name": "Args",
+            "type": "[]string",
+            "tag": "json:\"args,omitempty\"",
+            "doc": "Args is a list of additional browser command-line arguments, for example [\"--proxy-server=localhost:8080\", \"--disable-plugins\"].",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "BrowserType",
+            "type": "string",
+            "tag": "json:\"browser_type,omitempty\"",
+            "doc": "BrowserType is the browser type to use, for example \"chrome\", \"firefox\", \"edge\", \"safari\".\nIf empty, defaults to system default browser.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
           {
             "name": "Id",
             "type": "string",
@@ -1681,6 +1928,30 @@
             "type_refs": [
               {
                 "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Incognito",
+            "type": "bool",
+            "tag": "json:\"incognito,omitempty\"",
+            "doc": "Incognito indicates whether to open the browser in private/incognito mode.",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "LoadTimeout",
+            "type": "int",
+            "tag": "json:\"load_timeout,omitempty\"",
+            "doc": "LoadTimeout is the timeout in milliseconds for page loading.\nIf 0, no timeout limit is applied.",
+            "type_refs": [
+              {
+                "expr": "int",
                 "builtin": true
               }
             ]
@@ -1701,16 +1972,72 @@
             "name": "Url",
             "type": "string",
             "tag": "json:\"url\"",
-            "doc": "Url is the browser application URL, for example https://www.google.com.",
+            "doc": "Url is the browser application URL to open, for example https://www.google.com.",
             "type_refs": [
               {
                 "expr": "string",
                 "builtin": true
               }
             ]
+          },
+          {
+            "name": "UserDataDir",
+            "type": "string",
+            "tag": "json:\"user_data_dir,omitempty\"",
+            "doc": "UserDataDir is the custom user data directory for the browser profile.\nIf empty, uses the default profile directory.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WaitTime",
+            "type": "int",
+            "tag": "json:\"wait_time,omitempty\"",
+            "doc": "WaitTime is the wait time in milliseconds after opening the URL before returning.\nUseful for allowing the page to fully load.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WindowHeight",
+            "type": "int",
+            "tag": "json:\"window_height,omitempty\"",
+            "doc": "WindowHeight is the preferred window height in pixels. If 0, uses default.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WindowWidth",
+            "type": "int",
+            "tag": "json:\"window_width,omitempty\"",
+            "doc": "WindowWidth is the preferred window width in pixels. If 0, uses default.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
           }
         ],
         "type_refs": [
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          },
           {
             "expr": "string",
             "builtin": true
@@ -1728,7 +2055,7 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 463,
+          "line": 579,
           "column": 6
         },
         "fields": [
@@ -1770,6 +2097,20 @@
                 "expr": "GuiApplication",
                 "import_path": "yanlingrpa.com/yanling/protocol/script",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/script.GuiApplication",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "MobileApps",
+            "type": "[]MobileApplication",
+            "tag": "json:\"mobile_apps\"",
+            "doc": "MobileApps is the list of mobile applications to operate.",
+            "type_refs": [
+              {
+                "expr": "MobileApplication",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.MobileApplication",
                 "local": true
               }
             ]
@@ -1846,6 +2187,12 @@
             "expr": "GuiApplication",
             "import_path": "yanlingrpa.com/yanling/protocol/script",
             "qualified_name": "yanlingrpa.com/yanling/protocol/script.GuiApplication",
+            "local": true
+          },
+          {
+            "expr": "MobileApplication",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.MobileApplication",
             "local": true
           },
           {

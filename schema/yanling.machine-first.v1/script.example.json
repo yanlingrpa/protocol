@@ -17,19 +17,49 @@
       "id": "notepad",
       "name": "Windows Notepad",
       "launcher": "notepad.exe",
-      "process": "notepad.exe"
+      "process": "notepad.exe",
+      "wait_time": 500,
+      "window_width": 800,
+      "window_height": 600
     }
   ],
   "web_apps": [
     {
       "id": "google",
       "name": "Google",
-      "url": "https://www.google.com"
+      "url": "https://www.google.com",
+      "browser_type": "chrome",
+      "wait_time": 1000,
+      "window_width": 1280,
+      "window_height": 720
     },
     {
       "id": "internal-dashboard",
       "name": "Internal Dashboard",
-      "url": "https://dashboard.example.com"
+      "url": "https://dashboard.example.com",
+      "browser_type": "chrome",
+      "incognito": false,
+      "load_timeout": 30000,
+      "wait_time": 2000
+    }
+  ],
+  "mobile_apps": [
+    {
+      "id": "wechat",
+      "name": "WeChat",
+      "package": "com.tencent.mm",
+      "activity": ".ui.LauncherUI",
+      "action": "android.intent.action.MAIN",
+      "wait_time": 1500
+    },
+    {
+      "id": "alipay",
+      "name": "Alipay",
+      "package": "com.eg.android.AlipayGphone",
+      "activity": ".AlipayLogin",
+      "flags": "FLAG_ACTIVITY_NEW_TASK,FLAG_ACTIVITY_CLEAR_TOP",
+      "timeout": 15000,
+      "wait_time": 2000
     }
   ],
   "variables": [
@@ -98,6 +128,10 @@
       "abstract": "Read public metadata from Google APIs."
     }
   ], 
+  "script_dependencies": [
+    "github.com/yanlingrpa/utils@v1.0.0",
+    "github.com/yanlingrpa/web-driver@v2.1.0"
+  ],
   "worker_dependencies": [
     "ocr",
     "vision"
