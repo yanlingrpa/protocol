@@ -20,9 +20,9 @@ import (
 const schemaVersion = "yanling.machine-first/v1"
 
 const (
-	moduleSchemaRef  = "../schema/yanling.machine-first.v1/module.schema.json"
-	symbolsSchemaRef = "../schema/yanling.machine-first.v1/symbols.schema.json"
-	packageSchemaRef = "../../schema/yanling.machine-first.v1/package.schema.json"
+	moduleSchemaRef  = "./schema/yanling.machine-first.v1/module.schema.json"
+	symbolsSchemaRef = "./schema/yanling.machine-first.v1/symbols.schema.json"
+	packageSchemaRef = "./../schema/yanling.machine-first.v1/package.schema.json"
 )
 
 var excludedTopLevelDirs = map[string]struct{}{
