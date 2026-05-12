@@ -1,18 +1,18 @@
 {
   "$schema": "../schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-11T05:50:02Z",
+  "generated_at": "2026-05-12T03:48:03Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
-    "packages": 6,
-    "symbols": 199,
-    "interfaces": 16,
+    "packages": 8,
+    "symbols": 221,
+    "interfaces": 20,
     "structs": 14,
     "functions": 6,
-    "methods": 234,
-    "named_types": 2,
+    "methods": 261,
+    "named_types": 3,
     "func_types": 1,
-    "consts": 160
+    "consts": 177
   },
   "files": {
     "symbol_index": "symbols.json",
@@ -20,6 +20,24 @@
     "package_dir": "packages"
   },
   "packages": [
+    {
+      "name": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "directory": "/appgui",
+      "counts": {
+        "symbols": 20,
+        "interfaces": 2,
+        "methods": 27,
+        "named_types": 1,
+        "consts": 17
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "dependencies": [
+        "time",
+        "yanlingrpa.com/yanling/protocol/basic",
+        "yanlingrpa.com/yanling/protocol/internal/gui"
+      ]
+    },
     {
       "name": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
@@ -64,13 +82,27 @@
       ]
     },
     {
+      "name": "gui",
+      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+      "directory": "/internal/gui",
+      "counts": {
+        "symbols": 2,
+        "interfaces": 2,
+        "methods": 34
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json",
+      "dependencies": [
+        "yanlingrpa.com/yanling/protocol/basic"
+      ]
+    },
+    {
       "name": "osgui",
       "import_path": "yanlingrpa.com/yanling/protocol/osgui",
       "directory": "/osgui",
       "counts": {
         "symbols": 157,
         "interfaces": 2,
-        "methods": 67,
+        "methods": 33,
         "named_types": 1,
         "consts": 154
       },
@@ -78,6 +110,7 @@
       "dependencies": [
         "time",
         "yanlingrpa.com/yanling/protocol/basic",
+        "yanlingrpa.com/yanling/protocol/internal/gui",
         "yanlingrpa.com/yanling/protocol/ossys"
       ]
     },

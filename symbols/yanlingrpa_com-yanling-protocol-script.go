@@ -51,7 +51,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WFileSystem       func() ossys.LocalFilesystem
 	WGetCacheData     func(key string) (any, bool)
 	WGetVariable      func(name string) (any, bool)
-	WGuiWindow        func(id string) (osgui.GuiWindow, bool)
+	WGuiWindow        func(id string) (osgui.OSGuiWindow, bool)
 	WHostSpecifier    func() string
 	WHttpClient       func() ossys.HttpClient
 	WInvokeWorker     func(specifier string, method string, dto any) (any, error)
@@ -83,7 +83,7 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetCacheData(key 
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetVariable(name string) (any, bool) {
 	return W.WGetVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GuiWindow(id string) (osgui.GuiWindow, bool) {
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GuiWindow(id string) (osgui.OSGuiWindow, bool) {
 	return W.WGuiWindow(id)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HostSpecifier() string {

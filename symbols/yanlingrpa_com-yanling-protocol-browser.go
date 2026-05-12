@@ -334,7 +334,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitSelector(se
 type _yanlingrpa_com_yanling_protocol_browser_BrowserWindow struct {
 	IValue              interface{}
 	WActivate           func() (bool, error)
-	WBodyLocator        func() (osgui.Locator, error)
+	WBodyLocator        func() (osgui.OSGuiLocator, error)
 	WClose              func() error
 	WCurrentPage        func() browser.BrowserTabPage
 	WDeActivate         func() (bool, error)
@@ -354,7 +354,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserWindow struct {
 	WNewTabPage         func(id string, url string) (browser.BrowserTabPage, error)
 	WPressKeys          func(keys ...osgui.Keyboard) error
 	WReadClipboard      func() (string, error)
-	WRectLocator        func(rect basic.Rect) (osgui.Locator, error)
+	WRectLocator        func(rect basic.Rect) (osgui.OSGuiLocator, error)
 	WResizeTo           func(width int, height int) (bool, error)
 	WSnapshot           func(gray bool) ([]byte, error)
 	WToMap              func() map[string]any
@@ -366,7 +366,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserWindow struct {
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Activate() (bool, error) {
 	return W.WActivate()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) BodyLocator() (osgui.Locator, error) {
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) BodyLocator() (osgui.OSGuiLocator, error) {
 	return W.WBodyLocator()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Close() error {
@@ -426,7 +426,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) PressKeys(keys .
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) ReadClipboard() (string, error) {
 	return W.WReadClipboard()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) RectLocator(rect basic.Rect) (osgui.Locator, error) {
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) RectLocator(rect basic.Rect) (osgui.OSGuiLocator, error) {
 	return W.WRectLocator(rect)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) ResizeTo(width int, height int) (bool, error) {

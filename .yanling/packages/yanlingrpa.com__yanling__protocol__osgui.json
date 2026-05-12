@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-11T05:50:02Z",
+  "generated_at": "2026-05-12T03:48:03Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "osgui",
@@ -26,6 +26,12 @@
         ]
       },
       {
+        "path": "yanlingrpa.com/yanling/protocol/internal/gui",
+        "aliases": [
+          "gui"
+        ]
+      },
+      {
         "path": "yanlingrpa.com/yanling/protocol/ossys",
         "aliases": [
           "ossys"
@@ -35,12 +41,13 @@
     "dependencies": [
       "time",
       "yanlingrpa.com/yanling/protocol/basic",
+      "yanlingrpa.com/yanling/protocol/internal/gui",
       "yanlingrpa.com/yanling/protocol/ossys"
     ],
     "counts": {
       "symbols": 157,
       "interfaces": 2,
-      "methods": 67,
+      "methods": 33,
       "named_types": 1,
       "consts": 154
     },
@@ -1825,634 +1832,6 @@
         ]
       },
       {
-        "id": "yanlingrpa.com/yanling/protocol/osgui#GuiWindow",
-        "name": "GuiWindow",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow",
-        "kind": "interface",
-        "package": "osgui",
-        "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-        "doc": "GuiWindow defines the interface of a GUI window, providing methods for window information,\nwindow operations, and simulated input.",
-        "signature": "type GuiWindow interface",
-        "source": {
-          "file": "osgui/osgui_window.go",
-          "line": 12,
-          "column": 6
-        },
-        "methods": [
-          {
-            "name": "Activate",
-            "doc": "Activates the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "Activate() (bool, error)",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "BodyLocator",
-            "doc": "Gets the locator for the window client area.",
-            "params": [],
-            "results": [
-              {
-                "type": "Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "BodyLocator() (Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Close",
-            "doc": "Closes the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "Close() error",
-            "type_refs": [
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "DeActivate",
-            "doc": "Deactivates the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "DeActivate() (bool, error)",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GetClientRect",
-            "doc": "Gets the client-area rectangle in screen coordinates.",
-            "params": [],
-            "results": [
-              {
-                "type": "basic.Rect"
-              }
-            ],
-            "signature": "GetClientRect() basic.Rect",
-            "type_refs": [
-              {
-                "expr": "basic.Rect",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-              }
-            ]
-          },
-          {
-            "name": "GetHwnd",
-            "doc": "Gets the native window handle.",
-            "params": [],
-            "results": [
-              {
-                "type": "uintptr"
-              }
-            ],
-            "signature": "GetHwnd() uintptr",
-            "type_refs": [
-              {
-                "expr": "uintptr",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GetID",
-            "doc": "Gets the unique identifier of the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "GetID() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GetInitiatorPath",
-            "doc": "Gets the executable path of the process that launched the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "GetInitiatorPath() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GetMonitor",
-            "doc": "Gets information about the monitor that contains the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "ossys.MonitorInfo"
-              }
-            ],
-            "signature": "GetMonitor() ossys.MonitorInfo",
-            "type_refs": [
-              {
-                "expr": "ossys.MonitorInfo",
-                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo"
-              }
-            ]
-          },
-          {
-            "name": "GetWindowCaretPos",
-            "doc": "Gets the current IME caret position relative to the window; returns nil if outside the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "GetWindowCaretPos() *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "GetWindowCursorPos",
-            "doc": "Gets the mouse position relative to the current window; returns nil if outside the window.",
-            "params": [],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "GetWindowCursorPos() *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "GetWindowRect",
-            "doc": "Gets the window rectangle in screen coordinates.",
-            "params": [],
-            "results": [
-              {
-                "type": "basic.Rect"
-              }
-            ],
-            "signature": "GetWindowRect() basic.Rect",
-            "type_refs": [
-              {
-                "expr": "basic.Rect",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-              }
-            ]
-          },
-          {
-            "name": "GetWindowSchema",
-            "doc": "Gets the application path associated with the window itself.",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "GetWindowSchema() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GetWindowTitle",
-            "doc": "Gets the window title.",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "GetWindowTitle() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "MoveTo",
-            "doc": "Moves the window to the specified position.",
-            "params": [
-              {
-                "name": "global_x",
-                "type": "int"
-              },
-              {
-                "name": "global_y",
-                "type": "int"
-              }
-            ],
-            "results": [
-              {
-                "type": "bool"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "MoveTo(global_x int, global_y int) (bool, error)",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "int",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "PressKeys",
-            "doc": "Simulates keyboard input at the current window.\nThis method will unfocus any control within the window that currently has focus,\nthen set focus to the entire window, and finally send the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
-            "params": [
-              {
-                "name": "keys",
-                "type": "...Keyboard"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "PressKeys(keys ...Keyboard) error",
-            "type_refs": [
-              {
-                "expr": "Keyboard",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ReadClipboard",
-            "doc": "Reads clipboard text.",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "ReadClipboard() (string, error)",
-            "type_refs": [
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "RectLocator",
-            "doc": "Gets a locator for the specified rectangle, clipped to the window bounds.",
-            "params": [
-              {
-                "name": "rect",
-                "type": "basic.Rect"
-              }
-            ],
-            "results": [
-              {
-                "type": "Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "RectLocator(rect basic.Rect) (Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "basic.Rect",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ResizeTo",
-            "doc": "Resizes the window.",
-            "params": [
-              {
-                "name": "width",
-                "type": "int"
-              },
-              {
-                "name": "height",
-                "type": "int"
-              }
-            ],
-            "results": [
-              {
-                "type": "bool"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "ResizeTo(width int, height int) (bool, error)",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "int",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Snapshot",
-            "doc": "Captures a snapshot of the current window area and returns image bytes.\ngray: Whether to use grayscale.",
-            "params": [
-              {
-                "name": "gray",
-                "type": "bool"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]byte"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "Snapshot(gray bool) ([]byte, error)",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "byte",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ToMap",
-            "doc": "Exports current window information as key-value pairs.",
-            "params": [],
-            "results": [
-              {
-                "type": "map[string]any"
-              }
-            ],
-            "signature": "ToMap() map[string]any",
-            "type_refs": [
-              {
-                "expr": "any",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "TransFromScreen",
-            "doc": "Converts an absolute screen position to a window-relative position.\nscreen_pos: Absolute position on the screen.\nreturn: Relative position inside the window; returns nil if the point is outside the window.",
-            "params": [
-              {
-                "name": "screen_pos",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransFromScreen(screen_pos *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "TransToScreen",
-            "doc": "Converts a window-relative position to an absolute screen position.\nwindow_pos: Relative position inside the window.\nreturn: Absolute position on the screen.",
-            "params": [
-              {
-                "name": "window_pos",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransToScreen(window_pos *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "WriteClipboard",
-            "doc": "Writes text to the clipboard.",
-            "params": [
-              {
-                "name": "text",
-                "type": "string"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WriteClipboard(text string) error",
-            "type_refs": [
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          }
-        ],
-        "type_refs": [
-          {
-            "expr": "Keyboard",
-            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
-            "local": true
-          },
-          {
-            "expr": "Locator",
-            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-            "local": true
-          },
-          {
-            "expr": "any",
-            "builtin": true
-          },
-          {
-            "expr": "basic.Point",
-            "import_path": "yanlingrpa.com/yanling/protocol/basic",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-          },
-          {
-            "expr": "basic.Rect",
-            "import_path": "yanlingrpa.com/yanling/protocol/basic",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-          },
-          {
-            "expr": "bool",
-            "builtin": true
-          },
-          {
-            "expr": "byte",
-            "builtin": true
-          },
-          {
-            "expr": "error",
-            "builtin": true
-          },
-          {
-            "expr": "int",
-            "builtin": true
-          },
-          {
-            "expr": "ossys.MonitorInfo",
-            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo"
-          },
-          {
-            "expr": "string",
-            "builtin": true
-          },
-          {
-            "expr": "uintptr",
-            "builtin": true
-          }
-        ]
-      },
-      {
         "id": "yanlingrpa.com/yanling/protocol/osgui#Home",
         "name": "Home",
         "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Home",
@@ -3622,1292 +3001,6 @@
         ]
       },
       {
-        "id": "yanlingrpa.com/yanling/protocol/osgui#Locator",
-        "name": "Locator",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-        "kind": "interface",
-        "package": "osgui",
-        "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-        "doc": "Locator defines a locator interface that provides methods for retrieving locator information,\noperating on the locator, and simulating input.",
-        "signature": "type Locator interface",
-        "source": {
-          "file": "osgui/osgui_locator.go",
-          "line": 13,
-          "column": 6
-        },
-        "methods": [
-          {
-            "name": "CanScrollHorizontal",
-            "doc": "Checks whether horizontal scrolling is supported in the current locator area.\nreturn: true if the locator can scroll horizontally; otherwise false.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "CanScrollHorizontal() bool",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "CanScrollVertical",
-            "doc": "Checks whether vertical scrolling is supported in the current locator area.\nreturn: true if the locator can scroll vertically; otherwise false.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "CanScrollVertical() bool",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "CardLocator",
-            "doc": "Finds card-like sub-locators in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
-            "params": [
-              {
-                "name": "min_size",
-                "type": "*basic.Size"
-              },
-              {
-                "name": "max_size",
-                "type": "*basic.Size"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "CardLocator(min_size *basic.Size, max_size *basic.Size) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "basic.Size",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ClearText",
-            "doc": "Clears text content in the current locator.\nEquivalent to clicking the locator, selecting all text, and pressing Delete\nor Backspace to clear content.\nreturn: nil on success, otherwise an error.",
-            "params": [],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "ClearText() error",
-            "type_refs": [
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Click",
-            "doc": "Performs a mouse click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "Click(locator_point *basic.Point) error",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "DoubleClick",
-            "doc": "Performs a mouse double-click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "DoubleClick(locator_point *basic.Point) error",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "DragTo",
-            "doc": "Drags from a start position to an end position within the current locator.\nBoth positions are relative coordinates within the current locator.\nfrom_locator_point: Relative start position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.\nto_locator_point: Relative end position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.",
-            "params": [
-              {
-                "name": "from_locator_point",
-                "type": "*basic.Point"
-              },
-              {
-                "name": "to_locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Focus",
-            "doc": "Attempts to focus the current locator by clicking on the center point.\nThe method moves the mouse to the center of the current locator and performs a click.\nNote: This method cannot guarantee success; focus may not be obtained depending on\nthe control's behavior and the current UI state.",
-            "params": [],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "Focus() error",
-            "type_refs": [
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GetBodyRect",
-            "doc": "Returns the position and size of the current locator relative to its body area.\nBody: The client area of a window, excluding non-client parts such as title bar and borders,\nusually where the application content is displayed.",
-            "params": [],
-            "results": [
-              {
-                "type": "basic.Rect"
-              }
-            ],
-            "signature": "GetBodyRect() basic.Rect",
-            "type_refs": [
-              {
-                "expr": "basic.Rect",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-              }
-            ]
-          },
-          {
-            "name": "GetLocatorCaretPos",
-            "doc": "Gets the IME caret position inside the current locator; returns nil if unavailable.\nExample: When an input box is focused, the IME caret usually appears inside it,\nand this method can retrieve its relative position in the locator.\nreturn: Relative IME caret position in the locator; returns nil if unavailable.",
-            "params": [],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "GetLocatorCaretPos() *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "GetLocatorCursorPos",
-            "doc": "Gets the mouse position relative to the current locator.\nreturn: Relative mouse position in the current locator; returns nil if outside.",
-            "params": [],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "GetLocatorCursorPos() *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "GetScreenRect",
-            "doc": "Returns the absolute position and size of the current locator on the screen.",
-            "params": [],
-            "results": [
-              {
-                "type": "basic.Rect"
-              }
-            ],
-            "signature": "GetScreenRect() basic.Rect",
-            "type_refs": [
-              {
-                "expr": "basic.Rect",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-              }
-            ]
-          },
-          {
-            "name": "GetSize",
-            "doc": "Gets the size of the current locator.",
-            "params": [],
-            "results": [
-              {
-                "type": "basic.Size"
-              }
-            ],
-            "signature": "GetSize() basic.Size",
-            "type_refs": [
-              {
-                "expr": "basic.Size",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-              }
-            ]
-          },
-          {
-            "name": "GetWindowRect",
-            "doc": "Gets the position and size of the current locator within its parent window.\nReturns the locator rectangle relative to its parent window.",
-            "params": [],
-            "results": [
-              {
-                "type": "basic.Rect"
-              }
-            ],
-            "signature": "GetWindowRect() basic.Rect",
-            "type_refs": [
-              {
-                "expr": "basic.Rect",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-              }
-            ]
-          },
-          {
-            "name": "ImageLocator",
-            "doc": "Finds sub-locators containing visually similar images within the current locator area.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by similarity descending, and items below the threshold are filtered out.",
-            "params": [
-              {
-                "name": "image",
-                "type": "string"
-              },
-              {
-                "name": "sim",
-                "type": "float32"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "ImageLocator(image string, sim float32) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "float32",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "IsEditing",
-            "doc": "Indicates whether the current locator is in a text-editable state.\nExample: After clicking an input box, it usually enters editable state,\nand keyboard input can be sent to it.\nreturn: true if text input is available; otherwise false.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "IsEditing() bool",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "MouseDown",
-            "doc": "Presses the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
-            "params": [
-              {
-                "name": "right",
-                "type": "bool"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "MouseDown(right bool) error",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "MouseMove",
-            "doc": "Moves the mouse to a specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means the center position of the current locator.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "MouseMove(locator_point *basic.Point) error",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "MouseUp",
-            "doc": "Releases the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
-            "params": [
-              {
-                "name": "right",
-                "type": "bool"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "MouseUp(right bool) error",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "OcrRead",
-            "doc": "Performs OCR on the current locator area and returns the recognition result.\nconfidence: Recognition confidence threshold in range 0.1~1.0; higher means more strict.",
-            "params": [
-              {
-                "name": "confidence",
-                "type": "float64"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.OcrResult"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "OcrRead(confidence float64) (*basic.OcrResult, error)",
-            "type_refs": [
-              {
-                "expr": "basic.OcrResult",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "float64",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "PressKeys",
-            "doc": "Simulates keyboard input at the current locator.\nThis method first attempts to obtain focus for the locator,\nthen sends the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
-            "params": [
-              {
-                "name": "keys",
-                "type": "...Keyboard"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "PressKeys(keys ...Keyboard) error",
-            "type_refs": [
-              {
-                "expr": "Keyboard",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ReadText",
-            "doc": "Reads text content from the current locator.\nEquivalent to clicking the locator, selecting all text, copying to clipboard,\nand then reading text from the clipboard.\nIf clipboard text cannot be read, OCR is attempted directly on the locator area.\nreturn: Text content in the locator; returns error if content cannot be obtained.",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "ReadText() (string, error)",
-            "type_refs": [
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "RightClick",
-            "doc": "Performs a mouse right-click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "RightClick(locator_point *basic.Point) error",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ScrollHorizontal",
-            "doc": "Performs horizontal scrolling in the current locator area.\nforward: true to scroll left, false to scroll right.\ndistance: Relative scroll distance; the actual physical scroll distance depends on\nsystem settings, application configuration, and content layout. Larger values result in more scrolling.",
-            "params": [
-              {
-                "name": "forward",
-                "type": "bool"
-              },
-              {
-                "name": "distance",
-                "type": "int"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "ScrollHorizontal(forward bool, distance int) error",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "int",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ScrollVertical",
-            "doc": "Performs vertical scrolling in the current locator area.\nforward: true to scroll up, false to scroll down.\ndistance: Relative scroll distance; the actual physical scroll distance depends on\nsystem settings, application configuration, and content layout. Larger values result in more scrolling.",
-            "params": [
-              {
-                "name": "forward",
-                "type": "bool"
-              },
-              {
-                "name": "distance",
-                "type": "int"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "ScrollVertical(forward bool, distance int) error",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "int",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Snapshot",
-            "doc": "Captures a snapshot of the current locator area and returns image bytes.\ngray: Whether to use grayscale.",
-            "params": [
-              {
-                "name": "gray",
-                "type": "bool"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]byte"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "Snapshot(gray bool) ([]byte, error)",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "byte",
-                "builtin": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "SubLocator",
-            "doc": "Gets a sub-locator of the current locator, clipped to the intersection with current bounds.\nlocator_point: Relative position of the sub-locator within the current locator.\nsize: Size of the sub-locator.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "basic.Point"
-              },
-              {
-                "name": "size",
-                "type": "basic.Size"
-              }
-            ],
-            "results": [
-              {
-                "type": "Locator"
-              }
-            ],
-            "signature": "SubLocator(locator_point basic.Point, size basic.Size) Locator",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              },
-              {
-                "expr": "basic.Size",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-              }
-            ]
-          },
-          {
-            "name": "TextLocator",
-            "doc": "Finds sub-locators containing specified text within the current locator area.\ntexts: Text list to find. Multiple texts mean all must be present.\nreturn: List of matched sub-locators; returns nil if none are found.\nOnly locators containing all texts are returned, sorted by area from small to large.",
-            "params": [
-              {
-                "name": "texts",
-                "type": "...string"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "TextLocator(texts ...string) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ToMap",
-            "doc": "Converts to a map object.",
-            "params": [],
-            "results": [
-              {
-                "type": "map[string]any"
-              }
-            ],
-            "signature": "ToMap() map[string]any",
-            "type_refs": [
-              {
-                "expr": "any",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "TransFromBody",
-            "doc": "Converts a position relative to the client area to a relative position within the current locator.\nbody_pos: Relative position within the client area.\nreturn: Relative position within the locator; returns nil if the point is outside the locator.",
-            "params": [
-              {
-                "name": "body_pos",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransFromBody(body_pos *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "TransFromScreen",
-            "doc": "Converts an absolute screen position to a relative position within the current locator.\nscreen_pos: Absolute position on the screen.\nreturn: Relative position within the locator; returns nil if the point is outside the locator.",
-            "params": [
-              {
-                "name": "screen_pos",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransFromScreen(screen_pos *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "TransFromWindow",
-            "doc": "Converts a position relative to the parent window to a relative position within the current locator.\nwindow_pos: Relative position within the window.\nreturn: Relative position within the locator; returns nil if the point is outside the locator.",
-            "params": [
-              {
-                "name": "window_pos",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransFromWindow(window_pos *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "TransToBody",
-            "doc": "Converts a locator-relative position to a relative position within the client area.\nlocator_point: Relative position within the locator.\nreturn: Relative position within the client area.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransToBody(locator_point *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "TransToScreen",
-            "doc": "Converts a locator-relative position to an absolute screen position.\nlocator_point: Relative position within the locator.\nreturn: Absolute position on the screen.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransToScreen(locator_point *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "TransToWindow",
-            "doc": "Converts a locator-relative position to a relative position within the parent window.\nlocator_point: Relative position within the locator.\nreturn: Relative position within the window.",
-            "params": [
-              {
-                "name": "locator_point",
-                "type": "*basic.Point"
-              }
-            ],
-            "results": [
-              {
-                "type": "*basic.Point"
-              }
-            ],
-            "signature": "TransToWindow(locator_point *basic.Point) *basic.Point",
-            "type_refs": [
-              {
-                "expr": "basic.Point",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-              }
-            ]
-          },
-          {
-            "name": "VisionLocator",
-            "doc": "Uses the vision module to find sub-locators with specific visual shapes\nin the current locator area.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
-            "params": [
-              {
-                "name": "description",
-                "type": "string"
-              },
-              {
-                "name": "min_size",
-                "type": "*basic.Size"
-              },
-              {
-                "name": "max_size",
-                "type": "*basic.Size"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "VisionLocator(description string, min_size *basic.Size, max_size *basic.Size) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "basic.Size",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "WaitForCard",
-            "doc": "Waits for card-like sub-locators to appear in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\ntimeout: Timeout duration.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
-            "params": [
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              },
-              {
-                "name": "min_size",
-                "type": "*basic.Size"
-              },
-              {
-                "name": "max_size",
-                "type": "*basic.Size"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WaitForCard(timeout time.Duration, min_size *basic.Size, max_size *basic.Size) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "basic.Size",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "WaitForEditing",
-            "doc": "Waits until the current locator enters a text-editable state or times out.\ntimeout: Timeout duration.\nreturn: Sub-locator containing the text input caret.\nReturns error on timeout; returns nil if no caret exists in the locator.",
-            "params": [
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              }
-            ],
-            "results": [
-              {
-                "type": "Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WaitForEditing(timeout time.Duration) (Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "WaitForImage",
-            "doc": "Waits for sub-locators containing visually similar images to appear in the current locator area.\ntimeout: Timeout duration.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: On success, returns matched sub-locators sorted by similarity descending;\nresults below sim are filtered out. Returns error on timeout or recognition failure.",
-            "params": [
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              },
-              {
-                "name": "image",
-                "type": "string"
-              },
-              {
-                "name": "sim",
-                "type": "float32"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WaitForImage(timeout time.Duration, image string, sim float32) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "float32",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "WaitForText",
-            "doc": "Waits for sub-locators containing specified text to appear in the current locator area.\ntimeout: Timeout duration.\ntexts: Text list to wait for. Multiple texts mean all must be present.\nreturn: On success, returns matched sub-locators that contain all texts,\nsorted by area from small to large. Returns error on timeout or recognition failure.",
-            "params": [
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              },
-              {
-                "name": "texts",
-                "type": "...string"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WaitForText(timeout time.Duration, texts ...string) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "WaitForVision",
-            "doc": "Waits for sub-locators with specific visual shapes to appear,\nusing the vision module in the current locator area.\ntimeout: Timeout duration.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
-            "params": [
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              },
-              {
-                "name": "description",
-                "type": "string"
-              },
-              {
-                "name": "min_size",
-                "type": "*basic.Size"
-              },
-              {
-                "name": "max_size",
-                "type": "*basic.Size"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]Locator"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WaitForVision(timeout time.Duration, description string, min_size *basic.Size, max_size *basic.Size) ([]Locator, error)",
-            "type_refs": [
-              {
-                "expr": "Locator",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-                "local": true
-              },
-              {
-                "expr": "basic.Size",
-                "import_path": "yanlingrpa.com/yanling/protocol/basic",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "WriteText",
-            "doc": "Writes text into the current locator.\nEquivalent to clicking the locator and then entering text.\nreturn: nil on success, otherwise an error.",
-            "params": [
-              {
-                "name": "text",
-                "type": "string"
-              }
-            ],
-            "results": [
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WriteText(text string) error",
-            "type_refs": [
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          }
-        ],
-        "type_refs": [
-          {
-            "expr": "Keyboard",
-            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
-            "local": true
-          },
-          {
-            "expr": "Locator",
-            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-            "local": true
-          },
-          {
-            "expr": "any",
-            "builtin": true
-          },
-          {
-            "expr": "basic.OcrResult",
-            "import_path": "yanlingrpa.com/yanling/protocol/basic",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
-          },
-          {
-            "expr": "basic.Point",
-            "import_path": "yanlingrpa.com/yanling/protocol/basic",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-          },
-          {
-            "expr": "basic.Rect",
-            "import_path": "yanlingrpa.com/yanling/protocol/basic",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-          },
-          {
-            "expr": "basic.Size",
-            "import_path": "yanlingrpa.com/yanling/protocol/basic",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-          },
-          {
-            "expr": "bool",
-            "builtin": true
-          },
-          {
-            "expr": "byte",
-            "builtin": true
-          },
-          {
-            "expr": "error",
-            "builtin": true
-          },
-          {
-            "expr": "float32",
-            "builtin": true
-          },
-          {
-            "expr": "float64",
-            "builtin": true
-          },
-          {
-            "expr": "int",
-            "builtin": true
-          },
-          {
-            "expr": "string",
-            "builtin": true
-          },
-          {
-            "expr": "time.Duration",
-            "import_path": "time",
-            "qualified_name": "time.Duration"
-          }
-        ]
-      },
-      {
         "id": "yanlingrpa.com/yanling/protocol/osgui#Lshift",
         "name": "Lshift",
         "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Lshift",
@@ -5384,6 +3477,1142 @@
             "import_path": "yanlingrpa.com/yanling/protocol/osgui",
             "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
             "local": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/osgui#OSGuiLocator",
+        "name": "OSGuiLocator",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+        "kind": "interface",
+        "package": "osgui",
+        "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+        "doc": "OSGuiLocator defines a locator interface that provides methods for retrieving locator information,\noperating on the locator, and simulating input.",
+        "signature": "type OSGuiLocator interface",
+        "source": {
+          "file": "osgui/osgui_locator.go",
+          "line": 14,
+          "column": 6
+        },
+        "methods": [
+          {
+            "name": "CardLocator",
+            "doc": "Finds card-like sub-locators in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
+            "params": [
+              {
+                "name": "min_size",
+                "type": "*basic.Size"
+              },
+              {
+                "name": "max_size",
+                "type": "*basic.Size"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "CardLocator(min_size *basic.Size, max_size *basic.Size) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Click",
+            "doc": "Performs a mouse click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
+            "params": [
+              {
+                "name": "locator_point",
+                "type": "*basic.Point"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Click(locator_point *basic.Point) error",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "DoubleClick",
+            "doc": "Performs a mouse double-click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
+            "params": [
+              {
+                "name": "locator_point",
+                "type": "*basic.Point"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "DoubleClick(locator_point *basic.Point) error",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "DragTo",
+            "doc": "Drags from a start position to an end position within the current locator.\nBoth positions are relative coordinates within the current locator.\nfrom_locator_point: Relative start position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.\nto_locator_point: Relative end position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.",
+            "params": [
+              {
+                "name": "from_locator_point",
+                "type": "*basic.Point"
+              },
+              {
+                "name": "to_locator_point",
+                "type": "*basic.Point"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetLocatorCaretPos",
+            "doc": "Gets the IME caret position inside the current locator; returns nil if unavailable.\nExample: When an input box is focused, the IME caret usually appears inside it,\nand this method can retrieve its relative position in the locator.\nreturn: Relative IME caret position in the locator; returns nil if unavailable.",
+            "params": [],
+            "results": [
+              {
+                "type": "*basic.Point"
+              }
+            ],
+            "signature": "GetLocatorCaretPos() *basic.Point",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              }
+            ]
+          },
+          {
+            "name": "GetLocatorCursorPos",
+            "doc": "Gets the mouse position relative to the current locator.\nreturn: Relative mouse position in the current locator; returns nil if outside.",
+            "params": [],
+            "results": [
+              {
+                "type": "*basic.Point"
+              }
+            ],
+            "signature": "GetLocatorCursorPos() *basic.Point",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              }
+            ]
+          },
+          {
+            "name": "ImageLocator",
+            "doc": "Finds sub-locators containing visually similar images within the current locator area.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by similarity descending, and items below the threshold are filtered out.",
+            "params": [
+              {
+                "name": "image",
+                "type": "string"
+              },
+              {
+                "name": "sim",
+                "type": "float32"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "ImageLocator(image string, sim float32) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "float32",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "MouseDown",
+            "doc": "Presses the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
+            "params": [
+              {
+                "name": "right",
+                "type": "bool"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "MouseDown(right bool) error",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "MouseMove",
+            "doc": "Moves the mouse to a specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means the center position of the current locator.",
+            "params": [
+              {
+                "name": "locator_point",
+                "type": "*basic.Point"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "MouseMove(locator_point *basic.Point) error",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "MouseUp",
+            "doc": "Releases the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
+            "params": [
+              {
+                "name": "right",
+                "type": "bool"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "MouseUp(right bool) error",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "PressKeys",
+            "doc": "Simulates keyboard input at the current locator.\nThis method first attempts to obtain focus for the locator,\nthen sends the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
+            "params": [
+              {
+                "name": "keys",
+                "type": "...Keyboard"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "PressKeys(keys ...Keyboard) error",
+            "type_refs": [
+              {
+                "expr": "Keyboard",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "RightClick",
+            "doc": "Performs a mouse right-click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
+            "params": [
+              {
+                "name": "locator_point",
+                "type": "*basic.Point"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "RightClick(locator_point *basic.Point) error",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "SubLocator",
+            "doc": "Gets a sub-locator of the current locator, clipped to the intersection with current bounds.\nlocator_point: Relative position of the sub-locator within the current locator.\nsize: Size of the sub-locator.",
+            "params": [
+              {
+                "name": "locator_point",
+                "type": "basic.Point"
+              },
+              {
+                "name": "size",
+                "type": "basic.Size"
+              }
+            ],
+            "results": [
+              {
+                "type": "OSGuiLocator"
+              }
+            ],
+            "signature": "SubLocator(locator_point basic.Point, size basic.Size) OSGuiLocator",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              },
+              {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              }
+            ]
+          },
+          {
+            "name": "TextLocator",
+            "doc": "Finds sub-locators containing specified text within the current locator area.\ntexts: Text list to find. Multiple texts mean all must be present.\nreturn: List of matched sub-locators; returns nil if none are found.\nOnly locators containing all texts are returned, sorted by area from small to large.",
+            "params": [
+              {
+                "name": "texts",
+                "type": "...string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "TextLocator(texts ...string) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "VisionLocator",
+            "doc": "Uses the vision module to find sub-locators with specific visual shapes\nin the current locator area.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
+            "params": [
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "min_size",
+                "type": "*basic.Size"
+              },
+              {
+                "name": "max_size",
+                "type": "*basic.Size"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "VisionLocator(description string, min_size *basic.Size, max_size *basic.Size) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WaitForCard",
+            "doc": "Waits for card-like sub-locators to appear in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\ntimeout: Timeout duration.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
+            "params": [
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              },
+              {
+                "name": "min_size",
+                "type": "*basic.Size"
+              },
+              {
+                "name": "max_size",
+                "type": "*basic.Size"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitForCard(timeout time.Duration, min_size *basic.Size, max_size *basic.Size) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "WaitForEditing",
+            "doc": "Waits until the current locator enters a text-editable state or times out.\ntimeout: Timeout duration.\nreturn: Sub-locator containing the text input caret.\nReturns error on timeout; returns nil if no caret exists in the locator.",
+            "params": [
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              }
+            ],
+            "results": [
+              {
+                "type": "OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitForEditing(timeout time.Duration) (OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "WaitForImage",
+            "doc": "Waits for sub-locators containing visually similar images to appear in the current locator area.\ntimeout: Timeout duration.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: On success, returns matched sub-locators sorted by similarity descending;\nresults below sim are filtered out. Returns error on timeout or recognition failure.",
+            "params": [
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              },
+              {
+                "name": "image",
+                "type": "string"
+              },
+              {
+                "name": "sim",
+                "type": "float32"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitForImage(timeout time.Duration, image string, sim float32) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "float32",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "WaitForText",
+            "doc": "Waits for sub-locators containing specified text to appear in the current locator area.\ntimeout: Timeout duration.\ntexts: Text list to wait for. Multiple texts mean all must be present.\nreturn: On success, returns matched sub-locators that contain all texts,\nsorted by area from small to large. Returns error on timeout or recognition failure.",
+            "params": [
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              },
+              {
+                "name": "texts",
+                "type": "...string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitForText(timeout time.Duration, texts ...string) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "WaitForVision",
+            "doc": "Waits for sub-locators with specific visual shapes to appear,\nusing the vision module in the current locator area.\ntimeout: Timeout duration.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
+            "params": [
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "min_size",
+                "type": "*basic.Size"
+              },
+              {
+                "name": "max_size",
+                "type": "*basic.Size"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitForVision(timeout time.Duration, description string, min_size *basic.Size, max_size *basic.Size) ([]OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          }
+        ],
+        "embeds": [
+          {
+            "type": "gui.GuiLocator",
+            "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiLocator"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Keyboard",
+            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
+            "local": true
+          },
+          {
+            "expr": "OSGuiLocator",
+            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+            "local": true
+          },
+          {
+            "expr": "basic.Point",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+          },
+          {
+            "expr": "basic.Size",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+          },
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "float32",
+            "builtin": true
+          },
+          {
+            "expr": "gui.GuiLocator",
+            "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiLocator"
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          },
+          {
+            "expr": "time.Duration",
+            "import_path": "time",
+            "qualified_name": "time.Duration"
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/osgui#OSGuiWindow",
+        "name": "OSGuiWindow",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow",
+        "kind": "interface",
+        "package": "osgui",
+        "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+        "doc": "OSGuiWindow defines the interface of a GUI window, providing methods for window information,\nwindow operations, and simulated input.",
+        "signature": "type OSGuiWindow interface",
+        "source": {
+          "file": "osgui/osgui_window.go",
+          "line": 13,
+          "column": 6
+        },
+        "methods": [
+          {
+            "name": "BodyLocator",
+            "doc": "Gets the locator for the window client area.",
+            "params": [],
+            "results": [
+              {
+                "type": "OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "BodyLocator() (OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetHwnd",
+            "doc": "Gets the native window handle.",
+            "params": [],
+            "results": [
+              {
+                "type": "uintptr"
+              }
+            ],
+            "signature": "GetHwnd() uintptr",
+            "type_refs": [
+              {
+                "expr": "uintptr",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetInitiatorPath",
+            "doc": "Gets the executable path of the process that launched the window.",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetInitiatorPath() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetMonitor",
+            "doc": "Gets information about the monitor that contains the window.",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.MonitorInfo"
+              }
+            ],
+            "signature": "GetMonitor() ossys.MonitorInfo",
+            "type_refs": [
+              {
+                "expr": "ossys.MonitorInfo",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo"
+              }
+            ]
+          },
+          {
+            "name": "GetWindowCaretPos",
+            "doc": "Gets the current IME caret position relative to the window; returns nil if outside the window.",
+            "params": [],
+            "results": [
+              {
+                "type": "*basic.Point"
+              }
+            ],
+            "signature": "GetWindowCaretPos() *basic.Point",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              }
+            ]
+          },
+          {
+            "name": "GetWindowCursorPos",
+            "doc": "Gets the mouse position relative to the current window; returns nil if outside the window.",
+            "params": [],
+            "results": [
+              {
+                "type": "*basic.Point"
+              }
+            ],
+            "signature": "GetWindowCursorPos() *basic.Point",
+            "type_refs": [
+              {
+                "expr": "basic.Point",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+              }
+            ]
+          },
+          {
+            "name": "GetWindowRect",
+            "doc": "Gets the window rectangle in screen coordinates.",
+            "params": [],
+            "results": [
+              {
+                "type": "basic.Rect"
+              }
+            ],
+            "signature": "GetWindowRect() basic.Rect",
+            "type_refs": [
+              {
+                "expr": "basic.Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+              }
+            ]
+          },
+          {
+            "name": "GetWindowSchema",
+            "doc": "Gets the application path associated with the window itself.",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetWindowSchema() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "MoveTo",
+            "doc": "Moves the window to the specified position.",
+            "params": [
+              {
+                "name": "global_x",
+                "type": "int"
+              },
+              {
+                "name": "global_y",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "MoveTo(global_x int, global_y int) (bool, error)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "PressKeys",
+            "doc": "Simulates keyboard input at the current window.\nThis method will unfocus any control within the window that currently has focus,\nthen set focus to the entire window, and finally send the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
+            "params": [
+              {
+                "name": "keys",
+                "type": "...Keyboard"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "PressKeys(keys ...Keyboard) error",
+            "type_refs": [
+              {
+                "expr": "Keyboard",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "RectLocator",
+            "doc": "Gets a locator for the specified rectangle, clipped to the window bounds.",
+            "params": [
+              {
+                "name": "rect",
+                "type": "basic.Rect"
+              }
+            ],
+            "results": [
+              {
+                "type": "OSGuiLocator"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "RectLocator(rect basic.Rect) (OSGuiLocator, error)",
+            "type_refs": [
+              {
+                "expr": "OSGuiLocator",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+                "local": true
+              },
+              {
+                "expr": "basic.Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ResizeTo",
+            "doc": "Resizes the window.",
+            "params": [
+              {
+                "name": "width",
+                "type": "int"
+              },
+              {
+                "name": "height",
+                "type": "int"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "ResizeTo(width int, height int) (bool, error)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "embeds": [
+          {
+            "type": "gui.GuiWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiWindow"
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "Keyboard",
+            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
+            "local": true
+          },
+          {
+            "expr": "OSGuiLocator",
+            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+            "local": true
+          },
+          {
+            "expr": "basic.Point",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+          },
+          {
+            "expr": "basic.Rect",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+          },
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "gui.GuiWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiWindow"
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          },
+          {
+            "expr": "ossys.MonitorInfo",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo"
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          },
+          {
+            "expr": "uintptr",
+            "builtin": true
           }
         ]
       },

@@ -19,6 +19,7 @@ var excludedDirs = map[string]struct{}{
 	".yanling": {},
 	"cmd":      {},
 	"doc":      {},
+	"internal": {},
 	"tests":    {},
 	"symbols":  {},
 	"schema":   {},
@@ -116,9 +117,35 @@ func collectTargetFolders(rootDir string) ([]string, error) {
 			continue
 		}
 
+		hasGoFiles, err := folderHasGoFiles(filepath.Join(rootDir, name))
+		if err != nil {
+			return nil, err
+		}
+		if !hasGoFiles {
+			continue
+		}
+
 		folders = append(folders, name)
 	}
 
 	sort.Strings(folders)
 	return folders, nil
+}
+
+func folderHasGoFiles(dir string) (bool, error) {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return false, err
+	}
+
+	for _, entry := range entries {
+		if entry.IsDir() {
+			continue
+		}
+		if strings.HasSuffix(entry.Name(), ".go") {
+			return true, nil
+		}
+	}
+
+	return false, nil
 }

@@ -8,7 +8,7 @@ import (
 * BrowserWindow defines the browser window interface.
  */
 type BrowserWindow interface {
-	osgui.GuiWindow
+	osgui.OSGuiWindow
 	/*
 	* Gets the default tab page.
 	 */

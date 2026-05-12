@@ -68,7 +68,7 @@ type ModuleRuntime interface {
 	/*
 	* GuiWindow gets a GUI window by window ID.
 	 */
-	GuiWindow(id string) (osgui.GuiWindow, bool)
+	GuiWindow(id string) (osgui.OSGuiWindow, bool)
 	/*
 	* BrowserWindow gets a browser window by window ID.
 	 */

@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-11T05:50:02Z",
+  "generated_at": "2026-05-12T03:48:03Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "browser",
@@ -1764,9 +1764,9 @@
         ],
         "embeds": [
           {
-            "type": "osgui.GuiWindow",
+            "type": "osgui.OSGuiWindow",
             "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow"
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow"
           }
         ],
         "type_refs": [
@@ -1781,9 +1781,9 @@
             "builtin": true
           },
           {
-            "expr": "osgui.GuiWindow",
+            "expr": "osgui.OSGuiWindow",
             "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow"
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow"
           },
           {
             "expr": "string",

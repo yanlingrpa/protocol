@@ -169,21 +169,195 @@ func init() {
 		"Up":              reflect.ValueOf(osgui.Up),
 
 		// type definitions
-		"GuiWindow": reflect.ValueOf((*osgui.GuiWindow)(nil)),
-		"Keyboard":  reflect.ValueOf((*osgui.Keyboard)(nil)),
-		"Locator":   reflect.ValueOf((*osgui.Locator)(nil)),
+		"Keyboard":     reflect.ValueOf((*osgui.Keyboard)(nil)),
+		"OSGuiLocator": reflect.ValueOf((*osgui.OSGuiLocator)(nil)),
+		"OSGuiWindow":  reflect.ValueOf((*osgui.OSGuiWindow)(nil)),
 
 		// interface wrapper definitions
-		"_GuiWindow": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_osgui_GuiWindow)(nil)),
-		"_Locator":   reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_osgui_Locator)(nil)),
+		"_OSGuiLocator": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator)(nil)),
+		"_OSGuiWindow":  reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow)(nil)),
 	}
 }
 
-// _yanlingrpa_com_yanling_protocol_osgui_GuiWindow is an interface wrapper for GuiWindow type
-type _yanlingrpa_com_yanling_protocol_osgui_GuiWindow struct {
+// _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator is an interface wrapper for OSGuiLocator type
+type _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator struct {
+	IValue               interface{}
+	WCanScrollHorizontal func() bool
+	WCanScrollVertical   func() bool
+	WCardLocator         func(min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error)
+	WClearText           func() error
+	WClick               func(locator_point *basic.Point) error
+	WDoubleClick         func(locator_point *basic.Point) error
+	WDragTo              func(from_locator_point *basic.Point, to_locator_point *basic.Point) error
+	WFocus               func() error
+	WGetBodyRect         func() basic.Rect
+	WGetLocatorCaretPos  func() *basic.Point
+	WGetLocatorCursorPos func() *basic.Point
+	WGetScreenRect       func() basic.Rect
+	WGetSize             func() basic.Size
+	WGetWindowRect       func() basic.Rect
+	WImageLocator        func(image string, sim float32) ([]osgui.OSGuiLocator, error)
+	WIsEditing           func() bool
+	WMouseDown           func(right bool) error
+	WMouseMove           func(locator_point *basic.Point) error
+	WMouseUp             func(right bool) error
+	WOcrRead             func(confidence float64) (*basic.OcrResult, error)
+	WPressKeys           func(keys ...osgui.Keyboard) error
+	WReadText            func() (string, error)
+	WRightClick          func(locator_point *basic.Point) error
+	WScrollHorizontal    func(forward bool, distance int) error
+	WScrollVertical      func(forward bool, distance int) error
+	WSnapshot            func(gray bool) ([]byte, error)
+	WSubLocator          func(locator_point basic.Point, size basic.Size) osgui.OSGuiLocator
+	WTextLocator         func(texts ...string) ([]osgui.OSGuiLocator, error)
+	WToMap               func() map[string]any
+	WTransFromBody       func(body_pos *basic.Point) *basic.Point
+	WTransFromScreen     func(screen_pos *basic.Point) *basic.Point
+	WTransFromWindow     func(window_pos *basic.Point) *basic.Point
+	WTransToBody         func(locator_point *basic.Point) *basic.Point
+	WTransToScreen       func(locator_point *basic.Point) *basic.Point
+	WTransToWindow       func(locator_point *basic.Point) *basic.Point
+	WVisionLocator       func(description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error)
+	WWaitForCard         func(timeout time.Duration, min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error)
+	WWaitForEditing      func(timeout time.Duration) (osgui.OSGuiLocator, error)
+	WWaitForImage        func(timeout time.Duration, image string, sim float32) ([]osgui.OSGuiLocator, error)
+	WWaitForText         func(timeout time.Duration, texts ...string) ([]osgui.OSGuiLocator, error)
+	WWaitForVision       func(timeout time.Duration, description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error)
+	WWriteText           func(text string) error
+}
+
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) CanScrollHorizontal() bool {
+	return W.WCanScrollHorizontal()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) CanScrollVertical() bool {
+	return W.WCanScrollVertical()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) CardLocator(min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error) {
+	return W.WCardLocator(min_size, max_size)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ClearText() error {
+	return W.WClearText()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) Click(locator_point *basic.Point) error {
+	return W.WClick(locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) DoubleClick(locator_point *basic.Point) error {
+	return W.WDoubleClick(locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error {
+	return W.WDragTo(from_locator_point, to_locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) Focus() error {
+	return W.WFocus()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetBodyRect() basic.Rect {
+	return W.WGetBodyRect()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetLocatorCaretPos() *basic.Point {
+	return W.WGetLocatorCaretPos()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetLocatorCursorPos() *basic.Point {
+	return W.WGetLocatorCursorPos()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetScreenRect() basic.Rect {
+	return W.WGetScreenRect()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetSize() basic.Size {
+	return W.WGetSize()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetWindowRect() basic.Rect {
+	return W.WGetWindowRect()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ImageLocator(image string, sim float32) ([]osgui.OSGuiLocator, error) {
+	return W.WImageLocator(image, sim)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) IsEditing() bool {
+	return W.WIsEditing()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) MouseDown(right bool) error {
+	return W.WMouseDown(right)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) MouseMove(locator_point *basic.Point) error {
+	return W.WMouseMove(locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) MouseUp(right bool) error {
+	return W.WMouseUp(right)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) OcrRead(confidence float64) (*basic.OcrResult, error) {
+	return W.WOcrRead(confidence)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) PressKeys(keys ...osgui.Keyboard) error {
+	return W.WPressKeys(keys...)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ReadText() (string, error) {
+	return W.WReadText()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) RightClick(locator_point *basic.Point) error {
+	return W.WRightClick(locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ScrollHorizontal(forward bool, distance int) error {
+	return W.WScrollHorizontal(forward, distance)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ScrollVertical(forward bool, distance int) error {
+	return W.WScrollVertical(forward, distance)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) Snapshot(gray bool) ([]byte, error) {
+	return W.WSnapshot(gray)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) SubLocator(locator_point basic.Point, size basic.Size) osgui.OSGuiLocator {
+	return W.WSubLocator(locator_point, size)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) TextLocator(texts ...string) ([]osgui.OSGuiLocator, error) {
+	return W.WTextLocator(texts...)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ToMap() map[string]any {
+	return W.WToMap()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) TransFromBody(body_pos *basic.Point) *basic.Point {
+	return W.WTransFromBody(body_pos)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) TransFromScreen(screen_pos *basic.Point) *basic.Point {
+	return W.WTransFromScreen(screen_pos)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) TransFromWindow(window_pos *basic.Point) *basic.Point {
+	return W.WTransFromWindow(window_pos)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) TransToBody(locator_point *basic.Point) *basic.Point {
+	return W.WTransToBody(locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) TransToScreen(locator_point *basic.Point) *basic.Point {
+	return W.WTransToScreen(locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) TransToWindow(locator_point *basic.Point) *basic.Point {
+	return W.WTransToWindow(locator_point)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) VisionLocator(description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error) {
+	return W.WVisionLocator(description, min_size, max_size)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) WaitForCard(timeout time.Duration, min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error) {
+	return W.WWaitForCard(timeout, min_size, max_size)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) WaitForEditing(timeout time.Duration) (osgui.OSGuiLocator, error) {
+	return W.WWaitForEditing(timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) WaitForImage(timeout time.Duration, image string, sim float32) ([]osgui.OSGuiLocator, error) {
+	return W.WWaitForImage(timeout, image, sim)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) WaitForText(timeout time.Duration, texts ...string) ([]osgui.OSGuiLocator, error) {
+	return W.WWaitForText(timeout, texts...)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) WaitForVision(timeout time.Duration, description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error) {
+	return W.WWaitForVision(timeout, description, min_size, max_size)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) WriteText(text string) error {
+	return W.WWriteText(text)
+}
+
+// _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow is an interface wrapper for OSGuiWindow type
+type _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow struct {
 	IValue              interface{}
 	WActivate           func() (bool, error)
-	WBodyLocator        func() (osgui.Locator, error)
+	WBodyLocator        func() (osgui.OSGuiLocator, error)
 	WClose              func() error
 	WDeActivate         func() (bool, error)
 	WGetClientRect      func() basic.Rect
@@ -199,7 +373,7 @@ type _yanlingrpa_com_yanling_protocol_osgui_GuiWindow struct {
 	WMoveTo             func(global_x int, global_y int) (bool, error)
 	WPressKeys          func(keys ...osgui.Keyboard) error
 	WReadClipboard      func() (string, error)
-	WRectLocator        func(rect basic.Rect) (osgui.Locator, error)
+	WRectLocator        func(rect basic.Rect) (osgui.OSGuiLocator, error)
 	WResizeTo           func(width int, height int) (bool, error)
 	WSnapshot           func(gray bool) ([]byte, error)
 	WToMap              func() map[string]any
@@ -208,249 +382,75 @@ type _yanlingrpa_com_yanling_protocol_osgui_GuiWindow struct {
 	WWriteClipboard     func(text string) error
 }
 
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) Activate() (bool, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Activate() (bool, error) {
 	return W.WActivate()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) BodyLocator() (osgui.Locator, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) BodyLocator() (osgui.OSGuiLocator, error) {
 	return W.WBodyLocator()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) Close() error {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Close() error {
 	return W.WClose()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) DeActivate() (bool, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) DeActivate() (bool, error) {
 	return W.WDeActivate()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetClientRect() basic.Rect {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetClientRect() basic.Rect {
 	return W.WGetClientRect()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetHwnd() uintptr {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetHwnd() uintptr {
 	return W.WGetHwnd()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetID() string {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetID() string {
 	return W.WGetID()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetInitiatorPath() string {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetInitiatorPath() string {
 	return W.WGetInitiatorPath()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetMonitor() ossys.MonitorInfo {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetMonitor() ossys.MonitorInfo {
 	return W.WGetMonitor()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetWindowCaretPos() *basic.Point {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetWindowCaretPos() *basic.Point {
 	return W.WGetWindowCaretPos()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetWindowCursorPos() *basic.Point {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetWindowCursorPos() *basic.Point {
 	return W.WGetWindowCursorPos()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetWindowRect() basic.Rect {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetWindowRect() basic.Rect {
 	return W.WGetWindowRect()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetWindowSchema() string {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetWindowSchema() string {
 	return W.WGetWindowSchema()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) GetWindowTitle() string {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetWindowTitle() string {
 	return W.WGetWindowTitle()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) MoveTo(global_x int, global_y int) (bool, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) MoveTo(global_x int, global_y int) (bool, error) {
 	return W.WMoveTo(global_x, global_y)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) PressKeys(keys ...osgui.Keyboard) error {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) PressKeys(keys ...osgui.Keyboard) error {
 	return W.WPressKeys(keys...)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) ReadClipboard() (string, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) ReadClipboard() (string, error) {
 	return W.WReadClipboard()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) RectLocator(rect basic.Rect) (osgui.Locator, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) RectLocator(rect basic.Rect) (osgui.OSGuiLocator, error) {
 	return W.WRectLocator(rect)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) ResizeTo(width int, height int) (bool, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) ResizeTo(width int, height int) (bool, error) {
 	return W.WResizeTo(width, height)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) Snapshot(gray bool) ([]byte, error) {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Snapshot(gray bool) ([]byte, error) {
 	return W.WSnapshot(gray)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) ToMap() map[string]any {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) ToMap() map[string]any {
 	return W.WToMap()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) TransFromScreen(screen_pos *basic.Point) *basic.Point {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) TransFromScreen(screen_pos *basic.Point) *basic.Point {
 	return W.WTransFromScreen(screen_pos)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) TransToScreen(window_pos *basic.Point) *basic.Point {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) TransToScreen(window_pos *basic.Point) *basic.Point {
 	return W.WTransToScreen(window_pos)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_GuiWindow) WriteClipboard(text string) error {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) WriteClipboard(text string) error {
 	return W.WWriteClipboard(text)
-}
-
-// _yanlingrpa_com_yanling_protocol_osgui_Locator is an interface wrapper for Locator type
-type _yanlingrpa_com_yanling_protocol_osgui_Locator struct {
-	IValue               interface{}
-	WCanScrollHorizontal func() bool
-	WCanScrollVertical   func() bool
-	WCardLocator         func(min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error)
-	WClearText           func() error
-	WClick               func(locator_point *basic.Point) error
-	WDoubleClick         func(locator_point *basic.Point) error
-	WDragTo              func(from_locator_point *basic.Point, to_locator_point *basic.Point) error
-	WFocus               func() error
-	WGetBodyRect         func() basic.Rect
-	WGetLocatorCaretPos  func() *basic.Point
-	WGetLocatorCursorPos func() *basic.Point
-	WGetScreenRect       func() basic.Rect
-	WGetSize             func() basic.Size
-	WGetWindowRect       func() basic.Rect
-	WImageLocator        func(image string, sim float32) ([]osgui.Locator, error)
-	WIsEditing           func() bool
-	WMouseDown           func(right bool) error
-	WMouseMove           func(locator_point *basic.Point) error
-	WMouseUp             func(right bool) error
-	WOcrRead             func(confidence float64) (*basic.OcrResult, error)
-	WPressKeys           func(keys ...osgui.Keyboard) error
-	WReadText            func() (string, error)
-	WRightClick          func(locator_point *basic.Point) error
-	WScrollHorizontal    func(forward bool, distance int) error
-	WScrollVertical      func(forward bool, distance int) error
-	WSnapshot            func(gray bool) ([]byte, error)
-	WSubLocator          func(locator_point basic.Point, size basic.Size) osgui.Locator
-	WTextLocator         func(texts ...string) ([]osgui.Locator, error)
-	WToMap               func() map[string]any
-	WTransFromBody       func(body_pos *basic.Point) *basic.Point
-	WTransFromScreen     func(screen_pos *basic.Point) *basic.Point
-	WTransFromWindow     func(window_pos *basic.Point) *basic.Point
-	WTransToBody         func(locator_point *basic.Point) *basic.Point
-	WTransToScreen       func(locator_point *basic.Point) *basic.Point
-	WTransToWindow       func(locator_point *basic.Point) *basic.Point
-	WVisionLocator       func(description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error)
-	WWaitForCard         func(timeout time.Duration, min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error)
-	WWaitForEditing      func(timeout time.Duration) (osgui.Locator, error)
-	WWaitForImage        func(timeout time.Duration, image string, sim float32) ([]osgui.Locator, error)
-	WWaitForText         func(timeout time.Duration, texts ...string) ([]osgui.Locator, error)
-	WWaitForVision       func(timeout time.Duration, description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error)
-	WWriteText           func(text string) error
-}
-
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) CanScrollHorizontal() bool {
-	return W.WCanScrollHorizontal()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) CanScrollVertical() bool {
-	return W.WCanScrollVertical()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) CardLocator(min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error) {
-	return W.WCardLocator(min_size, max_size)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) ClearText() error {
-	return W.WClearText()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) Click(locator_point *basic.Point) error {
-	return W.WClick(locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) DoubleClick(locator_point *basic.Point) error {
-	return W.WDoubleClick(locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error {
-	return W.WDragTo(from_locator_point, to_locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) Focus() error {
-	return W.WFocus()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) GetBodyRect() basic.Rect {
-	return W.WGetBodyRect()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) GetLocatorCaretPos() *basic.Point {
-	return W.WGetLocatorCaretPos()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) GetLocatorCursorPos() *basic.Point {
-	return W.WGetLocatorCursorPos()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) GetScreenRect() basic.Rect {
-	return W.WGetScreenRect()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) GetSize() basic.Size {
-	return W.WGetSize()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) GetWindowRect() basic.Rect {
-	return W.WGetWindowRect()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) ImageLocator(image string, sim float32) ([]osgui.Locator, error) {
-	return W.WImageLocator(image, sim)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) IsEditing() bool {
-	return W.WIsEditing()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) MouseDown(right bool) error {
-	return W.WMouseDown(right)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) MouseMove(locator_point *basic.Point) error {
-	return W.WMouseMove(locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) MouseUp(right bool) error {
-	return W.WMouseUp(right)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) OcrRead(confidence float64) (*basic.OcrResult, error) {
-	return W.WOcrRead(confidence)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) PressKeys(keys ...osgui.Keyboard) error {
-	return W.WPressKeys(keys...)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) ReadText() (string, error) {
-	return W.WReadText()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) RightClick(locator_point *basic.Point) error {
-	return W.WRightClick(locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) ScrollHorizontal(forward bool, distance int) error {
-	return W.WScrollHorizontal(forward, distance)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) ScrollVertical(forward bool, distance int) error {
-	return W.WScrollVertical(forward, distance)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) Snapshot(gray bool) ([]byte, error) {
-	return W.WSnapshot(gray)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) SubLocator(locator_point basic.Point, size basic.Size) osgui.Locator {
-	return W.WSubLocator(locator_point, size)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) TextLocator(texts ...string) ([]osgui.Locator, error) {
-	return W.WTextLocator(texts...)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) ToMap() map[string]any {
-	return W.WToMap()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) TransFromBody(body_pos *basic.Point) *basic.Point {
-	return W.WTransFromBody(body_pos)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) TransFromScreen(screen_pos *basic.Point) *basic.Point {
-	return W.WTransFromScreen(screen_pos)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) TransFromWindow(window_pos *basic.Point) *basic.Point {
-	return W.WTransFromWindow(window_pos)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) TransToBody(locator_point *basic.Point) *basic.Point {
-	return W.WTransToBody(locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) TransToScreen(locator_point *basic.Point) *basic.Point {
-	return W.WTransToScreen(locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) TransToWindow(locator_point *basic.Point) *basic.Point {
-	return W.WTransToWindow(locator_point)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) VisionLocator(description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error) {
-	return W.WVisionLocator(description, min_size, max_size)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) WaitForCard(timeout time.Duration, min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error) {
-	return W.WWaitForCard(timeout, min_size, max_size)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) WaitForEditing(timeout time.Duration) (osgui.Locator, error) {
-	return W.WWaitForEditing(timeout)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) WaitForImage(timeout time.Duration, image string, sim float32) ([]osgui.Locator, error) {
-	return W.WWaitForImage(timeout, image, sim)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) WaitForText(timeout time.Duration, texts ...string) ([]osgui.Locator, error) {
-	return W.WWaitForText(timeout, texts...)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) WaitForVision(timeout time.Duration, description string, min_size *basic.Size, max_size *basic.Size) ([]osgui.Locator, error) {
-	return W.WWaitForVision(timeout, description, min_size, max_size)
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_Locator) WriteText(text string) error {
-	return W.WWriteText(text)
 }

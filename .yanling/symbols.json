@@ -1,20 +1,558 @@
 {
   "$schema": "../schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-11T05:50:02Z",
+  "generated_at": "2026-05-12T03:48:03Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
-    "packages": 6,
-    "symbols": 199,
-    "interfaces": 16,
+    "packages": 8,
+    "symbols": 221,
+    "interfaces": 20,
     "structs": 14,
     "functions": 6,
-    "methods": 234,
-    "named_types": 2,
+    "methods": 261,
+    "named_types": 3,
     "func_types": 1,
-    "consts": 160
+    "consts": 177
   },
   "symbols": [
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#AppGuiLocator",
+      "name": "AppGuiLocator",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiLocator",
+      "kind": "interface",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "AppGuiLocator defines a locator interface for a rectangular region on a mobile app screen,",
+      "signature": "type AppGuiLocator interface",
+      "source": {
+        "file": "appgui/appgui_locator.go",
+        "line": 15,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppGuiLocator",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiLocator",
+          "local": true
+        },
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        },
+        {
+          "expr": "basic.Point",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+        },
+        {
+          "expr": "basic.Size",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+        },
+        {
+          "expr": "bool",
+          "builtin": true
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "float32",
+          "builtin": true
+        },
+        {
+          "expr": "gui.GuiLocator",
+          "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiLocator"
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        },
+        {
+          "expr": "time.Duration",
+          "import_path": "time",
+          "qualified_name": "time.Duration"
+        }
+      ],
+      "method_count": 20
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#AppGuiWindow",
+      "name": "AppGuiWindow",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiWindow",
+      "kind": "interface",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "AppGuiWindow defines the interface of a mobile app window (screen), providing methods",
+      "signature": "type AppGuiWindow interface",
+      "source": {
+        "file": "appgui/appgui_window.go",
+        "line": 12,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppGuiLocator",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiLocator",
+          "local": true
+        },
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        },
+        {
+          "expr": "basic.Point",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+        },
+        {
+          "expr": "basic.Rect",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "gui.GuiWindow",
+          "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiWindow"
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        }
+      ],
+      "method_count": 7
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#AppKey",
+      "name": "AppKey",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+      "kind": "named_type",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "AppKey represents a hardware or system key on a mobile device.",
+      "signature": "type AppKey string",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 6,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "string",
+          "builtin": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyBack",
+      "name": "KeyBack",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyBack",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Navigation keys",
+      "signature": "const KeyBack AppKey = \"back\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 10,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyBackspace",
+      "name": "KeyBackspace",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyBackspace",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyBackspace AppKey = \"backspace\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 32,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDelete",
+      "name": "KeyDelete",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDelete",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyDelete AppKey = \"delete\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 25,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDone",
+      "name": "KeyDone",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDone",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyDone AppKey = \"done\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 28,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyEnter",
+      "name": "KeyEnter",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyEnter",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Soft keyboard keys",
+      "signature": "const KeyEnter AppKey = \"enter\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 24,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyHome",
+      "name": "KeyHome",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyHome",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyHome AppKey = \"home\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 11,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMenu",
+      "name": "KeyMenu",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMenu",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyMenu AppKey = \"menu\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 12,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyNext",
+      "name": "KeyNext",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyNext",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyNext AppKey = \"next\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 29,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPower",
+      "name": "KeyPower",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPower",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Power key",
+      "signature": "const KeyPower AppKey = \"power\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 21,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPrevious",
+      "name": "KeyPrevious",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPrevious",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyPrevious AppKey = \"previous\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 30,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyRecent",
+      "name": "KeyRecent",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyRecent",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyRecent AppKey = \"recent\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 13,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeySearch",
+      "name": "KeySearch",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeySearch",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeySearch AppKey = \"search\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 27,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeySpace",
+      "name": "KeySpace",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeySpace",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeySpace AppKey = \"space\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 31,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyTab",
+      "name": "KeyTab",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyTab",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyTab AppKey = \"tab\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 26,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyVolumeDown",
+      "name": "KeyVolumeDown",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyVolumeDown",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyVolumeDown AppKey = \"volume_down\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 17,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyVolumeMute",
+      "name": "KeyVolumeMute",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyVolumeMute",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "signature": "const KeyVolumeMute AppKey = \"volume_mute\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 18,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyVolumeUp",
+      "name": "KeyVolumeUp",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyVolumeUp",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Volume keys",
+      "signature": "const KeyVolumeUp AppKey = \"volume_up\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 16,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
     {
       "id": "yanlingrpa.com/yanling/protocol/basic#FPoint",
       "name": "FPoint",
@@ -490,9 +1028,9 @@
           "builtin": true
         },
         {
-          "expr": "osgui.GuiWindow",
+          "expr": "osgui.OSGuiWindow",
           "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow"
+          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow"
         },
         {
           "expr": "string",
@@ -571,6 +1109,122 @@
         }
       ],
       "method_count": 4
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/internal/gui#GuiLocator",
+      "name": "GuiLocator",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiLocator",
+      "kind": "interface",
+      "package": "gui",
+      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+      "doc": "GuiLocator defines the common abstract interface for GUI locators across platforms.",
+      "signature": "type GuiLocator interface",
+      "source": {
+        "file": "internal/gui/gui_locator.go",
+        "line": 8,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json",
+      "type_refs": [
+        {
+          "expr": "any",
+          "builtin": true
+        },
+        {
+          "expr": "basic.OcrResult",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
+        },
+        {
+          "expr": "basic.Point",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+        },
+        {
+          "expr": "basic.Rect",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+        },
+        {
+          "expr": "basic.Size",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+        },
+        {
+          "expr": "bool",
+          "builtin": true
+        },
+        {
+          "expr": "byte",
+          "builtin": true
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "float64",
+          "builtin": true
+        },
+        {
+          "expr": "int",
+          "builtin": true
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        }
+      ],
+      "method_count": 22
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/internal/gui#GuiWindow",
+      "name": "GuiWindow",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiWindow",
+      "kind": "interface",
+      "package": "gui",
+      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+      "doc": "GuiWindow defines the common abstract interface for GUI windows across platforms.",
+      "signature": "type GuiWindow interface",
+      "source": {
+        "file": "internal/gui/gui_window.go",
+        "line": 8,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json",
+      "type_refs": [
+        {
+          "expr": "any",
+          "builtin": true
+        },
+        {
+          "expr": "basic.Point",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+        },
+        {
+          "expr": "basic.Rect",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+        },
+        {
+          "expr": "bool",
+          "builtin": true
+        },
+        {
+          "expr": "byte",
+          "builtin": true
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        }
+      ],
+      "method_count": 12
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/osgui#Alt",
@@ -2278,80 +2932,6 @@
       ]
     },
     {
-      "id": "yanlingrpa.com/yanling/protocol/osgui#GuiWindow",
-      "name": "GuiWindow",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow",
-      "kind": "interface",
-      "package": "osgui",
-      "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-      "doc": "GuiWindow defines the interface of a GUI window, providing methods for window information,",
-      "signature": "type GuiWindow interface",
-      "source": {
-        "file": "osgui/osgui_window.go",
-        "line": 12,
-        "column": 6
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json",
-      "type_refs": [
-        {
-          "expr": "Keyboard",
-          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
-          "local": true
-        },
-        {
-          "expr": "Locator",
-          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-          "local": true
-        },
-        {
-          "expr": "any",
-          "builtin": true
-        },
-        {
-          "expr": "basic.Point",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-        },
-        {
-          "expr": "basic.Rect",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-        },
-        {
-          "expr": "bool",
-          "builtin": true
-        },
-        {
-          "expr": "byte",
-          "builtin": true
-        },
-        {
-          "expr": "error",
-          "builtin": true
-        },
-        {
-          "expr": "int",
-          "builtin": true
-        },
-        {
-          "expr": "ossys.MonitorInfo",
-          "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo"
-        },
-        {
-          "expr": "string",
-          "builtin": true
-        },
-        {
-          "expr": "uintptr",
-          "builtin": true
-        }
-      ],
-      "method_count": 24
-    },
-    {
       "id": "yanlingrpa.com/yanling/protocol/osgui#Home",
       "name": "Home",
       "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Home",
@@ -3457,94 +4037,6 @@
       ]
     },
     {
-      "id": "yanlingrpa.com/yanling/protocol/osgui#Locator",
-      "name": "Locator",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-      "kind": "interface",
-      "package": "osgui",
-      "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-      "doc": "Locator defines a locator interface that provides methods for retrieving locator information,",
-      "signature": "type Locator interface",
-      "source": {
-        "file": "osgui/osgui_locator.go",
-        "line": 13,
-        "column": 6
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json",
-      "type_refs": [
-        {
-          "expr": "Keyboard",
-          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
-          "local": true
-        },
-        {
-          "expr": "Locator",
-          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Locator",
-          "local": true
-        },
-        {
-          "expr": "any",
-          "builtin": true
-        },
-        {
-          "expr": "basic.OcrResult",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
-        },
-        {
-          "expr": "basic.Point",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-        },
-        {
-          "expr": "basic.Rect",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-        },
-        {
-          "expr": "basic.Size",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-        },
-        {
-          "expr": "bool",
-          "builtin": true
-        },
-        {
-          "expr": "byte",
-          "builtin": true
-        },
-        {
-          "expr": "error",
-          "builtin": true
-        },
-        {
-          "expr": "float32",
-          "builtin": true
-        },
-        {
-          "expr": "float64",
-          "builtin": true
-        },
-        {
-          "expr": "int",
-          "builtin": true
-        },
-        {
-          "expr": "string",
-          "builtin": true
-        },
-        {
-          "expr": "time.Duration",
-          "import_path": "time",
-          "qualified_name": "time.Duration"
-        }
-      ],
-      "method_count": 42
-    },
-    {
       "id": "yanlingrpa.com/yanling/protocol/osgui#Lshift",
       "name": "Lshift",
       "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Lshift",
@@ -4003,6 +4495,144 @@
           "local": true
         }
       ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/osgui#OSGuiLocator",
+      "name": "OSGuiLocator",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+      "kind": "interface",
+      "package": "osgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+      "doc": "OSGuiLocator defines a locator interface that provides methods for retrieving locator information,",
+      "signature": "type OSGuiLocator interface",
+      "source": {
+        "file": "osgui/osgui_locator.go",
+        "line": 14,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json",
+      "type_refs": [
+        {
+          "expr": "Keyboard",
+          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
+          "local": true
+        },
+        {
+          "expr": "OSGuiLocator",
+          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+          "local": true
+        },
+        {
+          "expr": "basic.Point",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+        },
+        {
+          "expr": "basic.Size",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+        },
+        {
+          "expr": "bool",
+          "builtin": true
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "float32",
+          "builtin": true
+        },
+        {
+          "expr": "gui.GuiLocator",
+          "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiLocator"
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        },
+        {
+          "expr": "time.Duration",
+          "import_path": "time",
+          "qualified_name": "time.Duration"
+        }
+      ],
+      "method_count": 20
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/osgui#OSGuiWindow",
+      "name": "OSGuiWindow",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow",
+      "kind": "interface",
+      "package": "osgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+      "doc": "OSGuiWindow defines the interface of a GUI window, providing methods for window information,",
+      "signature": "type OSGuiWindow interface",
+      "source": {
+        "file": "osgui/osgui_window.go",
+        "line": 13,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json",
+      "type_refs": [
+        {
+          "expr": "Keyboard",
+          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.Keyboard",
+          "local": true
+        },
+        {
+          "expr": "OSGuiLocator",
+          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+          "local": true
+        },
+        {
+          "expr": "basic.Point",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
+        },
+        {
+          "expr": "basic.Rect",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+        },
+        {
+          "expr": "bool",
+          "builtin": true
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "gui.GuiWindow",
+          "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiWindow"
+        },
+        {
+          "expr": "int",
+          "builtin": true
+        },
+        {
+          "expr": "ossys.MonitorInfo",
+          "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.MonitorInfo"
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        },
+        {
+          "expr": "uintptr",
+          "builtin": true
+        }
+      ],
+      "method_count": 12
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/osgui#Pagedown",
@@ -4663,9 +5293,9 @@
           "builtin": true
         },
         {
-          "expr": "osgui.GuiWindow",
+          "expr": "osgui.OSGuiWindow",
           "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.GuiWindow"
+          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow"
         },
         {
           "expr": "ossys.DeviceInfo",

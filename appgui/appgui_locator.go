@@ -1,4 +1,4 @@
-package osgui
+package appgui
 
 import (
 	"time"
@@ -8,10 +8,11 @@ import (
 )
 
 /*
-* OSGuiLocator defines a locator interface that provides methods for retrieving locator information,
-* operating on the locator, and simulating input.
+* AppGuiLocator defines a locator interface for a rectangular region on a mobile app screen,
+* providing methods for retrieving locator information, performing touch gestures,
+* and simulating input.
  */
-type OSGuiLocator interface {
+type AppGuiLocator interface {
 	gui.GuiLocator
 
 	/*
@@ -19,7 +20,7 @@ type OSGuiLocator interface {
 	* locator_point: Relative position of the sub-locator within the current locator.
 	* size: Size of the sub-locator.
 	 */
-	SubLocator(locator_point basic.Point, size basic.Size) OSGuiLocator
+	SubLocator(locator_point basic.Point, size basic.Size) AppGuiLocator
 
 	/*
 	* Finds sub-locators containing visually similar images within the current locator area.
@@ -28,7 +29,7 @@ type OSGuiLocator interface {
 	* return: List of matched sub-locators; returns nil if none are found.
 	* Results are sorted by similarity descending, and items below the threshold are filtered out.
 	 */
-	ImageLocator(image string, sim float32) ([]OSGuiLocator, error)
+	ImageLocator(image string, sim float32) ([]AppGuiLocator, error)
 
 	/*
 	* Waits for sub-locators containing visually similar images to appear in the current locator area.
@@ -38,7 +39,7 @@ type OSGuiLocator interface {
 	* return: On success, returns matched sub-locators sorted by similarity descending;
 	* results below sim are filtered out. Returns error on timeout or recognition failure.
 	 */
-	WaitForImage(timeout time.Duration, image string, sim float32) ([]OSGuiLocator, error)
+	WaitForImage(timeout time.Duration, image string, sim float32) ([]AppGuiLocator, error)
 
 	/*
 	* Finds sub-locators containing specified text within the current locator area.
@@ -46,7 +47,7 @@ type OSGuiLocator interface {
 	* return: List of matched sub-locators; returns nil if none are found.
 	* Only locators containing all texts are returned, sorted by area from small to large.
 	 */
-	TextLocator(texts ...string) ([]OSGuiLocator, error)
+	TextLocator(texts ...string) ([]AppGuiLocator, error)
 
 	/*
 	* Waits for sub-locators containing specified text to appear in the current locator area.
@@ -55,7 +56,7 @@ type OSGuiLocator interface {
 	* return: On success, returns matched sub-locators that contain all texts,
 	* sorted by area from small to large. Returns error on timeout or recognition failure.
 	 */
-	WaitForText(timeout time.Duration, texts ...string) ([]OSGuiLocator, error)
+	WaitForText(timeout time.Duration, texts ...string) ([]AppGuiLocator, error)
 
 	/*
 	* Finds card-like sub-locators in the current locator area.
@@ -66,7 +67,7 @@ type OSGuiLocator interface {
 	* return: List of matched sub-locators; returns nil if none are found.
 	* Results are sorted by coordinates from left to right and top to bottom.
 	 */
-	CardLocator(min_size, max_size *basic.Size) ([]OSGuiLocator, error)
+	CardLocator(min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
 	* Waits for card-like sub-locators to appear in the current locator area.
@@ -78,7 +79,7 @@ type OSGuiLocator interface {
 	* return: On success, returns matched sub-locators sorted by coordinates
 	* from left to right and top to bottom. Returns error on timeout or recognition failure.
 	 */
-	WaitForCard(timeout time.Duration, min_size, max_size *basic.Size) ([]OSGuiLocator, error)
+	WaitForCard(timeout time.Duration, min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
 	* Uses the vision module to find sub-locators with specific visual shapes
@@ -90,7 +91,7 @@ type OSGuiLocator interface {
 	* return: List of matched sub-locators; returns nil if none are found.
 	* Results are sorted by coordinates from left to right and top to bottom.
 	 */
-	VisionLocator(description string, min_size, max_size *basic.Size) ([]OSGuiLocator, error)
+	VisionLocator(description string, min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
 	* Waits for sub-locators with specific visual shapes to appear,
@@ -103,83 +104,71 @@ type OSGuiLocator interface {
 	* return: On success, returns matched sub-locators sorted by coordinates
 	* from left to right and top to bottom. Returns error on timeout or recognition failure.
 	 */
-	WaitForVision(timeout time.Duration, description string, min_size, max_size *basic.Size) ([]OSGuiLocator, error)
+	WaitForVision(timeout time.Duration, description string, min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
-	* Moves the mouse to a specified position inside the locator.
+	* Moves the touch point to a specified position inside the locator without lifting.
 	* locator_point: Relative position within the locator.
 	* nil means the center position of the current locator.
 	 */
-	MouseMove(locator_point *basic.Point) error
+	TouchMove(locator_point *basic.Point) error
 
 	/*
-	 * Presses the mouse button at the current mouse position within the locator.
-	 * right: true for right button, false for left button.
+	* Presses a finger down at the current touch position within the locator.
 	 */
-	MouseDown(right bool) error
+	TouchDown() error
 
 	/*
-	 * Releases the mouse button at the current mouse position within the locator.
-	 * right: true for right button, false for left button.
+	* Lifts the finger at the current touch position within the locator.
 	 */
-	MouseUp(right bool) error
+	TouchUp() error
 
 	/*
-	* Drags from a start position to an end position within the current locator.
+	* Performs a swipe gesture from a start position to an end position within the current locator.
 	* Both positions are relative coordinates within the current locator.
-	* from_locator_point: Relative start position within the locator; nil means the current mouse
-	* position in the locator, or the locator center if the mouse is outside.
-	* to_locator_point: Relative end position within the locator; nil means the current mouse
-	* position in the locator, or the locator center if the mouse is outside.
+	* from_locator_point: Relative start position; nil means the current touch position,
+	* or the locator center if no active touch.
+	* to_locator_point: Relative end position; nil means the current touch position,
+	* or the locator center if no active touch.
 	 */
-	DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error
+	SwipeTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error
 
 	/*
-	* Performs a mouse click at the specified position inside the locator.
+	* Performs a pinch gesture in the current locator area.
+	* spread: true to spread fingers (zoom in), false to pinch fingers (zoom out).
+	* scale: Scale factor for the gesture distance, range 0.1~1.0; larger means more spread/pinch.
+	 */
+	Pinch(spread bool, scale float32) error
+
+	/*
+	* Performs a single tap at the specified position inside the locator.
 	* locator_point: Relative position within the locator.
-	* nil means current mouse position in the locator.
-	* If the mouse is not inside the locator, the locator center is used.
+	* nil means current touch position in the locator.
+	* If there is no active touch inside the locator, the locator center is used.
 	 */
-	Click(locator_point *basic.Point) error
+	Tap(locator_point *basic.Point) error
 
 	/*
-	* Performs a mouse double-click at the specified position inside the locator.
+	* Performs a double tap at the specified position inside the locator.
 	* locator_point: Relative position within the locator.
-	* nil means current mouse position in the locator.
-	* If the mouse is not inside the locator, the locator center is used.
+	* nil means current touch position in the locator.
+	* If there is no active touch inside the locator, the locator center is used.
 	 */
-	DoubleClick(locator_point *basic.Point) error
+	DoubleTap(locator_point *basic.Point) error
 
 	/*
-	* Performs a mouse right-click at the specified position inside the locator.
+	* Performs a long press at the specified position inside the locator.
 	* locator_point: Relative position within the locator.
-	* nil means current mouse position in the locator.
-	* If the mouse is not inside the locator, the locator center is used.
+	* nil means current touch position in the locator.
+	* If there is no active touch inside the locator, the locator center is used.
 	 */
-	RightClick(locator_point *basic.Point) error
+	LongPress(locator_point *basic.Point) error
 
 	/*
-	* Gets the mouse position relative to the current locator.
-	* return: Relative mouse position in the current locator; returns nil if outside.
+	* Gets the current touch position relative to the locator.
+	* return: Relative touch position in the locator; returns nil if no active touch inside.
 	 */
-	GetLocatorCursorPos() *basic.Point
-
-	/*
-	* Gets the IME caret position inside the current locator; returns nil if unavailable.
-	* Example: When an input box is focused, the IME caret usually appears inside it,
-	* and this method can retrieve its relative position in the locator.
-	* return: Relative IME caret position in the locator; returns nil if unavailable.
-	 */
-	GetLocatorCaretPos() *basic.Point
-
-	/*
-	* Simulates keyboard input at the current locator.
-	* This method first attempts to obtain focus for the locator,
-	* then sends the specified key sequence.
-	* keys: Key sequence to input (for example: ctrl + alt + del).
-	* Supported keys are defined by the Keyboard type.
-	 */
-	PressKeys(keys ...Keyboard) error
+	GetLocatorTouchPos() *basic.Point
 
 	/*
 	* Waits until the current locator enters a text-editable state or times out.
@@ -187,5 +176,11 @@ type OSGuiLocator interface {
 	* return: Sub-locator containing the text input caret.
 	* Returns error on timeout; returns nil if no caret exists in the locator.
 	 */
-	WaitForEditing(timeout time.Duration) (OSGuiLocator, error)
+	WaitForEditing(timeout time.Duration) (AppGuiLocator, error)
+
+	/*
+	* Simulates pressing a hardware or system key while the locator is focused.
+	* keys: Key sequence to press, as defined by the AppKey type.
+	 */
+	PressKeys(keys ...AppKey) error
 }
