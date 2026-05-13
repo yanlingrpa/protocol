@@ -3,7 +3,7 @@ package symbols
 import "reflect"
 
 //go:generate go run ../cmd/generate-symbols
-//go:generate go run ../cmd/generate-yanling
+//go:generate go run ../cmd/generate-json
 
 // var Symbols = make(map[string]map[string]reflect.Value)
 
