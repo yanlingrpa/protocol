@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/index.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-14T09:37:58Z",
+  "generated_at": "2026-05-14T09:54:14Z",
   "modules": [
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -1787,6 +1787,15 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "package": "script",
       "doc": "ParseSpecifier parses a module specifier string.",
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
+    },
+    {
+      "module": "yanlingrpa.com/yanling/protocol",
+      "name": "PublicMethod",
+      "kind": "func_type",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "package": "script",
+      "doc": "PublicMethod defines the only valid public script method type with a fixed function signature.",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },
     {
