@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/index.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-14T09:33:45Z",
+  "generated_at": "2026-05-14T09:37:58Z",
   "modules": [
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -62,13 +62,6 @@
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
       "directory": "/ossys",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "proto",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "directory": "/proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
     },
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -1732,143 +1725,6 @@
       "package": "ossys",
       "doc": "ScriptLogger defines script runtime logging capabilities.",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "GuiApplication",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "GuiApplication defines GUI application configuration.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "MobileApplication",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "MobileApplication defines mobile application configuration for Android/iOS devices.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "ModuleInfo",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "ModuleInfo defines script module metadata.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "ScriptVariable",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "ScriptVariable defines script variable configuration.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "Specifier",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "Specifier defines module specification information.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "UrlPermission",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "UrlPermission defines URL-based access permissions.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType",
-      "kind": "named_type",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "VariableDataType defines data types for script variables.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType_VARIABLE_BOOLEAN",
-      "kind": "const",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType_VARIABLE_DATA_TYPE_UNSPECIFIED",
-      "kind": "const",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType_VARIABLE_FILE_PATH",
-      "kind": "const",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType_VARIABLE_INTEGER",
-      "kind": "const",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType_VARIABLE_JSON",
-      "kind": "const",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType_VARIABLE_NUMBER",
-      "kind": "const",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "VariableDataType_VARIABLE_STRING",
-      "kind": "const",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "WebApplication",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "WebApplication defines browser application configuration.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "YScript",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/proto",
-      "package": "proto",
-      "doc": "YScript defines the top-level script configuration structure.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__proto.json"
     },
     {
       "module": "yanlingrpa.com/yanling/protocol",
