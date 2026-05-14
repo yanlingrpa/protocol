@@ -4,7 +4,7 @@ package ossys
 * DeviceInfo defines capabilities for querying device information.
 * This interface is used to retrieve information related to the OS, hardware, user, and monitors.
  */
-type DeviceInfo interface {
+type BrokerInfo interface {
 	/*
 	* OS gets the operating system name.
 	* Example return values: Windows, Linux, Darwin.

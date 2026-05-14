@@ -1,14 +1,14 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-13T08:20:15Z",
+  "generated_at": "2026-05-14T09:33:45Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "ossys",
     "import_path": "yanlingrpa.com/yanling/protocol/ossys",
     "directory": "/ossys",
     "files": [
-      "ossys/device_info.go",
+      "ossys/broker_info.go",
       "ossys/http_client.go",
       "ossys/local_filesystem.go",
       "ossys/local_storage.go",
@@ -40,16 +40,16 @@
     },
     "symbols": [
       {
-        "id": "yanlingrpa.com/yanling/protocol/ossys#DeviceInfo",
-        "name": "DeviceInfo",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.DeviceInfo",
+        "id": "yanlingrpa.com/yanling/protocol/ossys#BrokerInfo",
+        "name": "BrokerInfo",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.BrokerInfo",
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
         "doc": "DeviceInfo defines capabilities for querying device information.\nThis interface is used to retrieve information related to the OS, hardware, user, and monitors.",
-        "signature": "type DeviceInfo interface",
+        "signature": "type BrokerInfo interface",
         "source": {
-          "file": "ossys/device_info.go",
+          "file": "ossys/broker_info.go",
           "line": 7,
           "column": 6
         },

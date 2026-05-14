@@ -31,9 +31,9 @@ const (
 	 */
 	VariableInteger VariableDataType = "integer"
 	/*
-	* VariableNumber floating-point number type.
+	* VariableNumber floating-point float type.
 	 */
-	VariableNumber VariableDataType = "number"
+	VariableNumber VariableDataType = "float"
 	/*
 	* VariableJson JSON object type.
 	 */
@@ -290,6 +290,7 @@ func (vdt VariableDataType) Parse(value string) any {
 	case VariableBoolean:
 		return value == "true" || value == "1" || strings.ToLower(value) == "yes" || strings.ToLower(value) == "on" || strings.ToLower(value) == "y"
 	case VariableString:
+	case VariableFilePath:
 		return value
 	case VariableInteger:
 		if i, err := strconv.Atoi(value); err == nil {
@@ -323,6 +324,7 @@ func (vdt VariableDataType) ToString(value any) string {
 			return "false"
 		}
 	case VariableString:
+	case VariableFilePath:
 		if s, ok := value.(string); ok {
 			return s
 		}

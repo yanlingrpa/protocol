@@ -12,7 +12,7 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/ossys/ossys"] = map[string]reflect.Value{
 		// type definitions
-		"DeviceInfo":      reflect.ValueOf((*ossys.DeviceInfo)(nil)),
+		"BrokerInfo":      reflect.ValueOf((*ossys.BrokerInfo)(nil)),
 		"HttpClient":      reflect.ValueOf((*ossys.HttpClient)(nil)),
 		"LocalFilesystem": reflect.ValueOf((*ossys.LocalFilesystem)(nil)),
 		"LocalStorage":    reflect.ValueOf((*ossys.LocalStorage)(nil)),
@@ -20,7 +20,7 @@ func init() {
 		"ScriptLogger":    reflect.ValueOf((*ossys.ScriptLogger)(nil)),
 
 		// interface wrapper definitions
-		"_DeviceInfo":      reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_ossys_DeviceInfo)(nil)),
+		"_BrokerInfo":      reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_ossys_BrokerInfo)(nil)),
 		"_HttpClient":      reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_ossys_HttpClient)(nil)),
 		"_LocalFilesystem": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem)(nil)),
 		"_LocalStorage":    reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_ossys_LocalStorage)(nil)),
@@ -29,8 +29,8 @@ func init() {
 	}
 }
 
-// _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo is an interface wrapper for DeviceInfo type
-type _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo struct {
+// _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo is an interface wrapper for BrokerInfo type
+type _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo struct {
 	IValue             interface{}
 	WDeviceId          func() string
 	WDeviceName        func() string
@@ -45,37 +45,37 @@ type _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo struct {
 	WOSVersion         func() string
 }
 
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) DeviceId() string {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) DeviceId() string {
 	return W.WDeviceId()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) DeviceName() string {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) DeviceName() string {
 	return W.WDeviceName()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) GetComputerName() string {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) GetComputerName() string {
 	return W.WGetComputerName()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) GetGpuMemoryMB() int {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) GetGpuMemoryMB() int {
 	return W.WGetGpuMemoryMB()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) GetMonitors() []ossys.MonitorInfo {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) GetMonitors() []ossys.MonitorInfo {
 	return W.WGetMonitors()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) GetPrimaryMonitor() ossys.MonitorInfo {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) GetPrimaryMonitor() ossys.MonitorInfo {
 	return W.WGetPrimaryMonitor()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) GetUserName() string {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) GetUserName() string {
 	return W.WGetUserName()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) HasNvidiaGPU() bool {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) HasNvidiaGPU() bool {
 	return W.WHasNvidiaGPU()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) NumLogicCPU() int {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) NumLogicCPU() int {
 	return W.WNumLogicCPU()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) OS() string {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) OS() string {
 	return W.WOS()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_DeviceInfo) OSVersion() string {
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) OSVersion() string {
 	return W.WOSVersion()
 }
 

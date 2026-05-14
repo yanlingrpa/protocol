@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/index.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-13T08:20:15Z",
+  "generated_at": "2026-05-14T09:33:45Z",
   "modules": [
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -1681,7 +1681,7 @@
     },
     {
       "module": "yanlingrpa.com/yanling/protocol",
-      "name": "DeviceInfo",
+      "name": "BrokerInfo",
       "kind": "interface",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
       "package": "ossys",
@@ -2020,7 +2020,7 @@
       "kind": "const",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "package": "script",
-      "doc": "VariableNumber floating-point number type.",
+      "doc": "VariableNumber floating-point float type.",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },
     {

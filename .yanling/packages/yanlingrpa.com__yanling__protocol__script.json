@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-13T08:20:15Z",
+  "generated_at": "2026-05-14T09:33:45Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -49,6 +49,12 @@
         ]
       },
       {
+        "path": "yanlingrpa.com/yanling/protocol/appgui",
+        "aliases": [
+          "appgui"
+        ]
+      },
+      {
         "path": "yanlingrpa.com/yanling/protocol/browser",
         "aliases": [
           "browser"
@@ -75,6 +81,7 @@
     ],
     "dependencies": [
       "time",
+      "yanlingrpa.com/yanling/protocol/appgui",
       "yanlingrpa.com/yanling/protocol/browser",
       "yanlingrpa.com/yanling/protocol/component",
       "yanlingrpa.com/yanling/protocol/osgui",
@@ -85,7 +92,7 @@
       "interfaces": 2,
       "structs": 9,
       "functions": 1,
-      "methods": 27,
+      "methods": 33,
       "named_types": 1,
       "func_types": 1,
       "consts": 6
@@ -102,7 +109,7 @@
         "signature": "type Event struct",
         "source": {
           "file": "script/module_runtime.go",
-          "line": 34,
+          "line": 35,
           "column": 6
         },
         "fields": [
@@ -169,7 +176,7 @@
         "underlying_type": "func(event Event)",
         "source": {
           "file": "script/module_runtime.go",
-          "line": 52,
+          "line": 53,
           "column": 6
         },
         "params": [
@@ -659,10 +666,57 @@
         "signature": "type ModuleRuntime interface",
         "source": {
           "file": "script/module_runtime.go",
-          "line": 59,
+          "line": 60,
           "column": 6
         },
         "methods": [
+          {
+            "name": "BooleanVariable",
+            "doc": "BooleanVariable gets a boolean script variable value.",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "bool"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "BooleanVariable(name string) (bool, bool)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "BrokerInfo",
+            "doc": "BrokerInfo gets the broker information.",
+            "params": [],
+            "results": [
+              {
+                "type": "ossys.BrokerInfo"
+              }
+            ],
+            "signature": "BrokerInfo() ossys.BrokerInfo",
+            "type_refs": [
+              {
+                "expr": "ossys.BrokerInfo",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.BrokerInfo"
+              }
+            ]
+          },
           {
             "name": "BrowserWindow",
             "doc": "BrowserWindow gets a browser window by window ID.",
@@ -715,20 +769,31 @@
             ]
           },
           {
-            "name": "DeviceInfo",
-            "doc": "DeviceInfo gets the device information capability interface.",
-            "params": [],
-            "results": [
+            "name": "FilePathVariable",
+            "doc": "FilePathVariable gets a file path script variable value.",
+            "params": [
               {
-                "type": "ossys.DeviceInfo"
+                "name": "name",
+                "type": "string"
               }
             ],
-            "signature": "DeviceInfo() ossys.DeviceInfo",
+            "results": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "FilePathVariable(name string) (string, bool)",
             "type_refs": [
               {
-                "expr": "ossys.DeviceInfo",
-                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.DeviceInfo"
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           },
@@ -751,6 +816,39 @@
             ]
           },
           {
+            "name": "FloatVariable",
+            "doc": "FloatVariable gets a float script variable value.",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "float64"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "FloatVariable(name string) (float64, bool)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "float64",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "GetCacheData",
             "doc": "GetCacheData gets data temporarily stored at runtime.",
             "params": [
@@ -761,88 +859,17 @@
             ],
             "results": [
               {
-                "type": "any"
-              },
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "GetCacheData(key string) (any, bool)",
-            "type_refs": [
-              {
-                "expr": "any",
-                "builtin": true
-              },
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GetVariable",
-            "doc": "GetVariable gets a script variable value.",
-            "params": [
-              {
-                "name": "name",
                 "type": "string"
-              }
-            ],
-            "results": [
-              {
-                "type": "any"
               },
               {
                 "type": "bool"
               }
             ],
-            "signature": "GetVariable(name string) (any, bool)",
-            "type_refs": [
-              {
-                "expr": "any",
-                "builtin": true
-              },
-              {
-                "expr": "bool",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "GuiWindow",
-            "doc": "GuiWindow gets a GUI window by window ID.",
-            "params": [
-              {
-                "name": "id",
-                "type": "string"
-              }
-            ],
-            "results": [
-              {
-                "type": "osgui.OSGuiWindow"
-              },
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "GuiWindow(id string) (osgui.OSGuiWindow, bool)",
+            "signature": "GetCacheData(key string) (string, bool)",
             "type_refs": [
               {
                 "expr": "bool",
                 "builtin": true
-              },
-              {
-                "expr": "osgui.OSGuiWindow",
-                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow"
               },
               {
                 "expr": "string",
@@ -882,6 +909,39 @@
                 "expr": "ossys.HttpClient",
                 "import_path": "yanlingrpa.com/yanling/protocol/ossys",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpClient"
+              }
+            ]
+          },
+          {
+            "name": "IntegerVariable",
+            "doc": "IntegerVariable gets an integer script variable value.",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "int"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "IntegerVariable(name string) (int, bool)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "int",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           },
@@ -927,6 +987,39 @@
             ]
           },
           {
+            "name": "JsonVariable",
+            "doc": "JsonVariable gets a JSON script variable value.",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "any"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "JsonVariable(name string) (any, bool)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "Logger",
             "doc": "Logger gets the script logger.",
             "params": [],
@@ -945,6 +1038,40 @@
             ]
           },
           {
+            "name": "MobileWindow",
+            "doc": "MobileWindow gets a mobile window by window ID.",
+            "params": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "appgui.AppGuiWindow"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "MobileWindow(id string) (appgui.AppGuiWindow, bool)",
+            "type_refs": [
+              {
+                "expr": "appgui.AppGuiWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiWindow"
+              },
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "OcrWorker",
             "doc": "OcrWorker gets the OCR capability worker interface.",
             "params": [],
@@ -959,6 +1086,40 @@
                 "expr": "component.OcrWorker",
                 "import_path": "yanlingrpa.com/yanling/protocol/component",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker"
+              }
+            ]
+          },
+          {
+            "name": "OsGuiWindow",
+            "doc": "OsGuiWindow gets an OS GUI window by window ID.",
+            "params": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "osgui.OSGuiWindow"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "OsGuiWindow(id string) (osgui.OSGuiWindow, bool)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "osgui.OSGuiWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow"
+              },
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           },
@@ -998,7 +1159,7 @@
           },
           {
             "name": "SetCacheData",
-            "doc": "SetCacheData temporarily stores arbitrary data at runtime.",
+            "doc": "SetCacheData temporarily stores data at runtime.",
             "params": [
               {
                 "name": "key",
@@ -1006,16 +1167,12 @@
               },
               {
                 "name": "value",
-                "type": "any"
+                "type": "string"
               }
             ],
             "results": [],
-            "signature": "SetCacheData(key string, value any)",
+            "signature": "SetCacheData(key string, value string)",
             "type_refs": [
-              {
-                "expr": "any",
-                "builtin": true
-              },
               {
                 "expr": "string",
                 "builtin": true
@@ -1037,6 +1194,35 @@
                 "expr": "ossys.LocalStorage",
                 "import_path": "yanlingrpa.com/yanling/protocol/ossys",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalStorage"
+              }
+            ]
+          },
+          {
+            "name": "StringVariable",
+            "doc": "StringVariable gets a string script variable value.",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "bool"
+              }
+            ],
+            "signature": "StringVariable(name string) (string, bool)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           },
@@ -1154,6 +1340,11 @@
             "builtin": true
           },
           {
+            "expr": "appgui.AppGuiWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiWindow"
+          },
+          {
             "expr": "bool",
             "builtin": true
           },
@@ -1177,14 +1368,22 @@
             "builtin": true
           },
           {
+            "expr": "float64",
+            "builtin": true
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          },
+          {
             "expr": "osgui.OSGuiWindow",
             "import_path": "yanlingrpa.com/yanling/protocol/osgui",
             "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow"
           },
           {
-            "expr": "ossys.DeviceInfo",
+            "expr": "ossys.BrokerInfo",
             "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.DeviceInfo"
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.BrokerInfo"
           },
           {
             "expr": "ossys.HttpClient",
@@ -1223,7 +1422,7 @@
         "signature": "ParseSpecifier(spec string) (Specifier, error)",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 515,
+          "line": 517,
           "column": 1
         },
         "params": [
@@ -1375,7 +1574,7 @@
         "signature": "type Specifier struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 366,
+          "line": 368,
           "column": 6
         },
         "fields": [
@@ -1525,7 +1724,7 @@
         "signature": "type Subscriber interface",
         "source": {
           "file": "script/module_runtime.go",
-          "line": 16,
+          "line": 17,
           "column": 6
         },
         "methods": [
@@ -1603,7 +1802,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 348,
+          "line": 350,
           "column": 6
         },
         "fields": [
@@ -1838,15 +2037,15 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableNumber floating-point number type.",
-        "signature": "const VariableNumber VariableDataType = \"number\"",
+        "doc": "VariableNumber floating-point float type.",
+        "signature": "const VariableNumber VariableDataType = \"float\"",
         "source": {
           "file": "script/yanling_script.go",
           "line": 36,
           "column": 2
         },
         "const_type": "VariableDataType",
-        "const_value": "\"number\"",
+        "const_value": "\"float\"",
         "type_refs": [
           {
             "expr": "VariableDataType",
@@ -2055,7 +2254,7 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 579,
+          "line": 581,
           "column": 6
         },
         "fields": [

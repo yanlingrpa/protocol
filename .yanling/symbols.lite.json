@@ -1,6 +1,6 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-13T08:20:15Z",
+  "generated_at": "2026-05-14T09:33:45Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 9,
@@ -8,7 +8,7 @@
     "interfaces": 20,
     "structs": 23,
     "functions": 6,
-    "methods": 372,
+    "methods": 378,
     "named_types": 4,
     "func_types": 1,
     "consts": 184
@@ -2759,14 +2759,14 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json"
     },
     {
-      "id": "yanlingrpa.com/yanling/protocol/ossys#DeviceInfo",
-      "name": "DeviceInfo",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.DeviceInfo",
+      "id": "yanlingrpa.com/yanling/protocol/ossys#BrokerInfo",
+      "name": "BrokerInfo",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.BrokerInfo",
       "kind": "interface",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
       "source": {
-        "file": "ossys/device_info.go",
+        "file": "ossys/broker_info.go",
         "line": 7,
         "column": 6
       },
@@ -3075,7 +3075,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 34,
+        "line": 35,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3089,7 +3089,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 52,
+        "line": 53,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3145,7 +3145,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 59,
+        "line": 60,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3159,7 +3159,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 515,
+        "line": 517,
         "column": 1
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3187,7 +3187,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 366,
+        "line": 368,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3201,7 +3201,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 16,
+        "line": 17,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3215,7 +3215,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 348,
+        "line": 350,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3341,7 +3341,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 579,
+        "line": 581,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"

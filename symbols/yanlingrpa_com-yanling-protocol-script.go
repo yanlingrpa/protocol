@@ -4,6 +4,7 @@ package symbols
 
 import (
 	"reflect"
+	"yanlingrpa.com/yanling/protocol/appgui"
 	"yanlingrpa.com/yanling/protocol/browser"
 	"yanlingrpa.com/yanling/protocol/component"
 	"yanlingrpa.com/yanling/protocol/osgui"
@@ -46,46 +47,55 @@ func init() {
 // _yanlingrpa_com_yanling_protocol_script_ModuleRuntime is an interface wrapper for ModuleRuntime type
 type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	IValue            interface{}
+	WBooleanVariable  func(name string) (bool, bool)
+	WBrokerInfo       func() ossys.BrokerInfo
 	WBrowserWindow    func(id string) (browser.BrowserWindow, bool)
 	WCurrentSpecifier func() string
-	WDeviceInfo       func() ossys.DeviceInfo
+	WFilePathVariable func(name string) (string, bool)
 	WFileSystem       func() ossys.LocalFilesystem
-	WGetCacheData     func(key string) (any, bool)
-	WGetVariable      func(name string) (any, bool)
-	WGuiWindow        func(id string) (osgui.OSGuiWindow, bool)
+	WFloatVariable    func(name string) (float64, bool)
+	WGetCacheData     func(key string) (string, bool)
 	WHostSpecifier    func() string
 	WHttpClient       func() ossys.HttpClient
+	WIntegerVariable  func(name string) (int, bool)
 	WInvokeWorker     func(specifier string, method string, dto any) (any, error)
+	WJsonVariable     func(name string) (any, bool)
 	WLogger           func() ossys.ScriptLogger
+	WMobileWindow     func(id string) (appgui.AppGuiWindow, bool)
 	WOcrWorker        func() component.OcrWorker
+	WOsGuiWindow      func(id string) (osgui.OSGuiWindow, bool)
 	WPublish          func(topic string, data any) error
-	WSetCacheData     func(key string, value any)
+	WSetCacheData     func(key string, value string)
 	WStorage          func() ossys.LocalStorage
+	WStringVariable   func(name string) (string, bool)
 	WSubscribe        func(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error)
 	WUnsubscribe      func(subscriber script.Subscriber) error
 	WVisionWorker     func() component.VisionWorker
 }
 
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BooleanVariable(name string) (bool, bool) {
+	return W.WBooleanVariable(name)
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrokerInfo() ossys.BrokerInfo {
+	return W.WBrokerInfo()
+}
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
 	return W.WBrowserWindow(id)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) CurrentSpecifier() string {
 	return W.WCurrentSpecifier()
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) DeviceInfo() ossys.DeviceInfo {
-	return W.WDeviceInfo()
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FilePathVariable(name string) (string, bool) {
+	return W.WFilePathVariable(name)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FileSystem() ossys.LocalFilesystem {
 	return W.WFileSystem()
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetCacheData(key string) (any, bool) {
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FloatVariable(name string) (float64, bool) {
+	return W.WFloatVariable(name)
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetCacheData(key string) (string, bool) {
 	return W.WGetCacheData(key)
-}
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetVariable(name string) (any, bool) {
-	return W.WGetVariable(name)
-}
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GuiWindow(id string) (osgui.OSGuiWindow, bool) {
-	return W.WGuiWindow(id)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HostSpecifier() string {
 	return W.WHostSpecifier()
@@ -93,23 +103,38 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HostSpecifier() s
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossys.HttpClient {
 	return W.WHttpClient()
 }
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IntegerVariable(name string) (int, bool) {
+	return W.WIntegerVariable(name)
+}
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(specifier string, method string, dto any) (any, error) {
 	return W.WInvokeWorker(specifier, method, dto)
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (any, bool) {
+	return W.WJsonVariable(name)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Logger() ossys.ScriptLogger {
 	return W.WLogger()
 }
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MobileWindow(id string) (appgui.AppGuiWindow, bool) {
+	return W.WMobileWindow(id)
+}
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) OcrWorker() component.OcrWorker {
 	return W.WOcrWorker()
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) OsGuiWindow(id string) (osgui.OSGuiWindow, bool) {
+	return W.WOsGuiWindow(id)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Publish(topic string, data any) error {
 	return W.WPublish(topic, data)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) SetCacheData(key string, value any) {
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) SetCacheData(key string, value string) {
 	W.WSetCacheData(key, value)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Storage() ossys.LocalStorage {
 	return W.WStorage()
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) StringVariable(name string) (string, bool) {
+	return W.WStringVariable(name)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Subscribe(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error) {
 	return W.WSubscribe(specifier, topic, handler)

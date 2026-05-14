@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-13T08:20:15Z",
+  "generated_at": "2026-05-14T09:33:45Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 9,
@@ -9,7 +9,7 @@
     "interfaces": 20,
     "structs": 23,
     "functions": 6,
-    "methods": 372,
+    "methods": 378,
     "named_types": 4,
     "func_types": 1,
     "consts": 184
@@ -154,7 +154,7 @@
         "interfaces": 2,
         "structs": 9,
         "functions": 1,
-        "methods": 27,
+        "methods": 33,
         "named_types": 1,
         "func_types": 1,
         "consts": 6
@@ -162,6 +162,7 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
       "dependencies": [
         "time",
+        "yanlingrpa.com/yanling/protocol/appgui",
         "yanlingrpa.com/yanling/protocol/browser",
         "yanlingrpa.com/yanling/protocol/component",
         "yanlingrpa.com/yanling/protocol/osgui",

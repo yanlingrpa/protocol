@@ -3,6 +3,7 @@ package script
 import (
 	"time"
 
+	"yanlingrpa.com/yanling/protocol/appgui"
 	"yanlingrpa.com/yanling/protocol/browser"
 	"yanlingrpa.com/yanling/protocol/component"
 	"yanlingrpa.com/yanling/protocol/osgui"
@@ -66,17 +67,21 @@ type ModuleRuntime interface {
 	 */
 	CurrentSpecifier() string
 	/*
-	* GuiWindow gets a GUI window by window ID.
+	* OsGuiWindow gets an OS GUI window by window ID.
 	 */
-	GuiWindow(id string) (osgui.OSGuiWindow, bool)
+	OsGuiWindow(id string) (osgui.OSGuiWindow, bool)
 	/*
 	* BrowserWindow gets a browser window by window ID.
 	 */
 	BrowserWindow(id string) (browser.BrowserWindow, bool)
 	/*
-	* DeviceInfo gets the device information capability interface.
+	* MobileWindow gets a mobile window by window ID.
 	 */
-	DeviceInfo() ossys.DeviceInfo
+	MobileWindow(id string) (appgui.AppGuiWindow, bool)
+	/*
+	* BrokerInfo gets the broker information.
+	 */
+	BrokerInfo() ossys.BrokerInfo
 	/*
 	* Logger gets the script logger.
 	 */
@@ -94,17 +99,37 @@ type ModuleRuntime interface {
 	 */
 	FileSystem() ossys.LocalFilesystem
 	/*
-	* SetCacheData temporarily stores arbitrary data at runtime.
+	* SetCacheData temporarily stores data at runtime.
 	 */
-	SetCacheData(key string, value any)
+	SetCacheData(key string, value string)
 	/*
 	* GetCacheData gets data temporarily stored at runtime.
 	 */
-	GetCacheData(key string) (any, bool)
+	GetCacheData(key string) (string, bool)
 	/*
-	* GetVariable gets a script variable value.
+	* StringVariable gets a string script variable value.
 	 */
-	GetVariable(name string) (any, bool)
+	StringVariable(name string) (string, bool)
+	/*
+	* IntegerVariable gets an integer script variable value.
+	 */
+	IntegerVariable(name string) (int, bool)
+	/*
+	* FloatVariable gets a float script variable value.
+	 */
+	FloatVariable(name string) (float64, bool)
+	/*
+	* BooleanVariable gets a boolean script variable value.
+	 */
+	BooleanVariable(name string) (bool, bool)
+	/*
+	* JsonVariable gets a JSON script variable value.
+	 */
+	JsonVariable(name string) (any, bool)
+	/*
+	* FilePathVariable gets a file path script variable value.
+	 */
+	FilePathVariable(name string) (string, bool)
 
 	/*
 	* InvokeWorker calls an exposed method from another local IPC worker.
