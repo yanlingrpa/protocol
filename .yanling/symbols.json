@@ -1,17 +1,17 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-14T09:54:14Z",
+  "generated_at": "2026-05-15T07:47:09Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
-    "packages": 8,
-    "symbols": 223,
-    "interfaces": 20,
+    "packages": 7,
+    "symbols": 220,
+    "interfaces": 18,
     "structs": 15,
     "functions": 6,
-    "methods": 267,
+    "methods": 233,
     "named_types": 3,
-    "func_types": 2,
+    "func_types": 1,
     "consts": 177
   },
   "symbols": [
@@ -1109,122 +1109,6 @@
         }
       ],
       "method_count": 4
-    },
-    {
-      "id": "yanlingrpa.com/yanling/protocol/internal/gui#GuiLocator",
-      "name": "GuiLocator",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiLocator",
-      "kind": "interface",
-      "package": "gui",
-      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
-      "doc": "GuiLocator defines the common abstract interface for GUI locators across platforms.",
-      "signature": "type GuiLocator interface",
-      "source": {
-        "file": "internal/gui/gui_locator.go",
-        "line": 8,
-        "column": 6
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json",
-      "type_refs": [
-        {
-          "expr": "any",
-          "builtin": true
-        },
-        {
-          "expr": "basic.OcrResult",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
-        },
-        {
-          "expr": "basic.Point",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-        },
-        {
-          "expr": "basic.Rect",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-        },
-        {
-          "expr": "basic.Size",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
-        },
-        {
-          "expr": "bool",
-          "builtin": true
-        },
-        {
-          "expr": "byte",
-          "builtin": true
-        },
-        {
-          "expr": "error",
-          "builtin": true
-        },
-        {
-          "expr": "float64",
-          "builtin": true
-        },
-        {
-          "expr": "int",
-          "builtin": true
-        },
-        {
-          "expr": "string",
-          "builtin": true
-        }
-      ],
-      "method_count": 22
-    },
-    {
-      "id": "yanlingrpa.com/yanling/protocol/internal/gui#GuiWindow",
-      "name": "GuiWindow",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/internal/gui.GuiWindow",
-      "kind": "interface",
-      "package": "gui",
-      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
-      "doc": "GuiWindow defines the common abstract interface for GUI windows across platforms.",
-      "signature": "type GuiWindow interface",
-      "source": {
-        "file": "internal/gui/gui_window.go",
-        "line": 8,
-        "column": 6
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json",
-      "type_refs": [
-        {
-          "expr": "any",
-          "builtin": true
-        },
-        {
-          "expr": "basic.Point",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
-        },
-        {
-          "expr": "basic.Rect",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
-        },
-        {
-          "expr": "bool",
-          "builtin": true
-        },
-        {
-          "expr": "byte",
-          "builtin": true
-        },
-        {
-          "expr": "error",
-          "builtin": true
-        },
-        {
-          "expr": "string",
-          "builtin": true
-        }
-      ],
-      "method_count": 12
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/osgui#Alt",
@@ -5202,7 +5086,7 @@
       "signature": "type GuiApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 104,
+        "line": 97,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5229,7 +5113,7 @@
       "signature": "type MobileApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 216,
+        "line": 209,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5256,7 +5140,7 @@
       "signature": "type ModuleInfo struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 53,
+        "line": 46,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5384,7 +5268,7 @@
       "signature": "ParseSpecifier(spec string) (Specifier, error)",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 524,
+        "line": 517,
         "column": 1
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5406,46 +5290,6 @@
       ]
     },
     {
-      "id": "yanlingrpa.com/yanling/protocol/script#PublicMethod",
-      "name": "PublicMethod",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/script.PublicMethod",
-      "kind": "func_type",
-      "package": "script",
-      "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "PublicMethod defines the only valid public script method type with a fixed function signature.",
-      "signature": "type PublicMethod func(rt ModuleRuntime, dto T) (R, error)",
-      "source": {
-        "file": "script/yanling_script.go",
-        "line": 16,
-        "column": 6
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
-      "type_refs": [
-        {
-          "expr": "ModuleRuntime",
-          "import_path": "yanlingrpa.com/yanling/protocol/script",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleRuntime",
-          "local": true
-        },
-        {
-          "expr": "R",
-          "import_path": "yanlingrpa.com/yanling/protocol/script",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/script.R",
-          "local": true
-        },
-        {
-          "expr": "T",
-          "import_path": "yanlingrpa.com/yanling/protocol/script",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/script.T",
-          "local": true
-        },
-        {
-          "expr": "error",
-          "builtin": true
-        }
-      ]
-    },
-    {
       "id": "yanlingrpa.com/yanling/protocol/script#ScriptVariable",
       "name": "ScriptVariable",
       "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
@@ -5456,7 +5300,7 @@
       "signature": "type ScriptVariable struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 264,
+        "line": 257,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5489,7 +5333,7 @@
       "signature": "type Specifier struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 375,
+        "line": 368,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5544,7 +5388,7 @@
       "signature": "type UrlPermission struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 357,
+        "line": 350,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5567,7 +5411,7 @@
       "signature": "const VariableBoolean VariableDataType = \"boolean\"",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 27,
+        "line": 20,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5591,7 +5435,7 @@
       "signature": "type VariableDataType string",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 21,
+        "line": 14,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5618,7 +5462,7 @@
       "signature": "const VariableFilePath VariableDataType = \"filepath\"",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 35,
+        "line": 28,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5642,7 +5486,7 @@
       "signature": "const VariableInteger VariableDataType = \"integer\"",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 39,
+        "line": 32,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5666,7 +5510,7 @@
       "signature": "const VariableJson VariableDataType = \"json\"",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 47,
+        "line": 40,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5690,7 +5534,7 @@
       "signature": "const VariableNumber VariableDataType = \"float\"",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 43,
+        "line": 36,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5714,7 +5558,7 @@
       "signature": "const VariableString VariableDataType = \"string\"",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 31,
+        "line": 24,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5738,7 +5582,7 @@
       "signature": "type WebApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 162,
+        "line": 155,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5769,7 +5613,7 @@
       "signature": "type YScript struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 588,
+        "line": 581,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",

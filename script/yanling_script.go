@@ -9,13 +9,6 @@ import (
 )
 
 /*
-* PublicMethod defines the only valid public script method type with a fixed function signature.
-* Any function that matches this signature will be exported as a public interface for external calls.
-* T is the input parameter type, and R is the return value type.
- */
-type PublicMethod[T, R any] func(rt ModuleRuntime, dto T) (R, error)
-
-/*
 * VariableDataType defines data types for script variables.
  */
 type VariableDataType string

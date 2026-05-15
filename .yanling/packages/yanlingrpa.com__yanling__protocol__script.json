@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-14T09:54:14Z",
+  "generated_at": "2026-05-15T07:47:09Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -88,13 +88,13 @@
       "yanlingrpa.com/yanling/protocol/ossys"
     ],
     "counts": {
-      "symbols": 21,
+      "symbols": 20,
       "interfaces": 2,
       "structs": 9,
       "functions": 1,
       "methods": 33,
       "named_types": 1,
-      "func_types": 2,
+      "func_types": 1,
       "consts": 6
     },
     "symbols": [
@@ -205,7 +205,7 @@
         "signature": "type GuiApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 104,
+          "line": 97,
           "column": 6
         },
         "fields": [
@@ -376,7 +376,7 @@
         "signature": "type MobileApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 216,
+          "line": 209,
           "column": 6
         },
         "fields": [
@@ -511,7 +511,7 @@
         "signature": "type ModuleInfo struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 53,
+          "line": 46,
           "column": 6
         },
         "fields": [
@@ -1422,7 +1422,7 @@
         "signature": "ParseSpecifier(spec string) (Specifier, error)",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 524,
+          "line": 517,
           "column": 1
         },
         "params": [
@@ -1457,64 +1457,6 @@
         ]
       },
       {
-        "id": "yanlingrpa.com/yanling/protocol/script#PublicMethod",
-        "name": "PublicMethod",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/script.PublicMethod",
-        "kind": "func_type",
-        "package": "script",
-        "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "PublicMethod defines the only valid public script method type with a fixed function signature.\nAny function that matches this signature will be exported as a public interface for external calls.\nT is the input parameter type, and R is the return value type.",
-        "signature": "type PublicMethod func(rt ModuleRuntime, dto T) (R, error)",
-        "underlying_type": "func(rt ModuleRuntime, dto T) (R, error)",
-        "source": {
-          "file": "script/yanling_script.go",
-          "line": 16,
-          "column": 6
-        },
-        "params": [
-          {
-            "name": "rt",
-            "type": "ModuleRuntime"
-          },
-          {
-            "name": "dto",
-            "type": "T"
-          }
-        ],
-        "results": [
-          {
-            "type": "R"
-          },
-          {
-            "type": "error"
-          }
-        ],
-        "type_refs": [
-          {
-            "expr": "ModuleRuntime",
-            "import_path": "yanlingrpa.com/yanling/protocol/script",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleRuntime",
-            "local": true
-          },
-          {
-            "expr": "R",
-            "import_path": "yanlingrpa.com/yanling/protocol/script",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/script.R",
-            "local": true
-          },
-          {
-            "expr": "T",
-            "import_path": "yanlingrpa.com/yanling/protocol/script",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/script.T",
-            "local": true
-          },
-          {
-            "expr": "error",
-            "builtin": true
-          }
-        ]
-      },
-      {
         "id": "yanlingrpa.com/yanling/protocol/script#ScriptVariable",
         "name": "ScriptVariable",
         "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
@@ -1525,7 +1467,7 @@
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 264,
+          "line": 257,
           "column": 6
         },
         "fields": [
@@ -1632,7 +1574,7 @@
         "signature": "type Specifier struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 375,
+          "line": 368,
           "column": 6
         },
         "fields": [
@@ -1860,7 +1802,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 357,
+          "line": 350,
           "column": 6
         },
         "fields": [
@@ -1919,7 +1861,7 @@
         "signature": "const VariableBoolean VariableDataType = \"boolean\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 27,
+          "line": 20,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -1945,7 +1887,7 @@
         "underlying_type": "string",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 21,
+          "line": 14,
           "column": 6
         },
         "methods": [
@@ -2024,7 +1966,7 @@
         "signature": "const VariableFilePath VariableDataType = \"filepath\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 35,
+          "line": 28,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2049,7 +1991,7 @@
         "signature": "const VariableInteger VariableDataType = \"integer\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 39,
+          "line": 32,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2074,7 +2016,7 @@
         "signature": "const VariableJson VariableDataType = \"json\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 47,
+          "line": 40,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2099,7 +2041,7 @@
         "signature": "const VariableNumber VariableDataType = \"float\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 43,
+          "line": 36,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2124,7 +2066,7 @@
         "signature": "const VariableString VariableDataType = \"string\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 31,
+          "line": 24,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2149,7 +2091,7 @@
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 162,
+          "line": 155,
           "column": 6
         },
         "fields": [
@@ -2312,7 +2254,7 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 588,
+          "line": 581,
           "column": 6
         },
         "fields": [

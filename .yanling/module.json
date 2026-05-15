@@ -1,17 +1,17 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-14T09:54:14Z",
+  "generated_at": "2026-05-15T07:47:09Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
-    "packages": 8,
-    "symbols": 223,
-    "interfaces": 20,
+    "packages": 7,
+    "symbols": 220,
+    "interfaces": 18,
     "structs": 15,
     "functions": 6,
-    "methods": 267,
+    "methods": 233,
     "named_types": 3,
-    "func_types": 2,
+    "func_types": 1,
     "consts": 177
   },
   "files": {
@@ -82,20 +82,6 @@
       ]
     },
     {
-      "name": "gui",
-      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
-      "directory": "/internal/gui",
-      "counts": {
-        "symbols": 2,
-        "interfaces": 2,
-        "methods": 34
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json",
-      "dependencies": [
-        "yanlingrpa.com/yanling/protocol/basic"
-      ]
-    },
-    {
       "name": "osgui",
       "import_path": "yanlingrpa.com/yanling/protocol/osgui",
       "directory": "/osgui",
@@ -134,13 +120,13 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "directory": "/script",
       "counts": {
-        "symbols": 21,
+        "symbols": 20,
         "interfaces": 2,
         "structs": 9,
         "functions": 1,
         "methods": 33,
         "named_types": 1,
-        "func_types": 2,
+        "func_types": 1,
         "consts": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",

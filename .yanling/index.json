@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/index.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-14T09:54:14Z",
+  "generated_at": "2026-05-15T07:47:09Z",
   "modules": [
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -41,13 +41,6 @@
       "import_path": "yanlingrpa.com/yanling/protocol/component",
       "directory": "/component",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__component.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "gui",
-      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
-      "directory": "/internal/gui",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json"
     },
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -390,24 +383,6 @@
       "import_path": "yanlingrpa.com/yanling/protocol/component",
       "package": "component",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__component.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "GuiLocator",
-      "kind": "interface",
-      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
-      "package": "gui",
-      "doc": "GuiLocator defines the common abstract interface for GUI locators across platforms.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "GuiWindow",
-      "kind": "interface",
-      "import_path": "yanlingrpa.com/yanling/protocol/internal/gui",
-      "package": "gui",
-      "doc": "GuiWindow defines the common abstract interface for GUI windows across platforms.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__internal__gui.json"
     },
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -1787,15 +1762,6 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "package": "script",
       "doc": "ParseSpecifier parses a module specifier string.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "PublicMethod",
-      "kind": "func_type",
-      "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "package": "script",
-      "doc": "PublicMethod defines the only valid public script method type with a fixed function signature.",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },
     {
