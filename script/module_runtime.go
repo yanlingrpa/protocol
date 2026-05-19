@@ -133,11 +133,14 @@ type ModuleRuntime interface {
 
 	/*
 	* InvokeWorker calls an exposed method from another local IPC worker.
-	* The specifier identifies the target worker, and the method is the name of the exposed method to call.
-	* The dto is the data transfer object passed as an argument to the method.
-	* It returns the result from the method call or an error if the invocation fails.
+	* The `specifier` identifies the target worker, which corresponds to the module name of the worker.
+	* Note: The `specifier` does not include the version number, as the system determines the version based on the `go.mod` file.
+	* The `method` is the name of the exposed method to call.
+	* The `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.
+	* The return value is always a JSON string representing the result of the method call.
+	* If the invocation fails, an error is returned.
 	 */
-	InvokeWorker(specifier string, method string, dto any) (any, error)
+	InvokeWorker(specifier string, method string, dto any) (string, error)
 
 	/*
 	* Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.

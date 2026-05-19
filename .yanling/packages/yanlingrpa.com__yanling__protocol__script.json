@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-15T07:47:09Z",
+  "generated_at": "2026-05-19T02:32:26Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -947,7 +947,7 @@
           },
           {
             "name": "InvokeWorker",
-            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe specifier identifies the target worker, and the method is the name of the exposed method to call.\nThe dto is the data transfer object passed as an argument to the method.\nIt returns the result from the method call or an error if the invocation fails.",
+            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe `specifier` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `specifier` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `method` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is always a JSON string representing the result of the method call.\nIf the invocation fails, an error is returned.",
             "params": [
               {
                 "name": "specifier",
@@ -964,13 +964,13 @@
             ],
             "results": [
               {
-                "type": "any"
+                "type": "string"
               },
               {
                 "type": "error"
               }
             ],
-            "signature": "InvokeWorker(specifier string, method string, dto any) (any, error)",
+            "signature": "InvokeWorker(specifier string, method string, dto any) (string, error)",
             "type_refs": [
               {
                 "expr": "any",

@@ -58,7 +58,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WHostSpecifier    func() string
 	WHttpClient       func() ossys.HttpClient
 	WIntegerVariable  func(name string) (int, bool)
-	WInvokeWorker     func(specifier string, method string, dto any) (any, error)
+	WInvokeWorker     func(specifier string, method string, dto any) (string, error)
 	WJsonVariable     func(name string) (any, bool)
 	WLogger           func() ossys.ScriptLogger
 	WMobileWindow     func(id string) (appgui.AppGuiWindow, bool)
@@ -106,7 +106,7 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossy
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IntegerVariable(name string) (int, bool) {
 	return W.WIntegerVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(specifier string, method string, dto any) (any, error) {
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(specifier string, method string, dto any) (string, error) {
 	return W.WInvokeWorker(specifier, method, dto)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (any, bool) {
