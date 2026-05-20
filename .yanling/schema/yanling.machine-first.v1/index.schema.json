@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "yanling.machine-first/v1 index.json",
   "type": "object",
-  "required": ["schema_version", "generated_at", "module", "files", "counts"],
+  "required": ["schema_version", "generated_at", "module"],
   "properties": {
     "schema_version": {
       "const": "yanling.machine-first/v1"
@@ -13,7 +13,7 @@
     },
     "module": {
       "type": "object",
-      "required": ["name", "version"],
+      "required": ["name", "version", "project_root", "yanling_files", "counts"],
       "properties": {
         "name": {
           "type": "string",
@@ -25,28 +25,35 @@
         },
         "description": {
           "type": "string"
+        },
+        "project_root": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "yanling_files": {
+          "type": "object",
+          "required": ["symbol_index", "package_dir", "topics"],
+          "properties": {
+            "symbol_index": { "type": "string" },
+            "symbol_index_lite": { "type": "string" },
+            "package_dir": { "type": "string" },
+            "topics": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "counts": {
+          "type": "object",
+          "required": ["packages", "topics", "symbols"],
+          "properties": {
+            "packages": { "type": "integer", "minimum": 0 },
+            "topics": { "type": "integer", "minimum": 0 },
+            "symbols": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": true
         }
-      },
-      "additionalProperties": true
-    },
-    "files": {
-      "type": "object",
-      "required": ["symbol_index", "package_dir", "topics"],
-      "properties": {
-        "symbol_index": { "type": "string" },
-        "symbol_index_lite": { "type": "string" },
-        "package_dir": { "type": "string" },
-        "topics": { "type": "string" }
-      },
-      "additionalProperties": true
-    },
-    "counts": {
-      "type": "object",
-      "required": ["packages", "topics", "symbols"],
-      "properties": {
-        "packages": { "type": "integer", "minimum": 0 },
-        "topics": { "type": "integer", "minimum": 0 },
-        "symbols": { "type": "integer", "minimum": 0 }
       },
       "additionalProperties": true
     }

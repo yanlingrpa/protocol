@@ -253,37 +253,43 @@ func buildTypeSignature(name string, alias bool, underlying string) string {
 	return "type " + name + " " + underlying
 }
 
-func buildIndexOutput(moduleDoc ModuleOutput, symbolsDoc SymbolsOutput, topicDocs []TopicDoc, moduleDescription string) IndexOutput {
-	files := IndexFilesDoc{
+func buildIndexOutput(moduleDoc ModuleOutput, symbolsDoc SymbolsOutput, topicDocs []TopicDoc, moduleDescription string, moduleTags []string) IndexOutput {
+	yanlingFiles := YanlingFiles{
 		SymbolIndex:     moduleDoc.Files.SymbolIndex,
 		SymbolIndexLite: moduleDoc.Files.SymbolIndexLite,
 		PackageDir:      moduleDoc.Files.PackageDir,
 		Topics:          "topics.json",
 	}
-	if files.SymbolIndex == "" {
-		files.SymbolIndex = "symbols.json"
+	if yanlingFiles.SymbolIndex == "" {
+		yanlingFiles.SymbolIndex = "symbols.json"
 	}
-	if files.SymbolIndexLite == "" {
-		files.SymbolIndexLite = "symbols.lite.json"
+	if yanlingFiles.SymbolIndexLite == "" {
+		yanlingFiles.SymbolIndexLite = "symbols.lite.json"
 	}
-	if files.PackageDir == "" {
-		files.PackageDir = "packages"
+	if yanlingFiles.PackageDir == "" {
+		yanlingFiles.PackageDir = "packages"
+	}
+
+	counts := IndexCounts{
+		Packages: len(moduleDoc.Packages),
+		Topics:   len(topicDocs),
+		Symbols:  len(symbolsDoc.Symbols),
+	}
+
+	module := IndexModule{
+		Name:         moduleDoc.Module,
+		Version:      "${module_version}",
+		Description:  moduleDescription,
+		ProjectRoot:  "${project_root}",
+		Tags:         moduleTags,
+		YanlingFiles: yanlingFiles,
+		Counts:       counts,
 	}
 
 	return IndexOutput{
 		SchemaRef:     indexSchemaRef,
 		SchemaVersion: moduleDoc.SchemaVersion,
 		GeneratedAt:   moduleDoc.GeneratedAt,
-		Module: IndexModuleDoc{
-			Name:        moduleDoc.Module,
-			Version:     "latest",
-			Description: moduleDescription,
-		},
-		Files: files,
-		Counts: IndexCountsDoc{
-			Packages: len(moduleDoc.Packages),
-			Topics:   len(topicDocs),
-			Symbols:  len(symbolsDoc.Symbols),
-		},
+		Module:        module,
 	}
 }

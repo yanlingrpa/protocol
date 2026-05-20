@@ -223,29 +223,31 @@ type TopicsOutput struct {
 }
 
 type IndexOutput struct {
-	SchemaRef     string         `json:"$schema,omitempty"`
-	SchemaVersion string         `json:"schema_version"`
-	GeneratedAt   string         `json:"generated_at"`
-	Module        IndexModuleDoc `json:"module"`
-	Files         IndexFilesDoc  `json:"files"`
-	Counts        IndexCountsDoc `json:"counts"`
+	SchemaRef     string      `json:"$schema,omitempty"`
+	SchemaVersion string      `json:"schema_version"`
+	GeneratedAt   string      `json:"generated_at"`
+	Module        IndexModule `json:"module"`
 }
 
-type IndexModuleDoc struct {
-	Name        string `json:"name"`
-	Version     string `json:"version"`
-	Description string `json:"description,omitempty"`
+type IndexModule struct {
+	Name         string       `json:"name"`
+	Version      string       `json:"version"`
+	Description  string       `json:"description,omitempty"`
+	ProjectRoot  string       `json:"project_root"`
+	Tags         []string     `json:"tags,omitempty"`
+	YanlingFiles YanlingFiles `json:"yanling_files"`
+	Counts       IndexCounts  `json:"counts"`
 }
 
-type IndexCountsDoc struct {
-	Packages int `json:"packages"`
-	Topics   int `json:"topics"`
-	Symbols  int `json:"symbols"`
-}
-
-type IndexFilesDoc struct {
+type YanlingFiles struct {
 	SymbolIndex     string `json:"symbol_index"`
 	SymbolIndexLite string `json:"symbol_index_lite,omitempty"`
 	PackageDir      string `json:"package_dir"`
 	Topics          string `json:"topics"`
+}
+
+type IndexCounts struct {
+	Packages int `json:"packages"`
+	Topics   int `json:"topics"`
+	Symbols  int `json:"symbols"`
 }

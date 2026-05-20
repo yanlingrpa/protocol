@@ -182,8 +182,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	// 11. 汇总所有信息，生成总索引 index.json
-	indexOutput := buildIndexOutput(moduleDoc, symbolsDoc, topicDocs, moduleDescription)
+	moduleTags, err := readModuleTagsFromConfig(outputDir)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to read module tags from config.json: %v\n", err)
+		os.Exit(1)
+	}
+
+	// 11. 汇总所有信息，生成总索引 index.json（yanling_files 和 counts 合并到 module 下）
+	indexOutput := buildIndexOutput(moduleDoc, symbolsDoc, topicDocs, moduleDescription, moduleTags)
 	if err := writeJSON(filepath.Join(outputDir, "index.json"), indexOutput); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to write index.json: %v\n", err)
 		os.Exit(1)
