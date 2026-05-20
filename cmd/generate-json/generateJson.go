@@ -168,7 +168,6 @@ func main() {
 		SchemaRef:     topicsSchemaRef,
 		SchemaVersion: schemaVersion,
 		GeneratedAt:   generatedAt,
-		Module:        moduleName,
 		Topics:        topicDocs,
 	}
 	if err := writeJSON(filepath.Join(outputDir, "topics.json"), topicsOutput); err != nil {

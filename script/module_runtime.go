@@ -34,6 +34,10 @@ type Subscriber interface {
  */
 type Event struct {
 	/*
+	* Module is the topic publisher module name.
+	 */
+	Module string
+	/*
 	* Topic is the event topic.
 	 */
 	Topic string

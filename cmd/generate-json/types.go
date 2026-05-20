@@ -206,7 +206,7 @@ type TopicFieldSchema struct {
 // TopicDoc describes a single event topic published by this module.
 type TopicDoc struct {
 	Name         string           `json:"name"`
-	Specifier    string           `json:"specifier"`
+	Module       string           `json:"module"`
 	Doc          string           `json:"doc,omitempty"`
 	Direction    string           `json:"direction,omitempty"`
 	GoStructName string           `json:"go_struct_name,omitempty"`
@@ -219,7 +219,6 @@ type TopicsOutput struct {
 	SchemaRef     string     `json:"$schema,omitempty"`
 	SchemaVersion string     `json:"schema_version"`
 	GeneratedAt   string     `json:"generated_at"`
-	Module        string     `json:"module"`
 	Topics        []TopicDoc `json:"topics"`
 }
 
@@ -258,7 +257,6 @@ type IndexPackageEntry struct {
 type IndexTopicEntry struct {
 	Module       string `json:"module"`
 	Name         string `json:"name"`
-	Specifier    string `json:"specifier"`
 	GoStructName string `json:"go_struct_name,omitempty"`
 	GoImportPath string `json:"go_import_path,omitempty"`
 	Doc          string `json:"doc,omitempty"`

@@ -295,9 +295,8 @@ func buildIndexOutput(moduleDoc ModuleOutput, symbolsDoc SymbolsOutput, topicDoc
 
 	for _, topic := range topicDocs {
 		index.Topics = append(index.Topics, IndexTopicEntry{
-			Module:       moduleDoc.Module,
+			Module:       topic.Module,
 			Name:         topic.Name,
-			Specifier:    topic.Specifier,
 			GoStructName: topic.GoStructName,
 			GoImportPath: topic.GoImportPath,
 			Doc:          oneLineDoc(topic.Doc),

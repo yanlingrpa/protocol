@@ -1,6 +1,6 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-20T06:43:23Z",
+  "generated_at": "2026-05-20T07:06:21Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -2837,7 +2837,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 53,
+        "line": 57,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2907,7 +2907,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 60,
+        "line": 64,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
