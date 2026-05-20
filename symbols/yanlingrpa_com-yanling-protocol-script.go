@@ -15,7 +15,7 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/script/script"] = map[string]reflect.Value{
 		// function, constant and variable definitions
-		"ParseSpecifier":   reflect.ValueOf(script.ParseSpecifier),
+		"ParseModuleSpec":  reflect.ValueOf(script.ParseModuleSpec),
 		"VariableBoolean":  reflect.ValueOf(script.VariableBoolean),
 		"VariableFilePath": reflect.ValueOf(script.VariableFilePath),
 		"VariableInteger":  reflect.ValueOf(script.VariableInteger),
@@ -29,9 +29,9 @@ func init() {
 		"GuiApplication":    reflect.ValueOf((*script.GuiApplication)(nil)),
 		"MobileApplication": reflect.ValueOf((*script.MobileApplication)(nil)),
 		"ModuleInfo":        reflect.ValueOf((*script.ModuleInfo)(nil)),
+		"ModuleName":        reflect.ValueOf((*script.ModuleName)(nil)),
 		"ModuleRuntime":     reflect.ValueOf((*script.ModuleRuntime)(nil)),
 		"ScriptVariable":    reflect.ValueOf((*script.ScriptVariable)(nil)),
-		"Specifier":         reflect.ValueOf((*script.Specifier)(nil)),
 		"Subscriber":        reflect.ValueOf((*script.Subscriber)(nil)),
 		"UrlPermission":     reflect.ValueOf((*script.UrlPermission)(nil)),
 		"VariableDataType":  reflect.ValueOf((*script.VariableDataType)(nil)),

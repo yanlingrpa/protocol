@@ -1,6 +1,6 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-19T02:32:26Z",
+  "generated_at": "2026-05-20T06:43:23Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -8,7 +8,7 @@
     "interfaces": 18,
     "structs": 15,
     "functions": 6,
-    "methods": 233,
+    "methods": 231,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -2851,7 +2851,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 97,
+        "line": 105,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2865,7 +2865,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 209,
+        "line": 217,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2879,7 +2879,21 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 46,
+        "line": 51,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/script#ModuleName",
+      "name": "ModuleName",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleName",
+      "kind": "struct",
+      "package": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "source": {
+        "file": "script/yanling_script.go",
+        "line": 376,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2899,15 +2913,15 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },
     {
-      "id": "yanlingrpa.com/yanling/protocol/script#ParseSpecifier",
-      "name": "ParseSpecifier",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/script.ParseSpecifier",
+      "id": "yanlingrpa.com/yanling/protocol/script#ParseModuleSpec",
+      "name": "ParseModuleSpec",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/script.ParseModuleSpec",
       "kind": "function",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 517,
+        "line": 445,
         "column": 1
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2921,21 +2935,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 257,
-        "column": 6
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
-    },
-    {
-      "id": "yanlingrpa.com/yanling/protocol/script#Specifier",
-      "name": "Specifier",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
-      "kind": "struct",
-      "package": "script",
-      "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "source": {
-        "file": "script/yanling_script.go",
-        "line": 368,
+        "line": 265,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2963,7 +2963,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 350,
+        "line": 358,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2977,7 +2977,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 20,
+        "line": 25,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -2991,7 +2991,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 14,
+        "line": 19,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3005,7 +3005,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 28,
+        "line": 33,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3019,7 +3019,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 32,
+        "line": 37,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3033,7 +3033,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 40,
+        "line": 45,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3047,7 +3047,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 36,
+        "line": 41,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3061,7 +3061,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 24,
+        "line": 29,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3075,7 +3075,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 155,
+        "line": 163,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
@@ -3089,7 +3089,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 581,
+        "line": 521,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"

@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/index.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-19T02:32:26Z",
+  "generated_at": "2026-05-20T06:43:23Z",
   "modules": [
     {
       "module": "yanlingrpa.com/yanling/protocol",
@@ -1748,6 +1748,15 @@
     },
     {
       "module": "yanlingrpa.com/yanling/protocol",
+      "name": "ModuleName",
+      "kind": "struct",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "package": "script",
+      "doc": "ModuleName defines module name.",
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
+    },
+    {
+      "module": "yanlingrpa.com/yanling/protocol",
       "name": "ModuleRuntime",
       "kind": "interface",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
@@ -1757,11 +1766,11 @@
     },
     {
       "module": "yanlingrpa.com/yanling/protocol",
-      "name": "ParseSpecifier",
+      "name": "ParseModuleSpec",
       "kind": "function",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "package": "script",
-      "doc": "ParseSpecifier parses a module specifier string.",
+      "doc": "ParseModuleSpec parses a module spec string.",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },
     {
@@ -1771,15 +1780,6 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "package": "script",
       "doc": "ScriptVariable defines script variable configuration.",
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
-    },
-    {
-      "module": "yanlingrpa.com/yanling/protocol",
-      "name": "Specifier",
-      "kind": "struct",
-      "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "package": "script",
-      "doc": "Specifier defines module specification information.",
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },
     {

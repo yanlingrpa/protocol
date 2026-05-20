@@ -4,9 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"path/filepath"
+	"regexp"
 	"strconv"
 	"strings"
 )
+
+var domainPattern = regexp.MustCompile(`(?i)^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+$`)
+
+var ownerPattern = regexp.MustCompile(`^[A-Za-z0-9_-]+$`)
 
 /*
 * VariableDataType defines data types for script variables.
@@ -45,10 +50,13 @@ const (
  */
 type ModuleInfo struct {
 	/*
-	* Specifier is the module identifier, including domain, owner, name, and version,
-	* parsed from the go.mod file.
+	* Name is the module name.
 	 */
-	Specifier string `json:"specifier"`
+	Name string `json:"name"`
+	/*
+	* Version is the module version.
+	 */
+	Version string `json:"version"`
 	/*
 	* Package is the script package name. Only scripts under this package can be imported and called.
 	 */
@@ -363,9 +371,9 @@ type UrlPermission struct {
 }
 
 /*
-* Specifier defines module specification information.
+* ModuleName defines module name.
  */
-type Specifier struct {
+type ModuleName struct {
 	/*
 	* Domain is the source domain of the module, such as github.com.
 	 */
@@ -375,22 +383,18 @@ type Specifier struct {
 	 */
 	Owner string `json:"owner"`
 	/*
-	* Name is the module name, such as utils.
+	* Name is the project name, such as utils.
 	 */
 	Name string `json:"name"`
-	/*
-	* Version is the required module version, such as v1.2.3.
-	 */
-	Version string `json:"version"`
 }
 
 /*
-* String returns the full module specifier string in the format
-* "domain/owner/name@version" or "owner/name@version".
+* String returns the full module name string in the format
+* "domain/owner/name" or "owner/name/v2".
 * If the name part contains "/", it is also handled correctly,
 * for example "domain/owner/name/subname@version".
  */
-func (s Specifier) String() string {
+func (s ModuleName) String() string {
 	var result string
 
 	/*
@@ -402,76 +406,14 @@ func (s Specifier) String() string {
 		result = fmt.Sprintf("%s/%s", s.Owner, s.Name)
 	}
 
-	/*
-	* Append version if present.
-	 */
-	if s.Version != "" {
-		result = fmt.Sprintf("%s@%s", result, s.Version)
-	}
-
 	return result
-}
-
-/*
-* IsPseudoVersion checks whether the version of the current Specifier
-* uses the Go pseudo-version format.
-* Go pseudo-version format: v0.0.0-yyyymmddhhmmss-commithash.
- */
-func (s Specifier) IsPseudoVersion() bool {
-	if s.Version == "" {
-		return false
-	}
-
-	/*
-	* Go pseudo-version format: v0.0.0-yyyymmddhhmmss-commithash.
-	 */
-	if !strings.HasPrefix(s.Version, "v0.0.0-") {
-		return false
-	}
-
-	/*
-	* Remove the v0.0.0- prefix.
-	 */
-	suffix := strings.TrimPrefix(s.Version, "v0.0.0-")
-
-	/*
-	* Split by '-', should get [timestamp, hash].
-	 */
-	parts := strings.Split(suffix, "-")
-	if len(parts) != 2 {
-		return false
-	}
-
-	timestamp, hash := parts[0], parts[1]
-
-	/*
-	* Validate timestamp: 14 digits (yyyymmddhhmmss).
-	 */
-	if len(timestamp) != 14 {
-		return false
-	}
-	if _, err := strconv.ParseInt(timestamp, 10, 64); err != nil {
-		return false
-	}
-
-	/*
-	* Validate hash: hexadecimal string with length 10-12.
-	 */
-	if len(hash) < 10 || len(hash) > 12 {
-		return false
-	}
-	if _, err := strconv.ParseInt(hash, 16, 64); err != nil {
-		return false
-	}
-
-	return true
 }
 
 /*
 * ModulePath generates a module path based on the given root directory.
 * If the name part contains "/", it is joined as nested directories.
  */
-func (s Specifier) ModulePath(modPath string) string {
+func (s ModuleName) ModulePath(modPath string, version string) string {
 	path := modPath
 	if s.Domain != "" {
 		path = filepath.Join(path, s.Domain)
@@ -485,94 +427,92 @@ func (s Specifier) ModulePath(modPath string) string {
 			path = filepath.Join(path, segment)
 		}
 	}
-	if s.Version != "" {
-		path = path + "@" + s.Version
+	if version != "" {
+		path = path + "@" + version
 	}
 	return path
 }
 
 /*
-* Identifier returns the module identifier without version information.
-* Format: "domain/owner/name" or "owner/name".
+* ParseModuleSpec parses a module spec string.
+* Accepted formats are "owner/name[/subname...]" or "domain/owner/name[/subname...]",
+* and an optional version suffix can be appended as "moduleName@version".
+* The domain part is optional and must be a valid domain name when present.
+* The owner part is required and must be a single word (no '/').
+* The project name part is required and may contain '/'.
+* It returns a ModuleName struct, version string, and an error if parsing fails.
  */
-func (s Specifier) Identifier() string {
-	var result string
+func ParseModuleSpec(spec string) (ModuleName, string, error) {
+	original := spec
+	spec = strings.TrimSpace(spec)
+	if spec == "" {
+		return ModuleName{}, "", fmt.Errorf("invalid module spec format: %s, empty spec", original)
+	}
+
+	var modulePart string
+	var version string
 
 	/*
-	* Build the name part.
+	* Separate module name and version by '@', allowing spaces around both sides.
 	 */
-	if s.Domain != "" {
-		result = fmt.Sprintf("%s/%s/%s", s.Domain, s.Owner, s.Name)
+	if strings.Count(spec, "@") > 1 {
+		return ModuleName{}, "", fmt.Errorf("invalid module spec format: %s, multiple @ found", original)
+	}
+	if strings.Contains(spec, "@") {
+		parts := strings.SplitN(spec, "@", 2)
+		modulePart = strings.TrimSpace(parts[0])
+		version = strings.TrimSpace(parts[1])
+		if modulePart == "" || version == "" {
+			return ModuleName{}, "", fmt.Errorf("invalid module spec format: %s, expected 'moduleName@version'", original)
+		}
 	} else {
-		result = fmt.Sprintf("%s/%s", s.Owner, s.Name)
+		modulePart = spec
 	}
 
-	return result
-}
-
-/*
-* ParseSpecifier parses a module specifier string.
-* It supports owner/name or domain/owner/name, optionally with @version.
- */
-func ParseSpecifier(spec string) (Specifier, error) {
-	var domain, owner, name, version string
-
-	/*
-	* First split by '@' to separate version.
-	 */
-	atParts := strings.Split(spec, "@")
-	if len(atParts) > 2 {
-		return Specifier{}, fmt.Errorf("invalid specifier format: %s, multiple @ found", spec)
+	segments := strings.Split(modulePart, "/")
+	if len(segments) < 2 {
+		return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, expected 'owner/name' or 'domain/owner/name'", original)
 	}
 
-	nameParts := atParts[0]
-	if len(atParts) == 2 {
-		version = atParts[1]
+	for _, segment := range segments {
+		if segment == "" {
+			return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, contains empty path segment", original)
+		}
 	}
 
-	/*
-	* Split the name part by '/'.
-	 */
-	segments := strings.Split(nameParts, "/")
+	domain := ""
+	owner := ""
+	name := ""
 
 	/*
-	* Determine whether domain exists based on segment count.
+	* If the first segment is a domain and there are at least 3 segments,
+	* parse as domain/owner/name...; otherwise parse as owner/name....
 	 */
-	switch len(segments) {
-	case 0, 1:
-		return Specifier{}, fmt.Errorf("invalid specifier format: %s, expected 'owner/name' or 'domain/owner/name'", spec)
-	case 2:
-		/*
-		* owner/name (domain is empty).
-		 */
-		owner = segments[0]
-		name = segments[1]
-	case 3:
-		/*
-		* domain/owner/name.
-		 */
-		domain = segments[0]
-		owner = segments[1]
-		name = segments[2]
-	default:
+	if len(segments) >= 3 && isDomainName(segments[0]) {
 		domain = segments[0]
 		owner = segments[1]
 		name = strings.Join(segments[2:], "/")
+	} else {
+		owner = segments[0]
+		name = strings.Join(segments[1:], "/")
 	}
 
-	/*
-	* Validate required fields.
-	 */
 	if owner == "" || name == "" {
-		return Specifier{}, fmt.Errorf("invalid specifier format: %s, owner and name are required", spec)
+		return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, owner and project name are required", original)
+	}
+	if !isValidOwner(owner) {
+		return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, owner must be a single word without '/'", original)
 	}
 
-	return Specifier{
-		Domain:  domain,
-		Owner:   owner,
-		Name:    name,
-		Version: version,
-	}, nil
+	return ModuleName{Domain: domain, Owner: owner, Name: name}, version, nil
+}
+
+func isDomainName(domain string) bool {
+	return domainPattern.MatchString(domain)
+}
+
+func isValidOwner(owner string) bool {
+	return ownerPattern.MatchString(owner)
 }
 
 /*
@@ -582,7 +522,11 @@ type YScript struct {
 	/*
 	* Module is the basic script module information.
 	 */
-	Module ModuleInfo `json:"module"`
+	Module ModuleName `json:"module"`
+	/*
+	* Version is the module version.
+	 */
+	Version string `json:"version"`
 	/*
 	* GuiApps is the list of GUI applications to operate.
 	 */
@@ -608,11 +552,11 @@ type YScript struct {
 	 */
 	ApiPermissions []UrlPermission `json:"api_permissions"`
 	/*
-	* ScriptDependencies is the list of script module specifiers imported by this script project.
+	* ScriptDependencies is the list of script module names (moduleName@version) imported by this script project.
 	 */
 	ScriptDependencies []string `json:"script_dependencies"`
 	/*
-	* WorkerDependencies is the list of IPC service dependencies.
+	* WorkerDependencies is the list of IPC service module names (moduleName@version) depended by this script project.
 	 */
 	WorkerDependencies []string `json:"worker_dependencies"`
 }

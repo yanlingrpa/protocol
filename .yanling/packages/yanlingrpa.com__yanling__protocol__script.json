@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-19T02:32:26Z",
+  "generated_at": "2026-05-20T06:43:23Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -28,6 +28,12 @@
         "path": "path/filepath",
         "aliases": [
           "filepath"
+        ]
+      },
+      {
+        "path": "regexp",
+        "aliases": [
+          "regexp"
         ]
       },
       {
@@ -92,7 +98,7 @@
       "interfaces": 2,
       "structs": 9,
       "functions": 1,
-      "methods": 33,
+      "methods": 31,
       "named_types": 1,
       "func_types": 1,
       "consts": 6
@@ -205,7 +211,7 @@
         "signature": "type GuiApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 97,
+          "line": 105,
           "column": 6
         },
         "fields": [
@@ -376,7 +382,7 @@
         "signature": "type MobileApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 209,
+          "line": 217,
           "column": 6
         },
         "fields": [
@@ -511,7 +517,7 @@
         "signature": "type ModuleInfo struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 46,
+          "line": 51,
           "column": 6
         },
         "fields": [
@@ -588,10 +594,10 @@
             ]
           },
           {
-            "name": "Package",
+            "name": "Name",
             "type": "string",
-            "tag": "json:\"package\"",
-            "doc": "Package is the script package name. Only scripts under this package can be imported and called.",
+            "tag": "json:\"name\"",
+            "doc": "Name is the module name.",
             "type_refs": [
               {
                 "expr": "string",
@@ -600,10 +606,10 @@
             ]
           },
           {
-            "name": "Specifier",
+            "name": "Package",
             "type": "string",
-            "tag": "json:\"specifier\"",
-            "doc": "Specifier is the module identifier, including domain, owner, name, and version,\nparsed from the go.mod file.",
+            "tag": "json:\"package\"",
+            "doc": "Package is the script package name. Only scripts under this package can be imported and called.",
             "type_refs": [
               {
                 "expr": "string",
@@ -636,10 +642,126 @@
             ]
           },
           {
+            "name": "Version",
+            "type": "string",
+            "tag": "json:\"version\"",
+            "doc": "Version is the module version.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "Website",
             "type": "string",
             "tag": "json:\"website\"",
             "doc": "Website is the official website of the script.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#ModuleName",
+        "name": "ModuleName",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleName",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "ModuleName defines module name.",
+        "signature": "type ModuleName struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 376,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Domain",
+            "type": "string",
+            "tag": "json:\"domain\"",
+            "doc": "Domain is the source domain of the module, such as github.com.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "tag": "json:\"name\"",
+            "doc": "Name is the project name, such as utils.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Owner",
+            "type": "string",
+            "tag": "json:\"owner\"",
+            "doc": "Owner is the module owner, such as a GitHub username.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "methods": [
+          {
+            "name": "ModulePath",
+            "doc": "ModulePath generates a module path based on the given root directory.\nIf the name part contains \"/\", it is joined as nested directories.",
+            "params": [
+              {
+                "name": "modPath",
+                "type": "string"
+              },
+              {
+                "name": "version",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "ModulePath(modPath string, version string) string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "String",
+            "doc": "String returns the full module name string in the format\n\"domain/owner/name\" or \"owner/name/v2\".\nIf the name part contains \"/\", it is also handled correctly,\nfor example \"domain/owner/name/subname@version\".",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "String() string",
             "type_refs": [
               {
                 "expr": "string",
@@ -1412,17 +1534,17 @@
         ]
       },
       {
-        "id": "yanlingrpa.com/yanling/protocol/script#ParseSpecifier",
-        "name": "ParseSpecifier",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ParseSpecifier",
+        "id": "yanlingrpa.com/yanling/protocol/script#ParseModuleSpec",
+        "name": "ParseModuleSpec",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ParseModuleSpec",
         "kind": "function",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ParseSpecifier parses a module specifier string.\nIt supports owner/name or domain/owner/name, optionally with @version.",
-        "signature": "ParseSpecifier(spec string) (Specifier, error)",
+        "doc": "ParseModuleSpec parses a module spec string.\nAccepted formats are \"owner/name[/subname...]\" or \"domain/owner/name[/subname...]\",\nand an optional version suffix can be appended as \"moduleName@version\".\nThe domain part is optional and must be a valid domain name when present.\nThe owner part is required and must be a single word (no '/').\nThe project name part is required and may contain '/'.\nIt returns a ModuleName struct, version string, and an error if parsing fails.",
+        "signature": "ParseModuleSpec(spec string) (ModuleName, string, error)",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 517,
+          "line": 445,
           "column": 1
         },
         "params": [
@@ -1433,7 +1555,10 @@
         ],
         "results": [
           {
-            "type": "Specifier"
+            "type": "ModuleName"
+          },
+          {
+            "type": "string"
           },
           {
             "type": "error"
@@ -1441,9 +1566,9 @@
         ],
         "type_refs": [
           {
-            "expr": "Specifier",
+            "expr": "ModuleName",
             "import_path": "yanlingrpa.com/yanling/protocol/script",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleName",
             "local": true
           },
           {
@@ -1467,7 +1592,7 @@
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 257,
+          "line": 265,
           "column": 6
         },
         "fields": [
@@ -1553,156 +1678,6 @@
             "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
             "local": true
           },
-          {
-            "expr": "bool",
-            "builtin": true
-          },
-          {
-            "expr": "string",
-            "builtin": true
-          }
-        ]
-      },
-      {
-        "id": "yanlingrpa.com/yanling/protocol/script#Specifier",
-        "name": "Specifier",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
-        "kind": "struct",
-        "package": "script",
-        "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "Specifier defines module specification information.",
-        "signature": "type Specifier struct",
-        "source": {
-          "file": "script/yanling_script.go",
-          "line": 368,
-          "column": 6
-        },
-        "fields": [
-          {
-            "name": "Domain",
-            "type": "string",
-            "tag": "json:\"domain\"",
-            "doc": "Domain is the source domain of the module, such as github.com.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Name",
-            "type": "string",
-            "tag": "json:\"name\"",
-            "doc": "Name is the module name, such as utils.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Owner",
-            "type": "string",
-            "tag": "json:\"owner\"",
-            "doc": "Owner is the module owner, such as a GitHub username.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Version",
-            "type": "string",
-            "tag": "json:\"version\"",
-            "doc": "Version is the required module version, such as v1.2.3.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          }
-        ],
-        "methods": [
-          {
-            "name": "Identifier",
-            "doc": "Identifier returns the module identifier without version information.\nFormat: \"domain/owner/name\" or \"owner/name\".",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "Identifier() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "IsPseudoVersion",
-            "doc": "IsPseudoVersion checks whether the version of the current Specifier\nuses the Go pseudo-version format.\nGo pseudo-version format: v0.0.0-yyyymmddhhmmss-commithash.",
-            "params": [],
-            "results": [
-              {
-                "type": "bool"
-              }
-            ],
-            "signature": "IsPseudoVersion() bool",
-            "type_refs": [
-              {
-                "expr": "bool",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "ModulePath",
-            "doc": "ModulePath generates a module path based on the given root directory.\nIf the name part contains \"/\", it is joined as nested directories.",
-            "params": [
-              {
-                "name": "modPath",
-                "type": "string"
-              }
-            ],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "ModulePath(modPath string) string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "String",
-            "doc": "String returns the full module specifier string in the format\n\"domain/owner/name@version\" or \"owner/name@version\".\nIf the name part contains \"/\", it is also handled correctly,\nfor example \"domain/owner/name/subname@version\".",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "String() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          }
-        ],
-        "type_refs": [
           {
             "expr": "bool",
             "builtin": true
@@ -1802,7 +1777,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 350,
+          "line": 358,
           "column": 6
         },
         "fields": [
@@ -1861,7 +1836,7 @@
         "signature": "const VariableBoolean VariableDataType = \"boolean\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 20,
+          "line": 25,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -1887,7 +1862,7 @@
         "underlying_type": "string",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 14,
+          "line": 19,
           "column": 6
         },
         "methods": [
@@ -1966,7 +1941,7 @@
         "signature": "const VariableFilePath VariableDataType = \"filepath\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 28,
+          "line": 33,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -1991,7 +1966,7 @@
         "signature": "const VariableInteger VariableDataType = \"integer\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 32,
+          "line": 37,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2016,7 +1991,7 @@
         "signature": "const VariableJson VariableDataType = \"json\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 40,
+          "line": 45,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2041,7 +2016,7 @@
         "signature": "const VariableNumber VariableDataType = \"float\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 36,
+          "line": 41,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2066,7 +2041,7 @@
         "signature": "const VariableString VariableDataType = \"string\"",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 24,
+          "line": 29,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2091,7 +2066,7 @@
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 155,
+          "line": 163,
           "column": 6
         },
         "fields": [
@@ -2254,7 +2229,7 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 581,
+          "line": 521,
           "column": 6
         },
         "fields": [
@@ -2316,14 +2291,14 @@
           },
           {
             "name": "Module",
-            "type": "ModuleInfo",
+            "type": "ModuleName",
             "tag": "json:\"module\"",
             "doc": "Module is the basic script module information.",
             "type_refs": [
               {
-                "expr": "ModuleInfo",
+                "expr": "ModuleName",
                 "import_path": "yanlingrpa.com/yanling/protocol/script",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleName",
                 "local": true
               }
             ]
@@ -2332,7 +2307,7 @@
             "name": "ScriptDependencies",
             "type": "[]string",
             "tag": "json:\"script_dependencies\"",
-            "doc": "ScriptDependencies is the list of script module specifiers imported by this script project.",
+            "doc": "ScriptDependencies is the list of script module names (moduleName@version) imported by this script project.",
             "type_refs": [
               {
                 "expr": "string",
@@ -2355,6 +2330,18 @@
             ]
           },
           {
+            "name": "Version",
+            "type": "string",
+            "tag": "json:\"version\"",
+            "doc": "Version is the module version.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "WebApps",
             "type": "[]WebApplication",
             "tag": "json:\"web_apps\"",
@@ -2372,7 +2359,7 @@
             "name": "WorkerDependencies",
             "type": "[]string",
             "tag": "json:\"worker_dependencies\"",
-            "doc": "WorkerDependencies is the list of IPC service dependencies.",
+            "doc": "WorkerDependencies is the list of IPC service module names (moduleName@version) depended by this script project.",
             "type_refs": [
               {
                 "expr": "string",
@@ -2395,9 +2382,9 @@
             "local": true
           },
           {
-            "expr": "ModuleInfo",
+            "expr": "ModuleName",
             "import_path": "yanlingrpa.com/yanling/protocol/script",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleName",
             "local": true
           },
           {
