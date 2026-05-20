@@ -253,7 +253,7 @@ func buildTypeSignature(name string, alias bool, underlying string) string {
 	return "type " + name + " " + underlying
 }
 
-func buildIndexOutput(moduleDoc ModuleOutput, symbolsDoc SymbolsOutput, topicDocs []TopicDoc) IndexOutput {
+func buildIndexOutput(moduleDoc ModuleOutput, symbolsDoc SymbolsOutput, topicDocs []TopicDoc, moduleDescription string) IndexOutput {
 	files := IndexFilesDoc{
 		SymbolIndex:     moduleDoc.Files.SymbolIndex,
 		SymbolIndexLite: moduleDoc.Files.SymbolIndexLite,
@@ -270,50 +270,20 @@ func buildIndexOutput(moduleDoc ModuleOutput, symbolsDoc SymbolsOutput, topicDoc
 		files.PackageDir = "packages"
 	}
 
-	index := IndexOutput{
+	return IndexOutput{
 		SchemaRef:     indexSchemaRef,
 		SchemaVersion: moduleDoc.SchemaVersion,
 		GeneratedAt:   moduleDoc.GeneratedAt,
-		Modules: []IndexModuleEntry{
-			{Module: moduleDoc.Module, Files: files},
+		Module: IndexModuleDoc{
+			Name:        moduleDoc.Module,
+			Version:     "latest",
+			Description: moduleDescription,
 		},
-		Packages: make([]IndexPackageEntry, 0, len(moduleDoc.Packages)),
-		Topics:   make([]IndexTopicEntry, 0, len(topicDocs)),
-		Symbols:  make([]IndexSymbolEntry, 0, len(symbolsDoc.Symbols)),
+		Files: files,
+		Counts: IndexCountsDoc{
+			Packages: len(moduleDoc.Packages),
+			Topics:   len(topicDocs),
+			Symbols:  len(symbolsDoc.Symbols),
+		},
 	}
-
-	for _, pkg := range moduleDoc.Packages {
-		index.Packages = append(index.Packages, IndexPackageEntry{
-			Module:      moduleDoc.Module,
-			Name:        pkg.Name,
-			ImportPath:  pkg.ImportPath,
-			Directory:   pkg.Directory,
-			Doc:         pkg.Doc,
-			PackageFile: pkg.PackageFile,
-		})
-	}
-
-	for _, topic := range topicDocs {
-		index.Topics = append(index.Topics, IndexTopicEntry{
-			Module:       topic.Module,
-			Name:         topic.Name,
-			GoStructName: topic.GoStructName,
-			GoImportPath: topic.GoImportPath,
-			Doc:          oneLineDoc(topic.Doc),
-		})
-	}
-
-	for _, symbol := range symbolsDoc.Symbols {
-		index.Symbols = append(index.Symbols, IndexSymbolEntry{
-			Module:      moduleDoc.Module,
-			Name:        symbol.Name,
-			Kind:        symbol.Kind,
-			ImportPath:  symbol.ImportPath,
-			Package:     symbol.Package,
-			Doc:         symbol.Doc,
-			PackageFile: symbol.PackageFile,
-		})
-	}
-
-	return index
 }

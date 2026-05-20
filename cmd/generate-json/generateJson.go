@@ -176,8 +176,14 @@ func main() {
 	}
 	fmt.Printf("generated %s\n", filepath.Join(outputDir, "topics.json"))
 
+	moduleDescription, err := readModuleDescriptionFromConfig(outputDir)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to read module description from config.json: %v\n", err)
+		os.Exit(1)
+	}
+
 	// 11. 汇总所有信息，生成总索引 index.json
-	indexOutput := buildIndexOutput(moduleDoc, symbolsDoc, topicDocs)
+	indexOutput := buildIndexOutput(moduleDoc, symbolsDoc, topicDocs, moduleDescription)
 	if err := writeJSON(filepath.Join(outputDir, "index.json"), indexOutput); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to write index.json: %v\n", err)
 		os.Exit(1)

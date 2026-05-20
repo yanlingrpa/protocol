@@ -1,0 +1,16 @@
+{
+  "$schema": "./schema/yanling.machine-first.v1/config.schema.json",
+  "module": {
+    "name": "yanlingrpa.com/yanling/protocol",
+    "package": "symbols",
+    "description": "YanLing RPA protocol module that defines desktop GUI, browser, and Android automation capabilities, and uses worker interfaces to control local applications for building automation tasks.",
+    "tags": ["rpa", "automation", "desktop-automation", "browser-automation", "android-automation", "worker"],
+    "website": "https://yanlingrpa.com/yanling/protocol",
+    "update_time": "2026-04-22T12:30:00Z",
+    "author": "Yanling RPA Team",
+    "email": "automation@yanlingrpa.com",
+    "license": "AGPL-3.0",
+    "devices": ["windows", "linux", "macos"],
+    "engine_version": ">=1.0.0"
+  }
+}

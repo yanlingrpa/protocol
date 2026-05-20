@@ -223,19 +223,24 @@ type TopicsOutput struct {
 }
 
 type IndexOutput struct {
-	SchemaRef     string              `json:"$schema,omitempty"`
-	SchemaVersion string              `json:"schema_version"`
-	GeneratedAt   string              `json:"generated_at"`
-	Modules       []IndexModuleEntry  `json:"modules"`
-	Packages      []IndexPackageEntry `json:"packages"`
-	Topics        []IndexTopicEntry   `json:"topics"`
-	Symbols       []IndexSymbolEntry  `json:"symbols"`
+	SchemaRef     string         `json:"$schema,omitempty"`
+	SchemaVersion string         `json:"schema_version"`
+	GeneratedAt   string         `json:"generated_at"`
+	Module        IndexModuleDoc `json:"module"`
+	Files         IndexFilesDoc  `json:"files"`
+	Counts        IndexCountsDoc `json:"counts"`
 }
 
-// IndexModuleEntry holds per-module metadata and its local file references.
-type IndexModuleEntry struct {
-	Module string        `json:"module"`
-	Files  IndexFilesDoc `json:"files"`
+type IndexModuleDoc struct {
+	Name        string `json:"name"`
+	Version     string `json:"version"`
+	Description string `json:"description,omitempty"`
+}
+
+type IndexCountsDoc struct {
+	Packages int `json:"packages"`
+	Topics   int `json:"topics"`
+	Symbols  int `json:"symbols"`
 }
 
 type IndexFilesDoc struct {
@@ -243,31 +248,4 @@ type IndexFilesDoc struct {
 	SymbolIndexLite string `json:"symbol_index_lite,omitempty"`
 	PackageDir      string `json:"package_dir"`
 	Topics          string `json:"topics"`
-}
-
-type IndexPackageEntry struct {
-	Module      string `json:"module"`
-	Name        string `json:"name"`
-	ImportPath  string `json:"import_path"`
-	Directory   string `json:"directory"`
-	Doc         string `json:"doc,omitempty"`
-	PackageFile string `json:"package_file"`
-}
-
-type IndexTopicEntry struct {
-	Module       string `json:"module"`
-	Name         string `json:"name"`
-	GoStructName string `json:"go_struct_name,omitempty"`
-	GoImportPath string `json:"go_import_path,omitempty"`
-	Doc          string `json:"doc,omitempty"`
-}
-
-type IndexSymbolEntry struct {
-	Module      string `json:"module"`
-	Name        string `json:"name"`
-	Kind        string `json:"kind"`
-	ImportPath  string `json:"import_path"`
-	Package     string `json:"package"`
-	Doc         string `json:"doc,omitempty"`
-	PackageFile string `json:"package_file"`
 }

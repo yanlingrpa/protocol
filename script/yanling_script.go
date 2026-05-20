@@ -522,7 +522,7 @@ type YScript struct {
 	/*
 	* Module is the basic script module information.
 	 */
-	Module ModuleName `json:"module"`
+	Module ModuleInfo `json:"module"`
 	/*
 	* Version is the module version.
 	 */
