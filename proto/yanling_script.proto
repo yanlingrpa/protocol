@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package yanling.protocol.script.v1;
+
+option go_package = "yanlingrpa.com/yanling/protocol/proto/scriptpb;scriptpb";
+
+// VariableDataType defines the supported script variable data types.
+enum VariableDataType {
+  VARIABLE_DATA_TYPE_UNSPECIFIED = 0;
+  VARIABLE_DATA_TYPE_BOOLEAN = 1;
+  VARIABLE_DATA_TYPE_STRING = 2;
+  VARIABLE_DATA_TYPE_FILEPATH = 3;
+  VARIABLE_DATA_TYPE_INTEGER = 4;
+  VARIABLE_DATA_TYPE_FLOAT = 5;
+  VARIABLE_DATA_TYPE_JSON = 6;
+}
+
+// ModuleInfo defines script module metadata.
+message ModuleInfo {
+  string name = 1;
+  string version = 2;
+  string package_name = 3;
+  string description = 4;
+  repeated string tags = 5;
+  string website = 6;
+  string update_time = 7;
+  string author = 8;
+  string email = 9;
+  string license = 10;
+  repeated string devices = 11;
+  string engine_version = 12;
+}
+
+// GuiApplication defines GUI application configuration.
+message GuiApplication {
+  string id = 1;
+  string name = 2;
+  string launcher = 3;
+  repeated string args = 4;
+  string work_dir = 5;
+  repeated string env = 6;
+  string process = 7;
+  string launch_uri = 8;
+  int32 timeout = 9;
+  int32 wait_time = 10;
+  int32 window_width = 11;
+  int32 window_height = 12;
+}
+
+// WebApplication defines browser application configuration.
+message WebApplication {
+  string id = 1;
+  string name = 2;
+  string browser_type = 3;
+  string url = 4;
+  bool incognito = 5;
+  repeated string args = 6;
+  string user_data_dir = 7;
+  int32 load_timeout = 8;
+  int32 wait_time = 9;
+  int32 window_width = 10;
+  int32 window_height = 11;
+}
+
+// MobileApplication defines mobile application configuration for Android/iOS devices.
+message MobileApplication {
+  string id = 1;
+  string name = 2;
+  string app_package = 3;
+  string activity = 4;
+  string action = 5;
+  string flags = 6;
+  string extras = 7;
+  int32 timeout = 8;
+  int32 wait_time = 9;
+}
+
+// ScriptVariable defines script variable configuration.
+message ScriptVariable {
+  string name = 1;
+  string abstract = 2;
+  VariableDataType type = 3;
+  string default_value = 4;
+  bool required = 5;
+  bool save = 6;
+}
+
+// UrlPermission defines network or filesystem access permissions.
+message UrlPermission {
+  string url = 1;
+  string permission = 2;
+  string abstract = 3;
+}
+
+// ModuleName defines module name.
+message ModuleName {
+  string domain = 1;
+  string owner = 2;
+  string name = 3;
+}
+
+// YScript defines the top-level script configuration structure.
+message YScript {
+  ModuleInfo module = 1;
+  string version = 2;
+  repeated GuiApplication gui_apps = 3;
+  repeated WebApplication web_apps = 4;
+  repeated MobileApplication mobile_apps = 5;
+  repeated ScriptVariable variables = 6;
+  repeated UrlPermission file_permissions = 7;
+  repeated UrlPermission api_permissions = 8;
+  repeated string script_dependencies = 9;
+  repeated string worker_dependencies = 10;
+}
