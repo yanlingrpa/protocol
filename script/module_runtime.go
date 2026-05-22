@@ -16,9 +16,9 @@ import (
  */
 type Subscriber interface {
 	/*
-	* GetSpecifier gets the module specifier that owns the topic.
+	* GetModule gets the module name that owns the topic.
 	 */
-	GetSpecifier() string
+	GetModule() string
 	/*
 	* GetTopic gets the subscribed event topic.
 	 */
@@ -63,13 +63,13 @@ type EventHandler func(event Event)
  */
 type ModuleRuntime interface {
 	/*
-	* HostSpecifier gets the specifier of the entry script launched by the engine.
+	* MainModule gets the module name of the entry point.
 	 */
-	HostSpecifier() string
+	MainModule() string
 	/*
-	* CurrentSpecifier gets the specifier of the currently executing script.
+	* CurrentModule gets the module name of the currently executing script.
 	 */
-	CurrentSpecifier() string
+	CurrentModule() string
 	/*
 	* OsGuiWindow gets an OS GUI window by window ID.
 	 */
@@ -137,22 +137,22 @@ type ModuleRuntime interface {
 
 	/*
 	* InvokeWorker calls an exposed method from another local IPC worker.
-	* The `specifier` identifies the target worker, which corresponds to the module name of the worker.
-	* Note: The `specifier` does not include the version number, as the system determines the version based on the `go.mod` file.
+	* The `module` identifies the target worker, which corresponds to the module name of the worker.
+	* Note: The `module` does not include the version number, as the system determines the version based on the `go.mod` file.
 	* The `method` is the name of the exposed method to call.
 	* The `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.
 	* The return value is always a JSON string representing the result of the method call.
 	* If the invocation fails, an error is returned.
 	 */
-	InvokeWorker(specifier string, method string, dto any) (string, error)
+	InvokeWorker(module string, method string, dto any) (string, error)
 
 	/*
 	* Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.
-	* The specifier identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.
+	* The module identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.
 	* The handler is the function that will be called when the event is published.
 	* It returns a Subscriber object representing the subscription or an error if the subscription fails.
 	 */
-	Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error)
+	Subscribe(module string, topic string, handler EventHandler) (Subscriber, error)
 	/*
 	* Unsubscribe cancels a subscription to an exposed event from another local IPC worker/yscript or the current worker/yscript.
 	* The subscriber is the Subscriber object representing the subscription to cancel.

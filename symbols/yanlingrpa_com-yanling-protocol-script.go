@@ -50,17 +50,17 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WBooleanVariable  func(name string) (bool, bool)
 	WBrokerInfo       func() ossys.BrokerInfo
 	WBrowserWindow    func(id string) (browser.BrowserWindow, bool)
-	WCurrentSpecifier func() string
+	WCurrentModule    func() string
 	WFilePathVariable func(name string) (string, bool)
 	WFileSystem       func() ossys.LocalFilesystem
 	WFloatVariable    func(name string) (float64, bool)
 	WGetCacheData     func(key string) (string, bool)
-	WHostSpecifier    func() string
 	WHttpClient       func() ossys.HttpClient
 	WIntegerVariable  func(name string) (int, bool)
-	WInvokeWorker     func(specifier string, method string, dto any) (string, error)
+	WInvokeWorker     func(module string, method string, dto any) (string, error)
 	WJsonVariable     func(name string) (any, bool)
 	WLogger           func() ossys.ScriptLogger
+	WMainModule       func() string
 	WMobileWindow     func(id string) (appgui.AppGuiWindow, bool)
 	WOcrWorker        func() component.OcrWorker
 	WOsGuiWindow      func(id string) (osgui.OSGuiWindow, bool)
@@ -68,7 +68,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WSetCacheData     func(key string, value string)
 	WStorage          func() ossys.LocalStorage
 	WStringVariable   func(name string) (string, bool)
-	WSubscribe        func(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error)
+	WSubscribe        func(module string, topic string, handler script.EventHandler) (script.Subscriber, error)
 	WUnsubscribe      func(subscriber script.Subscriber) error
 	WVisionWorker     func() component.VisionWorker
 }
@@ -82,8 +82,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrokerInfo() ossy
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
 	return W.WBrowserWindow(id)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) CurrentSpecifier() string {
-	return W.WCurrentSpecifier()
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) CurrentModule() string {
+	return W.WCurrentModule()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FilePathVariable(name string) (string, bool) {
 	return W.WFilePathVariable(name)
@@ -97,23 +97,23 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FloatVariable(nam
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetCacheData(key string) (string, bool) {
 	return W.WGetCacheData(key)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HostSpecifier() string {
-	return W.WHostSpecifier()
-}
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossys.HttpClient {
 	return W.WHttpClient()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IntegerVariable(name string) (int, bool) {
 	return W.WIntegerVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(specifier string, method string, dto any) (string, error) {
-	return W.WInvokeWorker(specifier, method, dto)
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(module string, method string, dto any) (string, error) {
+	return W.WInvokeWorker(module, method, dto)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (any, bool) {
 	return W.WJsonVariable(name)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Logger() ossys.ScriptLogger {
 	return W.WLogger()
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MainModule() string {
+	return W.WMainModule()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MobileWindow(id string) (appgui.AppGuiWindow, bool) {
 	return W.WMobileWindow(id)
@@ -136,8 +136,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Storage() ossys.L
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) StringVariable(name string) (string, bool) {
 	return W.WStringVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Subscribe(specifier string, topic string, handler script.EventHandler) (script.Subscriber, error) {
-	return W.WSubscribe(specifier, topic, handler)
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Subscribe(module string, topic string, handler script.EventHandler) (script.Subscriber, error) {
+	return W.WSubscribe(module, topic, handler)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Unsubscribe(subscriber script.Subscriber) error {
 	return W.WUnsubscribe(subscriber)
@@ -148,14 +148,14 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) VisionWorker() co
 
 // _yanlingrpa_com_yanling_protocol_script_Subscriber is an interface wrapper for Subscriber type
 type _yanlingrpa_com_yanling_protocol_script_Subscriber struct {
-	IValue        interface{}
-	WGetSpecifier func() string
-	WGetTopic     func() string
-	WIsActive     func() bool
+	IValue     interface{}
+	WGetModule func() string
+	WGetTopic  func() string
+	WIsActive  func() bool
 }
 
-func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetSpecifier() string {
-	return W.WGetSpecifier()
+func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetModule() string {
+	return W.WGetModule()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetTopic() string {
 	return W.WGetTopic()

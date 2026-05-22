@@ -48,12 +48,12 @@
     },
     "worker_dependencies": {
       "type": "array",
-      "description": "List of worker dependencies required by the script.",
+      "description": "List of worker module names required by the script.",
       "items": { "type": "string" }
     },
     "script_dependencies": {
       "type": "array",
-      "description": "List of script module specifiers imported by this script project.",
+      "description": "List of script module names imported by this script project.",
       "items": { "type": "string" }
     }
   },

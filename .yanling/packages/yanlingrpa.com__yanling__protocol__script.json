@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-20T09:19:24Z",
+  "generated_at": "2026-05-22T09:12:05Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -885,15 +885,15 @@
             ]
           },
           {
-            "name": "CurrentSpecifier",
-            "doc": "CurrentSpecifier gets the specifier of the currently executing script.",
+            "name": "CurrentModule",
+            "doc": "CurrentModule gets the module name of the currently executing script.",
             "params": [],
             "results": [
               {
                 "type": "string"
               }
             ],
-            "signature": "CurrentSpecifier() string",
+            "signature": "CurrentModule() string",
             "type_refs": [
               {
                 "expr": "string",
@@ -1011,23 +1011,6 @@
             ]
           },
           {
-            "name": "HostSpecifier",
-            "doc": "HostSpecifier gets the specifier of the entry script launched by the engine.",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "HostSpecifier() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
             "name": "HttpClient",
             "doc": "HttpClient gets the HTTP client interface.",
             "params": [],
@@ -1080,10 +1063,10 @@
           },
           {
             "name": "InvokeWorker",
-            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe `specifier` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `specifier` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `method` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is always a JSON string representing the result of the method call.\nIf the invocation fails, an error is returned.",
+            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe `module` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `module` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `method` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is always a JSON string representing the result of the method call.\nIf the invocation fails, an error is returned.",
             "params": [
               {
-                "name": "specifier",
+                "name": "module",
                 "type": "string"
               },
               {
@@ -1103,7 +1086,7 @@
                 "type": "error"
               }
             ],
-            "signature": "InvokeWorker(specifier string, method string, dto any) (string, error)",
+            "signature": "InvokeWorker(module string, method string, dto any) (string, error)",
             "type_refs": [
               {
                 "expr": "any",
@@ -1167,6 +1150,23 @@
                 "expr": "ossys.ScriptLogger",
                 "import_path": "yanlingrpa.com/yanling/protocol/ossys",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.ScriptLogger"
+              }
+            ]
+          },
+          {
+            "name": "MainModule",
+            "doc": "MainModule gets the module name of the entry point.",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "MainModule() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           },
@@ -1361,10 +1361,10 @@
           },
           {
             "name": "Subscribe",
-            "doc": "Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe specifier identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.\nThe handler is the function that will be called when the event is published.\nIt returns a Subscriber object representing the subscription or an error if the subscription fails.",
+            "doc": "Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe module identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.\nThe handler is the function that will be called when the event is published.\nIt returns a Subscriber object representing the subscription or an error if the subscription fails.",
             "params": [
               {
-                "name": "specifier",
+                "name": "module",
                 "type": "string"
               },
               {
@@ -1384,7 +1384,7 @@
                 "type": "error"
               }
             ],
-            "signature": "Subscribe(specifier string, topic string, handler EventHandler) (Subscriber, error)",
+            "signature": "Subscribe(module string, topic string, handler EventHandler) (Subscriber, error)",
             "type_refs": [
               {
                 "expr": "EventHandler",
@@ -1715,15 +1715,15 @@
         },
         "methods": [
           {
-            "name": "GetSpecifier",
-            "doc": "GetSpecifier gets the module specifier that owns the topic.",
+            "name": "GetModule",
+            "doc": "GetModule gets the module name that owns the topic.",
             "params": [],
             "results": [
               {
                 "type": "string"
               }
             ],
-            "signature": "GetSpecifier() string",
+            "signature": "GetModule() string",
             "type_refs": [
               {
                 "expr": "string",
