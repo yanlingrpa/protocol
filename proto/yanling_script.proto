@@ -19,7 +19,7 @@ enum VariableDataType {
 message ModuleInfo {
   string name = 1;
   string version = 2;
-  string package_name = 3;
+  string package = 3;
   string description = 4;
   repeated string tags = 5;
   string website = 6;
@@ -39,7 +39,7 @@ message GuiApplication {
   repeated string args = 4;
   string work_dir = 5;
   repeated string env = 6;
-  string process = 7;
+  string process_name = 7;
   string launch_uri = 8;
   int32 timeout = 9;
   int32 wait_time = 10;
@@ -66,7 +66,7 @@ message WebApplication {
 message MobileApplication {
   string id = 1;
   string name = 2;
-  string app_package = 3;
+  string package = 3;
   string activity = 4;
   string action = 5;
   string flags = 6;
@@ -78,7 +78,7 @@ message MobileApplication {
 // ScriptVariable defines script variable configuration.
 message ScriptVariable {
   string name = 1;
-  string abstract = 2;
+  string description = 2;
   VariableDataType type = 3;
   string default_value = 4;
   bool required = 5;
@@ -89,7 +89,7 @@ message ScriptVariable {
 message UrlPermission {
   string url = 1;
   string permission = 2;
-  string abstract = 3;
+  string description = 3;
 }
 
 // ModuleName defines module name.

@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-22T09:12:05Z",
+  "generated_at": "2026-05-25T05:31:32Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -299,10 +299,10 @@
             ]
           },
           {
-            "name": "Process",
+            "name": "ProcessName",
             "type": "string",
-            "tag": "json:\"process\"",
-            "doc": "Process is the process name associated with the GUI window, used for window detection and management.",
+            "tag": "json:\"process_name\"",
+            "doc": "ProcessName is the process name associated with the GUI window, used for window detection and management.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1608,10 +1608,10 @@
         },
         "fields": [
           {
-            "name": "Abstract",
+            "name": "DefaultValue",
             "type": "string",
-            "tag": "json:\"abstract\"",
-            "doc": "Abstract is the variable description.",
+            "tag": "json:\"default_value\"",
+            "doc": "DefaultValue is the default value of the variable.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1620,10 +1620,10 @@
             ]
           },
           {
-            "name": "Default",
+            "name": "Description",
             "type": "string",
-            "tag": "json:\"default\"",
-            "doc": "Default is the default value of the variable.",
+            "tag": "json:\"description\"",
+            "doc": "Description is the variable description.",
             "type_refs": [
               {
                 "expr": "string",
@@ -1793,10 +1793,10 @@
         },
         "fields": [
           {
-            "name": "Abstract",
+            "name": "Description",
             "type": "string",
-            "tag": "json:\"abstract\"",
-            "doc": "Abstract is the permission description.",
+            "tag": "json:\"description\"",
+            "doc": "Description is the permission description.",
             "type_refs": [
               {
                 "expr": "string",

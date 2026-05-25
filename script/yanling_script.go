@@ -129,9 +129,9 @@ type GuiApplication struct {
 	 */
 	Env []string `json:"env,omitempty"`
 	/*
-	* Process is the process name associated with the GUI window, used for window detection and management.
+	* ProcessName is the process name associated with the GUI window, used for window detection and management.
 	 */
-	Process string `json:"process"`
+	ProcessName string `json:"process_name"`
 	/*
 	* LaunchUri is the URI used to open the GUI window, for example weixin://launchapplet?appid=xxxx.
 	* If provided, the application will be launched and this URI will be opened.
@@ -268,17 +268,17 @@ type ScriptVariable struct {
 	 */
 	Name string `json:"name"`
 	/*
-	* Abstract is the variable description.
+	* Description is the variable description.
 	 */
-	Abstract string `json:"abstract"`
+	Description string `json:"description"`
 	/*
 	* Type is the variable type, such as string, integer, boolean, or json.
 	 */
 	Type VariableDataType `json:"type"`
 	/*
-	* Default is the default value of the variable.
+	* DefaultValue is the default value of the variable.
 	 */
-	Default string `json:"default"`
+	DefaultValue string `json:"default_value"`
 	/*
 	* Required indicates whether the variable is required.
 	 */
@@ -365,9 +365,9 @@ type UrlPermission struct {
 	 */
 	Permission string `json:"permission"`
 	/*
-	* Abstract is the permission description.
+	* Description is the permission description.
 	 */
-	Abstract string `json:"abstract"`
+	Description string `json:"description"`
 }
 
 /*
