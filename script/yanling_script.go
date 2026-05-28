@@ -99,6 +99,205 @@ type ModuleInfo struct {
 	EngineVersion string `json:"engine_version"`
 }
 
+func (info *ModuleInfo) ToMap() map[string]any {
+	return map[string]any{
+		"name":           info.Name,
+		"version":        info.Version,
+		"package":        info.Package,
+		"description":    info.Description,
+		"tags":           info.Tags,
+		"website":        info.Website,
+		"update_time":    info.UpdateTime,
+		"author":         info.Author,
+		"email":          info.Email,
+		"license":        info.License,
+		"devices":        info.Devices,
+		"engine_version": info.EngineVersion,
+	}
+}
+
+func getMapString(data map[string]any, key string) string {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case string:
+			return v
+		case VariableDataType:
+			return string(v)
+		}
+	}
+	return ""
+}
+
+func getMapStringSlice(data map[string]any, key string) []string {
+	value, ok := data[key]
+	if !ok || value == nil {
+		return []string{}
+	}
+
+	switch v := value.(type) {
+	case []string:
+		if v == nil {
+			return []string{}
+		}
+		return append([]string{}, v...)
+	case []any:
+		items := make([]string, 0, len(v))
+		for _, item := range v {
+			if str, ok := item.(string); ok {
+				items = append(items, str)
+			}
+		}
+		return items
+	}
+
+	return []string{}
+}
+
+func getMapInt(data map[string]any, key string) int {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case int:
+			return v
+		case int8:
+			return int(v)
+		case int16:
+			return int(v)
+		case int32:
+			return int(v)
+		case int64:
+			return int(v)
+		case uint:
+			return int(v)
+		case uint8:
+			return int(v)
+		case uint16:
+			return int(v)
+		case uint32:
+			return int(v)
+		case uint64:
+			return int(v)
+		case float32:
+			return int(v)
+		case float64:
+			return int(v)
+		case json.Number:
+			if i, err := v.Int64(); err == nil {
+				return int(i)
+			}
+			if f, err := v.Float64(); err == nil {
+				return int(f)
+			}
+		case string:
+			if i, err := strconv.Atoi(strings.TrimSpace(v)); err == nil {
+				return i
+			}
+		}
+	}
+	return 0
+}
+
+func getMapBool(data map[string]any, key string) bool {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case bool:
+			return v
+		case string:
+			normalized := strings.TrimSpace(strings.ToLower(v))
+			return normalized == "true" || normalized == "1" || normalized == "yes" || normalized == "on" || normalized == "y"
+		case int:
+			return v != 0
+		case int8:
+			return v != 0
+		case int16:
+			return v != 0
+		case int32:
+			return v != 0
+		case int64:
+			return v != 0
+		case uint:
+			return v != 0
+		case uint8:
+			return v != 0
+		case uint16:
+			return v != 0
+		case uint32:
+			return v != 0
+		case uint64:
+			return v != 0
+		case float32:
+			return v != 0
+		case float64:
+			return v != 0
+		}
+	}
+	return false
+}
+
+func getMapVariableDataType(data map[string]any, key string) VariableDataType {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case VariableDataType:
+			return v
+		case string:
+			return VariableDataType(v)
+		}
+	}
+	return ""
+}
+
+func getMapObject(data map[string]any, key string) map[string]any {
+	value, ok := data[key]
+	if !ok || value == nil {
+		return map[string]any{}
+	}
+
+	if item, ok := value.(map[string]any); ok {
+		return item
+	}
+
+	return map[string]any{}
+}
+
+func getMapObjectSlice(data map[string]any, key string) []map[string]any {
+	value, ok := data[key]
+	if !ok || value == nil {
+		return []map[string]any{}
+	}
+
+	switch v := value.(type) {
+	case []map[string]any:
+		if v == nil {
+			return []map[string]any{}
+		}
+		return append([]map[string]any{}, v...)
+	case []any:
+		items := make([]map[string]any, 0, len(v))
+		for _, item := range v {
+			if mapped, ok := item.(map[string]any); ok {
+				items = append(items, mapped)
+			}
+		}
+		return items
+	}
+
+	return []map[string]any{}
+}
+
+func (info *ModuleInfo) FromMap(data map[string]any) {
+	info.Name = getMapString(data, "name")
+	info.Version = getMapString(data, "version")
+	info.Package = getMapString(data, "package")
+	info.Description = getMapString(data, "description")
+	info.Tags = getMapStringSlice(data, "tags")
+	info.Website = getMapString(data, "website")
+	info.UpdateTime = getMapString(data, "update_time")
+	info.Author = getMapString(data, "author")
+	info.Email = getMapString(data, "email")
+	info.License = getMapString(data, "license")
+	info.Devices = getMapStringSlice(data, "devices")
+	info.EngineVersion = getMapString(data, "engine_version")
+}
+
 /*
 * GuiApplication defines GUI application configuration.
  */
@@ -157,6 +356,38 @@ type GuiApplication struct {
 	WindowHeight int `json:"window_height,omitempty"`
 }
 
+func (app *GuiApplication) ToMap() map[string]any {
+	return map[string]any{
+		"id":            app.Id,
+		"name":          app.Name,
+		"launcher":      app.Launcher,
+		"args":          app.Args,
+		"work_dir":      app.WorkDir,
+		"env":           app.Env,
+		"process_name":  app.ProcessName,
+		"launch_uri":    app.LaunchUri,
+		"timeout":       app.Timeout,
+		"wait_time":     app.WaitTime,
+		"window_width":  app.WindowWidth,
+		"window_height": app.WindowHeight,
+	}
+}
+
+func (app *GuiApplication) FromMap(data map[string]any) {
+	app.Id = getMapString(data, "id")
+	app.Name = getMapString(data, "name")
+	app.Launcher = getMapString(data, "launcher")
+	app.Args = getMapStringSlice(data, "args")
+	app.WorkDir = getMapString(data, "work_dir")
+	app.Env = getMapStringSlice(data, "env")
+	app.ProcessName = getMapString(data, "process_name")
+	app.LaunchUri = getMapString(data, "launch_uri")
+	app.Timeout = getMapInt(data, "timeout")
+	app.WaitTime = getMapInt(data, "wait_time")
+	app.WindowWidth = getMapInt(data, "window_width")
+	app.WindowHeight = getMapInt(data, "window_height")
+}
+
 /*
 * WebApplication defines browser application configuration.
  */
@@ -211,6 +442,36 @@ type WebApplication struct {
 	WindowHeight int `json:"window_height,omitempty"`
 }
 
+func (app *WebApplication) ToMap() map[string]any {
+	return map[string]any{
+		"id":            app.Id,
+		"name":          app.Name,
+		"browser_type":  app.BrowserType,
+		"url":           app.Url,
+		"incognito":     app.Incognito,
+		"args":          app.Args,
+		"user_data_dir": app.UserDataDir,
+		"load_timeout":  app.LoadTimeout,
+		"wait_time":     app.WaitTime,
+		"window_width":  app.WindowWidth,
+		"window_height": app.WindowHeight,
+	}
+}
+
+func (app *WebApplication) FromMap(data map[string]any) {
+	app.Id = getMapString(data, "id")
+	app.Name = getMapString(data, "name")
+	app.BrowserType = getMapString(data, "browser_type")
+	app.Url = getMapString(data, "url")
+	app.Incognito = getMapBool(data, "incognito")
+	app.Args = getMapStringSlice(data, "args")
+	app.UserDataDir = getMapString(data, "user_data_dir")
+	app.LoadTimeout = getMapInt(data, "load_timeout")
+	app.WaitTime = getMapInt(data, "wait_time")
+	app.WindowWidth = getMapInt(data, "window_width")
+	app.WindowHeight = getMapInt(data, "window_height")
+}
+
 /*
 * MobileApplication defines mobile application configuration for Android/iOS devices.
  */
@@ -259,6 +520,32 @@ type MobileApplication struct {
 	WaitTime int `json:"wait_time,omitempty"`
 }
 
+func (app *MobileApplication) ToMap() map[string]any {
+	return map[string]any{
+		"id":        app.Id,
+		"name":      app.Name,
+		"package":   app.Package,
+		"activity":  app.Activity,
+		"action":    app.Action,
+		"flags":     app.Flags,
+		"extras":    app.Extras,
+		"timeout":   app.Timeout,
+		"wait_time": app.WaitTime,
+	}
+}
+
+func (app *MobileApplication) FromMap(data map[string]any) {
+	app.Id = getMapString(data, "id")
+	app.Name = getMapString(data, "name")
+	app.Package = getMapString(data, "package")
+	app.Activity = getMapString(data, "activity")
+	app.Action = getMapString(data, "action")
+	app.Flags = getMapString(data, "flags")
+	app.Extras = getMapString(data, "extras")
+	app.Timeout = getMapInt(data, "timeout")
+	app.WaitTime = getMapInt(data, "wait_time")
+}
+
 /*
 * ScriptVariable defines script variable configuration.
  */
@@ -287,6 +574,26 @@ type ScriptVariable struct {
 	* Save indicates whether to save the variable to project storage.
 	 */
 	Save bool `json:"save"`
+}
+
+func (sv *ScriptVariable) ToMap() map[string]any {
+	return map[string]any{
+		"name":          sv.Name,
+		"description":   sv.Description,
+		"type":          sv.Type,
+		"default_value": sv.DefaultValue,
+		"required":      sv.Required,
+		"save":          sv.Save,
+	}
+}
+
+func (sv *ScriptVariable) FromMap(data map[string]any) {
+	sv.Name = getMapString(data, "name")
+	sv.Description = getMapString(data, "description")
+	sv.Type = getMapVariableDataType(data, "type")
+	sv.DefaultValue = getMapString(data, "default_value")
+	sv.Required = getMapBool(data, "required")
+	sv.Save = getMapBool(data, "save")
 }
 
 /*
@@ -368,6 +675,20 @@ type UrlPermission struct {
 	* Description is the permission description.
 	 */
 	Description string `json:"description"`
+}
+
+func (up *UrlPermission) ToMap() map[string]any {
+	return map[string]any{
+		"url":         up.Url,
+		"permission":  up.Permission,
+		"description": up.Description,
+	}
+}
+
+func (up *UrlPermission) FromMap(data map[string]any) {
+	up.Url = getMapString(data, "url")
+	up.Permission = getMapString(data, "permission")
+	up.Description = getMapString(data, "description")
 }
 
 /*
@@ -559,4 +880,96 @@ type YScript struct {
 	* WorkerDependencies is the list of IPC service module names (moduleName@version) depended by this script project.
 	 */
 	WorkerDependencies []string `json:"worker_dependencies"`
+}
+
+func (s *YScript) ToMap() map[string]any {
+	data := map[string]any{
+		"module":              s.Module.ToMap(),
+		"version":             s.Version,
+		"script_dependencies": s.ScriptDependencies,
+		"worker_dependencies": s.WorkerDependencies,
+	}
+
+	data["gui_apps"] = make([]map[string]any, 0, len(s.GuiApps))
+	for _, app := range s.GuiApps {
+		data["gui_apps"] = append(data["gui_apps"].([]map[string]any), app.ToMap())
+	}
+
+	data["web_apps"] = make([]map[string]any, 0, len(s.WebApps))
+	for _, app := range s.WebApps {
+		data["web_apps"] = append(data["web_apps"].([]map[string]any), app.ToMap())
+	}
+
+	data["mobile_apps"] = make([]map[string]any, 0, len(s.MobileApps))
+	for _, app := range s.MobileApps {
+		data["mobile_apps"] = append(data["mobile_apps"].([]map[string]any), app.ToMap())
+	}
+
+	data["variables"] = make([]map[string]any, 0, len(s.Variables))
+	for _, variable := range s.Variables {
+		data["variables"] = append(data["variables"].([]map[string]any), variable.ToMap())
+	}
+
+	data["file_permissions"] = make([]map[string]any, 0, len(s.FilePermissions))
+	for _, permission := range s.FilePermissions {
+		data["file_permissions"] = append(data["file_permissions"].([]map[string]any), permission.ToMap())
+	}
+
+	data["api_permissions"] = make([]map[string]any, 0, len(s.ApiPermissions))
+	for _, permission := range s.ApiPermissions {
+		data["api_permissions"] = append(data["api_permissions"].([]map[string]any), permission.ToMap())
+	}
+
+	return data
+}
+
+func (s *YScript) FromMap(data map[string]any) {
+	s.Module = ModuleInfo{}
+	s.Module.FromMap(getMapObject(data, "module"))
+	s.Version = getMapString(data, "version")
+
+	s.GuiApps = make([]GuiApplication, 0)
+	for _, item := range getMapObjectSlice(data, "gui_apps") {
+		app := GuiApplication{}
+		app.FromMap(item)
+		s.GuiApps = append(s.GuiApps, app)
+	}
+
+	s.WebApps = make([]WebApplication, 0)
+	for _, item := range getMapObjectSlice(data, "web_apps") {
+		app := WebApplication{}
+		app.FromMap(item)
+		s.WebApps = append(s.WebApps, app)
+	}
+
+	s.MobileApps = make([]MobileApplication, 0)
+	for _, item := range getMapObjectSlice(data, "mobile_apps") {
+		app := MobileApplication{}
+		app.FromMap(item)
+		s.MobileApps = append(s.MobileApps, app)
+	}
+
+	s.Variables = make([]ScriptVariable, 0)
+	for _, item := range getMapObjectSlice(data, "variables") {
+		variable := ScriptVariable{}
+		variable.FromMap(item)
+		s.Variables = append(s.Variables, variable)
+	}
+
+	s.FilePermissions = make([]UrlPermission, 0)
+	for _, item := range getMapObjectSlice(data, "file_permissions") {
+		permission := UrlPermission{}
+		permission.FromMap(item)
+		s.FilePermissions = append(s.FilePermissions, permission)
+	}
+
+	s.ApiPermissions = make([]UrlPermission, 0)
+	for _, item := range getMapObjectSlice(data, "api_permissions") {
+		permission := UrlPermission{}
+		permission.FromMap(item)
+		s.ApiPermissions = append(s.ApiPermissions, permission)
+	}
+
+	s.ScriptDependencies = getMapStringSlice(data, "script_dependencies")
+	s.WorkerDependencies = getMapStringSlice(data, "worker_dependencies")
 }

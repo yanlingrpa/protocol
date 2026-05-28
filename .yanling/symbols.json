@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-25T05:31:32Z",
+  "generated_at": "2026-05-28T02:43:22Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -9,7 +9,7 @@
     "interfaces": 18,
     "structs": 15,
     "functions": 6,
-    "methods": 231,
+    "methods": 245,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -5086,11 +5086,15 @@
       "signature": "type GuiApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 105,
+        "line": 304,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
       "type_refs": [
+        {
+          "expr": "any",
+          "builtin": true
+        },
         {
           "expr": "int",
           "builtin": true
@@ -5100,6 +5104,7 @@
           "builtin": true
         }
       ],
+      "method_count": 2,
       "field_count": 12
     },
     {
@@ -5113,11 +5118,15 @@
       "signature": "type MobileApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 217,
+        "line": 478,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
       "type_refs": [
+        {
+          "expr": "any",
+          "builtin": true
+        },
         {
           "expr": "int",
           "builtin": true
@@ -5127,6 +5136,7 @@
           "builtin": true
         }
       ],
+      "method_count": 2,
       "field_count": 9
     },
     {
@@ -5146,10 +5156,15 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
       "type_refs": [
         {
+          "expr": "any",
+          "builtin": true
+        },
+        {
           "expr": "string",
           "builtin": true
         }
       ],
+      "method_count": 2,
       "field_count": 12
     },
     {
@@ -5163,7 +5178,7 @@
       "signature": "type ModuleName struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 376,
+        "line": 697,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5292,7 +5307,7 @@
       "signature": "ParseModuleSpec(spec string) (ModuleName, string, error)",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 445,
+        "line": 766,
         "column": 1
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5324,7 +5339,7 @@
       "signature": "type ScriptVariable struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 265,
+        "line": 552,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5336,6 +5351,10 @@
           "local": true
         },
         {
+          "expr": "any",
+          "builtin": true
+        },
+        {
           "expr": "bool",
           "builtin": true
         },
@@ -5344,6 +5363,7 @@
           "builtin": true
         }
       ],
+      "method_count": 2,
       "field_count": 6
     },
     {
@@ -5384,16 +5404,21 @@
       "signature": "type UrlPermission struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 358,
+        "line": 665,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
       "type_refs": [
         {
+          "expr": "any",
+          "builtin": true
+        },
+        {
           "expr": "string",
           "builtin": true
         }
       ],
+      "method_count": 2,
       "field_count": 3
     },
     {
@@ -5578,11 +5603,15 @@
       "signature": "type WebApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 163,
+        "line": 394,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
       "type_refs": [
+        {
+          "expr": "any",
+          "builtin": true
+        },
         {
           "expr": "bool",
           "builtin": true
@@ -5596,6 +5625,7 @@
           "builtin": true
         }
       ],
+      "method_count": 2,
       "field_count": 11
     },
     {
@@ -5609,7 +5639,7 @@
       "signature": "type YScript struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 521,
+        "line": 842,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5651,10 +5681,15 @@
           "local": true
         },
         {
+          "expr": "any",
+          "builtin": true
+        },
+        {
           "expr": "string",
           "builtin": true
         }
       ],
+      "method_count": 2,
       "field_count": 10
     }
   ]

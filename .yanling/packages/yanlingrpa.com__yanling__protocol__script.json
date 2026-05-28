@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-25T05:31:32Z",
+  "generated_at": "2026-05-28T02:43:22Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -98,7 +98,7 @@
       "interfaces": 2,
       "structs": 9,
       "functions": 1,
-      "methods": 31,
+      "methods": 45,
       "named_types": 1,
       "func_types": 1,
       "consts": 6
@@ -222,7 +222,7 @@
         "signature": "type GuiApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 105,
+          "line": 304,
           "column": 6
         },
         "fields": [
@@ -371,7 +371,54 @@
             ]
           }
         ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
         "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
           {
             "expr": "int",
             "builtin": true
@@ -393,7 +440,7 @@
         "signature": "type MobileApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 217,
+          "line": 478,
           "column": 6
         },
         "fields": [
@@ -506,7 +553,54 @@
             ]
           }
         ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
         "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
           {
             "expr": "int",
             "builtin": true
@@ -677,7 +771,54 @@
             ]
           }
         ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
         "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
           {
             "expr": "string",
             "builtin": true
@@ -695,7 +836,7 @@
         "signature": "type ModuleName struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 376,
+          "line": 697,
           "column": 6
         },
         "fields": [
@@ -1555,7 +1696,7 @@
         "signature": "ParseModuleSpec(spec string) (ModuleName, string, error)",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 445,
+          "line": 766,
           "column": 1
         },
         "params": [
@@ -1603,7 +1744,7 @@
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 265,
+          "line": 552,
           "column": 6
         },
         "fields": [
@@ -1682,12 +1823,59 @@
             ]
           }
         ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
         "type_refs": [
           {
             "expr": "VariableDataType",
             "import_path": "yanlingrpa.com/yanling/protocol/script",
             "qualified_name": "yanlingrpa.com/yanling/protocol/script.VariableDataType",
             "local": true
+          },
+          {
+            "expr": "any",
+            "builtin": true
           },
           {
             "expr": "bool",
@@ -1788,7 +1976,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 358,
+          "line": 665,
           "column": 6
         },
         "fields": [
@@ -1829,7 +2017,54 @@
             ]
           }
         ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
         "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
           {
             "expr": "string",
             "builtin": true
@@ -2077,7 +2312,7 @@
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 163,
+          "line": 394,
           "column": 6
         },
         "fields": [
@@ -2214,7 +2449,54 @@
             ]
           }
         ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
         "type_refs": [
+          {
+            "expr": "any",
+            "builtin": true
+          },
           {
             "expr": "bool",
             "builtin": true
@@ -2240,7 +2522,7 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 521,
+          "line": 842,
           "column": 6
         },
         "fields": [
@@ -2379,6 +2661,49 @@
             ]
           }
         ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
         "type_refs": [
           {
             "expr": "GuiApplication",
@@ -2415,6 +2740,10 @@
             "import_path": "yanlingrpa.com/yanling/protocol/script",
             "qualified_name": "yanlingrpa.com/yanling/protocol/script.WebApplication",
             "local": true
+          },
+          {
+            "expr": "any",
+            "builtin": true
           },
           {
             "expr": "string",
