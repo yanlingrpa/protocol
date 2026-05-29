@@ -129,7 +129,7 @@ type ModuleRuntime interface {
 	/*
 	* JsonVariable gets a JSON script variable value.
 	 */
-	JsonVariable(name string) (any, bool)
+	JsonVariable(name string) (map[string]any, bool)
 	/*
 	* FilePathVariable gets a file path script variable value.
 	 */
