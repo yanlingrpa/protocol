@@ -668,7 +668,7 @@ type UrlPermission struct {
 	 */
 	Url string `json:"url"`
 	/*
-	* Permission is the access permission, such as r, w, d, rw, or rwd.
+	* Permission is the access permission, such as r(read)/w(write)/d(delete)/a(all), or g(get)/p(post)/d(download)/u(upload)/a(all).
 	 */
 	Permission string `json:"permission"`
 	/*
