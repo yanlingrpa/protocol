@@ -1,15 +1,15 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-28T02:43:22Z",
+  "generated_at": "2026-06-02T03:28:39Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 220,
+    "symbols": 221,
     "interfaces": 18,
-    "structs": 15,
+    "structs": 16,
     "functions": 6,
-    "methods": 245,
+    "methods": 248,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -5178,7 +5178,7 @@
       "signature": "type ModuleName struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 697,
+        "line": 726,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5307,7 +5307,7 @@
       "signature": "ParseModuleSpec(spec string) (ModuleName, string, error)",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 766,
+        "line": 795,
         "column": 1
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5327,6 +5327,33 @@
           "builtin": true
         }
       ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/script#PathPermission",
+      "name": "PathPermission",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/script.PathPermission",
+      "kind": "struct",
+      "package": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "signature": "type PathPermission struct",
+      "source": {
+        "file": "script/yanling_script.go",
+        "line": 662,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
+      "type_refs": [
+        {
+          "expr": "any",
+          "builtin": true
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        }
+      ],
+      "method_count": 2,
+      "field_count": 3
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#ScriptVariable",
@@ -5404,7 +5431,7 @@
       "signature": "type UrlPermission struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 665,
+        "line": 694,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5639,7 +5666,7 @@
       "signature": "type YScript struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 842,
+        "line": 871,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5660,6 +5687,12 @@
           "expr": "ModuleInfo",
           "import_path": "yanlingrpa.com/yanling/protocol/script",
           "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
+          "local": true
+        },
+        {
+          "expr": "PathPermission",
+          "import_path": "yanlingrpa.com/yanling/protocol/script",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/script.PathPermission",
           "local": true
         },
         {
@@ -5689,7 +5722,7 @@
           "builtin": true
         }
       ],
-      "method_count": 2,
+      "method_count": 3,
       "field_count": 10
     }
   ]

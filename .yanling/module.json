@@ -1,15 +1,15 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-28T02:43:22Z",
+  "generated_at": "2026-06-02T03:28:39Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 220,
+    "symbols": 221,
     "interfaces": 18,
-    "structs": 15,
+    "structs": 16,
     "functions": 6,
-    "methods": 245,
+    "methods": 248,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -120,11 +120,11 @@
       "import_path": "yanlingrpa.com/yanling/protocol/script",
       "directory": "/script",
       "counts": {
-        "symbols": 20,
+        "symbols": 21,
         "interfaces": 2,
-        "structs": 9,
+        "structs": 10,
         "functions": 1,
-        "methods": 45,
+        "methods": 48,
         "named_types": 1,
         "func_types": 1,
         "consts": 6

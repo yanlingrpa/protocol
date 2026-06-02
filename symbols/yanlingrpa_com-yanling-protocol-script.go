@@ -31,6 +31,7 @@ func init() {
 		"ModuleInfo":        reflect.ValueOf((*script.ModuleInfo)(nil)),
 		"ModuleName":        reflect.ValueOf((*script.ModuleName)(nil)),
 		"ModuleRuntime":     reflect.ValueOf((*script.ModuleRuntime)(nil)),
+		"PathPermission":    reflect.ValueOf((*script.PathPermission)(nil)),
 		"ScriptVariable":    reflect.ValueOf((*script.ScriptVariable)(nil)),
 		"Subscriber":        reflect.ValueOf((*script.Subscriber)(nil)),
 		"UrlPermission":     reflect.ValueOf((*script.UrlPermission)(nil)),
@@ -58,7 +59,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WHttpClient       func() ossys.HttpClient
 	WIntegerVariable  func(name string) (int, bool)
 	WInvokeWorker     func(module string, method string, dto any) (string, error)
-	WJsonVariable     func(name string) (any, bool)
+	WJsonVariable     func(name string) (map[string]any, bool)
 	WLogger           func() ossys.ScriptLogger
 	WMainModule       func() string
 	WMobileWindow     func(id string) (appgui.AppGuiWindow, bool)
@@ -106,7 +107,7 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IntegerVariable(n
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(module string, method string, dto any) (string, error) {
 	return W.WInvokeWorker(module, method, dto)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (any, bool) {
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (map[string]any, bool) {
 	return W.WJsonVariable(name)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Logger() ossys.ScriptLogger {

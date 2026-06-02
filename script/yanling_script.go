@@ -659,6 +659,35 @@ func (vdt VariableDataType) ToString(value any) string {
 	return fmt.Sprintf("%v", value)
 }
 
+type PathPermission struct {
+	/*
+	* Path is the path to the file or directory.
+	 */
+	Path string `json:"path"`
+	/*
+	* Permission is the access permission, such as r(read)/w(write)/d(delete)/x(execute)/a(all).
+	 */
+	Permission string `json:"permission"`
+	/*
+	* Description is the permission description.
+	 */
+	Description string `json:"description"`
+}
+
+func (pp *PathPermission) ToMap() map[string]any {
+	return map[string]any{
+		"path":        pp.Path,
+		"permission":  pp.Permission,
+		"description": pp.Description,
+	}
+}
+
+func (pp *PathPermission) FromMap(data map[string]any) {
+	pp.Path = getMapString(data, "path")
+	pp.Permission = getMapString(data, "permission")
+	pp.Description = getMapString(data, "description")
+}
+
 /*
 * UrlPermission defines network access permissions.
  */
@@ -668,7 +697,7 @@ type UrlPermission struct {
 	 */
 	Url string `json:"url"`
 	/*
-	* Permission is the access permission, such as r(read)/w(write)/d(delete)/a(all), or g(get)/p(post)/d(download)/u(upload)/a(all).
+	* Permission is the access permission, such as g(get)/p(post)/d(download)/u(upload)/a(all).
 	 */
 	Permission string `json:"permission"`
 	/*
@@ -862,16 +891,17 @@ type YScript struct {
 	MobileApps []MobileApplication `json:"mobile_apps"`
 	/*
 	* Variables is the list of global script variable definitions.
+	* ${script_root} && ${data_root} are reserved variables representing the script root directory and data directory, which can be used in variable default values and permission definitions.
 	 */
 	Variables []ScriptVariable `json:"variables"`
 	/*
-	* FilePermissions is the list of filesystem permissions.
+	* PathPermissions is the list of filesystem permissions.
 	 */
-	FilePermissions []UrlPermission `json:"file_permissions"`
+	PathPermissions []PathPermission `json:"path_permissions"`
 	/*
-	* ApiPermissions is the list of network API permissions.
+	* UrlPermissions is the list of network URL permissions.
 	 */
-	ApiPermissions []UrlPermission `json:"api_permissions"`
+	UrlPermissions []UrlPermission `json:"url_permissions"`
 	/*
 	* ScriptDependencies is the list of script module names (moduleName@version) imported by this script project.
 	 */
@@ -880,6 +910,95 @@ type YScript struct {
 	* WorkerDependencies is the list of IPC service module names (moduleName@version) depended by this script project.
 	 */
 	WorkerDependencies []string `json:"worker_dependencies"`
+}
+
+func toVariableString(value any) string {
+	switch v := value.(type) {
+	case string:
+		return v
+	case bool:
+		if v {
+			return "true"
+		}
+		return "false"
+	case int:
+		return strconv.Itoa(v)
+	case int8:
+		return strconv.FormatInt(int64(v), 10)
+	case int16:
+		return strconv.FormatInt(int64(v), 10)
+	case int32:
+		return strconv.FormatInt(int64(v), 10)
+	case int64:
+		return strconv.FormatInt(v, 10)
+	case uint:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint8:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint16:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint32:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint64:
+		return strconv.FormatUint(v, 10)
+	case float32:
+		return strconv.FormatFloat(float64(v), 'f', -1, 32)
+	case float64:
+		return strconv.FormatFloat(v, 'f', -1, 64)
+	default:
+		return fmt.Sprintf("%v", value)
+	}
+}
+
+func apply_velocity_variables(text string, variableValues map[string]any) string {
+	if text == "" || len(variableValues) == 0 {
+		return text
+	}
+	if !strings.Contains(text, "${") {
+		return text
+	}
+
+	result := text
+	for key, value := range variableValues {
+		placeholder := "${" + key + "}"
+		if !strings.Contains(result, placeholder) {
+			continue
+		}
+
+		result = strings.ReplaceAll(result, placeholder, toVariableString(value))
+
+		if !strings.Contains(result, "${") {
+			break
+		}
+	}
+	return result
+}
+
+/*
+* ApplyVariables applies variable values to the script configuration.
+ */
+func (s *YScript) ApplyVariables(variableValues map[string]any) {
+	for i, app := range s.GuiApps {
+		s.GuiApps[i].Launcher = apply_velocity_variables(app.Launcher, variableValues)
+		s.GuiApps[i].WorkDir = apply_velocity_variables(app.WorkDir, variableValues)
+		s.GuiApps[i].ProcessName = apply_velocity_variables(app.ProcessName, variableValues)
+		s.GuiApps[i].LaunchUri = apply_velocity_variables(app.LaunchUri, variableValues)
+	}
+	for i, app := range s.WebApps {
+		s.WebApps[i].Url = apply_velocity_variables(app.Url, variableValues)
+		s.WebApps[i].UserDataDir = apply_velocity_variables(app.UserDataDir, variableValues)
+	}
+	for i, app := range s.MobileApps {
+		s.MobileApps[i].Activity = apply_velocity_variables(app.Activity, variableValues)
+		s.MobileApps[i].Package = apply_velocity_variables(app.Package, variableValues)
+		s.MobileApps[i].Extras = apply_velocity_variables(app.Extras, variableValues)
+	}
+	for i, permission := range s.PathPermissions {
+		s.PathPermissions[i].Path = apply_velocity_variables(permission.Path, variableValues)
+	}
+	for i, permission := range s.UrlPermissions {
+		s.UrlPermissions[i].Url = apply_velocity_variables(permission.Url, variableValues)
+	}
 }
 
 func (s *YScript) ToMap() map[string]any {
@@ -910,14 +1029,14 @@ func (s *YScript) ToMap() map[string]any {
 		data["variables"] = append(data["variables"].([]map[string]any), variable.ToMap())
 	}
 
-	data["file_permissions"] = make([]map[string]any, 0, len(s.FilePermissions))
-	for _, permission := range s.FilePermissions {
-		data["file_permissions"] = append(data["file_permissions"].([]map[string]any), permission.ToMap())
+	data["path_permissions"] = make([]map[string]any, 0, len(s.PathPermissions))
+	for _, permission := range s.PathPermissions {
+		data["path_permissions"] = append(data["path_permissions"].([]map[string]any), permission.ToMap())
 	}
 
-	data["api_permissions"] = make([]map[string]any, 0, len(s.ApiPermissions))
-	for _, permission := range s.ApiPermissions {
-		data["api_permissions"] = append(data["api_permissions"].([]map[string]any), permission.ToMap())
+	data["url_permissions"] = make([]map[string]any, 0, len(s.UrlPermissions))
+	for _, permission := range s.UrlPermissions {
+		data["url_permissions"] = append(data["url_permissions"].([]map[string]any), permission.ToMap())
 	}
 
 	return data
@@ -956,18 +1075,18 @@ func (s *YScript) FromMap(data map[string]any) {
 		s.Variables = append(s.Variables, variable)
 	}
 
-	s.FilePermissions = make([]UrlPermission, 0)
-	for _, item := range getMapObjectSlice(data, "file_permissions") {
-		permission := UrlPermission{}
+	s.PathPermissions = make([]PathPermission, 0)
+	for _, item := range getMapObjectSlice(data, "path_permissions") {
+		permission := PathPermission{}
 		permission.FromMap(item)
-		s.FilePermissions = append(s.FilePermissions, permission)
+		s.PathPermissions = append(s.PathPermissions, permission)
 	}
 
-	s.ApiPermissions = make([]UrlPermission, 0)
-	for _, item := range getMapObjectSlice(data, "api_permissions") {
+	s.UrlPermissions = make([]UrlPermission, 0)
+	for _, item := range getMapObjectSlice(data, "url_permissions") {
 		permission := UrlPermission{}
 		permission.FromMap(item)
-		s.ApiPermissions = append(s.ApiPermissions, permission)
+		s.UrlPermissions = append(s.UrlPermissions, permission)
 	}
 
 	s.ScriptDependencies = getMapStringSlice(data, "script_dependencies")

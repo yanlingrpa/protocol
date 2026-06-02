@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-05-28T02:43:22Z",
+  "generated_at": "2026-06-02T03:28:39Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -94,11 +94,11 @@
       "yanlingrpa.com/yanling/protocol/ossys"
     ],
     "counts": {
-      "symbols": 20,
+      "symbols": 21,
       "interfaces": 2,
-      "structs": 9,
+      "structs": 10,
       "functions": 1,
-      "methods": 45,
+      "methods": 48,
       "named_types": 1,
       "func_types": 1,
       "consts": 6
@@ -836,7 +836,7 @@
         "signature": "type ModuleName struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 697,
+          "line": 726,
           "column": 6
         },
         "fields": [
@@ -1254,13 +1254,13 @@
             ],
             "results": [
               {
-                "type": "any"
+                "type": "map[string]any"
               },
               {
                 "type": "bool"
               }
             ],
-            "signature": "JsonVariable(name string) (any, bool)",
+            "signature": "JsonVariable(name string) (map[string]any, bool)",
             "type_refs": [
               {
                 "expr": "any",
@@ -1696,7 +1696,7 @@
         "signature": "ParseModuleSpec(spec string) (ModuleName, string, error)",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 766,
+          "line": 795,
           "column": 1
         },
         "params": [
@@ -1725,6 +1725,111 @@
           },
           {
             "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#PathPermission",
+        "name": "PathPermission",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.PathPermission",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "signature": "type PathPermission struct",
+        "source": {
+          "file": "script/yanling_script.go",
+          "line": 662,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Description",
+            "type": "string",
+            "tag": "json:\"description\"",
+            "doc": "Description is the permission description.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Path",
+            "type": "string",
+            "tag": "json:\"path\"",
+            "doc": "Path is the path to the file or directory.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Permission",
+            "type": "string",
+            "tag": "json:\"permission\"",
+            "doc": "Permission is the access permission, such as r(read)/w(write)/d(delete)/x(execute)/a(all).",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "methods": [
+          {
+            "name": "FromMap",
+            "params": [
+              {
+                "name": "data",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "FromMap(data map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ToMap",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]any"
+              }
+            ],
+            "signature": "ToMap() map[string]any",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "any",
             "builtin": true
           },
           {
@@ -1976,7 +2081,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 665,
+          "line": 694,
           "column": 6
         },
         "fields": [
@@ -1996,7 +2101,7 @@
             "name": "Permission",
             "type": "string",
             "tag": "json:\"permission\"",
-            "doc": "Permission is the access permission, such as r, w, d, rw, or rwd.",
+            "doc": "Permission is the access permission, such as g(get)/p(post)/d(download)/u(upload)/a(all).",
             "type_refs": [
               {
                 "expr": "string",
@@ -2522,38 +2627,10 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 842,
+          "line": 871,
           "column": 6
         },
         "fields": [
-          {
-            "name": "ApiPermissions",
-            "type": "[]UrlPermission",
-            "tag": "json:\"api_permissions\"",
-            "doc": "ApiPermissions is the list of network API permissions.",
-            "type_refs": [
-              {
-                "expr": "UrlPermission",
-                "import_path": "yanlingrpa.com/yanling/protocol/script",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/script.UrlPermission",
-                "local": true
-              }
-            ]
-          },
-          {
-            "name": "FilePermissions",
-            "type": "[]UrlPermission",
-            "tag": "json:\"file_permissions\"",
-            "doc": "FilePermissions is the list of filesystem permissions.",
-            "type_refs": [
-              {
-                "expr": "UrlPermission",
-                "import_path": "yanlingrpa.com/yanling/protocol/script",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/script.UrlPermission",
-                "local": true
-              }
-            ]
-          },
           {
             "name": "GuiApps",
             "type": "[]GuiApplication",
@@ -2597,6 +2674,20 @@
             ]
           },
           {
+            "name": "PathPermissions",
+            "type": "[]PathPermission",
+            "tag": "json:\"path_permissions\"",
+            "doc": "PathPermissions is the list of filesystem permissions.",
+            "type_refs": [
+              {
+                "expr": "PathPermission",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.PathPermission",
+                "local": true
+              }
+            ]
+          },
+          {
             "name": "ScriptDependencies",
             "type": "[]string",
             "tag": "json:\"script_dependencies\"",
@@ -2609,10 +2700,24 @@
             ]
           },
           {
+            "name": "UrlPermissions",
+            "type": "[]UrlPermission",
+            "tag": "json:\"url_permissions\"",
+            "doc": "UrlPermissions is the list of network URL permissions.",
+            "type_refs": [
+              {
+                "expr": "UrlPermission",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.UrlPermission",
+                "local": true
+              }
+            ]
+          },
+          {
             "name": "Variables",
             "type": "[]ScriptVariable",
             "tag": "json:\"variables\"",
-            "doc": "Variables is the list of global script variable definitions.",
+            "doc": "Variables is the list of global script variable definitions.\n${script_root} \u0026\u0026 ${data_root} are reserved variables representing the script root directory and data directory, which can be used in variable default values and permission definitions.",
             "type_refs": [
               {
                 "expr": "ScriptVariable",
@@ -2662,6 +2767,28 @@
           }
         ],
         "methods": [
+          {
+            "name": "ApplyVariables",
+            "doc": "ApplyVariables applies variable values to the script configuration.",
+            "params": [
+              {
+                "name": "variableValues",
+                "type": "map[string]any"
+              }
+            ],
+            "results": [],
+            "signature": "ApplyVariables(variableValues map[string]any)",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
           {
             "name": "FromMap",
             "params": [
@@ -2721,6 +2848,12 @@
             "expr": "ModuleInfo",
             "import_path": "yanlingrpa.com/yanling/protocol/script",
             "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleInfo",
+            "local": true
+          },
+          {
+            "expr": "PathPermission",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.PathPermission",
             "local": true
           },
           {
