@@ -1,15 +1,15 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-02T03:28:39Z",
+  "generated_at": "2026-06-02T06:27:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 221,
+    "symbols": 224,
     "interfaces": 18,
-    "structs": 16,
+    "structs": 19,
     "functions": 6,
-    "methods": 248,
+    "methods": 255,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -105,9 +105,10 @@
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
       "directory": "/ossys",
       "counts": {
-        "symbols": 6,
+        "symbols": 9,
         "interfaces": 6,
-        "methods": 52
+        "structs": 3,
+        "methods": 59
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json",
       "dependencies": [

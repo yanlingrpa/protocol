@@ -697,9 +697,9 @@ type UrlPermission struct {
 	 */
 	Url string `json:"url"`
 	/*
-	* Permission is the access permission, such as g(get)/p(post)/d(download)/u(upload)/a(all).
+	* HTTP Methods is the HTTP methods, such as GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH, etc.
 	 */
-	Permission string `json:"permission"`
+	Methods []string `json:"permission"`
 	/*
 	* Description is the permission description.
 	 */
@@ -709,14 +709,14 @@ type UrlPermission struct {
 func (up *UrlPermission) ToMap() map[string]any {
 	return map[string]any{
 		"url":         up.Url,
-		"permission":  up.Permission,
+		"methods":     up.Methods,
 		"description": up.Description,
 	}
 }
 
 func (up *UrlPermission) FromMap(data map[string]any) {
 	up.Url = getMapString(data, "url")
-	up.Permission = getMapString(data, "permission")
+	up.Methods = getMapStringSlice(data, "methods")
 	up.Description = getMapString(data, "description")
 }
 

@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-02T03:28:39Z",
+  "generated_at": "2026-06-02T06:27:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -2098,10 +2098,10 @@
             ]
           },
           {
-            "name": "Permission",
-            "type": "string",
+            "name": "Methods",
+            "type": "[]string",
             "tag": "json:\"permission\"",
-            "doc": "Permission is the access permission, such as g(get)/p(post)/d(download)/u(upload)/a(all).",
+            "doc": "HTTP Methods is the HTTP methods, such as GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH, etc.",
             "type_refs": [
               {
                 "expr": "string",

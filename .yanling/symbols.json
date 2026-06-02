@@ -1,15 +1,15 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-02T03:28:39Z",
+  "generated_at": "2026-06-02T06:27:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 221,
+    "symbols": 224,
     "interfaces": 18,
-    "structs": 16,
+    "structs": 19,
     "functions": 6,
-    "methods": 248,
+    "methods": 255,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -4865,11 +4865,29 @@
       "signature": "type HttpClient interface",
       "source": {
         "file": "ossys/http_client.go",
-        "line": 7,
+        "line": 111,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json",
       "type_refs": [
+        {
+          "expr": "HttpRequest",
+          "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequest",
+          "local": true
+        },
+        {
+          "expr": "HttpRequestOptions",
+          "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+          "local": true
+        },
+        {
+          "expr": "HttpResponse",
+          "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpResponse",
+          "local": true
+        },
         {
           "expr": "any",
           "builtin": true
@@ -4887,7 +4905,107 @@
           "builtin": true
         }
       ],
-      "method_count": 13
+      "method_count": 15
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/ossys#HttpRequest",
+      "name": "HttpRequest",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequest",
+      "kind": "struct",
+      "package": "ossys",
+      "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+      "doc": "HttpRequest defines a general HTTP request model.",
+      "signature": "type HttpRequest struct",
+      "source": {
+        "file": "ossys/http_client.go",
+        "line": 39,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json",
+      "type_refs": [
+        {
+          "expr": "HttpRequestOptions",
+          "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+          "local": true
+        },
+        {
+          "expr": "any",
+          "builtin": true
+        },
+        {
+          "expr": "byte",
+          "builtin": true
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        }
+      ],
+      "field_count": 8
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/ossys#HttpRequestOptions",
+      "name": "HttpRequestOptions",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+      "kind": "struct",
+      "package": "ossys",
+      "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+      "doc": "HttpRequestOptions defines request-level control options.",
+      "signature": "type HttpRequestOptions struct",
+      "source": {
+        "file": "ossys/http_client.go",
+        "line": 9,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json",
+      "type_refs": [
+        {
+          "expr": "bool",
+          "builtin": true
+        },
+        {
+          "expr": "int",
+          "builtin": true
+        },
+        {
+          "expr": "time.Duration",
+          "import_path": "time",
+          "qualified_name": "time.Duration"
+        }
+      ],
+      "field_count": 4
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/ossys#HttpResponse",
+      "name": "HttpResponse",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpResponse",
+      "kind": "struct",
+      "package": "ossys",
+      "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+      "doc": "HttpResponse defines a normalized HTTP response model.",
+      "signature": "type HttpResponse struct",
+      "source": {
+        "file": "ossys/http_client.go",
+        "line": 85,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json",
+      "type_refs": [
+        {
+          "expr": "byte",
+          "builtin": true
+        },
+        {
+          "expr": "int",
+          "builtin": true
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        }
+      ],
+      "field_count": 4
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/ossys#LocalFilesystem",
@@ -4900,7 +5018,7 @@
       "signature": "type LocalFilesystem interface",
       "source": {
         "file": "ossys/local_filesystem.go",
-        "line": 9,
+        "line": 15,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__ossys.json",
@@ -4918,6 +5036,10 @@
           "builtin": true
         },
         {
+          "expr": "int64",
+          "builtin": true
+        },
+        {
           "expr": "string",
           "builtin": true
         },
@@ -4927,7 +5049,7 @@
           "qualified_name": "time.Time"
         }
       ],
-      "method_count": 12
+      "method_count": 17
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/ossys#LocalStorage",

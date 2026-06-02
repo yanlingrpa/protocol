@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-02T03:28:39Z",
+  "generated_at": "2026-06-02T06:27:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "ossys",
@@ -34,9 +34,10 @@
       "yanlingrpa.com/yanling/protocol/basic"
     ],
     "counts": {
-      "symbols": 6,
+      "symbols": 9,
       "interfaces": 6,
-      "methods": 52
+      "structs": 3,
+      "methods": 59
     },
     "symbols": [
       {
@@ -274,11 +275,11 @@
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "HttpClient defines capabilities for HTTP requests and domain-level configuration.\nThis interface supports cookie/header management and common request/upload/download operations.",
+        "doc": "HttpClient defines capabilities for HTTP requests and domain-level configuration.\nThis interface supports domain-level defaults, generic request execution, and common convenience operations.",
         "signature": "type HttpClient interface",
         "source": {
           "file": "ossys/http_client.go",
-          "line": 7,
+          "line": 111,
           "column": 6
         },
         "methods": [
@@ -365,6 +366,53 @@
             ],
             "signature": "DownloadFile(url string, headers map[string]string) (string, error)",
             "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "DownloadFileTo",
+            "doc": "DownloadFileTo downloads a file to the specified local path.\noptions controls request timeout and retry behavior.",
+            "params": [
+              {
+                "name": "url",
+                "type": "string"
+              },
+              {
+                "name": "savePath",
+                "type": "string"
+              },
+              {
+                "name": "headers",
+                "type": "map[string]string"
+              },
+              {
+                "name": "options",
+                "type": "HttpRequestOptions"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "DownloadFileTo(url string, savePath string, headers map[string]string, options HttpRequestOptions) (string, error)",
+            "type_refs": [
+              {
+                "expr": "HttpRequestOptions",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+                "local": true
+              },
               {
                 "expr": "error",
                 "builtin": true
@@ -602,6 +650,43 @@
             ]
           },
           {
+            "name": "Request",
+            "doc": "Request sends a generalized HTTP request.\nSupports arbitrary HTTP methods and returns structured response metadata.",
+            "params": [
+              {
+                "name": "req",
+                "type": "HttpRequest"
+              }
+            ],
+            "results": [
+              {
+                "type": "HttpResponse"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Request(req HttpRequest) (HttpResponse, error)",
+            "type_refs": [
+              {
+                "expr": "HttpRequest",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequest",
+                "local": true
+              },
+              {
+                "expr": "HttpResponse",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpResponse",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "SetDomainCookies",
             "doc": "SetDomainCookies sets cookies for the specified domain.\ncookies uses key-value pairs to represent cookie names and values.",
             "params": [
@@ -766,6 +851,24 @@
         ],
         "type_refs": [
           {
+            "expr": "HttpRequest",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequest",
+            "local": true
+          },
+          {
+            "expr": "HttpRequestOptions",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+            "local": true
+          },
+          {
+            "expr": "HttpResponse",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpResponse",
+            "local": true
+          },
+          {
             "expr": "any",
             "builtin": true
           },
@@ -784,23 +887,311 @@
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#HttpRequest",
+        "name": "HttpRequest",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequest",
+        "kind": "struct",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+        "doc": "HttpRequest defines a general HTTP request model.\nThis struct supports arbitrary methods and per-request configuration.",
+        "signature": "type HttpRequest struct",
+        "source": {
+          "file": "ossys/http_client.go",
+          "line": 39,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Body",
+            "type": "[]byte",
+            "doc": "Body is the raw request body bytes.",
+            "type_refs": [
+              {
+                "expr": "byte",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Form",
+            "type": "map[string]any",
+            "doc": "Form defines form fields for form submissions.",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Headers",
+            "type": "map[string]string",
+            "doc": "Headers defines request headers.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Json",
+            "type": "map[string]any",
+            "doc": "Json defines JSON payload values for JSON requests.",
+            "type_refs": [
+              {
+                "expr": "any",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Method",
+            "type": "string",
+            "doc": "Method is the HTTP method, such as GET, POST, PUT, PATCH, DELETE, or HEAD.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Options",
+            "type": "HttpRequestOptions",
+            "doc": "Options controls timeout and retry behavior for this request.",
+            "type_refs": [
+              {
+                "expr": "HttpRequestOptions",
+                "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+                "local": true
+              }
+            ]
+          },
+          {
+            "name": "Query",
+            "type": "map[string]string",
+            "doc": "Query defines URL query parameters.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "URL",
+            "type": "string",
+            "doc": "URL is the target request URL.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "HttpRequestOptions",
+            "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+            "local": true
+          },
+          {
+            "expr": "any",
+            "builtin": true
+          },
+          {
+            "expr": "byte",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#HttpRequestOptions",
+        "name": "HttpRequestOptions",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpRequestOptions",
+        "kind": "struct",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+        "doc": "HttpRequestOptions defines request-level control options.\nThis struct is used to configure timeout and retry behavior for a single request.",
+        "signature": "type HttpRequestOptions struct",
+        "source": {
+          "file": "ossys/http_client.go",
+          "line": 9,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "FollowRedirect",
+            "type": "bool",
+            "doc": "FollowRedirect controls whether redirects should be followed automatically.\nIf true, redirects are handled by the implementation.",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "RetryCount",
+            "type": "int",
+            "doc": "RetryCount defines how many times to retry when transient errors occur.\nZero means no retry.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "RetryInterval",
+            "type": "time.Duration",
+            "doc": "RetryInterval defines the interval between retries.\nZero value means using implementation default.",
+            "type_refs": [
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "Timeout",
+            "type": "time.Duration",
+            "doc": "Timeout limits the maximum duration of a request.\nZero value means using implementation default.",
+            "type_refs": [
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "bool",
+            "builtin": true
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          },
+          {
+            "expr": "time.Duration",
+            "import_path": "time",
+            "qualified_name": "time.Duration"
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/ossys#HttpResponse",
+        "name": "HttpResponse",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.HttpResponse",
+        "kind": "struct",
+        "package": "ossys",
+        "import_path": "yanlingrpa.com/yanling/protocol/ossys",
+        "doc": "HttpResponse defines a normalized HTTP response model.\nThis struct contains status code, headers, and body data.",
+        "signature": "type HttpResponse struct",
+        "source": {
+          "file": "ossys/http_client.go",
+          "line": 85,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Body",
+            "type": "[]byte",
+            "doc": "Body is the raw response body bytes.",
+            "type_refs": [
+              {
+                "expr": "byte",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "FinalURL",
+            "type": "string",
+            "doc": "FinalURL is the final URL after redirects.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Headers",
+            "type": "map[string]string",
+            "doc": "Headers contains response headers.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "StatusCode",
+            "type": "int",
+            "doc": "StatusCode is the HTTP status code returned by the server.",
+            "type_refs": [
+              {
+                "expr": "int",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "byte",
+            "builtin": true
+          },
+          {
+            "expr": "int",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
         "id": "yanlingrpa.com/yanling/protocol/ossys#LocalFilesystem",
         "name": "LocalFilesystem",
         "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.LocalFilesystem",
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "LocalFilesystem defines capabilities for local filesystem operations.\nThis interface covers common scenarios such as path handling, file I/O, and directory management.",
+        "doc": "LocalFilesystem defines capabilities for local filesystem operations.\nThis interface covers common scenarios such as path handling, file I/O, and directory management.\nPath and permission rules:\n1) All relative paths are resolved from DataRoot.\n2) Files and directories under DataRoot are granted full permissions by default.\n3) Files and directories under ScriptRoot are read-only.\n4) Paths outside DataRoot and ScriptRoot require explicit authorization by the implementation.",
         "signature": "type LocalFilesystem interface",
         "source": {
           "file": "ossys/local_filesystem.go",
-          "line": 9,
+          "line": 15,
           "column": 6
         },
         "methods": [
           {
             "name": "CopyFile",
-            "doc": "CopyFile copies a file.\nsrc is the source file, and dst is the destination file.",
+            "doc": "CopyFile copies a file.\nsrc is the source file, and dst is the destination file.\nRelative paths are resolved from DataRoot.",
             "params": [
               {
                 "name": "src",
@@ -863,8 +1254,25 @@
             ]
           },
           {
+            "name": "DataRoot",
+            "doc": "DataRoot gets the root directory for script data storage.\nThis directory is intended for storing script-generated data and files.\nRelative paths in this interface are resolved from this root.",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "DataRoot() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "IsDir",
-            "doc": "IsDir checks whether a path is a directory.\nReturns whether it is a directory and any possible error.",
+            "doc": "IsDir checks whether a path is a directory.\nReturns whether it is a directory and any possible error.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "path",
@@ -897,7 +1305,7 @@
           },
           {
             "name": "IsFile",
-            "doc": "IsFile checks whether a path is a file.\nReturns whether it is a file and any possible error.",
+            "doc": "IsFile checks whether a path is a file.\nReturns whether it is a file and any possible error.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "path",
@@ -929,8 +1337,8 @@
             ]
           },
           {
-            "name": "JoinDataPath",
-            "doc": "JoinDataPath joins paths starting from the data directory.\nReturns the joined full path string.",
+            "name": "JoinPath",
+            "doc": "JoinPath joins paths starting from the root directory.\nReturns the joined full path string based on DataRoot.",
             "params": [
               {
                 "name": "path",
@@ -942,7 +1350,7 @@
                 "type": "string"
               }
             ],
-            "signature": "JoinDataPath(path ...string) string",
+            "signature": "JoinPath(path ...string) string",
             "type_refs": [
               {
                 "expr": "string",
@@ -951,8 +1359,63 @@
             ]
           },
           {
+            "name": "ListDir",
+            "doc": "ListDir lists entries in a directory.\nReturns entry names under the target directory.\nRelative path is resolved from DataRoot.",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]string"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "ListDir(path string) ([]string, error)",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Mkdir",
+            "doc": "Mkdir creates a directory.\npath is the directory path to create.\nRelative path is resolved from DataRoot.",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Mkdir(path string) error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "MkdirAll",
-            "doc": "MkdirAll creates directories recursively.\nIf directories already exist, behavior depends on the implementation.",
+            "doc": "MkdirAll creates directories recursively.\nIf directories already exist, behavior depends on the implementation.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "path",
@@ -978,7 +1441,7 @@
           },
           {
             "name": "PathExists",
-            "doc": "PathExists checks whether a path exists.\nReturns whether it exists and any possible error.",
+            "doc": "PathExists checks whether a path exists.\nReturns whether it exists and any possible error.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "path",
@@ -1011,7 +1474,7 @@
           },
           {
             "name": "ReadFile",
-            "doc": "ReadFile reads file content.\nReturns the read byte data and any possible error.",
+            "doc": "ReadFile reads file content.\nReturns the read byte data and any possible error.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "filePath",
@@ -1044,7 +1507,7 @@
           },
           {
             "name": "Remove",
-            "doc": "Remove deletes a file or directory.\npath is the target path to delete.",
+            "doc": "Remove deletes a file or directory.\npath is the target path to delete.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "path",
@@ -1070,7 +1533,7 @@
           },
           {
             "name": "RemoveAll",
-            "doc": "RemoveAll recursively deletes a directory and all its contents.\npath is the directory path to delete recursively.",
+            "doc": "RemoveAll recursively deletes a directory and all its contents.\npath is the directory path to delete recursively.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "path",
@@ -1096,7 +1559,7 @@
           },
           {
             "name": "Rename",
-            "doc": "Rename renames or moves a file or directory.\nsrc is the source path, and dst is the destination path.",
+            "doc": "Rename renames or moves a file or directory.\nsrc is the source path, and dst is the destination path.\nRelative paths are resolved from DataRoot.",
             "params": [
               {
                 "name": "src",
@@ -1125,8 +1588,81 @@
             ]
           },
           {
+            "name": "ScriptRoot",
+            "doc": "ScriptRoot gets the root directory for script files.\nThis directory is intended for storing script files.\nPaths under this root are read-only.",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "ScriptRoot() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "StatPath",
+            "doc": "StatPath gets metadata for a path.\nReturns whether the path exists, whether it is a directory, size in bytes, and last modified time.\nRelative path is resolved from DataRoot.",
+            "params": [
+              {
+                "name": "path",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "name": "exists",
+                "type": "bool"
+              },
+              {
+                "name": "isDir",
+                "type": "bool"
+              },
+              {
+                "name": "size",
+                "type": "int64"
+              },
+              {
+                "name": "modifiedAt",
+                "type": "time.Time"
+              },
+              {
+                "name": "err",
+                "type": "error"
+              }
+            ],
+            "signature": "StatPath(path string) (exists bool, isDir bool, size int64, modifiedAt time.Time, err error)",
+            "type_refs": [
+              {
+                "expr": "bool",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "int64",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Time",
+                "import_path": "time",
+                "qualified_name": "time.Time"
+              }
+            ]
+          },
+          {
             "name": "WriteFile",
-            "doc": "WriteFile writes content to a file.\ndata is the byte data to write.",
+            "doc": "WriteFile writes content to a file.\ndata is the byte data to write.\nRelative path is resolved from DataRoot.",
             "params": [
               {
                 "name": "filePath",
@@ -1170,6 +1706,10 @@
           },
           {
             "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "int64",
             "builtin": true
           },
           {

@@ -12,12 +12,15 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/ossys/ossys"] = map[string]reflect.Value{
 		// type definitions
-		"BrokerInfo":      reflect.ValueOf((*ossys.BrokerInfo)(nil)),
-		"HttpClient":      reflect.ValueOf((*ossys.HttpClient)(nil)),
-		"LocalFilesystem": reflect.ValueOf((*ossys.LocalFilesystem)(nil)),
-		"LocalStorage":    reflect.ValueOf((*ossys.LocalStorage)(nil)),
-		"MonitorInfo":     reflect.ValueOf((*ossys.MonitorInfo)(nil)),
-		"ScriptLogger":    reflect.ValueOf((*ossys.ScriptLogger)(nil)),
+		"BrokerInfo":         reflect.ValueOf((*ossys.BrokerInfo)(nil)),
+		"HttpClient":         reflect.ValueOf((*ossys.HttpClient)(nil)),
+		"HttpRequest":        reflect.ValueOf((*ossys.HttpRequest)(nil)),
+		"HttpRequestOptions": reflect.ValueOf((*ossys.HttpRequestOptions)(nil)),
+		"HttpResponse":       reflect.ValueOf((*ossys.HttpResponse)(nil)),
+		"LocalFilesystem":    reflect.ValueOf((*ossys.LocalFilesystem)(nil)),
+		"LocalStorage":       reflect.ValueOf((*ossys.LocalStorage)(nil)),
+		"MonitorInfo":        reflect.ValueOf((*ossys.MonitorInfo)(nil)),
+		"ScriptLogger":       reflect.ValueOf((*ossys.ScriptLogger)(nil)),
 
 		// interface wrapper definitions
 		"_BrokerInfo":      reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_ossys_BrokerInfo)(nil)),
@@ -85,12 +88,14 @@ type _yanlingrpa_com_yanling_protocol_ossys_HttpClient struct {
 	WDeleteDomainCookie func(domain string, cookieNames ...string) error
 	WDeleteDomainHeader func(domain string, headerNames ...string) error
 	WDownloadFile       func(url string, headers map[string]string) (string, error)
+	WDownloadFileTo     func(url string, savePath string, headers map[string]string, options ossys.HttpRequestOptions) (string, error)
 	WGet                func(url string, headers map[string]string) ([]byte, error)
 	WGetDomainCookies   func(domain string) (map[string]string, error)
 	WGetDomainHeaders   func(domain string) (map[string]string, error)
 	WPost               func(url string, body []byte, headers map[string]string) ([]byte, error)
 	WPostForm           func(url string, params map[string]any, headers map[string]string) ([]byte, error)
 	WPostJson           func(url string, params map[string]any, headers map[string]string) ([]byte, error)
+	WRequest            func(req ossys.HttpRequest) (ossys.HttpResponse, error)
 	WSetDomainCookies   func(domain string, cookies map[string]string) error
 	WSetDomainHeaders   func(domain string, headers map[string]string) error
 	WUploadData         func(url string, fileName string, fileData []byte, params map[string]any, headers map[string]string) ([]byte, error)
@@ -105,6 +110,9 @@ func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) DeleteDomainHeader(do
 }
 func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) DownloadFile(url string, headers map[string]string) (string, error) {
 	return W.WDownloadFile(url, headers)
+}
+func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) DownloadFileTo(url string, savePath string, headers map[string]string, options ossys.HttpRequestOptions) (string, error) {
+	return W.WDownloadFileTo(url, savePath, headers, options)
 }
 func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) Get(url string, headers map[string]string) ([]byte, error) {
 	return W.WGet(url, headers)
@@ -124,6 +132,9 @@ func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) PostForm(url string, 
 func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) PostJson(url string, params map[string]any, headers map[string]string) ([]byte, error) {
 	return W.WPostJson(url, params, headers)
 }
+func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) Request(req ossys.HttpRequest) (ossys.HttpResponse, error) {
+	return W.WRequest(req)
+}
 func (W _yanlingrpa_com_yanling_protocol_ossys_HttpClient) SetDomainCookies(domain string, cookies map[string]string) error {
 	return W.WSetDomainCookies(domain, cookies)
 }
@@ -142,15 +153,20 @@ type _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem struct {
 	IValue         interface{}
 	WCopyFile      func(src string, dst string) error
 	WCreateTmpFile func(expiredAt time.Time) (string, error)
+	WDataRoot      func() string
 	WIsDir         func(path string) (bool, error)
 	WIsFile        func(path string) (bool, error)
-	WJoinDataPath  func(path ...string) string
+	WJoinPath      func(path ...string) string
+	WListDir       func(path string) ([]string, error)
+	WMkdir         func(path string) error
 	WMkdirAll      func(path string) error
 	WPathExists    func(path string) (bool, error)
 	WReadFile      func(filePath string) ([]byte, error)
 	WRemove        func(path string) error
 	WRemoveAll     func(path string) error
 	WRename        func(src string, dst string) error
+	WScriptRoot    func() string
+	WStatPath      func(path string) (exists bool, isDir bool, size int64, modifiedAt time.Time, err error)
 	WWriteFile     func(filePath string, data []byte) error
 }
 
@@ -160,14 +176,23 @@ func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) CopyFile(src str
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) CreateTmpFile(expiredAt time.Time) (string, error) {
 	return W.WCreateTmpFile(expiredAt)
 }
+func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) DataRoot() string {
+	return W.WDataRoot()
+}
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) IsDir(path string) (bool, error) {
 	return W.WIsDir(path)
 }
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) IsFile(path string) (bool, error) {
 	return W.WIsFile(path)
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) JoinDataPath(path ...string) string {
-	return W.WJoinDataPath(path...)
+func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) JoinPath(path ...string) string {
+	return W.WJoinPath(path...)
+}
+func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) ListDir(path string) ([]string, error) {
+	return W.WListDir(path)
+}
+func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) Mkdir(path string) error {
+	return W.WMkdir(path)
 }
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) MkdirAll(path string) error {
 	return W.WMkdirAll(path)
@@ -186,6 +211,12 @@ func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) RemoveAll(path s
 }
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) Rename(src string, dst string) error {
 	return W.WRename(src, dst)
+}
+func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) ScriptRoot() string {
+	return W.WScriptRoot()
+}
+func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) StatPath(path string) (exists bool, isDir bool, size int64, modifiedAt time.Time, err error) {
+	return W.WStatPath(path)
 }
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalFilesystem) WriteFile(filePath string, data []byte) error {
 	return W.WWriteFile(filePath, data)
