@@ -15,6 +15,7 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/script/script"] = map[string]reflect.Value{
 		// function, constant and variable definitions
+		"JsonStruct":       reflect.ValueOf(script.JsonStruct),
 		"ParseModuleSpec":  reflect.ValueOf(script.ParseModuleSpec),
 		"VariableBoolean":  reflect.ValueOf(script.VariableBoolean),
 		"VariableFilePath": reflect.ValueOf(script.VariableFilePath),
@@ -58,7 +59,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WGetCacheData     func(key string) (string, bool)
 	WHttpClient       func() ossys.HttpClient
 	WIntegerVariable  func(name string) (int, bool)
-	WInvokeWorker     func(module string, method string, dto any) (string, error)
+	WInvokeWorker     func(module string, method string, dto any) (any, error)
 	WJsonVariable     func(name string) (map[string]any, bool)
 	WLogger           func() ossys.ScriptLogger
 	WMainModule       func() string
@@ -104,7 +105,7 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossy
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IntegerVariable(name string) (int, bool) {
 	return W.WIntegerVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(module string, method string, dto any) (string, error) {
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(module string, method string, dto any) (any, error) {
 	return W.WInvokeWorker(module, method, dto)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (map[string]any, bool) {

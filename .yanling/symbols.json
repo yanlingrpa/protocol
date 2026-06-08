@@ -1,14 +1,14 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-02T06:27:25Z",
+  "generated_at": "2026-06-08T08:23:02Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 224,
+    "symbols": 225,
     "interfaces": 18,
     "structs": 19,
-    "functions": 6,
+    "functions": 7,
     "methods": 255,
     "named_types": 3,
     "func_types": 1,
@@ -5152,7 +5152,7 @@
       "signature": "type Event struct",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 35,
+        "line": 33,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5162,13 +5162,12 @@
           "builtin": true
         },
         {
-          "expr": "string",
+          "expr": "int64",
           "builtin": true
         },
         {
-          "expr": "time.Time",
-          "import_path": "time",
-          "qualified_name": "time.Time"
+          "expr": "string",
+          "builtin": true
         }
       ],
       "field_count": 4
@@ -5184,7 +5183,7 @@
       "signature": "type EventHandler func(event Event)",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 57,
+        "line": 60,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5228,6 +5227,32 @@
       ],
       "method_count": 2,
       "field_count": 12
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/script#JsonStruct",
+      "name": "JsonStruct",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/script.JsonStruct",
+      "kind": "function",
+      "package": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "doc": "JsonStruct converts an input value into a target struct via JSON serialization/deserialization.",
+      "signature": "JsonStruct(obj any, jsonStructInterface any) error",
+      "source": {
+        "file": "script/script_utils.go",
+        "line": 96,
+        "column": 1
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
+      "type_refs": [
+        {
+          "expr": "any",
+          "builtin": true
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        }
+      ]
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#MobileApplication",
@@ -5324,7 +5349,7 @@
       "signature": "type ModuleRuntime interface",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 64,
+        "line": 67,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5428,8 +5453,8 @@
       "doc": "ParseModuleSpec parses a module spec string.",
       "signature": "ParseModuleSpec(spec string) (ModuleName, string, error)",
       "source": {
-        "file": "script/yanling_script.go",
-        "line": 795,
+        "file": "script/script_utils.go",
+        "line": 19,
         "column": 1
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5526,7 +5551,7 @@
       "signature": "type Subscriber interface",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 17,
+        "line": 15,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5788,7 +5813,7 @@
       "signature": "type YScript struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 871,
+        "line": 789,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",

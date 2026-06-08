@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/index.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-02T06:27:25Z",
+  "generated_at": "2026-06-08T08:23:02Z",
   "module": {
     "name": "yanlingrpa.com/yanling/protocol",
     "version": "${module_version}",
@@ -24,7 +24,7 @@
     "counts": {
       "packages": 7,
       "topics": 0,
-      "symbols": 224
+      "symbols": 225
     }
   }
 }
