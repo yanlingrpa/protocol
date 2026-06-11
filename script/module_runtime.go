@@ -114,6 +114,11 @@ type ModuleRuntime interface {
 	 */
 	GetCacheData(key string) (string, bool)
 	/*
+	* GetWriteBackCache gets the write-back cache map for the current script execution.
+	* The write-back cache is used to store data that needs to be written back to the script context after execution.
+	 */
+	GetWriteBackCache() map[string]string
+	/*
 	* StringVariable gets a string script variable value.
 	 */
 	StringVariable(name string) (string, bool)

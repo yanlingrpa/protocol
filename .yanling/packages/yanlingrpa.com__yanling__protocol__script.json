@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-08T08:23:02Z",
+  "generated_at": "2026-06-11T08:00:34Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -98,7 +98,7 @@
       "interfaces": 2,
       "structs": 10,
       "functions": 2,
-      "methods": 48,
+      "methods": 49,
       "named_types": 1,
       "func_types": 1,
       "consts": 6
@@ -1183,6 +1183,23 @@
                 "expr": "bool",
                 "builtin": true
               },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetWriteBackCache",
+            "doc": "GetWriteBackCache gets the write-back cache map for the current script execution.\nThe write-back cache is used to store data that needs to be written back to the script context after execution.",
+            "params": [],
+            "results": [
+              {
+                "type": "map[string]string"
+              }
+            ],
+            "signature": "GetWriteBackCache() map[string]string",
+            "type_refs": [
               {
                 "expr": "string",
                 "builtin": true

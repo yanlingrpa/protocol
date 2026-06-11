@@ -48,31 +48,32 @@ func init() {
 
 // _yanlingrpa_com_yanling_protocol_script_ModuleRuntime is an interface wrapper for ModuleRuntime type
 type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
-	IValue            interface{}
-	WBooleanVariable  func(name string) (bool, bool)
-	WBrokerInfo       func() ossys.BrokerInfo
-	WBrowserWindow    func(id string) (browser.BrowserWindow, bool)
-	WCurrentModule    func() string
-	WFilePathVariable func(name string) (string, bool)
-	WFileSystem       func() ossys.LocalFilesystem
-	WFloatVariable    func(name string) (float64, bool)
-	WGetCacheData     func(key string) (string, bool)
-	WHttpClient       func() ossys.HttpClient
-	WIntegerVariable  func(name string) (int, bool)
-	WInvokeWorker     func(module string, method string, dto any) (any, error)
-	WJsonVariable     func(name string) (map[string]any, bool)
-	WLogger           func() ossys.ScriptLogger
-	WMainModule       func() string
-	WMobileWindow     func(id string) (appgui.AppGuiWindow, bool)
-	WOcrWorker        func() component.OcrWorker
-	WOsGuiWindow      func(id string) (osgui.OSGuiWindow, bool)
-	WPublish          func(topic string, data any) error
-	WSetCacheData     func(key string, value string)
-	WStorage          func() ossys.LocalStorage
-	WStringVariable   func(name string) (string, bool)
-	WSubscribe        func(module string, topic string, handler script.EventHandler) (script.Subscriber, error)
-	WUnsubscribe      func(subscriber script.Subscriber) error
-	WVisionWorker     func() component.VisionWorker
+	IValue             interface{}
+	WBooleanVariable   func(name string) (bool, bool)
+	WBrokerInfo        func() ossys.BrokerInfo
+	WBrowserWindow     func(id string) (browser.BrowserWindow, bool)
+	WCurrentModule     func() string
+	WFilePathVariable  func(name string) (string, bool)
+	WFileSystem        func() ossys.LocalFilesystem
+	WFloatVariable     func(name string) (float64, bool)
+	WGetCacheData      func(key string) (string, bool)
+	WGetWriteBackCache func() map[string]string
+	WHttpClient        func() ossys.HttpClient
+	WIntegerVariable   func(name string) (int, bool)
+	WInvokeWorker      func(module string, method string, dto any) (any, error)
+	WJsonVariable      func(name string) (map[string]any, bool)
+	WLogger            func() ossys.ScriptLogger
+	WMainModule        func() string
+	WMobileWindow      func(id string) (appgui.AppGuiWindow, bool)
+	WOcrWorker         func() component.OcrWorker
+	WOsGuiWindow       func(id string) (osgui.OSGuiWindow, bool)
+	WPublish           func(topic string, data any) error
+	WSetCacheData      func(key string, value string)
+	WStorage           func() ossys.LocalStorage
+	WStringVariable    func(name string) (string, bool)
+	WSubscribe         func(module string, topic string, handler script.EventHandler) (script.Subscriber, error)
+	WUnsubscribe       func(subscriber script.Subscriber) error
+	WVisionWorker      func() component.VisionWorker
 }
 
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BooleanVariable(name string) (bool, bool) {
@@ -98,6 +99,9 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FloatVariable(nam
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetCacheData(key string) (string, bool) {
 	return W.WGetCacheData(key)
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetWriteBackCache() map[string]string {
+	return W.WGetWriteBackCache()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossys.HttpClient {
 	return W.WHttpClient()

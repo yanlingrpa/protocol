@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-08T08:23:02Z",
+  "generated_at": "2026-06-11T08:00:34Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -9,7 +9,7 @@
     "interfaces": 18,
     "structs": 19,
     "functions": 7,
-    "methods": 255,
+    "methods": 256,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -5441,7 +5441,7 @@
           "builtin": true
         }
       ],
-      "method_count": 24
+      "method_count": 25
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#ParseModuleSpec",
