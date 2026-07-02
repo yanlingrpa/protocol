@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-11T08:00:34Z",
+  "generated_at": "2026-07-02T03:43:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -98,7 +98,7 @@
       "interfaces": 2,
       "structs": 10,
       "functions": 2,
-      "methods": 49,
+      "methods": 48,
       "named_types": 1,
       "func_types": 1,
       "consts": 6
@@ -1401,24 +1401,6 @@
             ]
           },
           {
-            "name": "OcrWorker",
-            "doc": "OcrWorker gets the OCR capability worker interface.",
-            "params": [],
-            "results": [
-              {
-                "type": "component.OcrWorker"
-              }
-            ],
-            "signature": "OcrWorker() component.OcrWorker",
-            "type_refs": [
-              {
-                "expr": "component.OcrWorker",
-                "import_path": "yanlingrpa.com/yanling/protocol/component",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker"
-              }
-            ]
-          },
-          {
             "name": "OsGuiWindow",
             "doc": "OsGuiWindow gets an OS GUI window by window ID.",
             "params": [
@@ -1681,11 +1663,6 @@
             "expr": "browser.BrowserWindow",
             "import_path": "yanlingrpa.com/yanling/protocol/browser",
             "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow"
-          },
-          {
-            "expr": "component.OcrWorker",
-            "import_path": "yanlingrpa.com/yanling/protocol/component",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker"
           },
           {
             "expr": "component.VisionWorker",

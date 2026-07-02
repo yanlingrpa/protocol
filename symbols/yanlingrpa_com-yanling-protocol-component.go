@@ -11,23 +11,11 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/component/component"] = map[string]reflect.Value{
 		// type definitions
-		"OcrWorker":    reflect.ValueOf((*component.OcrWorker)(nil)),
 		"VisionWorker": reflect.ValueOf((*component.VisionWorker)(nil)),
 
 		// interface wrapper definitions
-		"_OcrWorker":    reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_component_OcrWorker)(nil)),
 		"_VisionWorker": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_component_VisionWorker)(nil)),
 	}
-}
-
-// _yanlingrpa_com_yanling_protocol_component_OcrWorker is an interface wrapper for OcrWorker type
-type _yanlingrpa_com_yanling_protocol_component_OcrWorker struct {
-	IValue    interface{}
-	WOcrImage func(image []byte) (*basic.OcrResult, error)
-}
-
-func (W _yanlingrpa_com_yanling_protocol_component_OcrWorker) OcrImage(image []byte) (*basic.OcrResult, error) {
-	return W.WOcrImage(image)
 }
 
 // _yanlingrpa_com_yanling_protocol_component_VisionWorker is an interface wrapper for VisionWorker type

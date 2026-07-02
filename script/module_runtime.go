@@ -183,8 +183,4 @@ type ModuleRuntime interface {
 	* VisionWorker gets the vision capability worker interface.
 	 */
 	VisionWorker() component.VisionWorker
-	/*
-	* OcrWorker gets the OCR capability worker interface.
-	 */
-	OcrWorker() component.OcrWorker
 }

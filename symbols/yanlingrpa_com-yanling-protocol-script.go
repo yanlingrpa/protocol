@@ -65,7 +65,6 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WLogger            func() ossys.ScriptLogger
 	WMainModule        func() string
 	WMobileWindow      func(id string) (appgui.AppGuiWindow, bool)
-	WOcrWorker         func() component.OcrWorker
 	WOsGuiWindow       func(id string) (osgui.OSGuiWindow, bool)
 	WPublish           func(topic string, data any) error
 	WSetCacheData      func(key string, value string)
@@ -123,9 +122,6 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MainModule() stri
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MobileWindow(id string) (appgui.AppGuiWindow, bool) {
 	return W.WMobileWindow(id)
-}
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) OcrWorker() component.OcrWorker {
-	return W.WOcrWorker()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) OsGuiWindow(id string) (osgui.OSGuiWindow, bool) {
 	return W.WOsGuiWindow(id)

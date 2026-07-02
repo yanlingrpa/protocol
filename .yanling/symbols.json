@@ -1,15 +1,15 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-11T08:00:34Z",
+  "generated_at": "2026-07-02T03:43:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 225,
-    "interfaces": 18,
+    "symbols": 224,
+    "interfaces": 17,
     "structs": 19,
     "functions": 7,
-    "methods": 256,
+    "methods": 254,
     "named_types": 3,
     "func_types": 1,
     "consts": 177
@@ -1038,37 +1038,6 @@
         }
       ],
       "method_count": 4
-    },
-    {
-      "id": "yanlingrpa.com/yanling/protocol/component#OcrWorker",
-      "name": "OcrWorker",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker",
-      "kind": "interface",
-      "package": "component",
-      "import_path": "yanlingrpa.com/yanling/protocol/component",
-      "signature": "type OcrWorker interface",
-      "source": {
-        "file": "component/ocr_worker.go",
-        "line": 5,
-        "column": 6
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__component.json",
-      "type_refs": [
-        {
-          "expr": "basic.OcrResult",
-          "import_path": "yanlingrpa.com/yanling/protocol/basic",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
-        },
-        {
-          "expr": "byte",
-          "builtin": true
-        },
-        {
-          "expr": "error",
-          "builtin": true
-        }
-      ],
-      "method_count": 1
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/component#VisionWorker",
@@ -5385,11 +5354,6 @@
           "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow"
         },
         {
-          "expr": "component.OcrWorker",
-          "import_path": "yanlingrpa.com/yanling/protocol/component",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/component.OcrWorker"
-        },
-        {
           "expr": "component.VisionWorker",
           "import_path": "yanlingrpa.com/yanling/protocol/component",
           "qualified_name": "yanlingrpa.com/yanling/protocol/component.VisionWorker"
@@ -5441,7 +5405,7 @@
           "builtin": true
         }
       ],
-      "method_count": 25
+      "method_count": 24
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#ParseModuleSpec",

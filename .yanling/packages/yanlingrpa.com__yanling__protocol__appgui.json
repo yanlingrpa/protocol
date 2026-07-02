@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-06-11T08:00:34Z",
+  "generated_at": "2026-07-02T03:43:25Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "appgui",
