@@ -21,21 +21,21 @@ func init() {
 // _yanlingrpa_com_yanling_protocol_component_VisionWorker is an interface wrapper for VisionWorker type
 type _yanlingrpa_com_yanling_protocol_component_VisionWorker struct {
 	IValue  interface{}
-	WDetect func(image []byte, instruction string, schema string) (string, error)
-	WLocate func(image []byte, texts ...string) ([]basic.Rect, error)
-	WOcr    func(image []byte) (*basic.OcrResult, error)
-	WRead   func(image []byte, instruction string, schema string) (string, error)
+	WDetect func(image []byte, description string, confidence float64, min basic.Size, max basic.Size) ([]basic.Rect, error)
+	WLocate func(image []byte, texts []string, confidence float64, min basic.Size, max basic.Size) ([]basic.Rect, error)
+	WOcr    func(image []byte, confidence float64, min basic.Size, max basic.Size) (*basic.OcrResult, error)
+	WRead   func(image []byte, description string, confidence float64, min basic.Size, max basic.Size) (*basic.OcrResult, error)
 }
 
-func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Detect(image []byte, instruction string, schema string) (string, error) {
-	return W.WDetect(image, instruction, schema)
+func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Detect(image []byte, description string, confidence float64, min basic.Size, max basic.Size) ([]basic.Rect, error) {
+	return W.WDetect(image, description, confidence, min, max)
 }
-func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Locate(image []byte, texts ...string) ([]basic.Rect, error) {
-	return W.WLocate(image, texts...)
+func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Locate(image []byte, texts []string, confidence float64, min basic.Size, max basic.Size) ([]basic.Rect, error) {
+	return W.WLocate(image, texts, confidence, min, max)
 }
-func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Ocr(image []byte) (*basic.OcrResult, error) {
-	return W.WOcr(image)
+func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Ocr(image []byte, confidence float64, min basic.Size, max basic.Size) (*basic.OcrResult, error) {
+	return W.WOcr(image, confidence, min, max)
 }
-func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Read(image []byte, instruction string, schema string) (string, error) {
-	return W.WRead(image, instruction, schema)
+func (W _yanlingrpa_com_yanling_protocol_component_VisionWorker) Read(image []byte, description string, confidence float64, min basic.Size, max basic.Size) (*basic.OcrResult, error) {
+	return W.WRead(image, description, confidence, min, max)
 }

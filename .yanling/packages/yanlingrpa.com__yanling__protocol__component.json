@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-07-02T03:43:25Z",
+  "generated_at": "2026-07-14T10:08:38Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "component",
@@ -43,56 +43,27 @@
         "methods": [
           {
             "name": "Detect",
-            "doc": "Performs visual detection on an image.\nimage: Byte array of the image.\ninstruction: Detection instruction that clearly describes the target and requirements,\nfor example, \"Detect all faces in the image and return the age and gender of each face\".\nschema: JSON Schema definition of the detection result, describing structure and fields\nso callers can parse and use the returned data.\nreturn: Detection result conforming to the schema, usually a JSON string containing\ninformation detected from the image according to the instruction.",
+            "doc": "Performs visual detection on an image.\nimage: Byte array of the image.\ndescription: Detection instruction that clearly describes the target and requirements,\nconfidence: Minimum confidence threshold for detection results; results below this threshold are filtered out.\nmin: Minimum size of the target to detect; smaller targets are ignored.\nmax: Maximum size of the target to detect; larger targets are ignored.\nfor example, \"Detect all faces in the image and return the age and gender of each face\".\nschema: JSON Schema definition of the detection result, describing structure and fields\nso callers can parse and use the returned data.\nreturn: Detection result containing position and attribute\ninformation detected from the image according to the instruction.",
             "params": [
               {
                 "name": "image",
                 "type": "[]byte"
               },
               {
-                "name": "instruction",
+                "name": "description",
                 "type": "string"
               },
               {
-                "name": "schema",
-                "type": "string"
-              }
-            ],
-            "results": [
-              {
-                "type": "string"
+                "name": "confidence",
+                "type": "float64"
               },
               {
-                "type": "error"
-              }
-            ],
-            "signature": "Detect(image []byte, instruction string, schema string) (string, error)",
-            "type_refs": [
-              {
-                "expr": "byte",
-                "builtin": true
+                "name": "min",
+                "type": "basic.Size"
               },
               {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Locate",
-            "doc": "Performs visual localization on an image.\nimage: Byte array of the image.\ntexts: List of texts to locate; can include one or more text values.\nreturn: Localization result containing position information of all matched texts,\nsorted from left to right and top to bottom; texts not found are excluded from the result.",
-            "params": [
-              {
-                "name": "image",
-                "type": "[]byte"
-              },
-              {
-                "name": "texts",
-                "type": "...string"
+                "name": "max",
+                "type": "basic.Size"
               }
             ],
             "results": [
@@ -103,7 +74,7 @@
                 "type": "error"
               }
             ],
-            "signature": "Locate(image []byte, texts ...string) ([]basic.Rect, error)",
+            "signature": "Detect(image []byte, description string, confidence float64, min basic.Size, max basic.Size) ([]basic.Rect, error)",
             "type_refs": [
               {
                 "expr": "basic.Rect",
@@ -111,11 +82,83 @@
                 "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
               },
               {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
+              {
                 "expr": "byte",
                 "builtin": true
               },
               {
                 "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "float64",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Locate",
+            "doc": "Performs visual localization on an image.\nimage: Byte array of the image.\ntexts: List of texts to locate; can include one or more text values.\nconfidence: Minimum confidence threshold for localization results; results below this threshold are filtered out.\nmin: Minimum size of text to locate; smaller text is ignored.\nmax: Maximum size of text to locate; larger text is ignored.\nreturn: Localization result containing position information of all matched texts,\nsorted from left to right and top to bottom; texts not found are excluded from the result.",
+            "params": [
+              {
+                "name": "image",
+                "type": "[]byte"
+              },
+              {
+                "name": "texts",
+                "type": "[]string"
+              },
+              {
+                "name": "confidence",
+                "type": "float64"
+              },
+              {
+                "name": "min",
+                "type": "basic.Size"
+              },
+              {
+                "name": "max",
+                "type": "basic.Size"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]basic.Rect"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Locate(image []byte, texts []string, confidence float64, min basic.Size, max basic.Size) ([]basic.Rect, error)",
+            "type_refs": [
+              {
+                "expr": "basic.Rect",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
+              },
+              {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
+              {
+                "expr": "byte",
+                "builtin": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "float64",
                 "builtin": true
               },
               {
@@ -126,11 +169,23 @@
           },
           {
             "name": "Ocr",
-            "doc": "Performs OCR recognition on an image.\nimage: Byte array of the image.\nreturn: OCR result containing recognized text and corresponding position information.",
+            "doc": "Performs OCR recognition on an image.\nimage: Byte array of the image.\nconfidence: Minimum confidence threshold for OCR results; results below this threshold are filtered out.\nmin: Minimum size of text to recognize; smaller text is ignored.\nmax: Maximum size of text to recognize; larger text is ignored.\nreturn: OCR result containing recognized text and corresponding position information.",
             "params": [
               {
                 "name": "image",
                 "type": "[]byte"
+              },
+              {
+                "name": "confidence",
+                "type": "float64"
+              },
+              {
+                "name": "min",
+                "type": "basic.Size"
+              },
+              {
+                "name": "max",
+                "type": "basic.Size"
               }
             ],
             "results": [
@@ -141,7 +196,7 @@
                 "type": "error"
               }
             ],
-            "signature": "Ocr(image []byte) (*basic.OcrResult, error)",
+            "signature": "Ocr(image []byte, confidence float64, min basic.Size, max basic.Size) (*basic.OcrResult, error)",
             "type_refs": [
               {
                 "expr": "basic.OcrResult",
@@ -149,48 +204,79 @@
                 "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
               },
               {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
+              {
                 "expr": "byte",
                 "builtin": true
               },
               {
                 "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "float64",
                 "builtin": true
               }
             ]
           },
           {
             "name": "Read",
-            "doc": "Performs visual reading on an image.\nimage: Byte array of the image.\ninstruction: Reading instruction that clearly describes what text to read,\nfor example, \"Read all text in the image and return the content and position of each text\".\nschema: JSON Schema definition of the reading result, describing the result structure,\nsuch as start and end positions for each text segment.\nreturn: Reading result conforming to the schema, usually a JSON string containing\ninformation read from the image according to the instruction.",
+            "doc": "Performs visual reading on an image.\nimage: Byte array of the image.\ndescription: Reading instruction that clearly describes what text to read,\nfor example, \"Read all text in the image and return the content and position of each text\".\nconfidence: Minimum confidence threshold for reading results; results below this threshold are filtered out.\nmin: Minimum size of text to read; smaller text is ignored.\nmax: Maximum size of text to read; larger text is ignored.\nsuch as start and end positions for each text segment.\nreturn: Reading result containing text content and position\ninformation read from the image according to the instruction.",
             "params": [
               {
                 "name": "image",
                 "type": "[]byte"
               },
               {
-                "name": "instruction",
+                "name": "description",
                 "type": "string"
               },
               {
-                "name": "schema",
-                "type": "string"
+                "name": "confidence",
+                "type": "float64"
+              },
+              {
+                "name": "min",
+                "type": "basic.Size"
+              },
+              {
+                "name": "max",
+                "type": "basic.Size"
               }
             ],
             "results": [
               {
-                "type": "string"
+                "type": "*basic.OcrResult"
               },
               {
                 "type": "error"
               }
             ],
-            "signature": "Read(image []byte, instruction string, schema string) (string, error)",
+            "signature": "Read(image []byte, description string, confidence float64, min basic.Size, max basic.Size) (*basic.OcrResult, error)",
             "type_refs": [
+              {
+                "expr": "basic.OcrResult",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.OcrResult"
+              },
+              {
+                "expr": "basic.Size",
+                "import_path": "yanlingrpa.com/yanling/protocol/basic",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+              },
               {
                 "expr": "byte",
                 "builtin": true
               },
               {
                 "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "float64",
                 "builtin": true
               },
               {
@@ -212,11 +298,20 @@
             "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
           },
           {
+            "expr": "basic.Size",
+            "import_path": "yanlingrpa.com/yanling/protocol/basic",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+          },
+          {
             "expr": "byte",
             "builtin": true
           },
           {
             "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "float64",
             "builtin": true
           },
           {

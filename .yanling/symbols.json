@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-07-02T03:43:25Z",
+  "generated_at": "2026-07-14T10:08:38Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -1065,11 +1065,20 @@
           "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Rect"
         },
         {
+          "expr": "basic.Size",
+          "import_path": "yanlingrpa.com/yanling/protocol/basic",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Size"
+        },
+        {
           "expr": "byte",
           "builtin": true
         },
         {
           "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "float64",
           "builtin": true
         },
         {

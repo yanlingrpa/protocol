@@ -147,7 +147,7 @@ type ModuleRuntime interface {
 	* InvokeWorker calls an exposed method from another local IPC worker.
 	* The `module` identifies the target worker, which corresponds to the module name of the worker.
 	* Note: The `module` does not include the version number, as the system determines the version based on the `go.mod` file.
-	* The `method` is the name of the exposed method to call.
+	* The `route` is the name of the exposed method to call.
 	* The `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.
 	* The return value is the JSON-deserialized result of the method call.
 	* Because the method signature uses `any`, callers should perform type assertions based on JSON shapes,
@@ -155,7 +155,7 @@ type ModuleRuntime interface {
 	* To map the result into a typed struct, use `JsonStruct(result, &YourStruct{})`.
 	* If the invocation fails, an error is returned.
 	 */
-	InvokeWorker(module string, method string, dto any) (any, error)
+	InvokeWorker(module string, route string, dto any) (any, error)
 
 	/*
 	* Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.

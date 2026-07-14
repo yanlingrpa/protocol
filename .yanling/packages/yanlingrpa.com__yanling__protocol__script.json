@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-07-02T03:43:25Z",
+  "generated_at": "2026-07-14T10:08:38Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -1259,14 +1259,14 @@
           },
           {
             "name": "InvokeWorker",
-            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe `module` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `module` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `method` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is the JSON-deserialized result of the method call.\nBecause the method signature uses `any`, callers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map the result into a typed struct, use `JsonStruct(result, \u0026YourStruct{})`.\nIf the invocation fails, an error is returned.",
+            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe `module` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `module` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `route` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is the JSON-deserialized result of the method call.\nBecause the method signature uses `any`, callers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map the result into a typed struct, use `JsonStruct(result, \u0026YourStruct{})`.\nIf the invocation fails, an error is returned.",
             "params": [
               {
                 "name": "module",
                 "type": "string"
               },
               {
-                "name": "method",
+                "name": "route",
                 "type": "string"
               },
               {
@@ -1282,7 +1282,7 @@
                 "type": "error"
               }
             ],
-            "signature": "InvokeWorker(module string, method string, dto any) (any, error)",
+            "signature": "InvokeWorker(module string, route string, dto any) (any, error)",
             "type_refs": [
               {
                 "expr": "any",
