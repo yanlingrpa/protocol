@@ -54,6 +54,10 @@ type ModuleInfo struct {
 	 */
 	Name string `json:"name"`
 	/*
+	* DisplayName is the module display name.
+	 */
+	DisplayName string `json:"display_name"`
+	/*
 	* Version is the module version.
 	 */
 	Version string `json:"version"`
@@ -102,6 +106,7 @@ type ModuleInfo struct {
 func (info *ModuleInfo) ToMap() map[string]any {
 	return map[string]any{
 		"name":           info.Name,
+		"display_name":   info.DisplayName,
 		"version":        info.Version,
 		"package":        info.Package,
 		"description":    info.Description,

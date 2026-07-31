@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-07-14T10:08:38Z",
+  "generated_at": "2026-07-31T06:30:50Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -220,7 +220,7 @@
         "signature": "type GuiApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 304,
+          "line": 309,
           "column": 6
         },
         "fields": [
@@ -478,7 +478,7 @@
         "signature": "type MobileApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 478,
+          "line": 483,
           "column": 6
         },
         "fields": [
@@ -701,6 +701,18 @@
             ]
           },
           {
+            "name": "DisplayName",
+            "type": "string",
+            "tag": "json:\"display_name\"",
+            "doc": "DisplayName is the module display name.",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
             "name": "Email",
             "type": "string",
             "tag": "json:\"email\"",
@@ -874,7 +886,7 @@
         "signature": "type ModuleName struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 726,
+          "line": 731,
           "column": 6
         },
         "fields": [
@@ -1775,7 +1787,7 @@
         "signature": "type PathPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 662,
+          "line": 667,
           "column": 6
         },
         "fields": [
@@ -1881,7 +1893,7 @@
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 552,
+          "line": 557,
           "column": 6
         },
         "fields": [
@@ -2113,7 +2125,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 694,
+          "line": 699,
           "column": 6
         },
         "fields": [
@@ -2449,7 +2461,7 @@
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 394,
+          "line": 399,
           "column": 6
         },
         "fields": [
@@ -2659,7 +2671,7 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 789,
+          "line": 794,
           "column": 6
         },
         "fields": [

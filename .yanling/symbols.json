@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-07-14T10:08:38Z",
+  "generated_at": "2026-07-31T06:30:50Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -5185,7 +5185,7 @@
       "signature": "type GuiApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 304,
+        "line": 309,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5243,7 +5243,7 @@
       "signature": "type MobileApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 478,
+        "line": 483,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5290,7 +5290,7 @@
         }
       ],
       "method_count": 2,
-      "field_count": 12
+      "field_count": 13
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#ModuleName",
@@ -5303,7 +5303,7 @@
       "signature": "type ModuleName struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 726,
+        "line": 731,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5458,7 +5458,7 @@
       "signature": "type PathPermission struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 662,
+        "line": 667,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5486,7 +5486,7 @@
       "signature": "type ScriptVariable struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 552,
+        "line": 557,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5551,7 +5551,7 @@
       "signature": "type UrlPermission struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 694,
+        "line": 699,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5750,7 +5750,7 @@
       "signature": "type WebApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 394,
+        "line": 399,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -5786,7 +5786,7 @@
       "signature": "type YScript struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 789,
+        "line": 794,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
