@@ -1,6 +1,6 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-08-31T08:17:36Z",
+  "generated_at": "2026-08-31T08:30:03Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -2969,34 +2969,6 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },
     {
-      "id": "yanlingrpa.com/yanling/protocol/script#SCRIPT_ROUTE_FINALIZE",
-      "name": "SCRIPT_ROUTE_FINALIZE",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/script.SCRIPT_ROUTE_FINALIZE",
-      "kind": "const",
-      "package": "script",
-      "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "source": {
-        "file": "script/constants.go",
-        "line": 10,
-        "column": 2
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
-    },
-    {
-      "id": "yanlingrpa.com/yanling/protocol/script#SCRIPT_ROUTE_INITIALIZE",
-      "name": "SCRIPT_ROUTE_INITIALIZE",
-      "qualified_name": "yanlingrpa.com/yanling/protocol/script.SCRIPT_ROUTE_INITIALIZE",
-      "kind": "const",
-      "package": "script",
-      "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "source": {
-        "file": "script/constants.go",
-        "line": 9,
-        "column": 2
-      },
-      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
-    },
-    {
       "id": "yanlingrpa.com/yanling/protocol/script#ScriptVariable",
       "name": "ScriptVariable",
       "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
@@ -3161,6 +3133,34 @@
         "file": "script/yanling_script.go",
         "line": 202,
         "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/script#YSCRIPT_ROUTE_FINALIZE",
+      "name": "YSCRIPT_ROUTE_FINALIZE",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/script.YSCRIPT_ROUTE_FINALIZE",
+      "kind": "const",
+      "package": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "source": {
+        "file": "script/constants.go",
+        "line": 10,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/script#YSCRIPT_ROUTE_INITIALIZE",
+      "name": "YSCRIPT_ROUTE_INITIALIZE",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/script.YSCRIPT_ROUTE_INITIALIZE",
+      "kind": "const",
+      "package": "script",
+      "import_path": "yanlingrpa.com/yanling/protocol/script",
+      "source": {
+        "file": "script/constants.go",
+        "line": 9,
+        "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json"
     },

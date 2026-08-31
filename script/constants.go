@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	SCRIPT_ROUTE_INITIALIZE = "Initialize" // 脚本初始化路由
-	SCRIPT_ROUTE_FINALIZE   = "Finalize"   // 脚本终结路由
+	YSCRIPT_ROUTE_INITIALIZE = "Initialize" // 脚本初始化路由
+	YSCRIPT_ROUTE_FINALIZE   = "Finalize"   // 脚本终结路由
 )
 
 /*

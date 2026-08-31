@@ -14,9 +14,9 @@ import (
  */
 type Subscriber interface {
 	/*
-	* GetModule gets the module name that owns the topic.
+	* GetModuleId gets the module id that owns the topic.
 	 */
-	GetModule() string
+	GetModuleId() string
 	/*
 	* GetTopic gets the subscribed event topic.
 	 */
@@ -32,9 +32,9 @@ type Subscriber interface {
  */
 type Event struct {
 	/*
-	* Module is the topic publisher module name.
+	* ModuleId is the topic publisher module id.
 	 */
-	Module string
+	ModuleId string
 	/*
 	* Topic is the event topic.
 	 */
@@ -66,13 +66,13 @@ type EventHandler func(event Event)
  */
 type ModuleRuntime interface {
 	/*
-	* MainModule gets the module name of the entry point.
+	* MainModuleId gets the module id of the entry point.
 	 */
-	MainModule() string
+	MainModuleId() string
 	/*
-	* CurrentModule gets the module name of the currently executing script.
+	* CurrentModuleId gets the module id of the currently executing script.
 	 */
-	CurrentModule() string
+	CurrentModuleId() string
 	/*
 	* OsGuiWindow gets an OS GUI window by window ID.
 	 */

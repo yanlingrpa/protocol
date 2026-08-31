@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-08-31T08:17:36Z",
+  "generated_at": "2026-08-31T08:30:03Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -133,9 +133,9 @@
             ]
           },
           {
-            "name": "Module",
+            "name": "ModuleId",
             "type": "string",
-            "doc": "Module is the topic publisher module name.",
+            "doc": "ModuleId is the topic publisher module id.",
             "type_refs": [
               {
                 "expr": "string",
@@ -998,15 +998,15 @@
             ]
           },
           {
-            "name": "CurrentModule",
-            "doc": "CurrentModule gets the module name of the currently executing script.",
+            "name": "CurrentModuleId",
+            "doc": "CurrentModuleId gets the module id of the currently executing script.",
             "params": [],
             "results": [
               {
                 "type": "string"
               }
             ],
-            "signature": "CurrentModule() string",
+            "signature": "CurrentModuleId() string",
             "type_refs": [
               {
                 "expr": "string",
@@ -1284,15 +1284,15 @@
             ]
           },
           {
-            "name": "MainModule",
-            "doc": "MainModule gets the module name of the entry point.",
+            "name": "MainModuleId",
+            "doc": "MainModuleId gets the module id of the entry point.",
             "params": [],
             "results": [
               {
                 "type": "string"
               }
             ],
-            "signature": "MainModule() string",
+            "signature": "MainModuleId() string",
             "type_refs": [
               {
                 "expr": "string",
@@ -1802,36 +1802,6 @@
         ]
       },
       {
-        "id": "yanlingrpa.com/yanling/protocol/script#SCRIPT_ROUTE_FINALIZE",
-        "name": "SCRIPT_ROUTE_FINALIZE",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/script.SCRIPT_ROUTE_FINALIZE",
-        "kind": "const",
-        "package": "script",
-        "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "signature": "const SCRIPT_ROUTE_FINALIZE = \"Finalize\"",
-        "source": {
-          "file": "script/constants.go",
-          "line": 10,
-          "column": 2
-        },
-        "const_value": "\"Finalize\""
-      },
-      {
-        "id": "yanlingrpa.com/yanling/protocol/script#SCRIPT_ROUTE_INITIALIZE",
-        "name": "SCRIPT_ROUTE_INITIALIZE",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/script.SCRIPT_ROUTE_INITIALIZE",
-        "kind": "const",
-        "package": "script",
-        "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "signature": "const SCRIPT_ROUTE_INITIALIZE = \"Initialize\"",
-        "source": {
-          "file": "script/constants.go",
-          "line": 9,
-          "column": 2
-        },
-        "const_value": "\"Initialize\""
-      },
-      {
         "id": "yanlingrpa.com/yanling/protocol/script#ScriptVariable",
         "name": "ScriptVariable",
         "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
@@ -2127,15 +2097,15 @@
         },
         "methods": [
           {
-            "name": "GetModule",
-            "doc": "GetModule gets the module name that owns the topic.",
+            "name": "GetModuleId",
+            "doc": "GetModuleId gets the module id that owns the topic.",
             "params": [],
             "results": [
               {
                 "type": "string"
               }
             ],
-            "signature": "GetModule() string",
+            "signature": "GetModuleId() string",
             "type_refs": [
               {
                 "expr": "string",
@@ -2734,6 +2704,36 @@
             "builtin": true
           }
         ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#YSCRIPT_ROUTE_FINALIZE",
+        "name": "YSCRIPT_ROUTE_FINALIZE",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.YSCRIPT_ROUTE_FINALIZE",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "signature": "const YSCRIPT_ROUTE_FINALIZE = \"Finalize\"",
+        "source": {
+          "file": "script/constants.go",
+          "line": 10,
+          "column": 2
+        },
+        "const_value": "\"Finalize\""
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#YSCRIPT_ROUTE_INITIALIZE",
+        "name": "YSCRIPT_ROUTE_INITIALIZE",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.YSCRIPT_ROUTE_INITIALIZE",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "signature": "const YSCRIPT_ROUTE_INITIALIZE = \"Initialize\"",
+        "source": {
+          "file": "script/constants.go",
+          "line": 9,
+          "column": 2
+        },
+        "const_value": "\"Initialize\""
       },
       {
         "id": "yanlingrpa.com/yanling/protocol/script#YScript",

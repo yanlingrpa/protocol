@@ -17,16 +17,16 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/script/script"] = map[string]reflect.Value{
 		// function, constant and variable definitions
-		"JsonStruct":              reflect.ValueOf(script.JsonStruct),
-		"ParseSpecifier":          reflect.ValueOf(script.ParseSpecifier),
-		"SCRIPT_ROUTE_FINALIZE":   reflect.ValueOf(constant.MakeFromLiteral("\"Finalize\"", token.STRING, 0)),
-		"SCRIPT_ROUTE_INITIALIZE": reflect.ValueOf(constant.MakeFromLiteral("\"Initialize\"", token.STRING, 0)),
-		"VariableBoolean":         reflect.ValueOf(script.VariableBoolean),
-		"VariableFilePath":        reflect.ValueOf(script.VariableFilePath),
-		"VariableInteger":         reflect.ValueOf(script.VariableInteger),
-		"VariableJson":            reflect.ValueOf(script.VariableJson),
-		"VariableNumber":          reflect.ValueOf(script.VariableNumber),
-		"VariableString":          reflect.ValueOf(script.VariableString),
+		"JsonStruct":               reflect.ValueOf(script.JsonStruct),
+		"ParseSpecifier":           reflect.ValueOf(script.ParseSpecifier),
+		"VariableBoolean":          reflect.ValueOf(script.VariableBoolean),
+		"VariableFilePath":         reflect.ValueOf(script.VariableFilePath),
+		"VariableInteger":          reflect.ValueOf(script.VariableInteger),
+		"VariableJson":             reflect.ValueOf(script.VariableJson),
+		"VariableNumber":           reflect.ValueOf(script.VariableNumber),
+		"VariableString":           reflect.ValueOf(script.VariableString),
+		"YSCRIPT_ROUTE_FINALIZE":   reflect.ValueOf(constant.MakeFromLiteral("\"Finalize\"", token.STRING, 0)),
+		"YSCRIPT_ROUTE_INITIALIZE": reflect.ValueOf(constant.MakeFromLiteral("\"Initialize\"", token.STRING, 0)),
 
 		// type definitions
 		"Event":             reflect.ValueOf((*script.Event)(nil)),
@@ -56,7 +56,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WBooleanVariable   func(name string) (bool, bool)
 	WBrokerInfo        func() ossys.BrokerInfo
 	WBrowserWindow     func(id string) (browser.BrowserWindow, bool)
-	WCurrentModule     func() string
+	WCurrentModuleId   func() string
 	WFilePathVariable  func(name string) (string, bool)
 	WFileSystem        func() ossys.LocalFilesystem
 	WFloatVariable     func(name string) (float64, bool)
@@ -67,7 +67,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WInvokeWorker      func(workerId string, route string, dto any) (any, error)
 	WJsonVariable      func(name string) (map[string]any, bool)
 	WLogger            func() ossys.ScriptLogger
-	WMainModule        func() string
+	WMainModuleId      func() string
 	WMobileWindow      func(id string) (appgui.AppGuiWindow, bool)
 	WOsGuiWindow       func(id string) (osgui.OSGuiWindow, bool)
 	WPublish           func(topic string, data any) error
@@ -88,8 +88,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrokerInfo() ossy
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
 	return W.WBrowserWindow(id)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) CurrentModule() string {
-	return W.WCurrentModule()
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) CurrentModuleId() string {
+	return W.WCurrentModuleId()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FilePathVariable(name string) (string, bool) {
 	return W.WFilePathVariable(name)
@@ -121,8 +121,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Logger() ossys.ScriptLogger {
 	return W.WLogger()
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MainModule() string {
-	return W.WMainModule()
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MainModuleId() string {
+	return W.WMainModuleId()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MobileWindow(id string) (appgui.AppGuiWindow, bool) {
 	return W.WMobileWindow(id)
@@ -154,14 +154,14 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) VisionWorker() co
 
 // _yanlingrpa_com_yanling_protocol_script_Subscriber is an interface wrapper for Subscriber type
 type _yanlingrpa_com_yanling_protocol_script_Subscriber struct {
-	IValue     interface{}
-	WGetModule func() string
-	WGetTopic  func() string
-	WIsActive  func() bool
+	IValue       interface{}
+	WGetModuleId func() string
+	WGetTopic    func() string
+	WIsActive    func() bool
 }
 
-func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetModule() string {
-	return W.WGetModule()
+func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetModuleId() string {
+	return W.WGetModuleId()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetTopic() string {
 	return W.WGetTopic()
