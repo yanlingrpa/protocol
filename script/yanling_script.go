@@ -3,46 +3,8 @@ package script
 import (
 	"encoding/json"
 	"fmt"
-	"path/filepath"
-	"regexp"
 	"strconv"
 	"strings"
-)
-
-var domainPattern = regexp.MustCompile(`(?i)^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+$`)
-
-var ownerPattern = regexp.MustCompile(`^[A-Za-z0-9_-]+$`)
-
-/*
-* VariableDataType defines data types for script variables.
- */
-type VariableDataType string
-
-const (
-	/*
-	* VariableBoolean boolean type.
-	 */
-	VariableBoolean VariableDataType = "boolean"
-	/*
-	* VariableString string type.
-	 */
-	VariableString VariableDataType = "string"
-	/*
-	* VariableFilePath file path type.
-	 */
-	VariableFilePath VariableDataType = "filepath"
-	/*
-	* VariableInteger integer type.
-	 */
-	VariableInteger VariableDataType = "integer"
-	/*
-	* VariableNumber floating-point float type.
-	 */
-	VariableNumber VariableDataType = "float"
-	/*
-	* VariableJson JSON object type.
-	 */
-	VariableJson VariableDataType = "json"
 )
 
 /*
@@ -50,63 +12,71 @@ const (
  */
 type ModuleInfo struct {
 	/*
-	* Name is the module name.
+	* 模组唯一标识，一般用repo路径
+	 */
+	Id string `json:"id"`
+	/*
+	* 模组名称，可读性名称
 	 */
 	Name string `json:"name"`
 	/*
-	* DisplayName is the module display name.
-	 */
-	DisplayName string `json:"display_name"`
-	/*
-	* Version is the module version.
+	* 模型代码版本号
 	 */
 	Version string `json:"version"`
 	/*
-	* Package is the script package name. Only scripts under this package can be imported and called.
+	* 模组包名。只有该包下的脚本才能被导入和调用(非golang项目请忽略)
 	 */
 	Package string `json:"package"`
 	/*
-	* Description describes script functionality and usage.
+	* 模组描述，说明脚本功能和使用方法。
 	 */
 	Description string `json:"description"`
 	/*
-	* Tags is a list of script topic tags, for example ["web automation", "data extraction"].
+	* 模组标签，说明脚本的主题，例如 ["web automation", "data extraction"]。
 	 */
 	Tags []string `json:"tags"`
 	/*
-	* Website is the official website of the script.
+	* 模组官网。
 	 */
 	Website string `json:"website"`
 	/*
-	* UpdateTime is the last update time (last commit time), formatted as RFC3339.
+	* 模组最后更新时间（最后一次提交时间），格式为RFC3339。
 	 */
 	UpdateTime string `json:"update_time"`
 	/*
-	* Author is the script author.
+	* 模组作者。
 	 */
 	Author string `json:"author"`
 	/*
-	* Email is the contact address.
+	* 联系方式。
 	 */
 	Email string `json:"email"`
 	/*
-	* License is the license, based on the LICENSE file or declaration.
+	* 模组许可协议，根据LICENSE文件或声明。
 	 */
 	License string `json:"license"`
 	/*
-	* Devices is the list of applicable devices, for example ["windows", "mac", "ubuntu"].
+	* 适用设备列表，例如 ["windows", "mac", "ubuntu"]。
 	 */
 	Devices []string `json:"devices"`
 	/*
-	* EngineVersion is the required engine version.
+	* 所需引擎版本。
 	 */
 	EngineVersion string `json:"engine_version"`
 }
 
+func (info *ModuleInfo) GetSpecifier() *Specifier {
+	spec, err := ParseSpecifier(fmt.Sprintf("%s@%s", info.Id, info.Version))
+	if err != nil {
+		return nil
+	}
+	return spec
+}
+
 func (info *ModuleInfo) ToMap() map[string]any {
 	return map[string]any{
+		"id":             info.Id,
 		"name":           info.Name,
-		"display_name":   info.DisplayName,
 		"version":        info.Version,
 		"package":        info.Package,
 		"description":    info.Description,
@@ -119,173 +89,6 @@ func (info *ModuleInfo) ToMap() map[string]any {
 		"devices":        info.Devices,
 		"engine_version": info.EngineVersion,
 	}
-}
-
-func getMapString(data map[string]any, key string) string {
-	if value, ok := data[key]; ok {
-		switch v := value.(type) {
-		case string:
-			return v
-		case VariableDataType:
-			return string(v)
-		}
-	}
-	return ""
-}
-
-func getMapStringSlice(data map[string]any, key string) []string {
-	value, ok := data[key]
-	if !ok || value == nil {
-		return []string{}
-	}
-
-	switch v := value.(type) {
-	case []string:
-		if v == nil {
-			return []string{}
-		}
-		return append([]string{}, v...)
-	case []any:
-		items := make([]string, 0, len(v))
-		for _, item := range v {
-			if str, ok := item.(string); ok {
-				items = append(items, str)
-			}
-		}
-		return items
-	}
-
-	return []string{}
-}
-
-func getMapInt(data map[string]any, key string) int {
-	if value, ok := data[key]; ok {
-		switch v := value.(type) {
-		case int:
-			return v
-		case int8:
-			return int(v)
-		case int16:
-			return int(v)
-		case int32:
-			return int(v)
-		case int64:
-			return int(v)
-		case uint:
-			return int(v)
-		case uint8:
-			return int(v)
-		case uint16:
-			return int(v)
-		case uint32:
-			return int(v)
-		case uint64:
-			return int(v)
-		case float32:
-			return int(v)
-		case float64:
-			return int(v)
-		case json.Number:
-			if i, err := v.Int64(); err == nil {
-				return int(i)
-			}
-			if f, err := v.Float64(); err == nil {
-				return int(f)
-			}
-		case string:
-			if i, err := strconv.Atoi(strings.TrimSpace(v)); err == nil {
-				return i
-			}
-		}
-	}
-	return 0
-}
-
-func getMapBool(data map[string]any, key string) bool {
-	if value, ok := data[key]; ok {
-		switch v := value.(type) {
-		case bool:
-			return v
-		case string:
-			normalized := strings.TrimSpace(strings.ToLower(v))
-			return normalized == "true" || normalized == "1" || normalized == "yes" || normalized == "on" || normalized == "y"
-		case int:
-			return v != 0
-		case int8:
-			return v != 0
-		case int16:
-			return v != 0
-		case int32:
-			return v != 0
-		case int64:
-			return v != 0
-		case uint:
-			return v != 0
-		case uint8:
-			return v != 0
-		case uint16:
-			return v != 0
-		case uint32:
-			return v != 0
-		case uint64:
-			return v != 0
-		case float32:
-			return v != 0
-		case float64:
-			return v != 0
-		}
-	}
-	return false
-}
-
-func getMapVariableDataType(data map[string]any, key string) VariableDataType {
-	if value, ok := data[key]; ok {
-		switch v := value.(type) {
-		case VariableDataType:
-			return v
-		case string:
-			return VariableDataType(v)
-		}
-	}
-	return ""
-}
-
-func getMapObject(data map[string]any, key string) map[string]any {
-	value, ok := data[key]
-	if !ok || value == nil {
-		return map[string]any{}
-	}
-
-	if item, ok := value.(map[string]any); ok {
-		return item
-	}
-
-	return map[string]any{}
-}
-
-func getMapObjectSlice(data map[string]any, key string) []map[string]any {
-	value, ok := data[key]
-	if !ok || value == nil {
-		return []map[string]any{}
-	}
-
-	switch v := value.(type) {
-	case []map[string]any:
-		if v == nil {
-			return []map[string]any{}
-		}
-		return append([]map[string]any{}, v...)
-	case []any:
-		items := make([]map[string]any, 0, len(v))
-		for _, item := range v {
-			if mapped, ok := item.(map[string]any); ok {
-				items = append(items, mapped)
-			}
-		}
-		return items
-	}
-
-	return []map[string]any{}
 }
 
 func (info *ModuleInfo) FromMap(data map[string]any) {
@@ -630,40 +433,6 @@ func (vdt VariableDataType) Parse(value string) any {
 	return value
 }
 
-/*
-* ToString converts any value into the string representation of the corresponding type.
-* If conversion fails, it returns fmt.Sprintf("%v", value).
- */
-func (vdt VariableDataType) ToString(value any) string {
-	switch vdt {
-	case VariableBoolean:
-		if b, ok := value.(bool); ok {
-			if b {
-				return "true"
-			}
-			return "false"
-		}
-	case VariableString:
-	case VariableFilePath:
-		if s, ok := value.(string); ok {
-			return s
-		}
-	case VariableInteger:
-		if i, ok := value.(int); ok {
-			return fmt.Sprintf("%d", i)
-		}
-	case VariableNumber:
-		if f, ok := value.(float64); ok {
-			return fmt.Sprintf("%f", f)
-		}
-	case VariableJson:
-		if jsonBytes, err := json.Marshal(value); err == nil {
-			return string(jsonBytes)
-		}
-	}
-	return fmt.Sprintf("%v", value)
-}
-
 type PathPermission struct {
 	/*
 	* Path is the path to the file or directory.
@@ -726,175 +495,47 @@ func (up *UrlPermission) FromMap(data map[string]any) {
 }
 
 /*
-* ModuleName defines module name.
- */
-type ModuleName struct {
-	/*
-	* Domain is the source domain of the module, such as github.com.
-	 */
-	Domain string `json:"domain"`
-	/*
-	* Owner is the module owner, such as a GitHub username.
-	 */
-	Owner string `json:"owner"`
-	/*
-	* Name is the project name, such as utils.
-	 */
-	Name string `json:"name"`
-}
-
-/*
-* String returns the full module name string in the format
-* "domain/owner/name" or "owner/name/v2".
-* If the name part contains "/", it is also handled correctly,
-* for example "domain/owner/name/subname@version".
- */
-func (s ModuleName) String() string {
-	var result string
-
-	/*
-	* Build the name part.
-	 */
-	if s.Domain != "" {
-		result = fmt.Sprintf("%s/%s/%s", s.Domain, s.Owner, s.Name)
-	} else {
-		result = fmt.Sprintf("%s/%s", s.Owner, s.Name)
-	}
-
-	return result
-}
-
-/*
-* ModulePath generates a module path based on the given root directory.
-* If the name part contains "/", it is joined as nested directories.
- */
-func (s ModuleName) ModulePath(modPath string, version string) string {
-	path := modPath
-	if s.Domain != "" {
-		path = filepath.Join(path, s.Domain)
-	}
-	if s.Owner != "" {
-		path = filepath.Join(path, s.Owner)
-	}
-	if s.Name != "" {
-		splitName := strings.Split(s.Name, "/")
-		for _, segment := range splitName {
-			path = filepath.Join(path, segment)
-		}
-	}
-	if version != "" {
-		path = path + "@" + version
-	}
-	return path
-}
-
-/*
 * YScript defines the top-level script configuration structure.
  */
 type YScript struct {
 	/*
-	* Module is the basic script module information.
+	* 脚本模组的基本信息。
 	 */
 	Module ModuleInfo `json:"module"`
+
 	/*
-	* Version is the module version.
-	 */
-	Version string `json:"version"`
-	/*
-	* GuiApps is the list of GUI applications to operate.
+	* 脚本运行需要的图形界面应用列表。
 	 */
 	GuiApps []GuiApplication `json:"gui_apps"`
 	/*
-	* WebApps is the list of web applications to operate.
+	* 脚本运行需要的网页应用列表。
 	 */
 	WebApps []WebApplication `json:"web_apps"`
 	/*
-	* MobileApps is the list of mobile applications to operate.
+	* 脚本运行需要的移动应用列表。
 	 */
 	MobileApps []MobileApplication `json:"mobile_apps"`
 	/*
-	* Variables is the list of global script variable definitions.
-	* ${script_root} && ${data_root} are reserved variables representing the script root directory and data directory, which can be used in variable default values and permission definitions.
+	* 脚本全局变量定义列表。
+	* ${script_root} && ${data_root} 是保留变量，分别表示脚本根目录和数据目录，可在变量默认值和权限定义中使用。
 	 */
 	Variables []ScriptVariable `json:"variables"`
 	/*
-	* PathPermissions is the list of filesystem permissions.
+	* 文件系统权限列表。
 	 */
 	PathPermissions []PathPermission `json:"path_permissions"`
 	/*
-	* UrlPermissions is the list of network URL permissions.
+	* 网络URL权限列表。
 	 */
 	UrlPermissions []UrlPermission `json:"url_permissions"`
 	/*
-	* ScriptDependencies is the list of script module names (moduleName@version) imported by this script project.
+	* 脚本依赖的脚本模组列表，格式为 moduleId@version。
 	 */
 	ScriptDependencies []string `json:"script_dependencies"`
 	/*
-	* WorkerDependencies is the list of IPC service module names (moduleName@version) depended by this script project.
+	* 脚本依赖的IPC服务模组列表，格式为 moduleId@version。
 	 */
 	WorkerDependencies []string `json:"worker_dependencies"`
-}
-
-func toVariableString(value any) string {
-	switch v := value.(type) {
-	case string:
-		return v
-	case bool:
-		if v {
-			return "true"
-		}
-		return "false"
-	case int:
-		return strconv.Itoa(v)
-	case int8:
-		return strconv.FormatInt(int64(v), 10)
-	case int16:
-		return strconv.FormatInt(int64(v), 10)
-	case int32:
-		return strconv.FormatInt(int64(v), 10)
-	case int64:
-		return strconv.FormatInt(v, 10)
-	case uint:
-		return strconv.FormatUint(uint64(v), 10)
-	case uint8:
-		return strconv.FormatUint(uint64(v), 10)
-	case uint16:
-		return strconv.FormatUint(uint64(v), 10)
-	case uint32:
-		return strconv.FormatUint(uint64(v), 10)
-	case uint64:
-		return strconv.FormatUint(v, 10)
-	case float32:
-		return strconv.FormatFloat(float64(v), 'f', -1, 32)
-	case float64:
-		return strconv.FormatFloat(v, 'f', -1, 64)
-	default:
-		return fmt.Sprintf("%v", value)
-	}
-}
-
-func apply_velocity_variables(text string, variableValues map[string]any) string {
-	if text == "" || len(variableValues) == 0 {
-		return text
-	}
-	if !strings.Contains(text, "${") {
-		return text
-	}
-
-	result := text
-	for key, value := range variableValues {
-		placeholder := "${" + key + "}"
-		if !strings.Contains(result, placeholder) {
-			continue
-		}
-
-		result = strings.ReplaceAll(result, placeholder, toVariableString(value))
-
-		if !strings.Contains(result, "${") {
-			break
-		}
-	}
-	return result
 }
 
 /*
@@ -927,7 +568,6 @@ func (s *YScript) ApplyVariables(variableValues map[string]any) {
 func (s *YScript) ToMap() map[string]any {
 	data := map[string]any{
 		"module":              s.Module.ToMap(),
-		"version":             s.Version,
 		"script_dependencies": s.ScriptDependencies,
 		"worker_dependencies": s.WorkerDependencies,
 	}
@@ -968,7 +608,6 @@ func (s *YScript) ToMap() map[string]any {
 func (s *YScript) FromMap(data map[string]any) {
 	s.Module = ModuleInfo{}
 	s.Module.FromMap(getMapObject(data, "module"))
-	s.Version = getMapString(data, "version")
 
 	s.GuiApps = make([]GuiApplication, 0)
 	for _, item := range getMapObjectSlice(data, "gui_apps") {

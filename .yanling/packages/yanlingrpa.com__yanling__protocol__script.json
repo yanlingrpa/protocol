@@ -1,14 +1,16 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-07-31T06:30:50Z",
+  "generated_at": "2026-08-31T08:10:10Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
     "import_path": "yanlingrpa.com/yanling/protocol/script",
     "directory": "/script",
     "files": [
+      "script/constants.go",
       "script/module_runtime.go",
+      "script/module_specifier.go",
       "script/script_utils.go",
       "script/yanling_script.go"
     ],
@@ -94,14 +96,14 @@
       "yanlingrpa.com/yanling/protocol/ossys"
     ],
     "counts": {
-      "symbols": 22,
+      "symbols": 24,
       "interfaces": 2,
       "structs": 10,
       "functions": 2,
-      "methods": 48,
+      "methods": 50,
       "named_types": 1,
       "func_types": 1,
-      "consts": 6
+      "consts": 8
     },
     "symbols": [
       {
@@ -220,7 +222,7 @@
         "signature": "type GuiApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 309,
+          "line": 112,
           "column": 6
         },
         "fields": [
@@ -438,7 +440,7 @@
         "signature": "JsonStruct(obj any, jsonStructInterface any) error",
         "source": {
           "file": "script/script_utils.go",
-          "line": 96,
+          "line": 15,
           "column": 1
         },
         "params": [
@@ -478,7 +480,7 @@
         "signature": "type MobileApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 483,
+          "line": 286,
           "column": 6
         },
         "fields": [
@@ -660,7 +662,7 @@
         "signature": "type ModuleInfo struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 51,
+          "line": 13,
           "column": 6
         },
         "fields": [
@@ -668,7 +670,7 @@
             "name": "Author",
             "type": "string",
             "tag": "json:\"author\"",
-            "doc": "Author is the script author.",
+            "doc": "模组作者。",
             "type_refs": [
               {
                 "expr": "string",
@@ -680,7 +682,7 @@
             "name": "Description",
             "type": "string",
             "tag": "json:\"description\"",
-            "doc": "Description describes script functionality and usage.",
+            "doc": "模组描述，说明脚本功能和使用方法。",
             "type_refs": [
               {
                 "expr": "string",
@@ -692,19 +694,7 @@
             "name": "Devices",
             "type": "[]string",
             "tag": "json:\"devices\"",
-            "doc": "Devices is the list of applicable devices, for example [\"windows\", \"mac\", \"ubuntu\"].",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "DisplayName",
-            "type": "string",
-            "tag": "json:\"display_name\"",
-            "doc": "DisplayName is the module display name.",
+            "doc": "适用设备列表，例如 [\"windows\", \"mac\", \"ubuntu\"]。",
             "type_refs": [
               {
                 "expr": "string",
@@ -716,7 +706,7 @@
             "name": "Email",
             "type": "string",
             "tag": "json:\"email\"",
-            "doc": "Email is the contact address.",
+            "doc": "联系方式。",
             "type_refs": [
               {
                 "expr": "string",
@@ -728,7 +718,19 @@
             "name": "EngineVersion",
             "type": "string",
             "tag": "json:\"engine_version\"",
-            "doc": "EngineVersion is the required engine version.",
+            "doc": "所需引擎版本。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Id",
+            "type": "string",
+            "tag": "json:\"id\"",
+            "doc": "模组唯一标识，一般用repo路径",
             "type_refs": [
               {
                 "expr": "string",
@@ -740,7 +742,7 @@
             "name": "License",
             "type": "string",
             "tag": "json:\"license\"",
-            "doc": "License is the license, based on the LICENSE file or declaration.",
+            "doc": "模组许可协议，根据LICENSE文件或声明。",
             "type_refs": [
               {
                 "expr": "string",
@@ -752,7 +754,7 @@
             "name": "Name",
             "type": "string",
             "tag": "json:\"name\"",
-            "doc": "Name is the module name.",
+            "doc": "模组名称，可读性名称",
             "type_refs": [
               {
                 "expr": "string",
@@ -764,7 +766,7 @@
             "name": "Package",
             "type": "string",
             "tag": "json:\"package\"",
-            "doc": "Package is the script package name. Only scripts under this package can be imported and called.",
+            "doc": "模组包名。只有该包下的脚本才能被导入和调用(非golang项目请忽略)",
             "type_refs": [
               {
                 "expr": "string",
@@ -776,7 +778,7 @@
             "name": "Tags",
             "type": "[]string",
             "tag": "json:\"tags\"",
-            "doc": "Tags is a list of script topic tags, for example [\"web automation\", \"data extraction\"].",
+            "doc": "模组标签，说明脚本的主题，例如 [\"web automation\", \"data extraction\"]。",
             "type_refs": [
               {
                 "expr": "string",
@@ -788,7 +790,7 @@
             "name": "UpdateTime",
             "type": "string",
             "tag": "json:\"update_time\"",
-            "doc": "UpdateTime is the last update time (last commit time), formatted as RFC3339.",
+            "doc": "模组最后更新时间（最后一次提交时间），格式为RFC3339。",
             "type_refs": [
               {
                 "expr": "string",
@@ -800,7 +802,7 @@
             "name": "Version",
             "type": "string",
             "tag": "json:\"version\"",
-            "doc": "Version is the module version.",
+            "doc": "模型代码版本号",
             "type_refs": [
               {
                 "expr": "string",
@@ -812,7 +814,7 @@
             "name": "Website",
             "type": "string",
             "tag": "json:\"website\"",
-            "doc": "Website is the official website of the script.",
+            "doc": "模组官网。",
             "type_refs": [
               {
                 "expr": "string",
@@ -844,6 +846,24 @@
             ]
           },
           {
+            "name": "GetSpecifier",
+            "params": [],
+            "results": [
+              {
+                "type": "*Specifier"
+              }
+            ],
+            "signature": "GetSpecifier() *Specifier",
+            "type_refs": [
+              {
+                "expr": "Specifier",
+                "import_path": "yanlingrpa.com/yanling/protocol/script",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
+                "local": true
+              }
+            ]
+          },
+          {
             "name": "ToMap",
             "params": [],
             "results": [
@@ -866,113 +886,15 @@
         ],
         "type_refs": [
           {
+            "expr": "Specifier",
+            "import_path": "yanlingrpa.com/yanling/protocol/script",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
+            "local": true
+          },
+          {
             "expr": "any",
             "builtin": true
           },
-          {
-            "expr": "string",
-            "builtin": true
-          }
-        ]
-      },
-      {
-        "id": "yanlingrpa.com/yanling/protocol/script#ModuleName",
-        "name": "ModuleName",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleName",
-        "kind": "struct",
-        "package": "script",
-        "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ModuleName defines module name.",
-        "signature": "type ModuleName struct",
-        "source": {
-          "file": "script/yanling_script.go",
-          "line": 731,
-          "column": 6
-        },
-        "fields": [
-          {
-            "name": "Domain",
-            "type": "string",
-            "tag": "json:\"domain\"",
-            "doc": "Domain is the source domain of the module, such as github.com.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Name",
-            "type": "string",
-            "tag": "json:\"name\"",
-            "doc": "Name is the project name, such as utils.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "Owner",
-            "type": "string",
-            "tag": "json:\"owner\"",
-            "doc": "Owner is the module owner, such as a GitHub username.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          }
-        ],
-        "methods": [
-          {
-            "name": "ModulePath",
-            "doc": "ModulePath generates a module path based on the given root directory.\nIf the name part contains \"/\", it is joined as nested directories.",
-            "params": [
-              {
-                "name": "modPath",
-                "type": "string"
-              },
-              {
-                "name": "version",
-                "type": "string"
-              }
-            ],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "ModulePath(modPath string, version string) string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "String",
-            "doc": "String returns the full module name string in the format\n\"domain/owner/name\" or \"owner/name/v2\".\nIf the name part contains \"/\", it is also handled correctly,\nfor example \"domain/owner/name/subname@version\".",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "String() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          }
-        ],
-        "type_refs": [
           {
             "expr": "string",
             "builtin": true
@@ -1270,11 +1192,11 @@
             ]
           },
           {
-            "name": "InvokeWorker",
-            "doc": "InvokeWorker calls an exposed method from another local IPC worker.\nThe `module` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `module` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `route` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is the JSON-deserialized result of the method call.\nBecause the method signature uses `any`, callers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map the result into a typed struct, use `JsonStruct(result, \u0026YourStruct{})`.\nIf the invocation fails, an error is returned.",
+            "name": "Invoke",
+            "doc": "Invoke calls an exposed method from another local IPC worker/yscript.\nThe `moduleId` identifies the target worker/yscript, which corresponds to the module name of the worker.\nNote: The `moduleId` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `route` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is the JSON-deserialized result of the method call.\nBecause the method signature uses `any`, callers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map the result into a typed struct, use `JsonStruct(result, \u0026YourStruct{})`.\nIf the invocation fails, an error is returned.",
             "params": [
               {
-                "name": "module",
+                "name": "moduleId",
                 "type": "string"
               },
               {
@@ -1294,7 +1216,7 @@
                 "type": "error"
               }
             ],
-            "signature": "InvokeWorker(module string, route string, dto any) (any, error)",
+            "signature": "Invoke(moduleId string, route string, dto any) (any, error)",
             "type_refs": [
               {
                 "expr": "any",
@@ -1551,10 +1473,10 @@
           },
           {
             "name": "Subscribe",
-            "doc": "Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe module identifies the target worker to subscribe to, and the topic is the name of the event topic to subscribe to.\nThe handler is the function that will be called when the event is published.\nThe `event.Data` received by the handler is JSON-deserialized and exposed as `any`,\nso callers should perform type assertions based on expected payload shapes.\nTo map `event.Data` into a typed struct, callers can use `JsonStruct(event.Data, \u0026YourStruct{})`.\nIt returns a Subscriber object representing the subscription or an error if the subscription fails.",
+            "doc": "Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe `moduleId` identifies the target worker/yscript to subscribe to, and the topic is the name of the event topic to subscribe to.\nThe handler is the function that will be called when the event is published.\nThe `event.Data` received by the `handler` is JSON-deserialized and exposed as `any`,\nso callers should perform type assertions based on expected payload shapes.\nTo map `event.Data` into a typed struct, callers can use `JsonStruct(event.Data, \u0026YourStruct{})`.\nIt returns a Subscriber object representing the subscription or an error if the subscription fails.",
             "params": [
               {
-                "name": "module",
+                "name": "moduleId",
                 "type": "string"
               },
               {
@@ -1574,7 +1496,7 @@
                 "type": "error"
               }
             ],
-            "signature": "Subscribe(module string, topic string, handler EventHandler) (Subscriber, error)",
+            "signature": "Subscribe(moduleId string, topic string, handler EventHandler) (Subscriber, error)",
             "type_refs": [
               {
                 "expr": "EventHandler",
@@ -1600,7 +1522,7 @@
           },
           {
             "name": "Unsubscribe",
-            "doc": "Unsubscribe cancels a subscription to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe subscriber is the Subscriber object representing the subscription to cancel.",
+            "doc": "Unsubscribe cancels a subscription to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe `subscriber` is the Subscriber object representing the subscription to cancel.",
             "params": [
               {
                 "name": "subscriber",
@@ -1730,17 +1652,17 @@
         ]
       },
       {
-        "id": "yanlingrpa.com/yanling/protocol/script#ParseModuleSpec",
-        "name": "ParseModuleSpec",
-        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ParseModuleSpec",
+        "id": "yanlingrpa.com/yanling/protocol/script#ParseSpecifier",
+        "name": "ParseSpecifier",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.ParseSpecifier",
         "kind": "function",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ParseModuleSpec parses a module spec string.\nAccepted formats are \"owner/name[/subname...]\" or \"domain/owner/name[/subname...]\",\nand an optional version suffix can be appended as \"moduleName@version\".\nThe domain part is optional and must be a valid domain name when present.\nThe owner part is required and must be a single word (no '/').\nThe project name part is required and may contain '/'.\nIt returns a ModuleName struct, version string, and an error if parsing fails.",
-        "signature": "ParseModuleSpec(spec string) (ModuleName, string, error)",
+        "doc": "ParseSpecifier 解析模块标识符。\n模块路径支持 \"所有者/项目名[/子路径...]\" 和\n\"域名/所有者/项目名[/子路径...]\" 两种格式。版本号可省略，也可以使用\n\"模块路径@版本号\" 或 \"模块路径 版本号\" 的形式指定。\n域名是可选项，但提供时必须包含至少一个点；域名标签只能由字母、数字和\n中划线组成，且不能以中划线开头或结尾。所有者和项目名为必填项，\n所有者只能包含 ASCII 字母、数字、下划线和中划线，项目名可以包含多级子路径。\n格式无效时返回错误。",
+        "signature": "ParseSpecifier(spec string) (*Specifier, error)",
         "source": {
-          "file": "script/script_utils.go",
-          "line": 19,
+          "file": "script/module_specifier.go",
+          "line": 80,
           "column": 1
         },
         "params": [
@@ -1751,10 +1673,7 @@
         ],
         "results": [
           {
-            "type": "ModuleName"
-          },
-          {
-            "type": "string"
+            "type": "*Specifier"
           },
           {
             "type": "error"
@@ -1762,9 +1681,9 @@
         ],
         "type_refs": [
           {
-            "expr": "ModuleName",
+            "expr": "Specifier",
             "import_path": "yanlingrpa.com/yanling/protocol/script",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/script.ModuleName",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
             "local": true
           },
           {
@@ -1787,7 +1706,7 @@
         "signature": "type PathPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 667,
+          "line": 436,
           "column": 6
         },
         "fields": [
@@ -1883,6 +1802,36 @@
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/script#SCRIPT_ROUTE_FINALIZE",
+        "name": "SCRIPT_ROUTE_FINALIZE",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.SCRIPT_ROUTE_FINALIZE",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "signature": "const SCRIPT_ROUTE_FINALIZE = \"Finalize\"",
+        "source": {
+          "file": "script/constants.go",
+          "line": 10,
+          "column": 2
+        },
+        "const_value": "\"Finalize\""
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/script#SCRIPT_ROUTE_INITIALIZE",
+        "name": "SCRIPT_ROUTE_INITIALIZE",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.SCRIPT_ROUTE_INITIALIZE",
+        "kind": "const",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "signature": "const SCRIPT_ROUTE_INITIALIZE = \"Initialize\"",
+        "source": {
+          "file": "script/constants.go",
+          "line": 9,
+          "column": 2
+        },
+        "const_value": "\"Initialize\""
+      },
+      {
         "id": "yanlingrpa.com/yanling/protocol/script#ScriptVariable",
         "name": "ScriptVariable",
         "qualified_name": "yanlingrpa.com/yanling/protocol/script.ScriptVariable",
@@ -1893,7 +1842,7 @@
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 557,
+          "line": 360,
           "column": 6
         },
         "fields": [
@@ -2037,6 +1986,132 @@
         ]
       },
       {
+        "id": "yanlingrpa.com/yanling/protocol/script#Specifier",
+        "name": "Specifier",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/script.Specifier",
+        "kind": "struct",
+        "package": "script",
+        "import_path": "yanlingrpa.com/yanling/protocol/script",
+        "doc": "ModuleName defines module name.",
+        "signature": "type Specifier struct",
+        "source": {
+          "file": "script/module_specifier.go",
+          "line": 17,
+          "column": 6
+        },
+        "fields": [
+          {
+            "name": "Domain",
+            "type": "string",
+            "tag": "json:\"domain\"",
+            "doc": "域名，例如 github.com。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "tag": "json:\"name\"",
+            "doc": "项目名称，例如 utils。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Owner",
+            "type": "string",
+            "tag": "json:\"owner\"",
+            "doc": "模组所有者，例如 GitHub 用户名。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Version",
+            "type": "string",
+            "tag": "json:\"version\"",
+            "doc": "版本，例如 v1.0.0。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "methods": [
+          {
+            "name": "GetId",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetId() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetPath",
+            "params": [
+              {
+                "name": "modPath",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetPath(modPath string) string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "String",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "String() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "string",
+            "builtin": true
+          }
+        ]
+      },
+      {
         "id": "yanlingrpa.com/yanling/protocol/script#Subscriber",
         "name": "Subscriber",
         "qualified_name": "yanlingrpa.com/yanling/protocol/script.Subscriber",
@@ -2125,7 +2200,7 @@
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 699,
+          "line": 468,
           "column": 6
         },
         "fields": [
@@ -2230,8 +2305,8 @@
         "doc": "VariableBoolean boolean type.",
         "signature": "const VariableBoolean VariableDataType = \"boolean\"",
         "source": {
-          "file": "script/yanling_script.go",
-          "line": 25,
+          "file": "script/constants.go",
+          "line": 22,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2256,8 +2331,8 @@
         "signature": "type VariableDataType string",
         "underlying_type": "string",
         "source": {
-          "file": "script/yanling_script.go",
-          "line": 19,
+          "file": "script/constants.go",
+          "line": 16,
           "column": 6
         },
         "methods": [
@@ -2335,8 +2410,8 @@
         "doc": "VariableFilePath file path type.",
         "signature": "const VariableFilePath VariableDataType = \"filepath\"",
         "source": {
-          "file": "script/yanling_script.go",
-          "line": 33,
+          "file": "script/constants.go",
+          "line": 30,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2360,8 +2435,8 @@
         "doc": "VariableInteger integer type.",
         "signature": "const VariableInteger VariableDataType = \"integer\"",
         "source": {
-          "file": "script/yanling_script.go",
-          "line": 37,
+          "file": "script/constants.go",
+          "line": 34,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2385,8 +2460,8 @@
         "doc": "VariableJson JSON object type.",
         "signature": "const VariableJson VariableDataType = \"json\"",
         "source": {
-          "file": "script/yanling_script.go",
-          "line": 45,
+          "file": "script/constants.go",
+          "line": 42,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2410,8 +2485,8 @@
         "doc": "VariableNumber floating-point float type.",
         "signature": "const VariableNumber VariableDataType = \"float\"",
         "source": {
-          "file": "script/yanling_script.go",
-          "line": 41,
+          "file": "script/constants.go",
+          "line": 38,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2435,8 +2510,8 @@
         "doc": "VariableString string type.",
         "signature": "const VariableString VariableDataType = \"string\"",
         "source": {
-          "file": "script/yanling_script.go",
-          "line": 29,
+          "file": "script/constants.go",
+          "line": 26,
           "column": 2
         },
         "const_type": "VariableDataType",
@@ -2461,7 +2536,7 @@
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 399,
+          "line": 202,
           "column": 6
         },
         "fields": [
@@ -2671,7 +2746,7 @@
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 794,
+          "line": 500,
           "column": 6
         },
         "fields": [
@@ -2679,7 +2754,7 @@
             "name": "GuiApps",
             "type": "[]GuiApplication",
             "tag": "json:\"gui_apps\"",
-            "doc": "GuiApps is the list of GUI applications to operate.",
+            "doc": "脚本运行需要的图形界面应用列表。",
             "type_refs": [
               {
                 "expr": "GuiApplication",
@@ -2693,7 +2768,7 @@
             "name": "MobileApps",
             "type": "[]MobileApplication",
             "tag": "json:\"mobile_apps\"",
-            "doc": "MobileApps is the list of mobile applications to operate.",
+            "doc": "脚本运行需要的移动应用列表。",
             "type_refs": [
               {
                 "expr": "MobileApplication",
@@ -2707,7 +2782,7 @@
             "name": "Module",
             "type": "ModuleInfo",
             "tag": "json:\"module\"",
-            "doc": "Module is the basic script module information.",
+            "doc": "脚本模组的基本信息。",
             "type_refs": [
               {
                 "expr": "ModuleInfo",
@@ -2721,7 +2796,7 @@
             "name": "PathPermissions",
             "type": "[]PathPermission",
             "tag": "json:\"path_permissions\"",
-            "doc": "PathPermissions is the list of filesystem permissions.",
+            "doc": "文件系统权限列表。",
             "type_refs": [
               {
                 "expr": "PathPermission",
@@ -2735,7 +2810,7 @@
             "name": "ScriptDependencies",
             "type": "[]string",
             "tag": "json:\"script_dependencies\"",
-            "doc": "ScriptDependencies is the list of script module names (moduleName@version) imported by this script project.",
+            "doc": "脚本依赖的脚本模组列表，格式为 moduleId@version。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2747,7 +2822,7 @@
             "name": "UrlPermissions",
             "type": "[]UrlPermission",
             "tag": "json:\"url_permissions\"",
-            "doc": "UrlPermissions is the list of network URL permissions.",
+            "doc": "网络URL权限列表。",
             "type_refs": [
               {
                 "expr": "UrlPermission",
@@ -2761,7 +2836,7 @@
             "name": "Variables",
             "type": "[]ScriptVariable",
             "tag": "json:\"variables\"",
-            "doc": "Variables is the list of global script variable definitions.\n${script_root} \u0026\u0026 ${data_root} are reserved variables representing the script root directory and data directory, which can be used in variable default values and permission definitions.",
+            "doc": "脚本全局变量定义列表。\n${script_root} \u0026\u0026 ${data_root} 是保留变量，分别表示脚本根目录和数据目录，可在变量默认值和权限定义中使用。",
             "type_refs": [
               {
                 "expr": "ScriptVariable",
@@ -2772,22 +2847,10 @@
             ]
           },
           {
-            "name": "Version",
-            "type": "string",
-            "tag": "json:\"version\"",
-            "doc": "Version is the module version.",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
             "name": "WebApps",
             "type": "[]WebApplication",
             "tag": "json:\"web_apps\"",
-            "doc": "WebApps is the list of web applications to operate.",
+            "doc": "脚本运行需要的网页应用列表。",
             "type_refs": [
               {
                 "expr": "WebApplication",
@@ -2801,7 +2864,7 @@
             "name": "WorkerDependencies",
             "type": "[]string",
             "tag": "json:\"worker_dependencies\"",
-            "doc": "WorkerDependencies is the list of IPC service module names (moduleName@version) depended by this script project.",
+            "doc": "脚本依赖的IPC服务模组列表，格式为 moduleId@version。",
             "type_refs": [
               {
                 "expr": "string",

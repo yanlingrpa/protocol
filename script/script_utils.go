@@ -4,90 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"strconv"
 	"strings"
 )
-
-/*
-* ParseModuleSpec parses a module spec string.
-* Accepted formats are "owner/name[/subname...]" or "domain/owner/name[/subname...]",
-* and an optional version suffix can be appended as "moduleName@version".
-* The domain part is optional and must be a valid domain name when present.
-* The owner part is required and must be a single word (no '/').
-* The project name part is required and may contain '/'.
-* It returns a ModuleName struct, version string, and an error if parsing fails.
- */
-func ParseModuleSpec(spec string) (ModuleName, string, error) {
-	original := spec
-	spec = strings.TrimSpace(spec)
-	if spec == "" {
-		return ModuleName{}, "", fmt.Errorf("invalid module spec format: %s, empty spec", original)
-	}
-
-	var modulePart string
-	var version string
-
-	/*
-	* Separate module name and version by '@', allowing spaces around both sides.
-	 */
-	if strings.Count(spec, "@") > 1 {
-		return ModuleName{}, "", fmt.Errorf("invalid module spec format: %s, multiple @ found", original)
-	}
-	if strings.Contains(spec, "@") {
-		parts := strings.SplitN(spec, "@", 2)
-		modulePart = strings.TrimSpace(parts[0])
-		version = strings.TrimSpace(parts[1])
-		if modulePart == "" || version == "" {
-			return ModuleName{}, "", fmt.Errorf("invalid module spec format: %s, expected 'moduleName@version'", original)
-		}
-	} else {
-		modulePart = spec
-	}
-
-	segments := strings.Split(modulePart, "/")
-	if len(segments) < 2 {
-		return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, expected 'owner/name' or 'domain/owner/name'", original)
-	}
-
-	for _, segment := range segments {
-		if segment == "" {
-			return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, contains empty path segment", original)
-		}
-	}
-
-	domain := ""
-	owner := ""
-	name := ""
-
-	/*
-	* If the first segment is a domain and there are at least 3 segments,
-	* parse as domain/owner/name...; otherwise parse as owner/name....
-	 */
-	if len(segments) >= 3 && isDomainName(segments[0]) {
-		domain = segments[0]
-		owner = segments[1]
-		name = strings.Join(segments[2:], "/")
-	} else {
-		owner = segments[0]
-		name = strings.Join(segments[1:], "/")
-	}
-
-	if owner == "" || name == "" {
-		return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, owner and project name are required", original)
-	}
-	if !isValidOwner(owner) {
-		return ModuleName{}, version, fmt.Errorf("invalid module spec format: %s, owner must be a single word without '/'", original)
-	}
-
-	return ModuleName{Domain: domain, Owner: owner, Name: name}, version, nil
-}
-
-func isDomainName(domain string) bool {
-	return domainPattern.MatchString(domain)
-}
-
-func isValidOwner(owner string) bool {
-	return ownerPattern.MatchString(owner)
-}
 
 /*
 * JsonStruct converts an input value into a target struct via JSON serialization/deserialization.
@@ -110,4 +29,233 @@ func JsonStruct(obj any, jsonStructInterface any) error {
 		return fmt.Errorf("failed to unmarshal into struct: %w", err)
 	}
 	return nil
+}
+
+func getMapString(data map[string]any, key string) string {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case string:
+			return v
+		case VariableDataType:
+			return string(v)
+		}
+	}
+	return ""
+}
+
+func getMapStringSlice(data map[string]any, key string) []string {
+	value, ok := data[key]
+	if !ok || value == nil {
+		return []string{}
+	}
+
+	switch v := value.(type) {
+	case []string:
+		if v == nil {
+			return []string{}
+		}
+		return append([]string{}, v...)
+	case []any:
+		items := make([]string, 0, len(v))
+		for _, item := range v {
+			if str, ok := item.(string); ok {
+				items = append(items, str)
+			}
+		}
+		return items
+	}
+
+	return []string{}
+}
+
+func getMapInt(data map[string]any, key string) int {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case int:
+			return v
+		case int8:
+			return int(v)
+		case int16:
+			return int(v)
+		case int32:
+			return int(v)
+		case int64:
+			return int(v)
+		case uint:
+			return int(v)
+		case uint8:
+			return int(v)
+		case uint16:
+			return int(v)
+		case uint32:
+			return int(v)
+		case uint64:
+			return int(v)
+		case float32:
+			return int(v)
+		case float64:
+			return int(v)
+		case json.Number:
+			if i, err := v.Int64(); err == nil {
+				return int(i)
+			}
+			if f, err := v.Float64(); err == nil {
+				return int(f)
+			}
+		case string:
+			if i, err := strconv.Atoi(strings.TrimSpace(v)); err == nil {
+				return i
+			}
+		}
+	}
+	return 0
+}
+
+func getMapBool(data map[string]any, key string) bool {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case bool:
+			return v
+		case string:
+			normalized := strings.TrimSpace(strings.ToLower(v))
+			return normalized == "true" || normalized == "1" || normalized == "yes" || normalized == "on" || normalized == "y"
+		case int:
+			return v != 0
+		case int8:
+			return v != 0
+		case int16:
+			return v != 0
+		case int32:
+			return v != 0
+		case int64:
+			return v != 0
+		case uint:
+			return v != 0
+		case uint8:
+			return v != 0
+		case uint16:
+			return v != 0
+		case uint32:
+			return v != 0
+		case uint64:
+			return v != 0
+		case float32:
+			return v != 0
+		case float64:
+			return v != 0
+		}
+	}
+	return false
+}
+
+func getMapVariableDataType(data map[string]any, key string) VariableDataType {
+	if value, ok := data[key]; ok {
+		switch v := value.(type) {
+		case VariableDataType:
+			return v
+		case string:
+			return VariableDataType(v)
+		}
+	}
+	return ""
+}
+
+func getMapObject(data map[string]any, key string) map[string]any {
+	value, ok := data[key]
+	if !ok || value == nil {
+		return map[string]any{}
+	}
+
+	if item, ok := value.(map[string]any); ok {
+		return item
+	}
+
+	return map[string]any{}
+}
+
+func getMapObjectSlice(data map[string]any, key string) []map[string]any {
+	value, ok := data[key]
+	if !ok || value == nil {
+		return []map[string]any{}
+	}
+
+	switch v := value.(type) {
+	case []map[string]any:
+		if v == nil {
+			return []map[string]any{}
+		}
+		return append([]map[string]any{}, v...)
+	case []any:
+		items := make([]map[string]any, 0, len(v))
+		for _, item := range v {
+			if mapped, ok := item.(map[string]any); ok {
+				items = append(items, mapped)
+			}
+		}
+		return items
+	}
+
+	return []map[string]any{}
+}
+
+func apply_velocity_variables(text string, variableValues map[string]any) string {
+	if text == "" || len(variableValues) == 0 {
+		return text
+	}
+	if !strings.Contains(text, "${") {
+		return text
+	}
+
+	result := text
+	for key, value := range variableValues {
+		placeholder := "${" + key + "}"
+		if !strings.Contains(result, placeholder) {
+			continue
+		}
+
+		result = strings.ReplaceAll(result, placeholder, toVariableString(value))
+
+		if !strings.Contains(result, "${") {
+			break
+		}
+	}
+	return result
+}
+
+func toVariableString(value any) string {
+	switch v := value.(type) {
+	case string:
+		return v
+	case bool:
+		if v {
+			return "true"
+		}
+		return "false"
+	case int:
+		return strconv.Itoa(v)
+	case int8:
+		return strconv.FormatInt(int64(v), 10)
+	case int16:
+		return strconv.FormatInt(int64(v), 10)
+	case int32:
+		return strconv.FormatInt(int64(v), 10)
+	case int64:
+		return strconv.FormatInt(v, 10)
+	case uint:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint8:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint16:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint32:
+		return strconv.FormatUint(uint64(v), 10)
+	case uint64:
+		return strconv.FormatUint(v, 10)
+	case float32:
+		return strconv.FormatFloat(float64(v), 'f', -1, 32)
+	case float64:
+		return strconv.FormatFloat(v, 'f', -1, 64)
+	default:
+		return fmt.Sprintf("%v", value)
+	}
 }

@@ -62,12 +62,22 @@
     "ModuleInfo": {
       "type": "object",
       "description": "Script module metadata.",
-      "required": ["name", "package"],
+      "required": ["id", "name", "version", "package"],
       "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique module identifier, typically the repository path."
+        },
         "name": {
           "type": "string",
           "minLength": 1,
-          "description": "Module name including domain, owner, and name, parsed from the go.mod file."
+          "description": "Human-readable module name."
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Module code version."
         },
         "package": {
           "type": "string",

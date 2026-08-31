@@ -3,6 +3,8 @@
 package symbols
 
 import (
+	"go/constant"
+	"go/token"
 	"reflect"
 	"yanlingrpa.com/yanling/protocol/appgui"
 	"yanlingrpa.com/yanling/protocol/browser"
@@ -15,14 +17,16 @@ import (
 func init() {
 	Symbols["yanlingrpa.com/yanling/protocol/script/script"] = map[string]reflect.Value{
 		// function, constant and variable definitions
-		"JsonStruct":       reflect.ValueOf(script.JsonStruct),
-		"ParseModuleSpec":  reflect.ValueOf(script.ParseModuleSpec),
-		"VariableBoolean":  reflect.ValueOf(script.VariableBoolean),
-		"VariableFilePath": reflect.ValueOf(script.VariableFilePath),
-		"VariableInteger":  reflect.ValueOf(script.VariableInteger),
-		"VariableJson":     reflect.ValueOf(script.VariableJson),
-		"VariableNumber":   reflect.ValueOf(script.VariableNumber),
-		"VariableString":   reflect.ValueOf(script.VariableString),
+		"JsonStruct":              reflect.ValueOf(script.JsonStruct),
+		"ParseSpecifier":          reflect.ValueOf(script.ParseSpecifier),
+		"SCRIPT_ROUTE_FINALIZE":   reflect.ValueOf(constant.MakeFromLiteral("\"Finalize\"", token.STRING, 0)),
+		"SCRIPT_ROUTE_INITIALIZE": reflect.ValueOf(constant.MakeFromLiteral("\"Initialize\"", token.STRING, 0)),
+		"VariableBoolean":         reflect.ValueOf(script.VariableBoolean),
+		"VariableFilePath":        reflect.ValueOf(script.VariableFilePath),
+		"VariableInteger":         reflect.ValueOf(script.VariableInteger),
+		"VariableJson":            reflect.ValueOf(script.VariableJson),
+		"VariableNumber":          reflect.ValueOf(script.VariableNumber),
+		"VariableString":          reflect.ValueOf(script.VariableString),
 
 		// type definitions
 		"Event":             reflect.ValueOf((*script.Event)(nil)),
@@ -30,10 +34,10 @@ func init() {
 		"GuiApplication":    reflect.ValueOf((*script.GuiApplication)(nil)),
 		"MobileApplication": reflect.ValueOf((*script.MobileApplication)(nil)),
 		"ModuleInfo":        reflect.ValueOf((*script.ModuleInfo)(nil)),
-		"ModuleName":        reflect.ValueOf((*script.ModuleName)(nil)),
 		"ModuleRuntime":     reflect.ValueOf((*script.ModuleRuntime)(nil)),
 		"PathPermission":    reflect.ValueOf((*script.PathPermission)(nil)),
 		"ScriptVariable":    reflect.ValueOf((*script.ScriptVariable)(nil)),
+		"Specifier":         reflect.ValueOf((*script.Specifier)(nil)),
 		"Subscriber":        reflect.ValueOf((*script.Subscriber)(nil)),
 		"UrlPermission":     reflect.ValueOf((*script.UrlPermission)(nil)),
 		"VariableDataType":  reflect.ValueOf((*script.VariableDataType)(nil)),
@@ -60,7 +64,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WGetWriteBackCache func() map[string]string
 	WHttpClient        func() ossys.HttpClient
 	WIntegerVariable   func(name string) (int, bool)
-	WInvokeWorker      func(module string, route string, dto any) (any, error)
+	WInvoke            func(moduleId string, route string, dto any) (any, error)
 	WJsonVariable      func(name string) (map[string]any, bool)
 	WLogger            func() ossys.ScriptLogger
 	WMainModule        func() string
@@ -70,7 +74,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WSetCacheData      func(key string, value string)
 	WStorage           func() ossys.LocalStorage
 	WStringVariable    func(name string) (string, bool)
-	WSubscribe         func(module string, topic string, handler script.EventHandler) (script.Subscriber, error)
+	WSubscribe         func(moduleId string, topic string, handler script.EventHandler) (script.Subscriber, error)
 	WUnsubscribe       func(subscriber script.Subscriber) error
 	WVisionWorker      func() component.VisionWorker
 }
@@ -108,8 +112,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossy
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IntegerVariable(name string) (int, bool) {
 	return W.WIntegerVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(module string, route string, dto any) (any, error) {
-	return W.WInvokeWorker(module, route, dto)
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Invoke(moduleId string, route string, dto any) (any, error) {
+	return W.WInvoke(moduleId, route, dto)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (map[string]any, bool) {
 	return W.WJsonVariable(name)
@@ -138,8 +142,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Storage() ossys.L
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) StringVariable(name string) (string, bool) {
 	return W.WStringVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Subscribe(module string, topic string, handler script.EventHandler) (script.Subscriber, error) {
-	return W.WSubscribe(module, topic, handler)
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Subscribe(moduleId string, topic string, handler script.EventHandler) (script.Subscriber, error) {
+	return W.WSubscribe(moduleId, topic, handler)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Unsubscribe(subscriber script.Subscriber) error {
 	return W.WUnsubscribe(subscriber)
