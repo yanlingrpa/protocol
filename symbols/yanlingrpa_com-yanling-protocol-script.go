@@ -64,7 +64,7 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WGetWriteBackCache func() map[string]string
 	WHttpClient        func() ossys.HttpClient
 	WIntegerVariable   func(name string) (int, bool)
-	WInvoke            func(moduleId string, route string, dto any) (any, error)
+	WInvokeWorker      func(workerId string, route string, dto any) (any, error)
 	WJsonVariable      func(name string) (map[string]any, bool)
 	WLogger            func() ossys.ScriptLogger
 	WMainModule        func() string
@@ -112,8 +112,8 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) HttpClient() ossy
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) IntegerVariable(name string) (int, bool) {
 	return W.WIntegerVariable(name)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Invoke(moduleId string, route string, dto any) (any, error) {
-	return W.WInvoke(moduleId, route, dto)
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) InvokeWorker(workerId string, route string, dto any) (any, error) {
+	return W.WInvokeWorker(workerId, route, dto)
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name string) (map[string]any, bool) {
 	return W.WJsonVariable(name)

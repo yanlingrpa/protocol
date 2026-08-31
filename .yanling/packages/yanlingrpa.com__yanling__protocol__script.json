@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-08-31T08:10:10Z",
+  "generated_at": "2026-08-31T08:17:36Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -1192,11 +1192,11 @@
             ]
           },
           {
-            "name": "Invoke",
-            "doc": "Invoke calls an exposed method from another local IPC worker/yscript.\nThe `moduleId` identifies the target worker/yscript, which corresponds to the module name of the worker.\nNote: The `moduleId` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `route` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is the JSON-deserialized result of the method call.\nBecause the method signature uses `any`, callers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map the result into a typed struct, use `JsonStruct(result, \u0026YourStruct{})`.\nIf the invocation fails, an error is returned.",
+            "name": "InvokeWorker",
+            "doc": "Invoke calls an exposed method from another local IPC worker.\nThe `moduleId` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `moduleId` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `route` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is the JSON-deserialized result of the method call.\nBecause the method signature uses `any`, callers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map the result into a typed struct, use `JsonStruct(result, \u0026YourStruct{})`.\nIf the invocation fails, an error is returned.",
             "params": [
               {
-                "name": "moduleId",
+                "name": "workerId",
                 "type": "string"
               },
               {
@@ -1216,7 +1216,7 @@
                 "type": "error"
               }
             ],
-            "signature": "Invoke(moduleId string, route string, dto any) (any, error)",
+            "signature": "InvokeWorker(workerId string, route string, dto any) (any, error)",
             "type_refs": [
               {
                 "expr": "any",
