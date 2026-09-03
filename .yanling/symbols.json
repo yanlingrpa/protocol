@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-08-31T08:30:03Z",
+  "generated_at": "2026-09-03T06:28:26Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -983,6 +983,12 @@
           "expr": "BrowserFramePage",
           "import_path": "yanlingrpa.com/yanling/protocol/browser",
           "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserFramePage",
+          "local": true
+        },
+        {
+          "expr": "BrowserTabPage",
+          "import_path": "yanlingrpa.com/yanling/protocol/browser",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserTabPage",
           "local": true
         },
         {

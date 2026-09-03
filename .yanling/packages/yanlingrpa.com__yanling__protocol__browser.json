@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-08-31T08:30:03Z",
+  "generated_at": "2026-09-03T06:28:26Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "browser",
@@ -1600,11 +1600,20 @@
             ],
             "results": [
               {
+                "type": "BrowserTabPage"
+              },
+              {
                 "type": "error"
               }
             ],
-            "signature": "WaitForNewTab(id string, timeout time.Duration) error",
+            "signature": "WaitForNewTab(id string, timeout time.Duration) (BrowserTabPage, error)",
             "type_refs": [
+              {
+                "expr": "BrowserTabPage",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserTabPage",
+                "local": true
+              },
               {
                 "expr": "error",
                 "builtin": true
@@ -1633,6 +1642,12 @@
             "expr": "BrowserFramePage",
             "import_path": "yanlingrpa.com/yanling/protocol/browser",
             "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserFramePage",
+            "local": true
+          },
+          {
+            "expr": "BrowserTabPage",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserTabPage",
             "local": true
           },
           {
@@ -1706,19 +1721,28 @@
           {
             "name": "IDTabPage",
             "doc": "Gets a tab page by identifier.",
-            "params": [],
+            "params": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ],
             "results": [
               {
                 "type": "BrowserTabPage"
               }
             ],
-            "signature": "IDTabPage() BrowserTabPage",
+            "signature": "IDTabPage(id string) BrowserTabPage",
             "type_refs": [
               {
                 "expr": "BrowserTabPage",
                 "import_path": "yanlingrpa.com/yanling/protocol/browser",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserTabPage",
                 "local": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
               }
             ]
           },

@@ -259,7 +259,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage struct {
 	WReload               func(timeout time.Duration) error
 	WSaveCookies          func() error
 	WSaveLocalStorage     func() error
-	WWaitForNewTab        func(id string, timeout time.Duration) error
+	WWaitForNewTab        func(id string, timeout time.Duration) (browser.BrowserTabPage, error)
 	WWaitSelector         func(selector string, timeout time.Duration) (browser.BrowserElement, error)
 }
 
@@ -323,7 +323,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) SaveCookies() e
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) SaveLocalStorage() error {
 	return W.WSaveLocalStorage()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitForNewTab(id string, timeout time.Duration) error {
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitForNewTab(id string, timeout time.Duration) (browser.BrowserTabPage, error) {
 	return W.WWaitForNewTab(id, timeout)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitSelector(selector string, timeout time.Duration) (browser.BrowserElement, error) {
@@ -349,7 +349,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserWindow struct {
 	WGetWindowRect      func() basic.Rect
 	WGetWindowSchema    func() string
 	WGetWindowTitle     func() string
-	WIDTabPage          func() browser.BrowserTabPage
+	WIDTabPage          func(id string) browser.BrowserTabPage
 	WMoveTo             func(global_x int, global_y int) (bool, error)
 	WNewTabPage         func(id string, url string) (browser.BrowserTabPage, error)
 	WPressKeys          func(keys ...osgui.Keyboard) error
@@ -411,8 +411,8 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetWindowSchema(
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetWindowTitle() string {
 	return W.WGetWindowTitle()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) IDTabPage() browser.BrowserTabPage {
-	return W.WIDTabPage()
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) IDTabPage(id string) browser.BrowserTabPage {
+	return W.WIDTabPage(id)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) MoveTo(global_x int, global_y int) (bool, error) {
 	return W.WMoveTo(global_x, global_y)
