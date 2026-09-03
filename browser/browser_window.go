@@ -20,7 +20,7 @@ type BrowserWindow interface {
 	/*
 	* Gets a tab page by identifier.
 	 */
-	IDTabPage() BrowserTabPage
+	IDTabPage(id string) BrowserTabPage
 	/*
 	* Creates a new tab page and opens the specified URL.
 	 */
