@@ -18,7 +18,7 @@ type BrowserTabPage interface {
 	/*
 	* Waits for a new tab page with the specified ID to appear.
 	 */
-	WaitForNewTab(id string, timeout time.Duration) error
+	WaitForNewTab(id string, timeout time.Duration) (BrowserTabPage, error)
 	/*
 	* Saves cookies for the current tab page.
 	 */
