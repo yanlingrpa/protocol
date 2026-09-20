@@ -1,18 +1,18 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-03T06:28:26Z",
+  "generated_at": "2026-09-20T09:41:56Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 226,
+    "symbols": 309,
     "interfaces": 17,
     "structs": 19,
     "functions": 7,
-    "methods": 256,
+    "methods": 257,
     "named_types": 3,
     "func_types": 1,
-    "consts": 179
+    "consts": 262
   },
   "files": {
     "symbol_index": "symbols.json",
@@ -25,11 +25,11 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "directory": "/appgui",
       "counts": {
-        "symbols": 20,
+        "symbols": 103,
         "interfaces": 2,
-        "methods": 27,
+        "methods": 28,
         "named_types": 1,
-        "consts": 17
+        "consts": 100
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
       "dependencies": [

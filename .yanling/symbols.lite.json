@@ -1,17 +1,17 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-03T06:28:26Z",
+  "generated_at": "2026-09-20T09:41:56Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 226,
+    "symbols": 309,
     "interfaces": 17,
     "structs": 19,
     "functions": 7,
-    "methods": 256,
+    "methods": 257,
     "named_types": 3,
     "func_types": 1,
-    "consts": 179
+    "consts": 262
   },
   "symbols": [
     {
@@ -57,6 +57,188 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
     },
     {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key0",
+      "name": "Key0",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key0",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 111,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key1",
+      "name": "Key1",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key1",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 113,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key2",
+      "name": "Key2",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key2",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 115,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key3",
+      "name": "Key3",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key3",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 117,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key4",
+      "name": "Key4",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key4",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 119,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key5",
+      "name": "Key5",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key5",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 121,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key6",
+      "name": "Key6",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key6",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 123,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key7",
+      "name": "Key7",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key7",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 125,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key8",
+      "name": "Key8",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key8",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 127,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key9",
+      "name": "Key9",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key9",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 129,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyA",
+      "name": "KeyA",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyA",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 133,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyAlt",
+      "name": "KeyAlt",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyAlt",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 89,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyB",
+      "name": "KeyB",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyB",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 135,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
       "id": "yanlingrpa.com/yanling/protocol/appgui#KeyBack",
       "name": "KeyBack",
       "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyBack",
@@ -65,7 +247,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 10,
+        "line": 11,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -79,7 +261,119 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 32,
+        "line": 81,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyC",
+      "name": "KeyC",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyC",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 137,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCall",
+      "name": "KeyCall",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCall",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 21,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCamera",
+      "name": "KeyCamera",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCamera",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 25,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCapsLock",
+      "name": "KeyCapsLock",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCapsLock",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 93,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyClear",
+      "name": "KeyClear",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyClear",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 27,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyComma",
+      "name": "KeyComma",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyComma",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 95,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCtrl",
+      "name": "KeyCtrl",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCtrl",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 87,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyD",
+      "name": "KeyD",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyD",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 139,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -93,7 +387,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 25,
+        "line": 67,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -107,7 +401,105 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 28,
+        "line": 73,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadCenter",
+      "name": "KeyDpadCenter",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadCenter",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 39,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadDown",
+      "name": "KeyDpadDown",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadDown",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 33,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadLeft",
+      "name": "KeyDpadLeft",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadLeft",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 35,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadRight",
+      "name": "KeyDpadRight",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadRight",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 37,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadUp",
+      "name": "KeyDpadUp",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadUp",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 31,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyE",
+      "name": "KeyE",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyE",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 141,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyEndCall",
+      "name": "KeyEndCall",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyEndCall",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 23,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -121,7 +513,287 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 24,
+        "line": 65,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyEnvelope",
+      "name": "KeyEnvelope",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyEnvelope",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 105,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyEscape",
+      "name": "KeyEscape",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyEscape",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 19,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyExplorer",
+      "name": "KeyExplorer",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyExplorer",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 103,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF",
+      "name": "KeyF",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 143,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF1",
+      "name": "KeyF1",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF1",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 187,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF10",
+      "name": "KeyF10",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF10",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 205,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF11",
+      "name": "KeyF11",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF11",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 207,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF12",
+      "name": "KeyF12",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF12",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 209,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF2",
+      "name": "KeyF2",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF2",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 189,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF3",
+      "name": "KeyF3",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF3",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 191,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF4",
+      "name": "KeyF4",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF4",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 193,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF5",
+      "name": "KeyF5",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF5",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 195,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF6",
+      "name": "KeyF6",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF6",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 197,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF7",
+      "name": "KeyF7",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF7",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 199,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF8",
+      "name": "KeyF8",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF8",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 201,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF9",
+      "name": "KeyF9",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF9",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 203,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyFocus",
+      "name": "KeyFocus",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyFocus",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 107,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyG",
+      "name": "KeyG",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyG",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 145,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyH",
+      "name": "KeyH",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyH",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 147,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyHeadsetHook",
+      "name": "KeyHeadsetHook",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyHeadsetHook",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 99,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -135,7 +807,203 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 11,
+        "line": 13,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyI",
+      "name": "KeyI",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyI",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 149,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyInsert",
+      "name": "KeyInsert",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyInsert",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 49,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyJ",
+      "name": "KeyJ",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyJ",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 151,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyK",
+      "name": "KeyK",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyK",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 153,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyL",
+      "name": "KeyL",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyL",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 155,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyM",
+      "name": "KeyM",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyM",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 157,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaFastForward",
+      "name": "KeyMediaFastForward",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaFastForward",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 223,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaMute",
+      "name": "KeyMediaMute",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaMute",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 225,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaNext",
+      "name": "KeyMediaNext",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaNext",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 217,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaPlayPause",
+      "name": "KeyMediaPlayPause",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaPlayPause",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 213,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaPrevious",
+      "name": "KeyMediaPrevious",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaPrevious",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 219,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaRecord",
+      "name": "KeyMediaRecord",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaRecord",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 227,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaRewind",
+      "name": "KeyMediaRewind",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaRewind",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 221,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaStop",
+      "name": "KeyMediaStop",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaStop",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 215,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -149,7 +1017,63 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 12,
+        "line": 15,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMeta",
+      "name": "KeyMeta",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMeta",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 91,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMoveEnd",
+      "name": "KeyMoveEnd",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMoveEnd",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 47,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMoveHome",
+      "name": "KeyMoveHome",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMoveHome",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 45,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyN",
+      "name": "KeyN",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyN",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 159,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -163,7 +1087,91 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 29,
+        "line": 75,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyNotification",
+      "name": "KeyNotification",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyNotification",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 101,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyO",
+      "name": "KeyO",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyO",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 161,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyP",
+      "name": "KeyP",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyP",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 163,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPageDown",
+      "name": "KeyPageDown",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPageDown",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 43,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPageUp",
+      "name": "KeyPageUp",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPageUp",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 41,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPeriod",
+      "name": "KeyPeriod",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPeriod",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 97,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -177,7 +1185,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 21,
+        "line": 61,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -191,7 +1199,35 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 30,
+        "line": 77,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyQ",
+      "name": "KeyQ",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyQ",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 165,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyR",
+      "name": "KeyR",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyR",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 167,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -205,7 +1241,21 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 13,
+        "line": 17,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyS",
+      "name": "KeyS",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyS",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 169,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -219,7 +1269,21 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 27,
+        "line": 71,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyShift",
+      "name": "KeyShift",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyShift",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 85,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -233,7 +1297,21 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 31,
+        "line": 79,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyT",
+      "name": "KeyT",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyT",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 171,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -247,7 +1325,35 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 26,
+        "line": 69,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyU",
+      "name": "KeyU",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyU",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 173,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyV",
+      "name": "KeyV",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyV",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 175,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -261,7 +1367,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 17,
+        "line": 55,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -275,7 +1381,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 18,
+        "line": 57,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
@@ -289,7 +1395,63 @@
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 16,
+        "line": 53,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyW",
+      "name": "KeyW",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyW",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 177,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyX",
+      "name": "KeyX",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyX",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 179,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyY",
+      "name": "KeyY",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyY",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 181,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyZ",
+      "name": "KeyZ",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyZ",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 183,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json"

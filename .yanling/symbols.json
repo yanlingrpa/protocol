@@ -1,18 +1,18 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-03T06:28:26Z",
+  "generated_at": "2026-09-20T09:41:56Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 226,
+    "symbols": 309,
     "interfaces": 17,
     "structs": 19,
     "functions": 7,
-    "methods": 256,
+    "methods": 257,
     "named_types": 3,
     "func_types": 1,
-    "consts": 179
+    "consts": 262
   },
   "symbols": [
     {
@@ -153,8 +153,325 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
       "type_refs": [
         {
+          "expr": "int",
+          "builtin": true
+        },
+        {
           "expr": "string",
           "builtin": true
+        }
+      ],
+      "method_count": 1
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key0",
+      "name": "Key0",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key0",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Number keys",
+      "signature": "const Key0 AppKey = \"0\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 111,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key1",
+      "name": "Key1",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key1",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 1 键。",
+      "signature": "const Key1 AppKey = \"1\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 113,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key2",
+      "name": "Key2",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key2",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 2 键。",
+      "signature": "const Key2 AppKey = \"2\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 115,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key3",
+      "name": "Key3",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key3",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 3 键。",
+      "signature": "const Key3 AppKey = \"3\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 117,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key4",
+      "name": "Key4",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key4",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 4 键。",
+      "signature": "const Key4 AppKey = \"4\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 119,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key5",
+      "name": "Key5",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key5",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 5 键。",
+      "signature": "const Key5 AppKey = \"5\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 121,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key6",
+      "name": "Key6",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key6",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 6 键。",
+      "signature": "const Key6 AppKey = \"6\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 123,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key7",
+      "name": "Key7",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key7",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 7 键。",
+      "signature": "const Key7 AppKey = \"7\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 125,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key8",
+      "name": "Key8",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key8",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 8 键。",
+      "signature": "const Key8 AppKey = \"8\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 127,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#Key9",
+      "name": "Key9",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.Key9",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "数字 9 键。",
+      "signature": "const Key9 AppKey = \"9\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 129,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyA",
+      "name": "KeyA",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyA",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Letter keys",
+      "signature": "const KeyA AppKey = \"a\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 133,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyAlt",
+      "name": "KeyAlt",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyAlt",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Alt 修饰键。",
+      "signature": "const KeyAlt AppKey = \"alt\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 89,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyB",
+      "name": "KeyB",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyB",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 B 键。",
+      "signature": "const KeyB AppKey = \"b\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 135,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
         }
       ]
     },
@@ -169,7 +486,7 @@
       "signature": "const KeyBack AppKey = \"back\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 10,
+        "line": 11,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -189,10 +506,203 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "退格键。",
       "signature": "const KeyBackspace AppKey = \"backspace\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 32,
+        "line": 81,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyC",
+      "name": "KeyC",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyC",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 C 键。",
+      "signature": "const KeyC AppKey = \"c\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 137,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCall",
+      "name": "KeyCall",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCall",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "接听电话键。",
+      "signature": "const KeyCall AppKey = \"call\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 21,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCamera",
+      "name": "KeyCamera",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCamera",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "相机键。",
+      "signature": "const KeyCamera AppKey = \"camera\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 25,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCapsLock",
+      "name": "KeyCapsLock",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCapsLock",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "大小写锁定键。",
+      "signature": "const KeyCapsLock AppKey = \"caps_lock\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 93,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyClear",
+      "name": "KeyClear",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyClear",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "清除键。",
+      "signature": "const KeyClear AppKey = \"clear\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 27,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyComma",
+      "name": "KeyComma",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyComma",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "逗号键。",
+      "signature": "const KeyComma AppKey = \"comma\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 95,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyCtrl",
+      "name": "KeyCtrl",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyCtrl",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Ctrl 修饰键。",
+      "signature": "const KeyCtrl AppKey = \"ctrl\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 87,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyD",
+      "name": "KeyD",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyD",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 D 键。",
+      "signature": "const KeyD AppKey = \"d\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 139,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -212,10 +722,11 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "删除键。",
       "signature": "const KeyDelete AppKey = \"delete\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 25,
+        "line": 67,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -235,10 +746,179 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "输入法完成键，映射为回车键。",
       "signature": "const KeyDone AppKey = \"done\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 28,
+        "line": 73,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadCenter",
+      "name": "KeyDpadCenter",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadCenter",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "方向确认键。",
+      "signature": "const KeyDpadCenter AppKey = \"dpad_center\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 39,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadDown",
+      "name": "KeyDpadDown",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadDown",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "方向下键。",
+      "signature": "const KeyDpadDown AppKey = \"dpad_down\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 33,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadLeft",
+      "name": "KeyDpadLeft",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadLeft",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "方向左键。",
+      "signature": "const KeyDpadLeft AppKey = \"dpad_left\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 35,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadRight",
+      "name": "KeyDpadRight",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadRight",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "方向右键。",
+      "signature": "const KeyDpadRight AppKey = \"dpad_right\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 37,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyDpadUp",
+      "name": "KeyDpadUp",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyDpadUp",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Direction and navigation keys",
+      "signature": "const KeyDpadUp AppKey = \"dpad_up\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 31,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyE",
+      "name": "KeyE",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyE",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 E 键。",
+      "signature": "const KeyE AppKey = \"e\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 141,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyEndCall",
+      "name": "KeyEndCall",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyEndCall",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "挂断电话键。",
+      "signature": "const KeyEndCall AppKey = \"end_call\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 23,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -262,7 +942,487 @@
       "signature": "const KeyEnter AppKey = \"enter\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 24,
+        "line": 65,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyEnvelope",
+      "name": "KeyEnvelope",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyEnvelope",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "邮件键。",
+      "signature": "const KeyEnvelope AppKey = \"envelope\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 105,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyEscape",
+      "name": "KeyEscape",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyEscape",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Esc 退出键。",
+      "signature": "const KeyEscape AppKey = \"escape\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 19,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyExplorer",
+      "name": "KeyExplorer",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyExplorer",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "文件浏览器键。",
+      "signature": "const KeyExplorer AppKey = \"explorer\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 103,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF",
+      "name": "KeyF",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 F 键。",
+      "signature": "const KeyF AppKey = \"f\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 143,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF1",
+      "name": "KeyF1",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF1",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Function keys",
+      "signature": "const KeyF1 AppKey = \"f1\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 187,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF10",
+      "name": "KeyF10",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF10",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F10。",
+      "signature": "const KeyF10 AppKey = \"f10\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 205,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF11",
+      "name": "KeyF11",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF11",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F11。",
+      "signature": "const KeyF11 AppKey = \"f11\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 207,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF12",
+      "name": "KeyF12",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF12",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F12。",
+      "signature": "const KeyF12 AppKey = \"f12\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 209,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF2",
+      "name": "KeyF2",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF2",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F2。",
+      "signature": "const KeyF2 AppKey = \"f2\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 189,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF3",
+      "name": "KeyF3",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF3",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F3。",
+      "signature": "const KeyF3 AppKey = \"f3\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 191,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF4",
+      "name": "KeyF4",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF4",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F4。",
+      "signature": "const KeyF4 AppKey = \"f4\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 193,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF5",
+      "name": "KeyF5",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF5",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F5。",
+      "signature": "const KeyF5 AppKey = \"f5\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 195,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF6",
+      "name": "KeyF6",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF6",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F6。",
+      "signature": "const KeyF6 AppKey = \"f6\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 197,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF7",
+      "name": "KeyF7",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF7",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F7。",
+      "signature": "const KeyF7 AppKey = \"f7\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 199,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF8",
+      "name": "KeyF8",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF8",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F8。",
+      "signature": "const KeyF8 AppKey = \"f8\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 201,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyF9",
+      "name": "KeyF9",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyF9",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "功能键 F9。",
+      "signature": "const KeyF9 AppKey = \"f9\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 203,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyFocus",
+      "name": "KeyFocus",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyFocus",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "相机对焦键。",
+      "signature": "const KeyFocus AppKey = \"focus\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 107,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyG",
+      "name": "KeyG",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyG",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 G 键。",
+      "signature": "const KeyG AppKey = \"g\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 145,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyH",
+      "name": "KeyH",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyH",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 H 键。",
+      "signature": "const KeyH AppKey = \"h\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 147,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyHeadsetHook",
+      "name": "KeyHeadsetHook",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyHeadsetHook",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "耳机接听键。",
+      "signature": "const KeyHeadsetHook AppKey = \"headset_hook\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 99,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -282,10 +1442,347 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "主页键。",
       "signature": "const KeyHome AppKey = \"home\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 11,
+        "line": 13,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyI",
+      "name": "KeyI",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyI",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 I 键。",
+      "signature": "const KeyI AppKey = \"i\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 149,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyInsert",
+      "name": "KeyInsert",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyInsert",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "插入键。",
+      "signature": "const KeyInsert AppKey = \"insert\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 49,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyJ",
+      "name": "KeyJ",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyJ",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 J 键。",
+      "signature": "const KeyJ AppKey = \"j\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 151,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyK",
+      "name": "KeyK",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyK",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 K 键。",
+      "signature": "const KeyK AppKey = \"k\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 153,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyL",
+      "name": "KeyL",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyL",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 L 键。",
+      "signature": "const KeyL AppKey = \"l\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 155,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyM",
+      "name": "KeyM",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyM",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 M 键。",
+      "signature": "const KeyM AppKey = \"m\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 157,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaFastForward",
+      "name": "KeyMediaFastForward",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaFastForward",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "媒体快进键。",
+      "signature": "const KeyMediaFastForward AppKey = \"media_fast_forward\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 223,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaMute",
+      "name": "KeyMediaMute",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaMute",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "媒体静音键。",
+      "signature": "const KeyMediaMute AppKey = \"media_mute\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 225,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaNext",
+      "name": "KeyMediaNext",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaNext",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "媒体下一曲键。",
+      "signature": "const KeyMediaNext AppKey = \"media_next\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 217,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaPlayPause",
+      "name": "KeyMediaPlayPause",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaPlayPause",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Media keys",
+      "signature": "const KeyMediaPlayPause AppKey = \"media_play_pause\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 213,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaPrevious",
+      "name": "KeyMediaPrevious",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaPrevious",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "媒体上一曲键。",
+      "signature": "const KeyMediaPrevious AppKey = \"media_previous\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 219,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaRecord",
+      "name": "KeyMediaRecord",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaRecord",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "媒体录音键。",
+      "signature": "const KeyMediaRecord AppKey = \"media_record\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 227,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaRewind",
+      "name": "KeyMediaRewind",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaRewind",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "媒体快退键。",
+      "signature": "const KeyMediaRewind AppKey = \"media_rewind\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 221,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMediaStop",
+      "name": "KeyMediaStop",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMediaStop",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "媒体停止键。",
+      "signature": "const KeyMediaStop AppKey = \"media_stop\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 215,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -305,10 +1802,107 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "菜单键。",
       "signature": "const KeyMenu AppKey = \"menu\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 12,
+        "line": 15,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMeta",
+      "name": "KeyMeta",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMeta",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Meta 修饰键。",
+      "signature": "const KeyMeta AppKey = \"meta\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 91,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMoveEnd",
+      "name": "KeyMoveEnd",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMoveEnd",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "文本移动到结尾键。",
+      "signature": "const KeyMoveEnd AppKey = \"move_end\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 47,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyMoveHome",
+      "name": "KeyMoveHome",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyMoveHome",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "文本移动到开头键。",
+      "signature": "const KeyMoveHome AppKey = \"move_home\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 45,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyN",
+      "name": "KeyN",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyN",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 N 键。",
+      "signature": "const KeyN AppKey = \"n\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 159,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -328,10 +1922,155 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "输入法下一项键，映射为制表键。",
       "signature": "const KeyNext AppKey = \"next\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 29,
+        "line": 75,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyNotification",
+      "name": "KeyNotification",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyNotification",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "通知键。",
+      "signature": "const KeyNotification AppKey = \"notification\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 101,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyO",
+      "name": "KeyO",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyO",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 O 键。",
+      "signature": "const KeyO AppKey = \"o\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 161,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyP",
+      "name": "KeyP",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyP",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 P 键。",
+      "signature": "const KeyP AppKey = \"p\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 163,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPageDown",
+      "name": "KeyPageDown",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPageDown",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "向下翻页键。",
+      "signature": "const KeyPageDown AppKey = \"page_down\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 43,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPageUp",
+      "name": "KeyPageUp",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPageUp",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "向上翻页键。",
+      "signature": "const KeyPageUp AppKey = \"page_up\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 41,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyPeriod",
+      "name": "KeyPeriod",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyPeriod",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "句号键。",
+      "signature": "const KeyPeriod AppKey = \"period\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 97,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -355,7 +2094,7 @@
       "signature": "const KeyPower AppKey = \"power\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 21,
+        "line": 61,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -375,10 +2114,59 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "输入法上一项键，没有对应的单一 Android keycode。",
       "signature": "const KeyPrevious AppKey = \"previous\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 30,
+        "line": 77,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyQ",
+      "name": "KeyQ",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyQ",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 Q 键。",
+      "signature": "const KeyQ AppKey = \"q\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 165,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyR",
+      "name": "KeyR",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyR",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 R 键。",
+      "signature": "const KeyR AppKey = \"r\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 167,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -398,10 +2186,35 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "最近任务键。",
       "signature": "const KeyRecent AppKey = \"recent\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 13,
+        "line": 17,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyS",
+      "name": "KeyS",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyS",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 S 键。",
+      "signature": "const KeyS AppKey = \"s\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 169,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -421,10 +2234,35 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "搜索键。",
       "signature": "const KeySearch AppKey = \"search\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 27,
+        "line": 71,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyShift",
+      "name": "KeyShift",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyShift",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "Modifier keys",
+      "signature": "const KeyShift AppKey = \"shift\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 85,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -444,10 +2282,35 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "空格键。",
       "signature": "const KeySpace AppKey = \"space\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 31,
+        "line": 79,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyT",
+      "name": "KeyT",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyT",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 T 键。",
+      "signature": "const KeyT AppKey = \"t\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 171,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -467,10 +2330,59 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "制表键。",
       "signature": "const KeyTab AppKey = \"tab\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 26,
+        "line": 69,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyU",
+      "name": "KeyU",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyU",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 U 键。",
+      "signature": "const KeyU AppKey = \"u\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 173,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyV",
+      "name": "KeyV",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyV",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 V 键。",
+      "signature": "const KeyV AppKey = \"v\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 175,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -490,10 +2402,11 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "音量降低键。",
       "signature": "const KeyVolumeDown AppKey = \"volume_down\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 17,
+        "line": 55,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -513,10 +2426,11 @@
       "kind": "const",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "静音键。",
       "signature": "const KeyVolumeMute AppKey = \"volume_mute\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 18,
+        "line": 57,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -540,7 +2454,103 @@
       "signature": "const KeyVolumeUp AppKey = \"volume_up\"",
       "source": {
         "file": "appgui/appgui_const_enum.go",
-        "line": 16,
+        "line": 53,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyW",
+      "name": "KeyW",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyW",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 W 键。",
+      "signature": "const KeyW AppKey = \"w\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 177,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyX",
+      "name": "KeyX",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyX",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 X 键。",
+      "signature": "const KeyX AppKey = \"x\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 179,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyY",
+      "name": "KeyY",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyY",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 Y 键。",
+      "signature": "const KeyY AppKey = \"y\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 181,
+        "column": 2
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
+      "type_refs": [
+        {
+          "expr": "AppKey",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppKey",
+          "local": true
+        }
+      ]
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/appgui#KeyZ",
+      "name": "KeyZ",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.KeyZ",
+      "kind": "const",
+      "package": "appgui",
+      "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+      "doc": "字母 Z 键。",
+      "signature": "const KeyZ AppKey = \"z\"",
+      "source": {
+        "file": "appgui/appgui_const_enum.go",
+        "line": 183,
         "column": 2
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
