@@ -14,6 +14,11 @@ type OSGuiLocator interface {
 	gui.GuiLocator
 
 	/*
+	* 获取当前定位器所属的窗口。
+	 */
+	GuiWindow() OSGuiWindow
+
+	/*
 	* 获取当前定位器的子定位器，并裁剪到与当前边界的交集范围内。
 	* locator_point: 子定位器在当前定位器中的相对位置。
 	* size: 子定位器的大小。

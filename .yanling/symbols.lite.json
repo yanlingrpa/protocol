@@ -1,6 +1,6 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:02:07Z",
+  "generated_at": "2026-09-21T07:09:26Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -8,7 +8,7 @@
     "interfaces": 18,
     "structs": 19,
     "functions": 7,
-    "methods": 263,
+    "methods": 265,
     "named_types": 3,
     "func_types": 1,
     "consts": 262

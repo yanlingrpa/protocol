@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:02:07Z",
+  "generated_at": "2026-09-21T07:09:26Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "osgui",
@@ -47,7 +47,7 @@
     "counts": {
       "symbols": 157,
       "interfaces": 2,
-      "methods": 33,
+      "methods": 34,
       "named_types": 1,
       "consts": 154
     },
@@ -3657,6 +3657,25 @@
             ]
           },
           {
+            "name": "GuiWindow",
+            "doc": "获取当前定位器所属的窗口。",
+            "params": [],
+            "results": [
+              {
+                "type": "OSGuiWindow"
+              }
+            ],
+            "signature": "GuiWindow() OSGuiWindow",
+            "type_refs": [
+              {
+                "expr": "OSGuiWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow",
+                "local": true
+              }
+            ]
+          },
+          {
             "name": "ImageLocator",
             "doc": "在当前定位器区域中查找与视觉相似的图片对应的子定位器。\nimage: 当前项目相对路径/URL/Base64 图片字符串。\nsim: 相似度阈值，范围 0.1~1.0；值越高表示越相似。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按相似度从高到低排序，低于阈值的项会被过滤掉。",
             "params": [
@@ -4211,6 +4230,12 @@
             "expr": "OSGuiLocator",
             "import_path": "yanlingrpa.com/yanling/protocol/osgui",
             "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiLocator",
+            "local": true
+          },
+          {
+            "expr": "OSGuiWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow",
             "local": true
           },
           {

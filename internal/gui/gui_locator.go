@@ -7,10 +7,6 @@ import "yanlingrpa.com/yanling/protocol/basic"
  */
 type GuiLocator interface {
 	/*
-	* 获取当前定位器所属的窗口。
-	 */
-	GuiWindow() GuiWindow
-	/*
 	* 转换为 map 对象。
 	 */
 	ToMap() map[string]any

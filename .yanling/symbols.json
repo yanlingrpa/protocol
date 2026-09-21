@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:02:07Z",
+  "generated_at": "2026-09-21T07:09:26Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -9,7 +9,7 @@
     "interfaces": 18,
     "structs": 19,
     "functions": 7,
-    "methods": 263,
+    "methods": 265,
     "named_types": 3,
     "func_types": 1,
     "consts": 262
@@ -35,6 +35,12 @@
           "expr": "AppGuiLocator",
           "import_path": "yanlingrpa.com/yanling/protocol/appgui",
           "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiLocator",
+          "local": true
+        },
+        {
+          "expr": "AppGuiWindow",
+          "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiWindow",
           "local": true
         },
         {
@@ -80,7 +86,7 @@
           "qualified_name": "time.Duration"
         }
       ],
-      "method_count": 20
+      "method_count": 21
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/appgui#AppGuiWindow",
@@ -6459,6 +6465,12 @@
           "local": true
         },
         {
+          "expr": "OSGuiWindow",
+          "import_path": "yanlingrpa.com/yanling/protocol/osgui",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/osgui.OSGuiWindow",
+          "local": true
+        },
+        {
           "expr": "basic.Point",
           "import_path": "yanlingrpa.com/yanling/protocol/basic",
           "qualified_name": "yanlingrpa.com/yanling/protocol/basic.Point"
@@ -6495,7 +6507,7 @@
           "qualified_name": "time.Duration"
         }
       ],
-      "method_count": 20
+      "method_count": 21
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/osgui#OSGuiWindow",

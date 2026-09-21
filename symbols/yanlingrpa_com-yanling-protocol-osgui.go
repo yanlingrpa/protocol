@@ -6,7 +6,6 @@ import (
 	"reflect"
 	"time"
 	"yanlingrpa.com/yanling/protocol/basic"
-	"yanlingrpa.com/yanling/protocol/internal/gui"
 	"yanlingrpa.com/yanling/protocol/osgui"
 	"yanlingrpa.com/yanling/protocol/ossys"
 )
@@ -197,7 +196,7 @@ type _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator struct {
 	WGetScreenRect       func() basic.Rect
 	WGetSize             func() basic.Size
 	WGetWindowRect       func() basic.Rect
-	WGuiWindow           func() gui.GuiWindow
+	WGuiWindow           func() osgui.OSGuiWindow
 	WImageLocator        func(image string, sim float32) ([]osgui.OSGuiLocator, error)
 	WIsEditing           func() bool
 	WMouseDown           func(right bool) error
@@ -270,7 +269,7 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetSize() basic.Siz
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetWindowRect() basic.Rect {
 	return W.WGetWindowRect()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GuiWindow() gui.GuiWindow {
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GuiWindow() osgui.OSGuiWindow {
 	return W.WGuiWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ImageLocator(image string, sim float32) ([]osgui.OSGuiLocator, error) {

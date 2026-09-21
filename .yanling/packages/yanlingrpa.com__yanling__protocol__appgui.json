@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:02:07Z",
+  "generated_at": "2026-09-21T07:09:26Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "appgui",
@@ -40,7 +40,7 @@
     "counts": {
       "symbols": 103,
       "interfaces": 2,
-      "methods": 28,
+      "methods": 29,
       "named_types": 1,
       "consts": 100
     },
@@ -60,6 +60,25 @@
           "column": 6
         },
         "methods": [
+          {
+            "name": "AppWindow",
+            "doc": "获取当前定位器所属的App映射窗口。",
+            "params": [],
+            "results": [
+              {
+                "type": "AppGuiWindow"
+              }
+            ],
+            "signature": "AppWindow() AppGuiWindow",
+            "type_refs": [
+              {
+                "expr": "AppGuiWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiWindow",
+                "local": true
+              }
+            ]
+          },
           {
             "name": "CardLocator",
             "doc": "在当前定位器区域中查找卡片式子定位器。\n卡片式子定位器是一个独立的卡片形状区域，通常包含图形和文本，常见于列表项和按钮。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按坐标从左到右、从上到下排序。",
@@ -768,6 +787,12 @@
             "expr": "AppGuiLocator",
             "import_path": "yanlingrpa.com/yanling/protocol/appgui",
             "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiLocator",
+            "local": true
+          },
+          {
+            "expr": "AppGuiWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/appgui",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/appgui.AppGuiWindow",
             "local": true
           },
           {
