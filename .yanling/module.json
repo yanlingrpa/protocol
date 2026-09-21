@@ -1,15 +1,15 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T02:59:13Z",
+  "generated_at": "2026-09-21T07:02:07Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 309,
-    "interfaces": 17,
+    "symbols": 310,
+    "interfaces": 18,
     "structs": 19,
     "functions": 7,
-    "methods": 257,
+    "methods": 263,
     "named_types": 3,
     "func_types": 1,
     "consts": 262
@@ -55,9 +55,9 @@
       "import_path": "yanlingrpa.com/yanling/protocol/browser",
       "directory": "/browser",
       "counts": {
-        "symbols": 4,
-        "interfaces": 4,
-        "methods": 63
+        "symbols": 5,
+        "interfaces": 5,
+        "methods": 69
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json",
       "dependencies": [

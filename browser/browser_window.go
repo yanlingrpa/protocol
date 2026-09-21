@@ -20,7 +20,11 @@ type BrowserWindow interface {
 	/*
 	* 根据标识符获取标签页。
 	 */
-	IDTabPage(id string) BrowserTabPage
+	GetTabPage(id string) BrowserTabPage
+	/*
+	* 获取所有标签页。
+	 */
+	ListTabPages() []BrowserTabPage
 	/*
 	* 创建一个新标签页，并打开指定 URL。
 	 */

@@ -1,6 +1,9 @@
 package gui
 
-import "yanlingrpa.com/yanling/protocol/basic"
+import (
+	"yanlingrpa.com/yanling/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/ossys"
+)
 
 /*
 * GuiWindow 定义跨平台通用 GUI 窗口的抽象接口。
@@ -18,6 +21,14 @@ type GuiWindow interface {
 	* 将当前窗口信息导出为键值对。
 	 */
 	ToMap() map[string]any
+	/*
+	* 获取窗口的日志记录器。
+	 */
+	Logger() ossys.ScriptLogger
+	/*
+	* 获取窗口的存储对象。
+	 */
+	Storage() ossys.LocalStorage
 	/*
 	* 获取屏幕坐标系中的客户端区域矩形。
 	 */

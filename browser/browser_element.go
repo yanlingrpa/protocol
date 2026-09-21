@@ -7,13 +7,58 @@ import (
 )
 
 /*
+* DomQuery 定义了对 DOM 节点进行查询的接口。
+ */
+type DomQuery interface {
+
+	/*
+	* 根据 CSS 选择器查找元素。
+	 */
+	QuerySelector(selector string) (BrowserElement, error)
+	/*
+	* 根据 CSS 选择器查找所有匹配的元素。
+	 */
+	QuerySelectorAll(selector string) ([]BrowserElement, error)
+	/*
+	* 根据 XPath 表达式查找元素。
+	 */
+	QueryXPath(xpath string) (BrowserElement, error)
+	/*
+	* 根据 XPath 表达式查找所有匹配的元素。
+	 */
+	QueryXPathAll(xpath string) ([]BrowserElement, error)
+
+	/*
+	* 等待根据 CSS 选择器查找的元素出现，直到超时。
+	 */
+	WaitSelector(selector string, timeout time.Duration) (BrowserElement, error)
+	/*
+	* 等待根据 CSS 选择器查找的所有元素出现，直到超时。
+	 */
+	WaitSelectorAll(selector string, timeout time.Duration) ([]BrowserElement, error)
+	/*
+	* 等待根据 XPath 表达式查找的元素出现，直到超时。
+	 */
+	WaitXPath(xpath string, timeout time.Duration) (BrowserElement, error)
+	/*
+	* 等待根据 XPath 表达式查找的所有元素出现，直到超时。
+	 */
+	WaitXPathAll(xpath string, timeout time.Duration) ([]BrowserElement, error)
+}
+
+/*
 * BrowserElement 定义浏览器元素的通用操作接口。
  */
 type BrowserElement interface {
+	DomQuery
+	/*
+	* 获取当前元素所属的浏览器窗口。
+	 */
+	BrowserWindow() BrowserWindow
 	/*
 	* 让当前元素获取输入焦点，通常用于输入框和按钮等可交互元素。
 	 */
-	Focus()
+	Focus() error
 	/*
 	* 将当前元素滚动到浏览器窗口可见区域内。
 	 */

@@ -1,14 +1,14 @@
 {
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T02:59:13Z",
+  "generated_at": "2026-09-21T07:02:07Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 309,
-    "interfaces": 17,
+    "symbols": 310,
+    "interfaces": 18,
     "structs": 19,
     "functions": 7,
-    "methods": 257,
+    "methods": 263,
     "named_types": 3,
     "func_types": 1,
     "consts": 262
@@ -1619,7 +1619,7 @@
       "import_path": "yanlingrpa.com/yanling/protocol/browser",
       "source": {
         "file": "browser/browser_element.go",
-        "line": 12,
+        "line": 52,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json"
@@ -1662,6 +1662,20 @@
       "source": {
         "file": "browser/browser_window.go",
         "line": 10,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json"
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/browser#DomQuery",
+      "name": "DomQuery",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery",
+      "kind": "interface",
+      "package": "browser",
+      "import_path": "yanlingrpa.com/yanling/protocol/browser",
+      "source": {
+        "file": "browser/browser_element.go",
+        "line": 12,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json"

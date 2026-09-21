@@ -19,12 +19,14 @@ func init() {
 		"BrowserFramePage": reflect.ValueOf((*browser.BrowserFramePage)(nil)),
 		"BrowserTabPage":   reflect.ValueOf((*browser.BrowserTabPage)(nil)),
 		"BrowserWindow":    reflect.ValueOf((*browser.BrowserWindow)(nil)),
+		"DomQuery":         reflect.ValueOf((*browser.DomQuery)(nil)),
 
 		// interface wrapper definitions
 		"_BrowserElement":   reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_browser_BrowserElement)(nil)),
 		"_BrowserFramePage": reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_browser_BrowserFramePage)(nil)),
 		"_BrowserTabPage":   reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_browser_BrowserTabPage)(nil)),
 		"_BrowserWindow":    reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_browser_BrowserWindow)(nil)),
+		"_DomQuery":         reflect.ValueOf((*_yanlingrpa_com_yanling_protocol_browser_DomQuery)(nil)),
 	}
 }
 
@@ -32,12 +34,13 @@ func init() {
 type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 	IValue            interface{}
 	WBlur             func() error
+	WBrowserWindow    func() browser.BrowserWindow
 	WClick            func() error
 	WContainsElement  func(target browser.BrowserElement) (bool, error)
 	WDisabled         func() (bool, error)
 	WDoubleClick      func() error
 	WEvaluate         func(jsCode string, arg ...any) (any, error)
-	WFocus            func()
+	WFocus            func() error
 	WFramePage        func() (browser.BrowserFramePage, error)
 	WGetAttribute     func(name string) (string, error)
 	WGetProperty      func(name string) (any, error)
@@ -48,6 +51,10 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 	WInteractable     func() (basic.FPoint, error)
 	WMatchByCss       func(selector string) (bool, error)
 	WMoveMouseOut     func() error
+	WQuerySelector    func(selector string) (browser.BrowserElement, error)
+	WQuerySelectorAll func(selector string) ([]browser.BrowserElement, error)
+	WQueryXPath       func(xpath string) (browser.BrowserElement, error)
+	WQueryXPathAll    func(xpath string) ([]browser.BrowserElement, error)
 	WRightClick       func() error
 	WScrollIntoView   func() error
 	WSelectAllText    func() error
@@ -64,14 +71,21 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 	WWaitEnabled      func() error
 	WWaitInteractable func() (basic.FPoint, error)
 	WWaitInvisible    func() error
+	WWaitSelector     func(selector string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitSelectorAll  func(selector string, timeout time.Duration) ([]browser.BrowserElement, error)
 	WWaitStable       func(stableTime time.Duration) error
 	WWaitStableRAF    func() error
 	WWaitVisible      func() error
 	WWaitWritable     func() error
+	WWaitXPath        func(xpath string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitXPathAll     func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
 }
 
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Blur() error {
 	return W.WBlur()
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) BrowserWindow() browser.BrowserWindow {
+	return W.WBrowserWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Click() error {
 	return W.WClick()
@@ -88,8 +102,8 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) DoubleClick() e
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Evaluate(jsCode string, arg ...any) (any, error) {
 	return W.WEvaluate(jsCode, arg...)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Focus() {
-	W.WFocus()
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Focus() error {
+	return W.WFocus()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) FramePage() (browser.BrowserFramePage, error) {
 	return W.WFramePage()
@@ -120,6 +134,18 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) MatchByCss(sele
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) MoveMouseOut() error {
 	return W.WMoveMouseOut()
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) QuerySelector(selector string) (browser.BrowserElement, error) {
+	return W.WQuerySelector(selector)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) QuerySelectorAll(selector string) ([]browser.BrowserElement, error) {
+	return W.WQuerySelectorAll(selector)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) QueryXPath(xpath string) (browser.BrowserElement, error) {
+	return W.WQueryXPath(xpath)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) QueryXPathAll(xpath string) ([]browser.BrowserElement, error) {
+	return W.WQueryXPathAll(xpath)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) RightClick() error {
 	return W.WRightClick()
@@ -169,6 +195,12 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitInteractabl
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitInvisible() error {
 	return W.WWaitInvisible()
 }
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitSelector(selector string, timeout time.Duration) (browser.BrowserElement, error) {
+	return W.WWaitSelector(selector, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitSelectorAll(selector string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitSelectorAll(selector, timeout)
+}
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitStable(stableTime time.Duration) error {
 	return W.WWaitStable(stableTime)
 }
@@ -181,24 +213,37 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitVisible() e
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitWritable() error {
 	return W.WWaitWritable()
 }
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitXPath(xpath string, timeout time.Duration) (browser.BrowserElement, error) {
+	return W.WWaitXPath(xpath, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitXPathAll(xpath string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitXPathAll(xpath, timeout)
+}
 
 // _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage is an interface wrapper for BrowserFramePage type
 type _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage struct {
 	IValue            interface{}
+	WBrowserWindow    func() browser.BrowserWindow
 	WEvaluate         func(jsCode string, arg ...any) (any, error)
 	WGetDomain        func() string
 	WGetID            func() string
 	WGetTitle         func() string
 	WGetURL           func() *url.URL
 	WIsFrame          func() bool
-	WQuerySelector    func(selector string, timeout time.Duration) (browser.BrowserElement, error)
-	WQuerySelectorAll func(selector string, timeout time.Duration) ([]browser.BrowserElement, error)
-	WQueryXPath       func(xpath string, timeout time.Duration) (browser.BrowserElement, error)
-	WQueryXPathAll    func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
+	WQuerySelector    func(selector string) (browser.BrowserElement, error)
+	WQuerySelectorAll func(selector string) ([]browser.BrowserElement, error)
+	WQueryXPath       func(xpath string) (browser.BrowserElement, error)
+	WQueryXPathAll    func(xpath string) ([]browser.BrowserElement, error)
 	WReload           func(timeout time.Duration) error
 	WWaitSelector     func(selector string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitSelectorAll  func(selector string, timeout time.Duration) ([]browser.BrowserElement, error)
+	WWaitXPath        func(xpath string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitXPathAll     func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
 }
 
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) BrowserWindow() browser.BrowserWindow {
+	return W.WBrowserWindow()
+}
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) Evaluate(jsCode string, arg ...any) (any, error) {
 	return W.WEvaluate(jsCode, arg...)
 }
@@ -217,17 +262,17 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetURL() *url
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) IsFrame() bool {
 	return W.WIsFrame()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QuerySelector(selector string, timeout time.Duration) (browser.BrowserElement, error) {
-	return W.WQuerySelector(selector, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QuerySelector(selector string) (browser.BrowserElement, error) {
+	return W.WQuerySelector(selector)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QuerySelectorAll(selector string, timeout time.Duration) ([]browser.BrowserElement, error) {
-	return W.WQuerySelectorAll(selector, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QuerySelectorAll(selector string) ([]browser.BrowserElement, error) {
+	return W.WQuerySelectorAll(selector)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QueryXPath(xpath string, timeout time.Duration) (browser.BrowserElement, error) {
-	return W.WQueryXPath(xpath, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QueryXPath(xpath string) (browser.BrowserElement, error) {
+	return W.WQueryXPath(xpath)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QueryXPathAll(xpath string, timeout time.Duration) ([]browser.BrowserElement, error) {
-	return W.WQueryXPathAll(xpath, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) QueryXPathAll(xpath string) ([]browser.BrowserElement, error) {
+	return W.WQueryXPathAll(xpath)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) Reload(timeout time.Duration) error {
 	return W.WReload(timeout)
@@ -235,11 +280,21 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) Reload(timeou
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) WaitSelector(selector string, timeout time.Duration) (browser.BrowserElement, error) {
 	return W.WWaitSelector(selector, timeout)
 }
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) WaitSelectorAll(selector string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitSelectorAll(selector, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) WaitXPath(xpath string, timeout time.Duration) (browser.BrowserElement, error) {
+	return W.WWaitXPath(xpath, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) WaitXPathAll(xpath string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitXPathAll(xpath, timeout)
+}
 
 // _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage is an interface wrapper for BrowserTabPage type
 type _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage struct {
 	IValue                interface{}
 	WActivate             func() error
+	WBrowserWindow        func() browser.BrowserWindow
 	WClearAllIndexDBFiles func() error
 	WClearCookies         func() error
 	WClearLocalStorage    func() error
@@ -252,19 +307,25 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage struct {
 	WIsFrame              func() bool
 	WLoadCookies          func() error
 	WLoadLocalStorage     func() error
-	WQuerySelector        func(selector string, timeout time.Duration) (browser.BrowserElement, error)
-	WQuerySelectorAll     func(selector string, timeout time.Duration) ([]browser.BrowserElement, error)
-	WQueryXPath           func(xpath string, timeout time.Duration) (browser.BrowserElement, error)
-	WQueryXPathAll        func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
+	WOpenNewTab           func(action func(), tabId string, timeout time.Duration) (browser.BrowserTabPage, error)
+	WQuerySelector        func(selector string) (browser.BrowserElement, error)
+	WQuerySelectorAll     func(selector string) ([]browser.BrowserElement, error)
+	WQueryXPath           func(xpath string) (browser.BrowserElement, error)
+	WQueryXPathAll        func(xpath string) ([]browser.BrowserElement, error)
 	WReload               func(timeout time.Duration) error
 	WSaveCookies          func() error
 	WSaveLocalStorage     func() error
-	WWaitForNewTab        func(id string, timeout time.Duration) (browser.BrowserTabPage, error)
 	WWaitSelector         func(selector string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitSelectorAll      func(selector string, timeout time.Duration) ([]browser.BrowserElement, error)
+	WWaitXPath            func(xpath string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitXPathAll         func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
 }
 
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) Activate() error {
 	return W.WActivate()
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) BrowserWindow() browser.BrowserWindow {
+	return W.WBrowserWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) ClearAllIndexDBFiles() error {
 	return W.WClearAllIndexDBFiles()
@@ -302,17 +363,20 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) LoadCookies() e
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) LoadLocalStorage() error {
 	return W.WLoadLocalStorage()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QuerySelector(selector string, timeout time.Duration) (browser.BrowserElement, error) {
-	return W.WQuerySelector(selector, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) OpenNewTab(action func(), tabId string, timeout time.Duration) (browser.BrowserTabPage, error) {
+	return W.WOpenNewTab(action, tabId, timeout)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QuerySelectorAll(selector string, timeout time.Duration) ([]browser.BrowserElement, error) {
-	return W.WQuerySelectorAll(selector, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QuerySelector(selector string) (browser.BrowserElement, error) {
+	return W.WQuerySelector(selector)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QueryXPath(xpath string, timeout time.Duration) (browser.BrowserElement, error) {
-	return W.WQueryXPath(xpath, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QuerySelectorAll(selector string) ([]browser.BrowserElement, error) {
+	return W.WQuerySelectorAll(selector)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QueryXPathAll(xpath string, timeout time.Duration) ([]browser.BrowserElement, error) {
-	return W.WQueryXPathAll(xpath, timeout)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QueryXPath(xpath string) (browser.BrowserElement, error) {
+	return W.WQueryXPath(xpath)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) QueryXPathAll(xpath string) ([]browser.BrowserElement, error) {
+	return W.WQueryXPathAll(xpath)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) Reload(timeout time.Duration) error {
 	return W.WReload(timeout)
@@ -323,11 +387,17 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) SaveCookies() e
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) SaveLocalStorage() error {
 	return W.WSaveLocalStorage()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitForNewTab(id string, timeout time.Duration) (browser.BrowserTabPage, error) {
-	return W.WWaitForNewTab(id, timeout)
-}
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitSelector(selector string, timeout time.Duration) (browser.BrowserElement, error) {
 	return W.WWaitSelector(selector, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitSelectorAll(selector string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitSelectorAll(selector, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitXPath(xpath string, timeout time.Duration) (browser.BrowserElement, error) {
+	return W.WWaitXPath(xpath, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) WaitXPathAll(xpath string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitXPathAll(xpath, timeout)
 }
 
 // _yanlingrpa_com_yanling_protocol_browser_BrowserWindow is an interface wrapper for BrowserWindow type
@@ -344,12 +414,14 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserWindow struct {
 	WGetID              func() string
 	WGetInitiatorPath   func() string
 	WGetMonitor         func() ossys.MonitorInfo
+	WGetTabPage         func(id string) browser.BrowserTabPage
 	WGetWindowCaretPos  func() *basic.Point
 	WGetWindowCursorPos func() *basic.Point
 	WGetWindowRect      func() basic.Rect
 	WGetWindowSchema    func() string
 	WGetWindowTitle     func() string
-	WIDTabPage          func(id string) browser.BrowserTabPage
+	WListTabPages       func() []browser.BrowserTabPage
+	WLogger             func() ossys.ScriptLogger
 	WMoveTo             func(global_x int, global_y int) (bool, error)
 	WNewTabPage         func(id string, url string) (browser.BrowserTabPage, error)
 	WPressKeys          func(keys ...osgui.Keyboard) error
@@ -357,6 +429,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserWindow struct {
 	WRectLocator        func(rect basic.Rect) (osgui.OSGuiLocator, error)
 	WResizeTo           func(width int, height int) (bool, error)
 	WSnapshot           func(gray bool) ([]byte, error)
+	WStorage            func() ossys.LocalStorage
 	WToMap              func() map[string]any
 	WTransFromScreen    func(screen_pos *basic.Point) *basic.Point
 	WTransToScreen      func(window_pos *basic.Point) *basic.Point
@@ -396,6 +469,9 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetInitiatorPath
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetMonitor() ossys.MonitorInfo {
 	return W.WGetMonitor()
 }
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetTabPage(id string) browser.BrowserTabPage {
+	return W.WGetTabPage(id)
+}
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetWindowCaretPos() *basic.Point {
 	return W.WGetWindowCaretPos()
 }
@@ -411,8 +487,11 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetWindowSchema(
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetWindowTitle() string {
 	return W.WGetWindowTitle()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) IDTabPage(id string) browser.BrowserTabPage {
-	return W.WIDTabPage(id)
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) ListTabPages() []browser.BrowserTabPage {
+	return W.WListTabPages()
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Logger() ossys.ScriptLogger {
+	return W.WLogger()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) MoveTo(global_x int, global_y int) (bool, error) {
 	return W.WMoveTo(global_x, global_y)
@@ -435,6 +514,9 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) ResizeTo(width i
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Snapshot(gray bool) ([]byte, error) {
 	return W.WSnapshot(gray)
 }
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Storage() ossys.LocalStorage {
+	return W.WStorage()
+}
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) ToMap() map[string]any {
 	return W.WToMap()
 }
@@ -446,4 +528,42 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) TransToScreen(wi
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) WriteClipboard(text string) error {
 	return W.WWriteClipboard(text)
+}
+
+// _yanlingrpa_com_yanling_protocol_browser_DomQuery is an interface wrapper for DomQuery type
+type _yanlingrpa_com_yanling_protocol_browser_DomQuery struct {
+	IValue            interface{}
+	WQuerySelector    func(selector string) (browser.BrowserElement, error)
+	WQuerySelectorAll func(selector string) ([]browser.BrowserElement, error)
+	WQueryXPath       func(xpath string) (browser.BrowserElement, error)
+	WQueryXPathAll    func(xpath string) ([]browser.BrowserElement, error)
+	WWaitSelector     func(selector string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitSelectorAll  func(selector string, timeout time.Duration) ([]browser.BrowserElement, error)
+	WWaitXPath        func(xpath string, timeout time.Duration) (browser.BrowserElement, error)
+	WWaitXPathAll     func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
+}
+
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) QuerySelector(selector string) (browser.BrowserElement, error) {
+	return W.WQuerySelector(selector)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) QuerySelectorAll(selector string) ([]browser.BrowserElement, error) {
+	return W.WQuerySelectorAll(selector)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) QueryXPath(xpath string) (browser.BrowserElement, error) {
+	return W.WQueryXPath(xpath)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) QueryXPathAll(xpath string) ([]browser.BrowserElement, error) {
+	return W.WQueryXPathAll(xpath)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) WaitSelector(selector string, timeout time.Duration) (browser.BrowserElement, error) {
+	return W.WWaitSelector(selector, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) WaitSelectorAll(selector string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitSelectorAll(selector, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) WaitXPath(xpath string, timeout time.Duration) (browser.BrowserElement, error) {
+	return W.WWaitXPath(xpath, timeout)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_DomQuery) WaitXPathAll(xpath string, timeout time.Duration) ([]browser.BrowserElement, error) {
+	return W.WWaitXPathAll(xpath, timeout)
 }

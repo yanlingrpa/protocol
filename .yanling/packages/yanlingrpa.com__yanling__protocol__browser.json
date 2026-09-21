@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T02:59:13Z",
+  "generated_at": "2026-09-21T07:02:07Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "browser",
@@ -46,9 +46,9 @@
       "yanlingrpa.com/yanling/protocol/osgui"
     ],
     "counts": {
-      "symbols": 4,
-      "interfaces": 4,
-      "methods": 63
+      "symbols": 5,
+      "interfaces": 5,
+      "methods": 69
     },
     "symbols": [
       {
@@ -62,7 +62,7 @@
         "signature": "type BrowserElement interface",
         "source": {
           "file": "browser/browser_element.go",
-          "line": 12,
+          "line": 52,
           "column": 6
         },
         "methods": [
@@ -80,6 +80,25 @@
               {
                 "expr": "error",
                 "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "BrowserWindow",
+            "doc": "获取当前元素所属的浏览器窗口。",
+            "params": [],
+            "results": [
+              {
+                "type": "BrowserWindow"
+              }
+            ],
+            "signature": "BrowserWindow() BrowserWindow",
+            "type_refs": [
+              {
+                "expr": "BrowserWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+                "local": true
               }
             ]
           },
@@ -217,8 +236,18 @@
             "name": "Focus",
             "doc": "让当前元素获取输入焦点，通常用于输入框和按钮等可交互元素。",
             "params": [],
-            "results": [],
-            "signature": "Focus()"
+            "results": [
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "Focus() error",
+            "type_refs": [
+              {
+                "expr": "error",
+                "builtin": true
+              }
+            ]
           },
           {
             "name": "FramePage",
@@ -955,6 +984,13 @@
             ]
           }
         ],
+        "embeds": [
+          {
+            "type": "DomQuery",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery"
+          }
+        ],
         "type_refs": [
           {
             "expr": "BrowserElement",
@@ -966,6 +1002,18 @@
             "expr": "BrowserFramePage",
             "import_path": "yanlingrpa.com/yanling/protocol/browser",
             "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserFramePage",
+            "local": true
+          },
+          {
+            "expr": "BrowserWindow",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+            "local": true
+          },
+          {
+            "expr": "DomQuery",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery",
             "local": true
           },
           {
@@ -1011,6 +1059,25 @@
           "column": 6
         },
         "methods": [
+          {
+            "name": "BrowserWindow",
+            "doc": "获取当前页面所属的浏览器窗口。",
+            "params": [],
+            "results": [
+              {
+                "type": "BrowserWindow"
+              }
+            ],
+            "signature": "BrowserWindow() BrowserWindow",
+            "type_refs": [
+              {
+                "expr": "BrowserWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+                "local": true
+              }
+            ]
+          },
           {
             "name": "Evaluate",
             "doc": "在当前页面上下文中执行 JavaScript 代码。",
@@ -1135,182 +1202,6 @@
             ]
           },
           {
-            "name": "QuerySelector",
-            "doc": "查询单个匹配指定 CSS 选择器的元素。",
-            "params": [
-              {
-                "name": "selector",
-                "type": "string"
-              },
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              }
-            ],
-            "results": [
-              {
-                "type": "BrowserElement"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "QuerySelector(selector string, timeout time.Duration) (BrowserElement, error)",
-            "type_refs": [
-              {
-                "expr": "BrowserElement",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "QuerySelectorAll",
-            "doc": "查询所有匹配指定 CSS 选择器的元素。",
-            "params": [
-              {
-                "name": "selector",
-                "type": "string"
-              },
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]BrowserElement"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "QuerySelectorAll(selector string, timeout time.Duration) ([]BrowserElement, error)",
-            "type_refs": [
-              {
-                "expr": "BrowserElement",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "QueryXPath",
-            "doc": "查询单个匹配指定 XPath 的元素。",
-            "params": [
-              {
-                "name": "xpath",
-                "type": "string"
-              },
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              }
-            ],
-            "results": [
-              {
-                "type": "BrowserElement"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "QueryXPath(xpath string, timeout time.Duration) (BrowserElement, error)",
-            "type_refs": [
-              {
-                "expr": "BrowserElement",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
-            "name": "QueryXPathAll",
-            "doc": "查询所有匹配指定 XPath 的元素。",
-            "params": [
-              {
-                "name": "xpath",
-                "type": "string"
-              },
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              }
-            ],
-            "results": [
-              {
-                "type": "[]BrowserElement"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "QueryXPathAll(xpath string, timeout time.Duration) ([]BrowserElement, error)",
-            "type_refs": [
-              {
-                "expr": "BrowserElement",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
-          },
-          {
             "name": "Reload",
             "doc": "刷新当前页面，并等待至指定超时时间。",
             "params": [
@@ -1336,57 +1227,26 @@
                 "qualified_name": "time.Duration"
               }
             ]
-          },
+          }
+        ],
+        "embeds": [
           {
-            "name": "WaitSelector",
-            "doc": "等待匹配指定 CSS 选择器的元素出现。",
-            "params": [
-              {
-                "name": "selector",
-                "type": "string"
-              },
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              }
-            ],
-            "results": [
-              {
-                "type": "BrowserElement"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WaitSelector(selector string, timeout time.Duration) (BrowserElement, error)",
-            "type_refs": [
-              {
-                "expr": "BrowserElement",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
-              }
-            ]
+            "type": "DomQuery",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery"
           }
         ],
         "type_refs": [
           {
-            "expr": "BrowserElement",
+            "expr": "BrowserWindow",
             "import_path": "yanlingrpa.com/yanling/protocol/browser",
-            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+            "local": true
+          },
+          {
+            "expr": "DomQuery",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery",
             "local": true
           },
           {
@@ -1552,6 +1412,54 @@
             ]
           },
           {
+            "name": "OpenNewTab",
+            "doc": "执行会触发新标签页打开的操作，等待新标签页出现，并设置新标签页的 ID。",
+            "params": [
+              {
+                "name": "action",
+                "type": "func()"
+              },
+              {
+                "name": "tabId",
+                "type": "string"
+              },
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              }
+            ],
+            "results": [
+              {
+                "type": "BrowserTabPage"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "OpenNewTab(action func(), tabId string, timeout time.Duration) (BrowserTabPage, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserTabPage",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserTabPage",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
             "name": "SaveCookies",
             "doc": "保存当前标签页的 cookies。",
             "params": [],
@@ -1582,50 +1490,6 @@
               {
                 "expr": "error",
                 "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "WaitForNewTab",
-            "doc": "等待具有指定 ID 的新标签页出现。",
-            "params": [
-              {
-                "name": "id",
-                "type": "string"
-              },
-              {
-                "name": "timeout",
-                "type": "time.Duration"
-              }
-            ],
-            "results": [
-              {
-                "type": "BrowserTabPage"
-              },
-              {
-                "type": "error"
-              }
-            ],
-            "signature": "WaitForNewTab(id string, timeout time.Duration) (BrowserTabPage, error)",
-            "type_refs": [
-              {
-                "expr": "BrowserTabPage",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserTabPage",
-                "local": true
-              },
-              {
-                "expr": "error",
-                "builtin": true
-              },
-              {
-                "expr": "string",
-                "builtin": true
-              },
-              {
-                "expr": "time.Duration",
-                "import_path": "time",
-                "qualified_name": "time.Duration"
               }
             ]
           }
@@ -1719,7 +1583,7 @@
             ]
           },
           {
-            "name": "IDTabPage",
+            "name": "GetTabPage",
             "doc": "根据标识符获取标签页。",
             "params": [
               {
@@ -1732,7 +1596,7 @@
                 "type": "BrowserTabPage"
               }
             ],
-            "signature": "IDTabPage(id string) BrowserTabPage",
+            "signature": "GetTabPage(id string) BrowserTabPage",
             "type_refs": [
               {
                 "expr": "BrowserTabPage",
@@ -1743,6 +1607,25 @@
               {
                 "expr": "string",
                 "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "ListTabPages",
+            "doc": "获取所有标签页。",
+            "params": [],
+            "results": [
+              {
+                "type": "[]BrowserTabPage"
+              }
+            ],
+            "signature": "ListTabPages() []BrowserTabPage",
+            "type_refs": [
+              {
+                "expr": "BrowserTabPage",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserTabPage",
+                "local": true
               }
             ]
           },
@@ -1812,6 +1695,360 @@
           {
             "expr": "string",
             "builtin": true
+          }
+        ]
+      },
+      {
+        "id": "yanlingrpa.com/yanling/protocol/browser#DomQuery",
+        "name": "DomQuery",
+        "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery",
+        "kind": "interface",
+        "package": "browser",
+        "import_path": "yanlingrpa.com/yanling/protocol/browser",
+        "doc": "DomQuery 定义了对 DOM 节点进行查询的接口。",
+        "signature": "type DomQuery interface",
+        "source": {
+          "file": "browser/browser_element.go",
+          "line": 12,
+          "column": 6
+        },
+        "methods": [
+          {
+            "name": "QuerySelector",
+            "doc": "根据 CSS 选择器查找元素。",
+            "params": [
+              {
+                "name": "selector",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "QuerySelector(selector string) (BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "QuerySelectorAll",
+            "doc": "根据 CSS 选择器查找所有匹配的元素。",
+            "params": [
+              {
+                "name": "selector",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "QuerySelectorAll(selector string) ([]BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "QueryXPath",
+            "doc": "根据 XPath 表达式查找元素。",
+            "params": [
+              {
+                "name": "xpath",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "QueryXPath(xpath string) (BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "QueryXPathAll",
+            "doc": "根据 XPath 表达式查找所有匹配的元素。",
+            "params": [
+              {
+                "name": "xpath",
+                "type": "string"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "QueryXPathAll(xpath string) ([]BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "WaitSelector",
+            "doc": "等待根据 CSS 选择器查找的元素出现，直到超时。",
+            "params": [
+              {
+                "name": "selector",
+                "type": "string"
+              },
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              }
+            ],
+            "results": [
+              {
+                "type": "BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitSelector(selector string, timeout time.Duration) (BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "WaitSelectorAll",
+            "doc": "等待根据 CSS 选择器查找的所有元素出现，直到超时。",
+            "params": [
+              {
+                "name": "selector",
+                "type": "string"
+              },
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitSelectorAll(selector string, timeout time.Duration) ([]BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "WaitXPath",
+            "doc": "等待根据 XPath 表达式查找的元素出现，直到超时。",
+            "params": [
+              {
+                "name": "xpath",
+                "type": "string"
+              },
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              }
+            ],
+            "results": [
+              {
+                "type": "BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitXPath(xpath string, timeout time.Duration) (BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          },
+          {
+            "name": "WaitXPathAll",
+            "doc": "等待根据 XPath 表达式查找的所有元素出现，直到超时。",
+            "params": [
+              {
+                "name": "xpath",
+                "type": "string"
+              },
+              {
+                "name": "timeout",
+                "type": "time.Duration"
+              }
+            ],
+            "results": [
+              {
+                "type": "[]BrowserElement"
+              },
+              {
+                "type": "error"
+              }
+            ],
+            "signature": "WaitXPathAll(xpath string, timeout time.Duration) ([]BrowserElement, error)",
+            "type_refs": [
+              {
+                "expr": "BrowserElement",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+                "local": true
+              },
+              {
+                "expr": "error",
+                "builtin": true
+              },
+              {
+                "expr": "string",
+                "builtin": true
+              },
+              {
+                "expr": "time.Duration",
+                "import_path": "time",
+                "qualified_name": "time.Duration"
+              }
+            ]
+          }
+        ],
+        "type_refs": [
+          {
+            "expr": "BrowserElement",
+            "import_path": "yanlingrpa.com/yanling/protocol/browser",
+            "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+            "local": true
+          },
+          {
+            "expr": "error",
+            "builtin": true
+          },
+          {
+            "expr": "string",
+            "builtin": true
+          },
+          {
+            "expr": "time.Duration",
+            "import_path": "time",
+            "qualified_name": "time.Duration"
           }
         ]
       }

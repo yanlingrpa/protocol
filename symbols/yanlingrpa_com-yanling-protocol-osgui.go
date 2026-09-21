@@ -6,6 +6,7 @@ import (
 	"reflect"
 	"time"
 	"yanlingrpa.com/yanling/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/internal/gui"
 	"yanlingrpa.com/yanling/protocol/osgui"
 	"yanlingrpa.com/yanling/protocol/ossys"
 )
@@ -196,6 +197,7 @@ type _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator struct {
 	WGetScreenRect       func() basic.Rect
 	WGetSize             func() basic.Size
 	WGetWindowRect       func() basic.Rect
+	WGuiWindow           func() gui.GuiWindow
 	WImageLocator        func(image string, sim float32) ([]osgui.OSGuiLocator, error)
 	WIsEditing           func() bool
 	WMouseDown           func(right bool) error
@@ -267,6 +269,9 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetSize() basic.Siz
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetWindowRect() basic.Rect {
 	return W.WGetWindowRect()
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GuiWindow() gui.GuiWindow {
+	return W.WGuiWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ImageLocator(image string, sim float32) ([]osgui.OSGuiLocator, error) {
 	return W.WImageLocator(image, sim)
@@ -370,12 +375,14 @@ type _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow struct {
 	WGetWindowRect      func() basic.Rect
 	WGetWindowSchema    func() string
 	WGetWindowTitle     func() string
+	WLogger             func() ossys.ScriptLogger
 	WMoveTo             func(global_x int, global_y int) (bool, error)
 	WPressKeys          func(keys ...osgui.Keyboard) error
 	WReadClipboard      func() (string, error)
 	WRectLocator        func(rect basic.Rect) (osgui.OSGuiLocator, error)
 	WResizeTo           func(width int, height int) (bool, error)
 	WSnapshot           func(gray bool) ([]byte, error)
+	WStorage            func() ossys.LocalStorage
 	WToMap              func() map[string]any
 	WTransFromScreen    func(screen_pos *basic.Point) *basic.Point
 	WTransToScreen      func(window_pos *basic.Point) *basic.Point
@@ -424,6 +431,9 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetWindowSchema() st
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetWindowTitle() string {
 	return W.WGetWindowTitle()
 }
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Logger() ossys.ScriptLogger {
+	return W.WLogger()
+}
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) MoveTo(global_x int, global_y int) (bool, error) {
 	return W.WMoveTo(global_x, global_y)
 }
@@ -441,6 +451,9 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) ResizeTo(width int, 
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Snapshot(gray bool) ([]byte, error) {
 	return W.WSnapshot(gray)
+}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Storage() ossys.LocalStorage {
+	return W.WStorage()
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) ToMap() map[string]any {
 	return W.WToMap()

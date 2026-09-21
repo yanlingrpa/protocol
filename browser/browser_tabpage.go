@@ -16,9 +16,9 @@ type BrowserTabPage interface {
 	 */
 	Destroy() error
 	/*
-	* 等待具有指定 ID 的新标签页出现。
+	* 执行会触发新标签页打开的操作，等待新标签页出现，并设置新标签页的 ID。
 	 */
-	WaitForNewTab(id string, timeout time.Duration) (BrowserTabPage, error)
+	OpenNewTab(action func(), tabId string, timeout time.Duration) (BrowserTabPage, error)
 	/*
 	* 保存当前标签页的 cookies。
 	 */

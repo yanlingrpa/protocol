@@ -9,6 +9,13 @@ import (
 * BrowserFramePage 定义浏览器页面或 frame 页面通用接口。
  */
 type BrowserFramePage interface {
+	DomQuery
+
+	/*
+	* 获取当前页面所属的浏览器窗口。
+	 */
+	BrowserWindow() BrowserWindow
+
 	/*
 	* 判断当前页面是否为 iframe 或 frame。
 	 */
@@ -37,24 +44,4 @@ type BrowserFramePage interface {
 	* 刷新当前页面，并等待至指定超时时间。
 	 */
 	Reload(timeout time.Duration) error
-	/*
-	* 等待匹配指定 CSS 选择器的元素出现。
-	 */
-	WaitSelector(selector string, timeout time.Duration) (BrowserElement, error)
-	/*
-	* 查询单个匹配指定 CSS 选择器的元素。
-	 */
-	QuerySelector(selector string, timeout time.Duration) (BrowserElement, error)
-	/*
-	* 查询所有匹配指定 CSS 选择器的元素。
-	 */
-	QuerySelectorAll(selector string, timeout time.Duration) ([]BrowserElement, error)
-	/*
-	* 查询单个匹配指定 XPath 的元素。
-	 */
-	QueryXPath(xpath string, timeout time.Duration) (BrowserElement, error)
-	/*
-	* 查询所有匹配指定 XPath 的元素。
-	 */
-	QueryXPathAll(xpath string, timeout time.Duration) ([]BrowserElement, error)
 }

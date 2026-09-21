@@ -1,15 +1,15 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T02:59:13Z",
+  "generated_at": "2026-09-21T07:02:07Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
-    "symbols": 309,
-    "interfaces": 17,
+    "symbols": 310,
+    "interfaces": 18,
     "structs": 19,
     "functions": 7,
-    "methods": 257,
+    "methods": 263,
     "named_types": 3,
     "func_types": 1,
     "consts": 262
@@ -2876,7 +2876,7 @@
       "signature": "type BrowserElement interface",
       "source": {
         "file": "browser/browser_element.go",
-        "line": 12,
+        "line": 52,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json",
@@ -2891,6 +2891,18 @@
           "expr": "BrowserFramePage",
           "import_path": "yanlingrpa.com/yanling/protocol/browser",
           "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserFramePage",
+          "local": true
+        },
+        {
+          "expr": "BrowserWindow",
+          "import_path": "yanlingrpa.com/yanling/protocol/browser",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+          "local": true
+        },
+        {
+          "expr": "DomQuery",
+          "import_path": "yanlingrpa.com/yanling/protocol/browser",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery",
           "local": true
         },
         {
@@ -2920,7 +2932,7 @@
           "qualified_name": "time.Duration"
         }
       ],
-      "method_count": 37
+      "method_count": 38
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/browser#BrowserFramePage",
@@ -2939,9 +2951,15 @@
       "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json",
       "type_refs": [
         {
-          "expr": "BrowserElement",
+          "expr": "BrowserWindow",
           "import_path": "yanlingrpa.com/yanling/protocol/browser",
-          "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+          "local": true
+        },
+        {
+          "expr": "DomQuery",
+          "import_path": "yanlingrpa.com/yanling/protocol/browser",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery",
           "local": true
         },
         {
@@ -2971,7 +2989,7 @@
           "qualified_name": "net/url.URL"
         }
       ],
-      "method_count": 12
+      "method_count": 8
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/browser#BrowserTabPage",
@@ -3053,7 +3071,45 @@
           "builtin": true
         }
       ],
-      "method_count": 4
+      "method_count": 5
+    },
+    {
+      "id": "yanlingrpa.com/yanling/protocol/browser#DomQuery",
+      "name": "DomQuery",
+      "qualified_name": "yanlingrpa.com/yanling/protocol/browser.DomQuery",
+      "kind": "interface",
+      "package": "browser",
+      "import_path": "yanlingrpa.com/yanling/protocol/browser",
+      "doc": "DomQuery 定义了对 DOM 节点进行查询的接口。",
+      "signature": "type DomQuery interface",
+      "source": {
+        "file": "browser/browser_element.go",
+        "line": 12,
+        "column": 6
+      },
+      "package_file": "packages/yanlingrpa.com__yanling__protocol__browser.json",
+      "type_refs": [
+        {
+          "expr": "BrowserElement",
+          "import_path": "yanlingrpa.com/yanling/protocol/browser",
+          "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserElement",
+          "local": true
+        },
+        {
+          "expr": "error",
+          "builtin": true
+        },
+        {
+          "expr": "string",
+          "builtin": true
+        },
+        {
+          "expr": "time.Duration",
+          "import_path": "time",
+          "qualified_name": "time.Duration"
+        }
+      ],
+      "method_count": 8
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/component#VisionWorker",

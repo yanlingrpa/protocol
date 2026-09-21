@@ -7,6 +7,8 @@ import (
 	"time"
 	"yanlingrpa.com/yanling/protocol/appgui"
 	"yanlingrpa.com/yanling/protocol/basic"
+	"yanlingrpa.com/yanling/protocol/internal/gui"
+	"yanlingrpa.com/yanling/protocol/ossys"
 )
 
 func init() {
@@ -138,6 +140,7 @@ type _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator struct {
 	WGetScreenRect       func() basic.Rect
 	WGetSize             func() basic.Size
 	WGetWindowRect       func() basic.Rect
+	WGuiWindow           func() gui.GuiWindow
 	WImageLocator        func(image string, sim float32) ([]appgui.AppGuiLocator, error)
 	WIsEditing           func() bool
 	WLongPress           func(locator_point *basic.Point) error
@@ -203,6 +206,9 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GetSize() basic.S
 }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GetWindowRect() basic.Rect {
 	return W.WGetWindowRect()
+}
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GuiWindow() gui.GuiWindow {
+	return W.WGuiWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) ImageLocator(image string, sim float32) ([]appgui.AppGuiLocator, error) {
 	return W.WImageLocator(image, sim)
@@ -312,10 +318,12 @@ type _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow struct {
 	WGetScreenRect     func() basic.Rect
 	WGetWindowTitle    func() string
 	WGetWindowTouchPos func() *basic.Point
+	WLogger            func() ossys.ScriptLogger
 	WPressKeys         func(keys ...appgui.AppKey) error
 	WReadClipboard     func() (string, error)
 	WRectLocator       func(rect basic.Rect) (appgui.AppGuiLocator, error)
 	WSnapshot          func(gray bool) ([]byte, error)
+	WStorage           func() ossys.LocalStorage
 	WToMap             func() map[string]any
 	WTransFromScreen   func(screen_pos *basic.Point) *basic.Point
 	WTransToScreen     func(window_pos *basic.Point) *basic.Point
@@ -355,6 +363,9 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetWindowTitle() s
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetWindowTouchPos() *basic.Point {
 	return W.WGetWindowTouchPos()
 }
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) Logger() ossys.ScriptLogger {
+	return W.WLogger()
+}
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) PressKeys(keys ...appgui.AppKey) error {
 	return W.WPressKeys(keys...)
 }
@@ -366,6 +377,9 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) RectLocator(rect b
 }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) Snapshot(gray bool) ([]byte, error) {
 	return W.WSnapshot(gray)
+}
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) Storage() ossys.LocalStorage {
+	return W.WStorage()
 }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) ToMap() map[string]any {
 	return W.WToMap()
