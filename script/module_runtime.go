@@ -9,178 +9,177 @@ import (
 )
 
 /*
-* Subscriber defines event subscriber information.
-* It is used to identify subscription source, topic, and status.
+* Subscriber 定义事件订阅者信息。
+* 用于标识订阅来源、主题和状态。
  */
 type Subscriber interface {
 	/*
-	* GetModuleId gets the module id that owns the topic.
+	* GetModuleId 获取拥有该主题的模块 ID。
 	 */
 	GetModuleId() string
 	/*
-	* GetTopic gets the subscribed event topic.
+	* GetTopic 获取已订阅的事件主题。
 	 */
 	GetTopic() string
 	/*
-	* IsActive indicates whether the subscription is still active.
+	* IsActive 表示订阅是否仍然处于激活状态。
 	 */
 	IsActive() bool
 }
 
 /*
-* Event defines event data for the local event bus.
+* Event 定义本地事件总线中的事件数据。
  */
 type Event struct {
 	/*
-	* ModuleId is the topic publisher module id.
+	* ModuleId 是事件发布者模块 ID。
 	 */
 	ModuleId string
 	/*
-	* Topic is the event topic.
+	* Topic 是事件主题。
 	 */
 	Topic string
 	/*
-	* Data is the event payload after JSON deserialization.
-	* Because it is represented as `any`, consumers should perform type assertions based on JSON shapes,
-	* for example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.
-	* To map it into a typed struct, use `JsonStruct(event.Data, &YourStruct{})`.
+	* Data 是经过 JSON 反序列化后的事件载荷。
+	* 因为它表示为 `any`，调用方应根据 JSON 结构做类型断言，
+	* 例如：对象使用 `map[string]any`，数组使用 `[]any`，原生类型使用 Go 基础类型。
+	* 若要映射为强类型结构体，可使用 `JsonStruct(event.Data, &YourStruct{})`。
 	 */
 	Data any
 	/*
-	* Ts is the event occurrence time in Unix timestamp format.
+	* Ts 是事件发生时间，使用 Unix 时间戳格式。
 	 */
 	Ts int64
 }
 
 /*
-* EventHandler defines the event handler function signature.
-* The `event.Data` field is a JSON-deserialized value represented as `any`.
-* To convert `event.Data` into a typed struct, use `JsonStruct(event.Data, &YourStruct{})`.
+* EventHandler 定义事件处理函数签名。
+* `event.Data` 字段是经过 JSON 反序列化后的 `any` 值。
+* 若要将 `event.Data` 转换为强类型结构体，可使用 `JsonStruct(event.Data, &YourStruct{})`。
  */
 type EventHandler func(event Event)
 
 /*
-* ModuleRuntime defines script runtime context capabilities.
-* This interface provides access to windows, system services, cache, variables,
-* and the local event bus.
+* ModuleRuntime 定义脚本运行时上下文能力。
+* 该接口提供对窗口、系统服务、缓存、变量以及本地事件总线的访问。
  */
 type ModuleRuntime interface {
 	/*
-	* MainModuleId gets the module id of the entry point.
+	* MainModuleId 获取入口脚本的模块 ID。
 	 */
 	MainModuleId() string
 	/*
-	* CurrentModuleId gets the module id of the currently executing script.
+	* CurrentModuleId 获取当前正在执行脚本的模块 ID。
 	 */
 	CurrentModuleId() string
 	/*
-	* OsGuiWindow gets an OS GUI window by window ID.
+	* OsGuiWindow 根据窗口 ID 获取 OS GUI 窗口。
 	 */
 	OsGuiWindow(id string) (osgui.OSGuiWindow, bool)
 	/*
-	* BrowserWindow gets a browser window by window ID.
+	* BrowserWindow 根据窗口 ID 获取浏览器窗口。
 	 */
 	BrowserWindow(id string) (browser.BrowserWindow, bool)
 	/*
-	* MobileWindow gets a mobile window by window ID.
+	* MobileWindow 根据窗口 ID 获取移动端窗口。
 	 */
 	MobileWindow(id string) (appgui.AppGuiWindow, bool)
 	/*
-	* BrokerInfo gets the broker information.
+	* BrokerInfo 获取代理信息。
 	 */
 	BrokerInfo() ossys.BrokerInfo
 	/*
-	* Logger gets the script logger.
+	* Logger 获取脚本日志记录器。
 	 */
 	Logger() ossys.ScriptLogger
 	/*
-	* Storage gets the project local storage interface.
+	* Storage 获取项目本地存储接口。
 	 */
 	Storage() ossys.LocalStorage
 	/*
-	* HttpClient gets the HTTP client interface.
+	* HttpClient 获取 HTTP 客户端接口。
 	 */
 	HttpClient() ossys.HttpClient
 	/*
-	* FileSystem gets the local filesystem interface.
+	* FileSystem 获取本地文件系统接口。
 	 */
 	FileSystem() ossys.LocalFilesystem
 	/*
-	* SetCacheData temporarily stores data at runtime.
+	* SetCacheData 在运行时临时存储数据。
 	 */
 	SetCacheData(key string, value string)
 	/*
-	* GetCacheData gets data temporarily stored at runtime.
+	* GetCacheData 获取运行时临时存储的数据。
 	 */
 	GetCacheData(key string) (string, bool)
 	/*
-	* GetWriteBackCache gets the write-back cache map for the current script execution.
-	* The write-back cache is used to store data that needs to be written back to the script context after execution.
+	* GetWriteBackCache 获取当前脚本执行的回写缓存映射。
+	* 回写缓存用于保存执行结束后需要写回脚本上下文的数据。
 	 */
 	GetWriteBackCache() map[string]string
 	/*
-	* StringVariable gets a string script variable value.
+	* StringVariable 获取字符串脚本变量值。
 	 */
 	StringVariable(name string) (string, bool)
 	/*
-	* IntegerVariable gets an integer script variable value.
+	* IntegerVariable 获取整数脚本变量值。
 	 */
 	IntegerVariable(name string) (int, bool)
 	/*
-	* FloatVariable gets a float script variable value.
+	* FloatVariable 获取浮点脚本变量值。
 	 */
 	FloatVariable(name string) (float64, bool)
 	/*
-	* BooleanVariable gets a boolean script variable value.
+	* BooleanVariable 获取布尔脚本变量值。
 	 */
 	BooleanVariable(name string) (bool, bool)
 	/*
-	* JsonVariable gets a JSON script variable value.
+	* JsonVariable 获取 JSON 脚本变量值。
 	 */
 	JsonVariable(name string) (map[string]any, bool)
 	/*
-	* FilePathVariable gets a file path script variable value.
+	* FilePathVariable 获取文件路径脚本变量值。
 	 */
 	FilePathVariable(name string) (string, bool)
 
 	/*
-	* Invoke calls an exposed method from another local IPC worker.
-	* The `moduleId` identifies the target worker, which corresponds to the module name of the worker.
-	* Note: The `moduleId` does not include the version number, as the system determines the version based on the `go.mod` file.
-	* The `route` is the name of the exposed method to call.
-	* The `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.
-	* The return value is the JSON-deserialized result of the method call.
-	* Because the method signature uses `any`, callers should perform type assertions based on JSON shapes,
-	* for example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.
-	* To map the result into a typed struct, use `JsonStruct(result, &YourStruct{})`.
-	* If the invocation fails, an error is returned.
+	* Invoke 调用另一个本地 IPC worker 暴露的方法。
+	* `moduleId` 标识目标 worker，对应该 worker 的模块名。
+	* 注意：`moduleId` 不包含版本号，因为系统会根据 `go.mod` 文件确定版本。
+	* `route` 是要调用的暴露方法名。
+	* `dto`（数据传输对象）可以是原始类型，也可以是带 JSON 标签的结构体。
+	* 返回值是方法调用后的 JSON 反序列化结果。
+	* 因为方法签名使用 `any`，调用方应根据 JSON 结构做类型断言，
+	* 例如：对象使用 `map[string]any`，数组使用 `[]any`，原生类型使用 Go 基础类型。
+	* 若要将结果映射为强类型结构体，可使用 `JsonStruct(result, &YourStruct{})`。
+	* 如果调用失败，将返回错误。
 	 */
 	InvokeWorker(workerId string, route string, dto any) (any, error)
 
 	/*
-	* Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.
-	* The `moduleId` identifies the target worker/yscript to subscribe to, and the topic is the name of the event topic to subscribe to.
-	* The handler is the function that will be called when the event is published.
-	* The `event.Data` received by the `handler` is JSON-deserialized and exposed as `any`,
-	* so callers should perform type assertions based on expected payload shapes.
-	* To map `event.Data` into a typed struct, callers can use `JsonStruct(event.Data, &YourStruct{})`.
-	* It returns a Subscriber object representing the subscription or an error if the subscription fails.
+	* Subscribe 订阅来自另一个本地 IPC worker/yscript 或当前 worker/yscript 暴露的事件。
+	* `moduleId` 标识目标 worker/yscript，`topic` 是要订阅的事件主题名。
+	* `handler` 是事件发布时调用的函数。
+	* `handler` 接收到的 `event.Data` 是 JSON 反序列化后的 `any`，
+	* 因此调用方应根据预期载荷结构进行类型断言。
+	* 若要将 `event.Data` 映射为强类型结构体，可使用 `JsonStruct(event.Data, &YourStruct{})`。
+	* 它返回一个表示订阅的 Subscriber 对象，若订阅失败则返回错误。
 	 */
 	Subscribe(moduleId string, topic string, handler EventHandler) (Subscriber, error)
 	/*
-	* Unsubscribe cancels a subscription to an exposed event from another local IPC worker/yscript or the current worker/yscript.
-	* The `subscriber` is the Subscriber object representing the subscription to cancel.
+	* Unsubscribe 取消对另一个本地 IPC worker/yscript 或当前 worker/yscript 暴露事件的订阅。
+	* `subscriber` 是要取消订阅的 Subscriber 对象。
 	 */
 	Unsubscribe(subscriber Subscriber) error
 	/*
-	* Publish publishes an event to the local event bus.
-	* The topic is the name of the event topic to publish, and the data is the event payload.
-	* The `data` must be a JSON-serializable value or object.
-	* It returns an error if the publication fails.
+	* Publish 向本地事件总线发布事件。
+	* `topic` 是要发布的事件主题名，`data` 是事件载荷。
+	* `data` 必须是可 JSON 序列化的值或对象。
+	* 如果发布失败，则返回错误。
 	 */
 	Publish(topic string, data any) error
 	/*
-	* VisionWorker gets the vision capability worker interface.
+	* VisionWorker 获取视觉能力 worker 接口。
 	 */
 	VisionWorker() component.VisionWorker
 }

@@ -312,7 +312,7 @@ type _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow struct {
 	WGetScreenRect     func() basic.Rect
 	WGetWindowTitle    func() string
 	WGetWindowTouchPos func() *basic.Point
-	WPressKey          func(key appgui.AppKey) error
+	WPressKeys         func(keys ...appgui.AppKey) error
 	WReadClipboard     func() (string, error)
 	WRectLocator       func(rect basic.Rect) (appgui.AppGuiLocator, error)
 	WSnapshot          func(gray bool) ([]byte, error)
@@ -355,8 +355,8 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetWindowTitle() s
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetWindowTouchPos() *basic.Point {
 	return W.WGetWindowTouchPos()
 }
-func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) PressKey(key appgui.AppKey) error {
-	return W.WPressKey(key)
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) PressKeys(keys ...appgui.AppKey) error {
+	return W.WPressKeys(keys...)
 }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) ReadClipboard() (string, error) {
 	return W.WReadClipboard()

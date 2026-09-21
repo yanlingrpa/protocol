@@ -3,63 +3,63 @@ package gui
 import "yanlingrpa.com/yanling/protocol/basic"
 
 /*
-* GuiWindow defines the common abstract interface for GUI windows across platforms.
+* GuiWindow 定义跨平台通用 GUI 窗口的抽象接口。
  */
 type GuiWindow interface {
 	/*
-	* Gets the unique identifier of the window.
+	* 获取窗口的唯一标识符。
 	 */
 	GetID() string
 	/*
-	* Gets the window title.
+	* 获取窗口标题。
 	 */
 	GetWindowTitle() string
 	/*
-	* Exports current window information as key-value pairs.
+	* 将当前窗口信息导出为键值对。
 	 */
 	ToMap() map[string]any
 	/*
-	* Gets the client-area rectangle in screen coordinates.
+	* 获取屏幕坐标系中的客户端区域矩形。
 	 */
 	GetClientRect() basic.Rect
 
-	/* Captures a snapshot of the current window area and returns image bytes.
-	* gray: Whether to use grayscale.
+	/* 捕获当前窗口区域的快照并返回图片字节数据。
+	* gray: 是否使用灰度模式。
 	 */
 	Snapshot(gray bool) ([]byte, error)
 
 	/*
-	* Activates the window.
+	* 激活窗口。
 	 */
 	Activate() (bool, error)
 	/*
-	* Deactivates the window.
+	* 取消激活窗口。
 	 */
 	DeActivate() (bool, error)
 
-	/* Converts a window-relative position to an absolute screen position.
-	* window_pos: Relative position inside the window.
-	* return: Absolute position on the screen.
+	/* 将窗口相对位置转换为绝对屏幕位置。
+	* window_pos: 窗口内的相对位置。
+	* return: 屏幕上的绝对位置。
 	 */
 	TransToScreen(window_pos *basic.Point) *basic.Point
 
-	/* Converts an absolute screen position to a window-relative position.
-	* screen_pos: Absolute position on the screen.
-	* return: Relative position inside the window; returns nil if the point is outside the window.
+	/* 将绝对屏幕位置转换为窗口相对位置。
+	* screen_pos: 屏幕上的绝对位置。
+	* return: 窗口内的相对位置；如果该点在窗口外，则返回 nil。
 	 */
 	TransFromScreen(screen_pos *basic.Point) *basic.Point
 
 	/*
-	* Reads clipboard text.
+	* 读取剪贴板文本。
 	 */
 	ReadClipboard() (string, error)
 	/*
-	* Writes text to the clipboard.
+	* 向剪贴板写入文本。
 	 */
 	WriteClipboard(text string) error
 
 	/*
-	* Closes the window.
+	* 关闭窗口。
 	 */
 	Close() error
 }

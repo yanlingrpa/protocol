@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-20T09:41:56Z",
+  "generated_at": "2026-09-21T02:59:13Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "appgui",
@@ -52,17 +52,17 @@
         "kind": "interface",
         "package": "appgui",
         "import_path": "yanlingrpa.com/yanling/protocol/appgui",
-        "doc": "AppGuiLocator defines a locator interface for a rectangular region on a mobile app screen,\nproviding methods for retrieving locator information, performing touch gestures,\nand simulating input.",
+        "doc": "AppGuiLocator 定义移动应用屏幕矩形区域的定位器接口，\n提供获取定位器信息、执行触摸手势以及模拟输入等方法。",
         "signature": "type AppGuiLocator interface",
         "source": {
           "file": "appgui/appgui_locator.go",
-          "line": 15,
+          "line": 14,
           "column": 6
         },
         "methods": [
           {
             "name": "CardLocator",
-            "doc": "Finds card-like sub-locators in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
+            "doc": "在当前定位器区域中查找卡片式子定位器。\n卡片式子定位器是一个独立的卡片形状区域，通常包含图形和文本，常见于列表项和按钮。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按坐标从左到右、从上到下排序。",
             "params": [
               {
                 "name": "min_size",
@@ -102,7 +102,7 @@
           },
           {
             "name": "DoubleTap",
-            "doc": "Performs a double tap at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current touch position in the locator.\nIf there is no active touch inside the locator, the locator center is used.",
+            "doc": "在定位器内指定位置执行双击操作。\nlocator_point: 定位器内的相对位置。\nnil 表示当前触摸位置。\n若定位器内没有活动触摸，则使用定位器中心。",
             "params": [
               {
                 "name": "locator_point",
@@ -129,7 +129,7 @@
           },
           {
             "name": "GetLocatorTouchPos",
-            "doc": "Gets the current touch position relative to the locator.\nreturn: Relative touch position in the locator; returns nil if no active touch inside.",
+            "doc": "获取相对于当前定位器的当前触摸位置。\nreturn: 定位器内的相对触摸位置；如果没有活动触摸则返回 nil。",
             "params": [],
             "results": [
               {
@@ -147,7 +147,7 @@
           },
           {
             "name": "ImageLocator",
-            "doc": "Finds sub-locators containing visually similar images within the current locator area.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by similarity descending, and items below the threshold are filtered out.",
+            "doc": "在当前定位器区域中查找与视觉相似的图片对应的子定位器。\nimage: 当前项目相对路径/URL/Base64 图片字符串。\nsim: 相似度阈值，范围 0.1~1.0；值越高表示越相似。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按相似度从高到低排序，低于阈值的项会被过滤掉。",
             "params": [
               {
                 "name": "image",
@@ -190,7 +190,7 @@
           },
           {
             "name": "LongPress",
-            "doc": "Performs a long press at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current touch position in the locator.\nIf there is no active touch inside the locator, the locator center is used.",
+            "doc": "在定位器内指定位置执行长按操作。\nlocator_point: 定位器内的相对位置。\nnil 表示当前触摸位置。\n若定位器内没有活动触摸，则使用定位器中心。",
             "params": [
               {
                 "name": "locator_point",
@@ -217,7 +217,7 @@
           },
           {
             "name": "Pinch",
-            "doc": "Performs a pinch gesture in the current locator area.\nspread: true to spread fingers (zoom in), false to pinch fingers (zoom out).\nscale: Scale factor for the gesture distance, range 0.1~1.0; larger means more spread/pinch.",
+            "doc": "在当前定位器区域执行捏合手势。\nspread: true 表示展开手指（放大），false 表示收拢手指（缩小）。\nscale: 手势距离的缩放因子，范围 0.1~1.0；值越大表示展开/收拢越明显。",
             "params": [
               {
                 "name": "spread",
@@ -251,7 +251,7 @@
           },
           {
             "name": "PressKeys",
-            "doc": "Simulates pressing a hardware or system key while the locator is focused.\nkeys: Key sequence to press, as defined by the AppKey type.",
+            "doc": "在定位器获得焦点时模拟按下硬件或系统按键。\nkeys: 要按下的按键序列，定义于 AppKey 类型。",
             "params": [
               {
                 "name": "keys",
@@ -279,7 +279,7 @@
           },
           {
             "name": "SubLocator",
-            "doc": "Gets a sub-locator of the current locator, clipped to the intersection with current bounds.\nlocator_point: Relative position of the sub-locator within the current locator.\nsize: Size of the sub-locator.",
+            "doc": "获取当前定位器的子定位器，并裁剪到当前边界的交集范围内。\nlocator_point: 子定位器在当前定位器中的相对位置。\nsize: 子定位器的大小。",
             "params": [
               {
                 "name": "locator_point",
@@ -317,7 +317,7 @@
           },
           {
             "name": "SwipeTo",
-            "doc": "Performs a swipe gesture from a start position to an end position within the current locator.\nBoth positions are relative coordinates within the current locator.\nfrom_locator_point: Relative start position; nil means the current touch position,\nor the locator center if no active touch.\nto_locator_point: Relative end position; nil means the current touch position,\nor the locator center if no active touch.",
+            "doc": "在当前定位器内执行从起始位置到结束位置的滑动手势。\n两个位置都使用当前定位器内的相对坐标。\nfrom_locator_point: 相对起始位置；nil 表示当前触摸位置，\n若没有活动触摸，则使用定位器中心。\nto_locator_point: 相对结束位置；nil 表示当前触摸位置，\n若没有活动触摸，则使用定位器中心。",
             "params": [
               {
                 "name": "from_locator_point",
@@ -348,7 +348,7 @@
           },
           {
             "name": "Tap",
-            "doc": "Performs a single tap at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current touch position in the locator.\nIf there is no active touch inside the locator, the locator center is used.",
+            "doc": "在定位器内指定位置执行单击操作。\nlocator_point: 定位器内的相对位置。\nnil 表示当前触摸位置。\n若定位器内没有活动触摸，则使用定位器中心。",
             "params": [
               {
                 "name": "locator_point",
@@ -375,7 +375,7 @@
           },
           {
             "name": "TextLocator",
-            "doc": "Finds sub-locators containing specified text within the current locator area.\ntexts: Text list to find. Multiple texts mean all must be present.\nreturn: List of matched sub-locators; returns nil if none are found.\nOnly locators containing all texts are returned, sorted by area from small to large.",
+            "doc": "在当前定位器区域中查找包含指定文本的子定位器。\ntexts: 要查找的文本列表。多个文本表示必须全部存在。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n仅返回包含所有文本的定位器，并按区域从小到大排序。",
             "params": [
               {
                 "name": "texts",
@@ -410,7 +410,7 @@
           },
           {
             "name": "TouchDown",
-            "doc": "Presses a finger down at the current touch position within the locator.",
+            "doc": "在定位器内当前触摸位置按下手指。",
             "params": [],
             "results": [
               {
@@ -427,7 +427,7 @@
           },
           {
             "name": "TouchMove",
-            "doc": "Moves the touch point to a specified position inside the locator without lifting.\nlocator_point: Relative position within the locator.\nnil means the center position of the current locator.",
+            "doc": "将触摸点移动到定位器内的指定位置，但不抬起手指。\nlocator_point: 定位器内的相对位置。\nnil 表示当前定位器的中心位置。",
             "params": [
               {
                 "name": "locator_point",
@@ -454,7 +454,7 @@
           },
           {
             "name": "TouchUp",
-            "doc": "Lifts the finger at the current touch position within the locator.",
+            "doc": "在定位器内当前触摸位置抬起手指。",
             "params": [],
             "results": [
               {
@@ -471,7 +471,7 @@
           },
           {
             "name": "VisionLocator",
-            "doc": "Uses the vision module to find sub-locators with specific visual shapes\nin the current locator area.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
+            "doc": "使用视觉模块在当前定位器区域中查找具有特定视觉形状的子定位器。\ndescription: 目标形状的描述，例如：红色圆形按钮，\n或蓝色矩形输入框。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按坐标从左到右、从上到下排序。",
             "params": [
               {
                 "name": "description",
@@ -519,7 +519,7 @@
           },
           {
             "name": "WaitForCard",
-            "doc": "Waits for card-like sub-locators to appear in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\ntimeout: Timeout duration.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现卡片式子定位器。\n卡片式子定位器是一个独立的卡片形状区域，通常包含图形和文本，常见于列表项和按钮。\ntimeout: 超时时间。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 成功时返回按坐标从左到右、从上到下排序的匹配子定位器。\n超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -568,7 +568,7 @@
           },
           {
             "name": "WaitForEditing",
-            "doc": "Waits until the current locator enters a text-editable state or times out.\ntimeout: Timeout duration.\nreturn: Sub-locator containing the text input caret.\nReturns error on timeout; returns nil if no caret exists in the locator.",
+            "doc": "等待当前定位器进入可文本编辑状态，或在超时后返回。\ntimeout: 超时时间。\nreturn: 包含文本输入光标的子定位器。\n超时时返回错误；若定位器中不存在光标，则返回 nil。",
             "params": [
               {
                 "name": "timeout",
@@ -604,7 +604,7 @@
           },
           {
             "name": "WaitForImage",
-            "doc": "Waits for sub-locators containing visually similar images to appear in the current locator area.\ntimeout: Timeout duration.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: On success, returns matched sub-locators sorted by similarity descending;\nresults below sim are filtered out. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现与视觉相似图片对应的子定位器。\ntimeout: 超时时间。\nimage: 当前项目相对路径/URL/Base64 图片字符串。\nsim: 相似度阈值，范围 0.1~1.0；值越高表示越相似。\nreturn: 成功时返回按相似度降序排序的匹配子定位器；\n低于 sim 的结果会被过滤掉。超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -656,7 +656,7 @@
           },
           {
             "name": "WaitForText",
-            "doc": "Waits for sub-locators containing specified text to appear in the current locator area.\ntimeout: Timeout duration.\ntexts: Text list to wait for. Multiple texts mean all must be present.\nreturn: On success, returns matched sub-locators that contain all texts,\nsorted by area from small to large. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现包含指定文本的子定位器。\ntimeout: 超时时间。\ntexts: 要等待的文本列表。多个文本表示必须全部存在。\nreturn: 成功时返回包含所有文本的匹配子定位器，\n按区域从小到大排序。超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -700,7 +700,7 @@
           },
           {
             "name": "WaitForVision",
-            "doc": "Waits for sub-locators with specific visual shapes to appear,\nusing the vision module in the current locator area.\ntimeout: Timeout duration.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现具有特定视觉形状的子定位器，\n使用视觉模块进行识别。\ntimeout: 超时时间。\ndescription: 目标形状的描述，例如：红色圆形按钮，\n或蓝色矩形输入框。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 成功时返回按坐标从左到右、从上到下排序的匹配子定位器。\n超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -821,17 +821,17 @@
         "kind": "interface",
         "package": "appgui",
         "import_path": "yanlingrpa.com/yanling/protocol/appgui",
-        "doc": "AppGuiWindow defines the interface of a mobile app window (screen), providing methods\nfor window information, app operations, and simulated touch/key input.",
+        "doc": "AppGuiWindow 定义移动应用窗口（屏幕）的接口，提供窗口信息、应用操作以及模拟触摸/按键输入相关方法。",
         "signature": "type AppGuiWindow interface",
         "source": {
           "file": "appgui/appgui_window.go",
-          "line": 12,
+          "line": 11,
           "column": 6
         },
         "methods": [
           {
             "name": "BodyLocator",
-            "doc": "Gets the locator for the window content area.",
+            "doc": "获取窗口内容区域的定位器。",
             "params": [],
             "results": [
               {
@@ -857,7 +857,7 @@
           },
           {
             "name": "GetAppActivity",
-            "doc": "Gets the current activity name (Android) or view controller name (iOS).",
+            "doc": "获取当前活动名称（Android）或视图控制器名称（iOS）。",
             "params": [],
             "results": [
               {
@@ -874,7 +874,7 @@
           },
           {
             "name": "GetAppPackage",
-            "doc": "Gets the package name (Android) or bundle ID (iOS) of the app.",
+            "doc": "获取应用的包名（Android）或绑定标识（iOS）。",
             "params": [],
             "results": [
               {
@@ -891,7 +891,7 @@
           },
           {
             "name": "GetScreenRect",
-            "doc": "Gets the screen rectangle in device coordinates.",
+            "doc": "获取设备坐标系中的屏幕矩形区域。",
             "params": [],
             "results": [
               {
@@ -909,7 +909,7 @@
           },
           {
             "name": "GetWindowTouchPos",
-            "doc": "Gets the current touch position relative to the window; returns nil if no active touch in the window.",
+            "doc": "获取相对于窗口的当前触摸位置；如果窗口内没有活动触摸，则返回 nil。",
             "params": [],
             "results": [
               {
@@ -926,12 +926,12 @@
             ]
           },
           {
-            "name": "PressKey",
-            "doc": "Simulates pressing a hardware or system key.\nkey: The key to press, as defined by the AppKey type.",
+            "name": "PressKeys",
+            "doc": "模拟按下硬件或系统按键。\nkey: 要按下的键，定义于 AppKey 类型中。",
             "params": [
               {
-                "name": "key",
-                "type": "AppKey"
+                "name": "keys",
+                "type": "...AppKey"
               }
             ],
             "results": [
@@ -939,7 +939,7 @@
                 "type": "error"
               }
             ],
-            "signature": "PressKey(key AppKey) error",
+            "signature": "PressKeys(keys ...AppKey) error",
             "type_refs": [
               {
                 "expr": "AppKey",
@@ -955,7 +955,7 @@
           },
           {
             "name": "RectLocator",
-            "doc": "Gets a locator for the specified rectangle, clipped to the window bounds.",
+            "doc": "获取指定矩形区域的定位器，并裁剪到窗口边界内。",
             "params": [
               {
                 "name": "rect",

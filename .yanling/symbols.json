@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-20T09:41:56Z",
+  "generated_at": "2026-09-21T02:59:13Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -22,11 +22,11 @@
       "kind": "interface",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
-      "doc": "AppGuiLocator defines a locator interface for a rectangular region on a mobile app screen,",
+      "doc": "AppGuiLocator 定义移动应用屏幕矩形区域的定位器接口，",
       "signature": "type AppGuiLocator interface",
       "source": {
         "file": "appgui/appgui_locator.go",
-        "line": 15,
+        "line": 14,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -89,11 +89,11 @@
       "kind": "interface",
       "package": "appgui",
       "import_path": "yanlingrpa.com/yanling/protocol/appgui",
-      "doc": "AppGuiWindow defines the interface of a mobile app window (screen), providing methods",
+      "doc": "AppGuiWindow 定义移动应用窗口（屏幕）的接口，提供窗口信息、应用操作以及模拟触摸/按键输入相关方法。",
       "signature": "type AppGuiWindow interface",
       "source": {
         "file": "appgui/appgui_window.go",
-        "line": 12,
+        "line": 11,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__appgui.json",
@@ -2570,7 +2570,7 @@
       "kind": "struct",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "FPoint represents a 2D floating-point coordinate point.",
+      "doc": "FPoint 表示二维浮点坐标点。",
       "signature": "type FPoint struct",
       "source": {
         "file": "basic/basic_data_struct.go",
@@ -2593,7 +2593,7 @@
       "kind": "function",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "MaxAreaRect returns the rectangle with the largest area.",
+      "doc": "MaxAreaRect 返回面积最大的矩形。",
       "signature": "MaxAreaRect(rectangles []Rect) Rect",
       "source": {
         "file": "basic/basic_rect_struct.go",
@@ -2617,7 +2617,7 @@
       "kind": "function",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "MergeAllRectangles merges all rectangles into the smallest rectangle containing all of them.",
+      "doc": "MergeAllRectangles 将所有矩形合并为包含它们的最小矩形。",
       "signature": "MergeAllRectangles(rectangles []Rect) Rect",
       "source": {
         "file": "basic/basic_rect_struct.go",
@@ -2641,7 +2641,7 @@
       "kind": "function",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "MergeGroupRectangles merges rectangles from multiple groups in all possible combinations.",
+      "doc": "MergeGroupRectangles 以所有可能组合方式合并多组矩形。",
       "signature": "MergeGroupRectangles(groupRects ...[]Rect) []Rect",
       "source": {
         "file": "basic/basic_rect_struct.go",
@@ -2665,7 +2665,7 @@
       "kind": "function",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "MergeOverlappingRectangles merges overlapping rectangles.",
+      "doc": "MergeOverlappingRectangles 合并重叠的矩形。",
       "signature": "MergeOverlappingRectangles(rectangles []Rect) []Rect",
       "source": {
         "file": "basic/basic_rect_struct.go",
@@ -2689,7 +2689,7 @@
       "kind": "function",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "MinAreaRect returns the rectangle with the smallest area.",
+      "doc": "MinAreaRect 返回面积最小的矩形。",
       "signature": "MinAreaRect(rectangles []Rect) Rect",
       "source": {
         "file": "basic/basic_rect_struct.go",
@@ -2713,7 +2713,7 @@
       "kind": "struct",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "OcrResult represents the OCR recognition result of the entire image.",
+      "doc": "OcrResult 表示整张图片的 OCR 识别结果。",
       "signature": "type OcrResult struct",
       "source": {
         "file": "basic/basic_data_struct.go",
@@ -2742,7 +2742,7 @@
       "kind": "struct",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "OcrText represents a single OCR text recognition result.",
+      "doc": "OcrText 表示单条 OCR 文本识别结果。",
       "signature": "type OcrText struct",
       "source": {
         "file": "basic/basic_data_struct.go",
@@ -2775,7 +2775,7 @@
       "kind": "struct",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "Point represents a 2D integer coordinate point.",
+      "doc": "Point 表示二维整数坐标点。",
       "signature": "type Point struct",
       "source": {
         "file": "basic/basic_data_struct.go",
@@ -2798,7 +2798,7 @@
       "kind": "struct",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "Rect represents a rectangular region, defined by the top-left coordinate and width/height.",
+      "doc": "Rect 表示一个矩形区域，由左上角坐标和宽高定义。",
       "signature": "type Rect struct",
       "source": {
         "file": "basic/basic_rect_struct.go",
@@ -2848,7 +2848,7 @@
       "kind": "struct",
       "package": "basic",
       "import_path": "yanlingrpa.com/yanling/protocol/basic",
-      "doc": "Size represents width and height.",
+      "doc": "Size 表示宽度和高度。",
       "signature": "type Size struct",
       "source": {
         "file": "basic/basic_data_struct.go",
@@ -2872,7 +2872,7 @@
       "kind": "interface",
       "package": "browser",
       "import_path": "yanlingrpa.com/yanling/protocol/browser",
-      "doc": "BrowserElement defines the common operation interface for browser elements.",
+      "doc": "BrowserElement 定义浏览器元素的通用操作接口。",
       "signature": "type BrowserElement interface",
       "source": {
         "file": "browser/browser_element.go",
@@ -2929,7 +2929,7 @@
       "kind": "interface",
       "package": "browser",
       "import_path": "yanlingrpa.com/yanling/protocol/browser",
-      "doc": "BrowserFramePage defines the common interface for browser pages or frame pages.",
+      "doc": "BrowserFramePage 定义浏览器页面或 frame 页面通用接口。",
       "signature": "type BrowserFramePage interface",
       "source": {
         "file": "browser/browser_framepage.go",
@@ -2980,7 +2980,7 @@
       "kind": "interface",
       "package": "browser",
       "import_path": "yanlingrpa.com/yanling/protocol/browser",
-      "doc": "BrowserTabPage defines the browser tab page interface.",
+      "doc": "BrowserTabPage 定义浏览器标签页接口。",
       "signature": "type BrowserTabPage interface",
       "source": {
         "file": "browser/browser_tabpage.go",
@@ -3024,7 +3024,7 @@
       "kind": "interface",
       "package": "browser",
       "import_path": "yanlingrpa.com/yanling/protocol/browser",
-      "doc": "BrowserWindow defines the browser window interface.",
+      "doc": "BrowserWindow 定义浏览器窗口接口。",
       "signature": "type BrowserWindow interface",
       "source": {
         "file": "browser/browser_window.go",
@@ -6381,11 +6381,11 @@
       "kind": "interface",
       "package": "osgui",
       "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-      "doc": "OSGuiLocator defines a locator interface that provides methods for retrieving locator information,",
+      "doc": "OSGuiLocator 定义一个定位器接口，提供获取定位器信息、操作定位器以及模拟输入的方法。",
       "signature": "type OSGuiLocator interface",
       "source": {
         "file": "osgui/osgui_locator.go",
-        "line": 14,
+        "line": 13,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json",
@@ -6448,11 +6448,11 @@
       "kind": "interface",
       "package": "osgui",
       "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-      "doc": "OSGuiWindow defines the interface of a GUI window, providing methods for window information,",
+      "doc": "OSGuiWindow 定义 GUI 窗口的接口，提供窗口信息、窗口操作以及模拟输入相关方法。",
       "signature": "type OSGuiWindow interface",
       "source": {
         "file": "osgui/osgui_window.go",
-        "line": 13,
+        "line": 12,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__osgui.json",
@@ -6818,7 +6818,7 @@
       "kind": "interface",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "DeviceInfo defines capabilities for querying device information.",
+      "doc": "DeviceInfo 定义用于查询设备信息的能力接口。",
       "signature": "type BrokerInfo interface",
       "source": {
         "file": "ossys/broker_info.go",
@@ -6855,7 +6855,7 @@
       "kind": "interface",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "HttpClient defines capabilities for HTTP requests and domain-level configuration.",
+      "doc": "HttpClient 定义 HTTP 请求和域级配置的能力接口。",
       "signature": "type HttpClient interface",
       "source": {
         "file": "ossys/http_client.go",
@@ -6908,7 +6908,7 @@
       "kind": "struct",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "HttpRequest defines a general HTTP request model.",
+      "doc": "HttpRequest 定义通用 HTTP 请求模型。",
       "signature": "type HttpRequest struct",
       "source": {
         "file": "ossys/http_client.go",
@@ -6945,7 +6945,7 @@
       "kind": "struct",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "HttpRequestOptions defines request-level control options.",
+      "doc": "HttpRequestOptions 定义请求级控制选项。",
       "signature": "type HttpRequestOptions struct",
       "source": {
         "file": "ossys/http_client.go",
@@ -6977,7 +6977,7 @@
       "kind": "struct",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "HttpResponse defines a normalized HTTP response model.",
+      "doc": "HttpResponse 定义规范化的 HTTP 响应模型。",
       "signature": "type HttpResponse struct",
       "source": {
         "file": "ossys/http_client.go",
@@ -7008,7 +7008,7 @@
       "kind": "interface",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "LocalFilesystem defines capabilities for local filesystem operations.",
+      "doc": "LocalFilesystem 定义本地文件系统操作的能力接口。",
       "signature": "type LocalFilesystem interface",
       "source": {
         "file": "ossys/local_filesystem.go",
@@ -7052,7 +7052,7 @@
       "kind": "interface",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "LocalStorage defines local key-value storage capabilities.",
+      "doc": "LocalStorage 定义本地键值存储能力。",
       "signature": "type LocalStorage interface",
       "source": {
         "file": "ossys/local_storage.go",
@@ -7083,7 +7083,7 @@
       "kind": "interface",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "MonitorInfo defines capabilities for querying monitor information.",
+      "doc": "MonitorInfo 定义查询显示器信息的能力接口。",
       "signature": "type MonitorInfo interface",
       "source": {
         "file": "ossys/monitor_info.go",
@@ -7115,7 +7115,7 @@
       "kind": "interface",
       "package": "ossys",
       "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-      "doc": "ScriptLogger defines script runtime logging capabilities.",
+      "doc": "ScriptLogger 定义脚本运行时日志记录能力。",
       "signature": "type ScriptLogger interface",
       "source": {
         "file": "ossys/script_logger.go",
@@ -7142,7 +7142,7 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "Event defines event data for the local event bus.",
+      "doc": "Event 定义本地事件总线中的事件数据。",
       "signature": "type Event struct",
       "source": {
         "file": "script/module_runtime.go",
@@ -7173,7 +7173,7 @@
       "kind": "func_type",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "EventHandler defines the event handler function signature.",
+      "doc": "EventHandler 定义事件处理函数签名。",
       "signature": "type EventHandler func(event Event)",
       "source": {
         "file": "script/module_runtime.go",
@@ -7321,11 +7321,11 @@
       "kind": "interface",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "ModuleRuntime defines script runtime context capabilities.",
+      "doc": "ModuleRuntime 定义脚本运行时上下文能力。",
       "signature": "type ModuleRuntime interface",
       "source": {
         "file": "script/module_runtime.go",
-        "line": 67,
+        "line": 66,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -7542,7 +7542,7 @@
       "kind": "interface",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "Subscriber defines event subscriber information.",
+      "doc": "Subscriber 定义事件订阅者信息。",
       "signature": "type Subscriber interface",
       "source": {
         "file": "script/module_runtime.go",
@@ -7597,7 +7597,7 @@
       "kind": "const",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "VariableBoolean boolean type.",
+      "doc": "VariableBoolean 布尔类型。",
       "signature": "const VariableBoolean VariableDataType = \"boolean\"",
       "source": {
         "file": "script/constants.go",
@@ -7621,7 +7621,7 @@
       "kind": "named_type",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "VariableDataType defines data types for script variables.",
+      "doc": "VariableDataType 定义脚本变量的数据类型。",
       "signature": "type VariableDataType string",
       "source": {
         "file": "script/constants.go",
@@ -7648,7 +7648,7 @@
       "kind": "const",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "VariableFilePath file path type.",
+      "doc": "VariableFilePath 文件路径类型。",
       "signature": "const VariableFilePath VariableDataType = \"filepath\"",
       "source": {
         "file": "script/constants.go",
@@ -7672,7 +7672,7 @@
       "kind": "const",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "VariableInteger integer type.",
+      "doc": "VariableInteger 整数类型。",
       "signature": "const VariableInteger VariableDataType = \"integer\"",
       "source": {
         "file": "script/constants.go",
@@ -7696,7 +7696,7 @@
       "kind": "const",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "VariableJson JSON object type.",
+      "doc": "VariableJson JSON 对象类型。",
       "signature": "const VariableJson VariableDataType = \"json\"",
       "source": {
         "file": "script/constants.go",
@@ -7720,7 +7720,7 @@
       "kind": "const",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "VariableNumber floating-point float type.",
+      "doc": "VariableNumber 浮点数类型。",
       "signature": "const VariableNumber VariableDataType = \"float\"",
       "source": {
         "file": "script/constants.go",
@@ -7744,7 +7744,7 @@
       "kind": "const",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "VariableString string type.",
+      "doc": "VariableString 字符串类型。",
       "signature": "const VariableString VariableDataType = \"string\"",
       "source": {
         "file": "script/constants.go",

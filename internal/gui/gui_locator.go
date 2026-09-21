@@ -3,111 +3,111 @@ package gui
 import "yanlingrpa.com/yanling/protocol/basic"
 
 /*
-* GuiLocator defines the common abstract interface for GUI locators across platforms.
+* GuiLocator 定义跨平台通用 GUI 定位器的抽象接口。
  */
 type GuiLocator interface {
 	/*
-	* Converts to a map object.
+	* 转换为 map 对象。
 	 */
 	ToMap() map[string]any
 	/*
-	* Gets the size of the current locator.
+	* 获取当前定位器的大小。
 	 */
 	GetSize() basic.Size
 	/*
-	* Returns the absolute position and size of the current locator on the screen.
+	* 返回当前定位器在屏幕上的绝对位置和尺寸。
 	 */
 	GetScreenRect() basic.Rect
 	/*
-	* Gets the position and size of the current locator within its parent window.
+	* 获取当前定位器相对于其父窗口的位置和尺寸。
 	 */
 	GetWindowRect() basic.Rect
 	/*
-	* Returns the position and size of the current locator relative to its body area.
+	* 返回当前定位器相对于其 body 区域的位置和尺寸。
 	 */
 	GetBodyRect() basic.Rect
 
-	/* Captures a snapshot of the current locator area and returns image bytes.
-	* gray: Whether to use grayscale.
+	/* 捕获当前定位器区域的快照并返回图片字节数据。
+	* gray: 是否使用灰度模式。
 	 */
 	Snapshot(gray bool) ([]byte, error)
 
-	/* Converts a locator-relative position to an absolute screen position.
-	* locator_point: Relative position within the locator.
-	* return: Absolute position on the screen.
+	/* 将定位器相对位置转换为绝对屏幕位置。
+	* locator_point: 定位器内的相对位置。
+	* return: 屏幕上的绝对位置。
 	 */
 	TransToScreen(locator_point *basic.Point) *basic.Point
 
 	/*
-	* Converts a locator-relative position to a relative position within the parent window.
+	* 将定位器相对位置转换为相对于父窗口的相对位置。
 	 */
 	TransToWindow(locator_point *basic.Point) *basic.Point
 
 	/*
-	* Converts a locator-relative position to a relative position within the client/body area.
+	* 将定位器相对位置转换为相对于 client/body 区域的相对位置。
 	 */
 	TransToBody(locator_point *basic.Point) *basic.Point
 
 	/*
-	* Converts an absolute screen position to a relative position within the current locator.
+	* 将绝对屏幕位置转换为当前定位器内的相对位置。
 	 */
 	TransFromScreen(screen_pos *basic.Point) *basic.Point
 
 	/*
-	* Converts a position relative to the parent window to a relative position within the current locator.
+	* 将相对于父窗口的位置转换为当前定位器内的相对位置。
 	 */
 	TransFromWindow(window_pos *basic.Point) *basic.Point
 
 	/*
-	* Converts a position relative to the client/body area to a relative position within the current locator.
+	* 将相对于 client/body 区域的位置转换为当前定位器内的相对位置。
 	 */
 	TransFromBody(body_pos *basic.Point) *basic.Point
 
 	/*
-	* Performs OCR on the current locator area and returns the recognition result.
+	* 对当前定位器区域执行 OCR，并返回识别结果。
 	 */
 	OcrRead(confidence float64) (*basic.OcrResult, error)
 
 	/*
-	* Attempts to focus the current locator.
+	* 尝试聚焦当前定位器。
 	 */
 	Focus() error
 
 	/*
-	* Indicates whether the current locator is in a text-editable state.
+	* 指示当前定位器是否处于可文本编辑状态。
 	 */
 	IsEditing() bool
 
 	/*
-	* Reads text content from the current locator.
+	* 读取当前定位器中的文本内容。
 	 */
 	ReadText() (string, error)
 
 	/*
-	* Writes text into the current locator.
+	* 向当前定位器写入文本。
 	 */
 	WriteText(text string) error
 
 	/*
-	* Clears text content in the current locator.
+	* 清除当前定位器中的文本内容。
 	 */
 	ClearText() error
 
 	/*
-	* Checks whether vertical scrolling is supported in the current locator area.
+	* 检查当前定位器区域是否支持垂直滚动。
 	 */
 	CanScrollVertical() bool
 	/*
-	* Performs vertical scrolling in the current locator area.
+	* 在当前定位器区域执行垂直滚动。
 	 */
 	ScrollVertical(forward bool, distance int) error
 
 	/*
-	* Checks whether horizontal scrolling is supported in the current locator area.
+	* 检查当前定位器区域是否支持水平滚动。
 	 */
 	CanScrollHorizontal() bool
 	/*
-	* Performs horizontal scrolling in the current locator area.
+	* 在当前定位器区域执行水平滚动。
 	 */
 	ScrollHorizontal(forward bool, distance int) error
 }

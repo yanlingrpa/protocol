@@ -3,48 +3,48 @@ package browser
 import "time"
 
 /*
-* BrowserTabPage defines the browser tab page interface.
+* BrowserTabPage 定义浏览器标签页接口。
  */
 type BrowserTabPage interface {
 	BrowserFramePage
 	/*
-	* Activates the current tab page.
+	* 激活当前标签页。
 	 */
 	Activate() error
 	/*
-	* Destroys the current tab page.
+	* 销毁当前标签页。
 	 */
 	Destroy() error
 	/*
-	* Waits for a new tab page with the specified ID to appear.
+	* 等待具有指定 ID 的新标签页出现。
 	 */
 	WaitForNewTab(id string, timeout time.Duration) (BrowserTabPage, error)
 	/*
-	* Saves cookies for the current tab page.
+	* 保存当前标签页的 cookies。
 	 */
 	SaveCookies() error
 	/*
-	* Loads cookies for the current tab page.
+	* 加载当前标签页的 cookies。
 	 */
 	LoadCookies() error
 	/*
-	* Clears cookies for the current tab page.
+	* 清除当前标签页的 cookies。
 	 */
 	ClearCookies() error
 	/*
-	* Saves LocalStorage for the current tab page.
+	* 保存当前标签页的 LocalStorage。
 	 */
 	SaveLocalStorage() error
 	/*
-	* Loads LocalStorage for the current tab page.
+	* 加载当前标签页的 LocalStorage。
 	 */
 	LoadLocalStorage() error
 	/*
-	* Clears LocalStorage for the current tab page.
+	* 清除当前标签页的 LocalStorage。
 	 */
 	ClearLocalStorage() error
 	/*
-	* Clears all IndexedDB files for the current tab page.
+	* 清除当前标签页中的所有 IndexedDB 文件。
 	 */
 	ClearAllIndexDBFiles() error
 }

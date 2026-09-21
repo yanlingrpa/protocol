@@ -7,67 +7,66 @@ import (
 )
 
 /*
-* OSGuiWindow defines the interface of a GUI window, providing methods for window information,
-* window operations, and simulated input.
+* OSGuiWindow 定义 GUI 窗口的接口，提供窗口信息、窗口操作以及模拟输入相关方法。
  */
 type OSGuiWindow interface {
 	gui.GuiWindow
 
 	/*
-	* Gets the executable path of the process that launched the window.
+	* 获取启动该窗口的进程可执行文件路径。
 	 */
 	GetInitiatorPath() string
 	/*
-	* Gets the application path associated with the window itself.
+	* 获取与该窗口本身关联的应用路径。
 	 */
 	GetWindowSchema() string
 	/*
-	* Gets the native window handle.
+	* 获取原生窗口句柄。
 	 */
 	GetHwnd() uintptr
 	/*
-	* Gets the window rectangle in screen coordinates.
+	* 获取屏幕坐标系中的窗口矩形区域。
 	 */
 	GetWindowRect() basic.Rect
 
 	/*
-	* Moves the window to the specified position.
+	* 将窗口移动到指定位置。
 	 */
 	MoveTo(global_x, global_y int) (bool, error)
 	/*
-	* Resizes the window.
+	* 调整窗口大小。
 	 */
 	ResizeTo(width, height int) (bool, error)
 
 	/*
-	* Gets the locator for the window client area.
+	* 获取窗口客户端区域的定位器。
 	 */
 	BodyLocator() (OSGuiLocator, error)
 	/*
-	* Gets a locator for the specified rectangle, clipped to the window bounds.
+	* 获取指定矩形区域的定位器，并裁剪到窗口边界内。
 	 */
 	RectLocator(rect basic.Rect) (OSGuiLocator, error)
 
 	/*
-	* Gets the mouse position relative to the current window; returns nil if outside the window.
+	* 获取相对于当前窗口的鼠标位置；若鼠标位于窗口外，则返回 nil。
 	 */
 	GetWindowCursorPos() *basic.Point
 	/*
-	* Gets the current IME caret position relative to the window; returns nil if outside the window.
+	* 获取相对于当前窗口的 IME 光标位置；若位于窗口外，则返回 nil。
 	 */
 	GetWindowCaretPos() *basic.Point
 
 	/*
-	* Simulates keyboard input at the current window.
-	* This method will unfocus any control within the window that currently has focus,
-	* then set focus to the entire window, and finally send the specified key sequence.
-	* keys: Key sequence to input (for example: ctrl + alt + del).
-	* Supported keys are defined by the Keyboard type.
+	* 模拟在当前窗口中输入键盘事件。
+	* 该方法会先取消当前窗口中已获得焦点的控件焦点，
+	* 然后将焦点设置到整个窗口，最后发送指定的按键序列。
+	* keys: 要输入的按键序列（例如：ctrl + alt + del）。
+	* 支持的按键定义于 Keyboard 类型。
 	 */
 	PressKeys(keys ...Keyboard) error
 
 	/*
-	* Gets information about the monitor that contains the window.
+	* 获取包含该窗口的显示器信息。
 	 */
 	GetMonitor() ossys.MonitorInfo
 }

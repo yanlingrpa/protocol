@@ -6,55 +6,55 @@ import (
 )
 
 /*
-* BrowserFramePage defines the common interface for browser pages or frame pages.
+* BrowserFramePage 定义浏览器页面或 frame 页面通用接口。
  */
 type BrowserFramePage interface {
 	/*
-	* Determines whether the current page is an iframe or frame.
+	* 判断当前页面是否为 iframe 或 frame。
 	 */
 	IsFrame() bool
 	/*
-	* Gets the unique identifier of the current page.
+	* 获取当前页面的唯一标识符。
 	 */
 	GetID() string
 	/*
-	* Gets the URL of the current page.
+	* 获取当前页面的 URL。
 	 */
 	GetURL() *url.URL
 	/*
-	* Gets the domain of the current page.
+	* 获取当前页面的域名。
 	 */
 	GetDomain() string
 	/*
-	* Gets the title of the current page.
+	* 获取当前页面的标题。
 	 */
 	GetTitle() string
 	/*
-	* Executes JavaScript code in the context of the current page.
+	* 在当前页面上下文中执行 JavaScript 代码。
 	 */
 	Evaluate(jsCode string, arg ...any) (any, error)
 	/*
-	* Reloads the current page and waits up to the specified timeout.
+	* 刷新当前页面，并等待至指定超时时间。
 	 */
 	Reload(timeout time.Duration) error
 	/*
-	* Waits for an element matching the specified CSS selector to appear.
+	* 等待匹配指定 CSS 选择器的元素出现。
 	 */
 	WaitSelector(selector string, timeout time.Duration) (BrowserElement, error)
 	/*
-	* Queries a single element matching the specified CSS selector.
+	* 查询单个匹配指定 CSS 选择器的元素。
 	 */
 	QuerySelector(selector string, timeout time.Duration) (BrowserElement, error)
 	/*
-	* Queries all elements matching the specified CSS selector.
+	* 查询所有匹配指定 CSS 选择器的元素。
 	 */
 	QuerySelectorAll(selector string, timeout time.Duration) ([]BrowserElement, error)
 	/*
-	* Queries a single element matching the specified XPath.
+	* 查询单个匹配指定 XPath 的元素。
 	 */
 	QueryXPath(xpath string, timeout time.Duration) (BrowserElement, error)
 	/*
-	* Queries all elements matching the specified XPath.
+	* 查询所有匹配指定 XPath 的元素。
 	 */
 	QueryXPathAll(xpath string, timeout time.Duration) ([]BrowserElement, error)
 }

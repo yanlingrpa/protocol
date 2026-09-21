@@ -1,31 +1,31 @@
 package ossys
 
 /*
-* ScriptLogger defines script runtime logging capabilities.
-* This interface provides methods for outputting formatted logs by level.
+* ScriptLogger 定义脚本运行时日志记录能力。
+* 该接口提供按级别输出格式化日志的方法。
  */
 type ScriptLogger interface {
 	/*
-	* Debug outputs debug-level logs.
-	* format is the format string, and args are formatting arguments.
+	* Debug 输出调试级别日志。
+	* format 是格式化字符串，args 是格式化参数。
 	 */
 	Debug(format string, args ...any)
 
 	/*
-	* Info outputs info-level logs.
-	* format is the format string, and args are formatting arguments.
+	* Info 输出信息级别日志。
+	* format 是格式化字符串，args 是格式化参数。
 	 */
 	Info(format string, args ...any)
 
 	/*
-	* Warn outputs warning-level logs.
-	* format is the format string, and args are formatting arguments.
+	* Warn 输出警告级别日志。
+	* format 是格式化字符串，args 是格式化参数。
 	 */
 	Warn(format string, args ...any)
 
 	/*
-	* Error outputs error-level logs.
-	* format is the format string, and args are formatting arguments.
+	* Error 输出错误级别日志。
+	* format 是格式化字符串，args 是格式化参数。
 	 */
 	Error(format string, args ...any)
 }

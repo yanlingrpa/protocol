@@ -3,130 +3,130 @@ package ossys
 import "time"
 
 /*
-* LocalFilesystem defines capabilities for local filesystem operations.
-* This interface covers common scenarios such as path handling, file I/O, and directory management.
+* LocalFilesystem 定义本地文件系统操作的能力接口。
+* 该接口覆盖常见场景，例如路径处理、文件 I/O 和目录管理。
 *
-* Path and permission rules:
-* 1) All relative paths are resolved from DataRoot.
-* 2) Files and directories under DataRoot are granted full permissions by default.
-* 3) Files and directories under ScriptRoot are read-only.
-* 4) Paths outside DataRoot and ScriptRoot require explicit authorization by the implementation.
+* 路径与权限规则：
+* 1) 所有相对路径都从 DataRoot 解析。
+* 2) DataRoot 下的文件和目录默认具备完整权限。
+* 3) ScriptRoot 下的文件和目录为只读。
+* 4) 位于 DataRoot 和 ScriptRoot 之外的路径需要由实现显式授权。
  */
 type LocalFilesystem interface {
 	/*
-	* DataRoot gets the root directory for script data storage.
-	* This directory is intended for storing script-generated data and files.
-	* Relative paths in this interface are resolved from this root.
+	* DataRoot 获取脚本数据存储根目录。
+	* 该目录用于存放脚本生成的数据和文件。
+	* 该接口中的相对路径均相对于此根目录解析。
 	 */
 	DataRoot() string
 
 	/*
-	* ScriptRoot gets the root directory for script files.
-	* This directory is intended for storing script files.
-	* Paths under this root are read-only.
+	* ScriptRoot 获取脚本文件根目录。
+	* 该目录用于存放脚本文件。
+	* 该根目录下的路径为只读。
 	 */
 	ScriptRoot() string
 
 	/*
-	* JoinPath joins paths starting from the root directory.
-	* Returns the joined full path string based on DataRoot.
+	* JoinPath 从根目录开始拼接路径。
+	* 返回基于 DataRoot 的完整路径字符串。
 	 */
 	JoinPath(path ...string) string
 
 	/*
-	* PathExists checks whether a path exists.
-	* Returns whether it exists and any possible error.
-	* Relative path is resolved from DataRoot.
+	* PathExists 检查路径是否存在。
+	* 返回是否存在以及可能的错误。
+	* 相对路径从 DataRoot 解析。
 	 */
 	PathExists(path string) (bool, error)
 
 	/*
-	* IsDir checks whether a path is a directory.
-	* Returns whether it is a directory and any possible error.
-	* Relative path is resolved from DataRoot.
+	* IsDir 检查路径是否为目录。
+	* 返回是否为目录以及可能的错误。
+	* 相对路径从 DataRoot 解析。
 	 */
 	IsDir(path string) (bool, error)
 
 	/*
-	* IsFile checks whether a path is a file.
-	* Returns whether it is a file and any possible error.
-	* Relative path is resolved from DataRoot.
+	* IsFile 检查路径是否为文件。
+	* 返回是否为文件以及可能的错误。
+	* 相对路径从 DataRoot 解析。
 	 */
 	IsFile(path string) (bool, error)
 
 	/*
-	* ListDir lists entries in a directory.
-	* Returns entry names under the target directory.
-	* Relative path is resolved from DataRoot.
+	* ListDir 列出目录中的条目。
+	* 返回目标目录下的条目名称。
+	* 相对路径从 DataRoot 解析。
 	 */
 	ListDir(path string) ([]string, error)
 
 	/*
-	* StatPath gets metadata for a path.
-	* Returns whether the path exists, whether it is a directory, size in bytes, and last modified time.
-	* Relative path is resolved from DataRoot.
+	* StatPath 获取路径元数据。
+	* 返回该路径是否存在、是否为目录、大小（字节数）和最后修改时间。
+	* 相对路径从 DataRoot 解析。
 	 */
 	StatPath(path string) (exists bool, isDir bool, size int64, modifiedAt time.Time, err error)
 
 	/*
-	* Mkdir creates a directory.
-	* path is the directory path to create.
-	* Relative path is resolved from DataRoot.
+	* Mkdir 创建目录。
+	* path 是要创建的目录路径。
+	* 相对路径从 DataRoot 解析。
 	 */
 	Mkdir(path string) error
 
 	/*
-	* MkdirAll creates directories recursively.
-	* If directories already exist, behavior depends on the implementation.
-	* Relative path is resolved from DataRoot.
+	* MkdirAll 递归创建目录。
+	* 如果目录已存在，行为取决于具体实现。
+	* 相对路径从 DataRoot 解析。
 	 */
 	MkdirAll(path string) error
 
 	/*
-	* CreateTmpFile creates a temporary file.
-	* expiredAt indicates the expiration time of the temporary file; returns the file path.
+	* CreateTmpFile 创建临时文件。
+	* expiredAt 表示临时文件的过期时间；返回文件路径。
 	 */
 	CreateTmpFile(expiredAt time.Time) (string, error)
 
 	/*
-	* WriteFile writes content to a file.
-	* data is the byte data to write.
-	* Relative path is resolved from DataRoot.
+	* WriteFile 向文件写入内容。
+	* data 是要写入的字节数据。
+	* 相对路径从 DataRoot 解析。
 	 */
 	WriteFile(filePath string, data []byte) error
 
 	/*
-	* ReadFile reads file content.
-	* Returns the read byte data and any possible error.
-	* Relative path is resolved from DataRoot.
+	* ReadFile 读取文件内容。
+	* 返回读取到的字节数据和可能的错误。
+	* 相对路径从 DataRoot 解析。
 	 */
 	ReadFile(filePath string) ([]byte, error)
 
 	/*
-	* Remove deletes a file or directory.
-	* path is the target path to delete.
-	* Relative path is resolved from DataRoot.
+	* Remove 删除文件或目录。
+	* path 是要删除的目标路径。
+	* 相对路径从 DataRoot 解析。
 	 */
 	Remove(path string) error
 
 	/*
-	* RemoveAll recursively deletes a directory and all its contents.
-	* path is the directory path to delete recursively.
-	* Relative path is resolved from DataRoot.
+	* RemoveAll 递归删除目录及其所有内容。
+	* path 是要递归删除的目录路径。
+	* 相对路径从 DataRoot 解析。
 	 */
 	RemoveAll(path string) error
 
 	/*
-	* Rename renames or moves a file or directory.
-	* src is the source path, and dst is the destination path.
-	* Relative paths are resolved from DataRoot.
+	* Rename 重命名或移动文件或目录。
+	* src 是源路径，dst 是目标路径。
+	* 相对路径从 DataRoot 解析。
 	 */
 	Rename(src, dst string) error
 
 	/*
-	* CopyFile copies a file.
-	* src is the source file, and dst is the destination file.
-	* Relative paths are resolved from DataRoot.
+	* CopyFile 复制文件。
+	* src 是源文件，dst 是目标文件。
+	* 相对路径从 DataRoot 解析。
 	 */
 	CopyFile(src, dst string) error
 }

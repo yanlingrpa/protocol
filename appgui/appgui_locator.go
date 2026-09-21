@@ -8,179 +8,175 @@ import (
 )
 
 /*
-* AppGuiLocator defines a locator interface for a rectangular region on a mobile app screen,
-* providing methods for retrieving locator information, performing touch gestures,
-* and simulating input.
+* AppGuiLocator 定义移动应用屏幕矩形区域的定位器接口，
+* 提供获取定位器信息、执行触摸手势以及模拟输入等方法。
  */
 type AppGuiLocator interface {
 	gui.GuiLocator
 
 	/*
-	* Gets a sub-locator of the current locator, clipped to the intersection with current bounds.
-	* locator_point: Relative position of the sub-locator within the current locator.
-	* size: Size of the sub-locator.
+	* 获取当前定位器的子定位器，并裁剪到当前边界的交集范围内。
+	* locator_point: 子定位器在当前定位器中的相对位置。
+	* size: 子定位器的大小。
 	 */
 	SubLocator(locator_point basic.Point, size basic.Size) AppGuiLocator
 
 	/*
-	* Finds sub-locators containing visually similar images within the current locator area.
-	* image: Path/URL/Base64 image string relative to the current project.
-	* sim: Similarity threshold in range 0.1~1.0; higher means more similar.
-	* return: List of matched sub-locators; returns nil if none are found.
-	* Results are sorted by similarity descending, and items below the threshold are filtered out.
+	* 在当前定位器区域中查找与视觉相似的图片对应的子定位器。
+	* image: 当前项目相对路径/URL/Base64 图片字符串。
+	* sim: 相似度阈值，范围 0.1~1.0；值越高表示越相似。
+	* return: 匹配到的子定位器列表；未找到时返回 nil。
+	* 结果按相似度从高到低排序，低于阈值的项会被过滤掉。
 	 */
 	ImageLocator(image string, sim float32) ([]AppGuiLocator, error)
 
 	/*
-	* Waits for sub-locators containing visually similar images to appear in the current locator area.
-	* timeout: Timeout duration.
-	* image: Path/URL/Base64 image string relative to the current project.
-	* sim: Similarity threshold in range 0.1~1.0; higher means more similar.
-	* return: On success, returns matched sub-locators sorted by similarity descending;
-	* results below sim are filtered out. Returns error on timeout or recognition failure.
+	* 等待当前定位器区域中出现与视觉相似图片对应的子定位器。
+	* timeout: 超时时间。
+	* image: 当前项目相对路径/URL/Base64 图片字符串。
+	* sim: 相似度阈值，范围 0.1~1.0；值越高表示越相似。
+	* return: 成功时返回按相似度降序排序的匹配子定位器；
+	* 低于 sim 的结果会被过滤掉。超时或识别失败时返回错误。
 	 */
 	WaitForImage(timeout time.Duration, image string, sim float32) ([]AppGuiLocator, error)
 
 	/*
-	* Finds sub-locators containing specified text within the current locator area.
-	* texts: Text list to find. Multiple texts mean all must be present.
-	* return: List of matched sub-locators; returns nil if none are found.
-	* Only locators containing all texts are returned, sorted by area from small to large.
+	* 在当前定位器区域中查找包含指定文本的子定位器。
+	* texts: 要查找的文本列表。多个文本表示必须全部存在。
+	* return: 匹配到的子定位器列表；未找到时返回 nil。
+	* 仅返回包含所有文本的定位器，并按区域从小到大排序。
 	 */
 	TextLocator(texts ...string) ([]AppGuiLocator, error)
 
 	/*
-	* Waits for sub-locators containing specified text to appear in the current locator area.
-	* timeout: Timeout duration.
-	* texts: Text list to wait for. Multiple texts mean all must be present.
-	* return: On success, returns matched sub-locators that contain all texts,
-	* sorted by area from small to large. Returns error on timeout or recognition failure.
+	* 等待当前定位器区域中出现包含指定文本的子定位器。
+	* timeout: 超时时间。
+	* texts: 要等待的文本列表。多个文本表示必须全部存在。
+	* return: 成功时返回包含所有文本的匹配子定位器，
+	* 按区域从小到大排序。超时或识别失败时返回错误。
 	 */
 	WaitForText(timeout time.Duration, texts ...string) ([]AppGuiLocator, error)
 
 	/*
-	* Finds card-like sub-locators in the current locator area.
-	* A card-like sub-locator is an independent card-shaped region that usually includes
-	* graphics and text, commonly seen in list items and buttons.
-	* min_size: Minimum size of sub-locators to find; nil means no minimum limit.
-	* max_size: Maximum size of sub-locators to find; nil means no maximum limit.
-	* return: List of matched sub-locators; returns nil if none are found.
-	* Results are sorted by coordinates from left to right and top to bottom.
+	* 在当前定位器区域中查找卡片式子定位器。
+	* 卡片式子定位器是一个独立的卡片形状区域，通常包含图形和文本，常见于列表项和按钮。
+	* min_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。
+	* max_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。
+	* return: 匹配到的子定位器列表；未找到时返回 nil。
+	* 结果按坐标从左到右、从上到下排序。
 	 */
 	CardLocator(min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
-	* Waits for card-like sub-locators to appear in the current locator area.
-	* A card-like sub-locator is an independent card-shaped region that usually includes
-	* graphics and text, commonly seen in list items and buttons.
-	* timeout: Timeout duration.
-	* min_size: Minimum size of sub-locators to find; nil means no minimum limit.
-	* max_size: Maximum size of sub-locators to find; nil means no maximum limit.
-	* return: On success, returns matched sub-locators sorted by coordinates
-	* from left to right and top to bottom. Returns error on timeout or recognition failure.
+	* 等待当前定位器区域中出现卡片式子定位器。
+	* 卡片式子定位器是一个独立的卡片形状区域，通常包含图形和文本，常见于列表项和按钮。
+	* timeout: 超时时间。
+	* min_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。
+	* max_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。
+	* return: 成功时返回按坐标从左到右、从上到下排序的匹配子定位器。
+	* 超时或识别失败时返回错误。
 	 */
 	WaitForCard(timeout time.Duration, min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
-	* Uses the vision module to find sub-locators with specific visual shapes
-	* in the current locator area.
-	* description: Description of the target shape, for example: a red circular button,
-	* or a blue rectangular input box.
-	* min_size: Minimum size of sub-locators to find; nil means no minimum limit.
-	* max_size: Maximum size of sub-locators to find; nil means no maximum limit.
-	* return: List of matched sub-locators; returns nil if none are found.
-	* Results are sorted by coordinates from left to right and top to bottom.
+	* 使用视觉模块在当前定位器区域中查找具有特定视觉形状的子定位器。
+	* description: 目标形状的描述，例如：红色圆形按钮，
+	* 或蓝色矩形输入框。
+	* min_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。
+	* max_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。
+	* return: 匹配到的子定位器列表；未找到时返回 nil。
+	* 结果按坐标从左到右、从上到下排序。
 	 */
 	VisionLocator(description string, min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
-	* Waits for sub-locators with specific visual shapes to appear,
-	* using the vision module in the current locator area.
-	* timeout: Timeout duration.
-	* description: Description of the target shape, for example: a red circular button,
-	* or a blue rectangular input box.
-	* min_size: Minimum size of sub-locators to find; nil means no minimum limit.
-	* max_size: Maximum size of sub-locators to find; nil means no maximum limit.
-	* return: On success, returns matched sub-locators sorted by coordinates
-	* from left to right and top to bottom. Returns error on timeout or recognition failure.
+	* 等待当前定位器区域中出现具有特定视觉形状的子定位器，
+	* 使用视觉模块进行识别。
+	* timeout: 超时时间。
+	* description: 目标形状的描述，例如：红色圆形按钮，
+	* 或蓝色矩形输入框。
+	* min_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。
+	* max_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。
+	* return: 成功时返回按坐标从左到右、从上到下排序的匹配子定位器。
+	* 超时或识别失败时返回错误。
 	 */
 	WaitForVision(timeout time.Duration, description string, min_size, max_size *basic.Size) ([]AppGuiLocator, error)
 
 	/*
-	* Moves the touch point to a specified position inside the locator without lifting.
-	* locator_point: Relative position within the locator.
-	* nil means the center position of the current locator.
+	* 将触摸点移动到定位器内的指定位置，但不抬起手指。
+	* locator_point: 定位器内的相对位置。
+	* nil 表示当前定位器的中心位置。
 	 */
 	TouchMove(locator_point *basic.Point) error
 
 	/*
-	* Presses a finger down at the current touch position within the locator.
+	* 在定位器内当前触摸位置按下手指。
 	 */
 	TouchDown() error
 
 	/*
-	* Lifts the finger at the current touch position within the locator.
+	* 在定位器内当前触摸位置抬起手指。
 	 */
 	TouchUp() error
 
 	/*
-	* Performs a swipe gesture from a start position to an end position within the current locator.
-	* Both positions are relative coordinates within the current locator.
-	* from_locator_point: Relative start position; nil means the current touch position,
-	* or the locator center if no active touch.
-	* to_locator_point: Relative end position; nil means the current touch position,
-	* or the locator center if no active touch.
+	* 在当前定位器内执行从起始位置到结束位置的滑动手势。
+	* 两个位置都使用当前定位器内的相对坐标。
+	* from_locator_point: 相对起始位置；nil 表示当前触摸位置，
+	* 若没有活动触摸，则使用定位器中心。
+	* to_locator_point: 相对结束位置；nil 表示当前触摸位置，
+	* 若没有活动触摸，则使用定位器中心。
 	 */
 	SwipeTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error
 
 	/*
-	* Performs a pinch gesture in the current locator area.
-	* spread: true to spread fingers (zoom in), false to pinch fingers (zoom out).
-	* scale: Scale factor for the gesture distance, range 0.1~1.0; larger means more spread/pinch.
+	* 在当前定位器区域执行捏合手势。
+	* spread: true 表示展开手指（放大），false 表示收拢手指（缩小）。
+	* scale: 手势距离的缩放因子，范围 0.1~1.0；值越大表示展开/收拢越明显。
 	 */
 	Pinch(spread bool, scale float32) error
 
 	/*
-	* Performs a single tap at the specified position inside the locator.
-	* locator_point: Relative position within the locator.
-	* nil means current touch position in the locator.
-	* If there is no active touch inside the locator, the locator center is used.
+	* 在定位器内指定位置执行单击操作。
+	* locator_point: 定位器内的相对位置。
+	* nil 表示当前触摸位置。
+	* 若定位器内没有活动触摸，则使用定位器中心。
 	 */
 	Tap(locator_point *basic.Point) error
 
 	/*
-	* Performs a double tap at the specified position inside the locator.
-	* locator_point: Relative position within the locator.
-	* nil means current touch position in the locator.
-	* If there is no active touch inside the locator, the locator center is used.
+	* 在定位器内指定位置执行双击操作。
+	* locator_point: 定位器内的相对位置。
+	* nil 表示当前触摸位置。
+	* 若定位器内没有活动触摸，则使用定位器中心。
 	 */
 	DoubleTap(locator_point *basic.Point) error
 
 	/*
-	* Performs a long press at the specified position inside the locator.
-	* locator_point: Relative position within the locator.
-	* nil means current touch position in the locator.
-	* If there is no active touch inside the locator, the locator center is used.
+	* 在定位器内指定位置执行长按操作。
+	* locator_point: 定位器内的相对位置。
+	* nil 表示当前触摸位置。
+	* 若定位器内没有活动触摸，则使用定位器中心。
 	 */
 	LongPress(locator_point *basic.Point) error
 
 	/*
-	* Gets the current touch position relative to the locator.
-	* return: Relative touch position in the locator; returns nil if no active touch inside.
+	* 获取相对于当前定位器的当前触摸位置。
+	* return: 定位器内的相对触摸位置；如果没有活动触摸则返回 nil。
 	 */
 	GetLocatorTouchPos() *basic.Point
 
 	/*
-	* Waits until the current locator enters a text-editable state or times out.
-	* timeout: Timeout duration.
-	* return: Sub-locator containing the text input caret.
-	* Returns error on timeout; returns nil if no caret exists in the locator.
+	* 等待当前定位器进入可文本编辑状态，或在超时后返回。
+	* timeout: 超时时间。
+	* return: 包含文本输入光标的子定位器。
+	* 超时时返回错误；若定位器中不存在光标，则返回 nil。
 	 */
 	WaitForEditing(timeout time.Duration) (AppGuiLocator, error)
 
 	/*
-	* Simulates pressing a hardware or system key while the locator is focused.
-	* keys: Key sequence to press, as defined by the AppKey type.
+	* 在定位器获得焦点时模拟按下硬件或系统按键。
+	* keys: 要按下的按键序列，定义于 AppKey 类型。
 	 */
 	PressKeys(keys ...AppKey) error
 }

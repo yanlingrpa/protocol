@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-20T09:41:56Z",
+  "generated_at": "2026-09-21T02:59:13Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "ossys",
@@ -47,7 +47,7 @@
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "DeviceInfo defines capabilities for querying device information.\nThis interface is used to retrieve information related to the OS, hardware, user, and monitors.",
+        "doc": "DeviceInfo 定义用于查询设备信息的能力接口。\n该接口用于检索与操作系统、硬件、用户和显示器相关的信息。",
         "signature": "type BrokerInfo interface",
         "source": {
           "file": "ossys/broker_info.go",
@@ -57,7 +57,7 @@
         "methods": [
           {
             "name": "DeviceId",
-            "doc": "DeviceId gets the unique device identifier.\nThe return value can be used to distinguish device identity.",
+            "doc": "DeviceId 获取唯一设备标识。\n返回值可用于区分设备身份。",
             "params": [],
             "results": [
               {
@@ -74,7 +74,7 @@
           },
           {
             "name": "DeviceName",
-            "doc": "DeviceName gets the device name.\nThe return value is usually the device name configured in system settings.",
+            "doc": "DeviceName 获取设备名称。\n返回值通常是系统设置中配置的设备名称。",
             "params": [],
             "results": [
               {
@@ -91,7 +91,7 @@
           },
           {
             "name": "GetComputerName",
-            "doc": "GetComputerName gets the computer name.\nThe return value is the hostname or system computer name.",
+            "doc": "GetComputerName 获取计算机名称。\n返回值是主机名或系统计算机名称。",
             "params": [],
             "results": [
               {
@@ -108,7 +108,7 @@
           },
           {
             "name": "GetGpuMemoryMB",
-            "doc": "GetGpuMemoryMB gets GPU memory size.\nThe return value is in MB.",
+            "doc": "GetGpuMemoryMB 获取 GPU 显存大小。\n返回值单位为 MB。",
             "params": [],
             "results": [
               {
@@ -125,7 +125,7 @@
           },
           {
             "name": "GetMonitors",
-            "doc": "GetMonitors gets information for all monitors.\nThe return value is a list of monitor information.",
+            "doc": "GetMonitors 获取所有显示器的信息。\n返回值是显示器信息列表。",
             "params": [],
             "results": [
               {
@@ -144,7 +144,7 @@
           },
           {
             "name": "GetPrimaryMonitor",
-            "doc": "GetPrimaryMonitor gets information for the primary monitor.\nThe return value is the current system primary monitor.",
+            "doc": "GetPrimaryMonitor 获取主显示器的信息。\n返回值是当前系统的主显示器。",
             "params": [],
             "results": [
               {
@@ -163,7 +163,7 @@
           },
           {
             "name": "GetUserName",
-            "doc": "GetUserName gets the current user name.\nThe return value is the name of the currently logged-in account.",
+            "doc": "GetUserName 获取当前用户名。\n返回值是当前登录账户的用户名。",
             "params": [],
             "results": [
               {
@@ -180,7 +180,7 @@
           },
           {
             "name": "HasNvidiaGPU",
-            "doc": "HasNvidiaGPU checks whether an Nvidia GPU exists.\nReturns true if an Nvidia graphics card is detected.",
+            "doc": "HasNvidiaGPU 检查是否存在 Nvidia GPU。\n若检测到 Nvidia 显卡，则返回 true。",
             "params": [],
             "results": [
               {
@@ -197,7 +197,7 @@
           },
           {
             "name": "NumLogicCPU",
-            "doc": "NumLogicCPU gets the number of logical CPU cores.\nThe return value is the number of logical processors.",
+            "doc": "NumLogicCPU 获取逻辑 CPU 核心数量。\n返回值是逻辑处理器的数量。",
             "params": [],
             "results": [
               {
@@ -214,7 +214,7 @@
           },
           {
             "name": "OS",
-            "doc": "OS gets the operating system name.\nExample return values: Windows, Linux, Darwin.",
+            "doc": "OS 获取操作系统名称。\n示例返回值：Windows、Linux、Darwin。",
             "params": [],
             "results": [
               {
@@ -231,7 +231,7 @@
           },
           {
             "name": "OSVersion",
-            "doc": "OSVersion gets the operating system version.\nThe return value is usually a system version string.",
+            "doc": "OSVersion 获取操作系统版本。\n返回值通常是系统版本字符串。",
             "params": [],
             "results": [
               {
@@ -275,7 +275,7 @@
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "HttpClient defines capabilities for HTTP requests and domain-level configuration.\nThis interface supports domain-level defaults, generic request execution, and common convenience operations.",
+        "doc": "HttpClient 定义 HTTP 请求和域级配置的能力接口。\n该接口支持域级默认值、通用请求执行以及常见便捷操作。",
         "signature": "type HttpClient interface",
         "source": {
           "file": "ossys/http_client.go",
@@ -285,7 +285,7 @@
         "methods": [
           {
             "name": "DeleteDomainCookie",
-            "doc": "DeleteDomainCookie deletes cookies under the specified domain.\nMultiple cookie names can be deleted at once.",
+            "doc": "DeleteDomainCookie 删除指定域下的 cookies。\n可一次删除多个 cookie 名称。",
             "params": [
               {
                 "name": "domain",
@@ -315,7 +315,7 @@
           },
           {
             "name": "DeleteDomainHeader",
-            "doc": "DeleteDomainHeader deletes headers under the specified domain.\nMultiple header names can be deleted at once.",
+            "doc": "DeleteDomainHeader 删除指定域下的请求头。\n可一次删除多个请求头名称。",
             "params": [
               {
                 "name": "domain",
@@ -345,7 +345,7 @@
           },
           {
             "name": "DownloadFile",
-            "doc": "DownloadFile downloads a file and returns the local path.\nThe headers argument is used to attach request headers for download.",
+            "doc": "DownloadFile 下载文件并返回本地路径。\nheaders 参数用于附加下载请求头。",
             "params": [
               {
                 "name": "url",
@@ -378,7 +378,7 @@
           },
           {
             "name": "DownloadFileTo",
-            "doc": "DownloadFileTo downloads a file to the specified local path.\noptions controls request timeout and retry behavior.",
+            "doc": "DownloadFileTo 下载文件到指定本地路径。\noptions 控制请求超时和重试行为。",
             "params": [
               {
                 "name": "url",
@@ -425,7 +425,7 @@
           },
           {
             "name": "Get",
-            "doc": "Get sends an HTTP GET request.\nThe headers argument is used to override or add request headers.",
+            "doc": "Get 发送 HTTP GET 请求。\nheaders 参数用于覆盖或新增请求头。",
             "params": [
               {
                 "name": "url",
@@ -462,7 +462,7 @@
           },
           {
             "name": "GetDomainCookies",
-            "doc": "GetDomainCookies gets cookies for the specified domain.\nReturns the saved cookie key-value pairs under that domain.",
+            "doc": "GetDomainCookies 获取指定域下的 cookies。\n返回该域下已保存的 cookie 键值对。",
             "params": [
               {
                 "name": "domain",
@@ -491,7 +491,7 @@
           },
           {
             "name": "GetDomainHeaders",
-            "doc": "GetDomainHeaders gets default headers for the specified domain.\nReturns configured request-header key-value pairs under that domain.",
+            "doc": "GetDomainHeaders 获取指定域下的默认请求头。\n返回该域下已配置的请求头键值对。",
             "params": [
               {
                 "name": "domain",
@@ -520,7 +520,7 @@
           },
           {
             "name": "Post",
-            "doc": "Post sends an HTTP POST request with raw data.\nThe body argument is the request body byte array.",
+            "doc": "Post 发送带原始数据的 HTTP POST 请求。\nbody 参数是请求体字节数组。",
             "params": [
               {
                 "name": "url",
@@ -561,7 +561,7 @@
           },
           {
             "name": "PostForm",
-            "doc": "PostForm sends an HTTP form request.\nThe params argument is submitted in form format.",
+            "doc": "PostForm 发送 HTTP 表单请求。\nparams 参数以表单格式提交。",
             "params": [
               {
                 "name": "url",
@@ -606,7 +606,7 @@
           },
           {
             "name": "PostJson",
-            "doc": "PostJson sends an HTTP JSON request.\nThe params argument is encoded as JSON as the request body.",
+            "doc": "PostJson 发送 HTTP JSON 请求。\nparams 参数会被编码为 JSON 作为请求体。",
             "params": [
               {
                 "name": "url",
@@ -651,7 +651,7 @@
           },
           {
             "name": "Request",
-            "doc": "Request sends a generalized HTTP request.\nSupports arbitrary HTTP methods and returns structured response metadata.",
+            "doc": "Request 发送通用 HTTP 请求。\n支持任意 HTTP 方法，并返回结构化的响应元数据。",
             "params": [
               {
                 "name": "req",
@@ -688,7 +688,7 @@
           },
           {
             "name": "SetDomainCookies",
-            "doc": "SetDomainCookies sets cookies for the specified domain.\ncookies uses key-value pairs to represent cookie names and values.",
+            "doc": "SetDomainCookies 为指定域设置 cookies。\ncookies 使用键值对表示 cookie 名称和对应值。",
             "params": [
               {
                 "name": "domain",
@@ -718,7 +718,7 @@
           },
           {
             "name": "SetDomainHeaders",
-            "doc": "SetDomainHeaders sets default headers for the specified domain.\nheaders uses key-value pairs to represent request headers.",
+            "doc": "SetDomainHeaders 为指定域设置默认请求头。\nheaders 使用键值对表示请求头名称和值。",
             "params": [
               {
                 "name": "domain",
@@ -748,7 +748,7 @@
           },
           {
             "name": "UploadData",
-            "doc": "UploadData uploads file data from memory.\nfileName is the upload file name, and fileData is the upload content.",
+            "doc": "UploadData 上传内存中的文件数据。\nfileName 是上传文件名，fileData 是上传内容。",
             "params": [
               {
                 "name": "url",
@@ -801,7 +801,7 @@
           },
           {
             "name": "UploadFile",
-            "doc": "UploadFile uploads a local file.\nfilePath is the local file path, and params are additional form parameters.",
+            "doc": "UploadFile 上传本地文件。\nfilePath 是本地文件路径，params 是附加的表单参数。",
             "params": [
               {
                 "name": "url",
@@ -893,7 +893,7 @@
         "kind": "struct",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "HttpRequest defines a general HTTP request model.\nThis struct supports arbitrary methods and per-request configuration.",
+        "doc": "HttpRequest 定义通用 HTTP 请求模型。\n该结构体支持任意 HTTP 方法和每次请求的配置。",
         "signature": "type HttpRequest struct",
         "source": {
           "file": "ossys/http_client.go",
@@ -904,7 +904,7 @@
           {
             "name": "Body",
             "type": "[]byte",
-            "doc": "Body is the raw request body bytes.",
+            "doc": "Body 是原始请求体字节数据。",
             "type_refs": [
               {
                 "expr": "byte",
@@ -915,7 +915,7 @@
           {
             "name": "Form",
             "type": "map[string]any",
-            "doc": "Form defines form fields for form submissions.",
+            "doc": "Form 定义表单提交字段。",
             "type_refs": [
               {
                 "expr": "any",
@@ -930,7 +930,7 @@
           {
             "name": "Headers",
             "type": "map[string]string",
-            "doc": "Headers defines request headers.",
+            "doc": "Headers 定义请求头。",
             "type_refs": [
               {
                 "expr": "string",
@@ -941,7 +941,7 @@
           {
             "name": "Json",
             "type": "map[string]any",
-            "doc": "Json defines JSON payload values for JSON requests.",
+            "doc": "Json 定义 JSON 请求体中的字段值。",
             "type_refs": [
               {
                 "expr": "any",
@@ -956,7 +956,7 @@
           {
             "name": "Method",
             "type": "string",
-            "doc": "Method is the HTTP method, such as GET, POST, PUT, PATCH, DELETE, or HEAD.",
+            "doc": "Method 是 HTTP 方法，例如 GET、POST、PUT、PATCH、DELETE 或 HEAD。",
             "type_refs": [
               {
                 "expr": "string",
@@ -967,7 +967,7 @@
           {
             "name": "Options",
             "type": "HttpRequestOptions",
-            "doc": "Options controls timeout and retry behavior for this request.",
+            "doc": "Options 控制当前请求的超时和重试行为。",
             "type_refs": [
               {
                 "expr": "HttpRequestOptions",
@@ -980,7 +980,7 @@
           {
             "name": "Query",
             "type": "map[string]string",
-            "doc": "Query defines URL query parameters.",
+            "doc": "Query 定义 URL 查询参数。",
             "type_refs": [
               {
                 "expr": "string",
@@ -991,7 +991,7 @@
           {
             "name": "URL",
             "type": "string",
-            "doc": "URL is the target request URL.",
+            "doc": "URL 是目标请求地址。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1028,7 +1028,7 @@
         "kind": "struct",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "HttpRequestOptions defines request-level control options.\nThis struct is used to configure timeout and retry behavior for a single request.",
+        "doc": "HttpRequestOptions 定义请求级控制选项。\n该结构体用于配置单次请求的超时和重试行为。",
         "signature": "type HttpRequestOptions struct",
         "source": {
           "file": "ossys/http_client.go",
@@ -1039,7 +1039,7 @@
           {
             "name": "FollowRedirect",
             "type": "bool",
-            "doc": "FollowRedirect controls whether redirects should be followed automatically.\nIf true, redirects are handled by the implementation.",
+            "doc": "FollowRedirect 控制是否应自动跟随重定向。\n若为 true，则由实现处理重定向。",
             "type_refs": [
               {
                 "expr": "bool",
@@ -1050,7 +1050,7 @@
           {
             "name": "RetryCount",
             "type": "int",
-            "doc": "RetryCount defines how many times to retry when transient errors occur.\nZero means no retry.",
+            "doc": "RetryCount 定义在瞬时错误发生时重试的次数。\n零表示不重试。",
             "type_refs": [
               {
                 "expr": "int",
@@ -1061,7 +1061,7 @@
           {
             "name": "RetryInterval",
             "type": "time.Duration",
-            "doc": "RetryInterval defines the interval between retries.\nZero value means using implementation default.",
+            "doc": "RetryInterval 定义重试之间的间隔时间。\n零值表示使用实现默认值。",
             "type_refs": [
               {
                 "expr": "time.Duration",
@@ -1073,7 +1073,7 @@
           {
             "name": "Timeout",
             "type": "time.Duration",
-            "doc": "Timeout limits the maximum duration of a request.\nZero value means using implementation default.",
+            "doc": "Timeout 限制请求的最大持续时间。\n零值表示使用实现默认值。",
             "type_refs": [
               {
                 "expr": "time.Duration",
@@ -1106,7 +1106,7 @@
         "kind": "struct",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "HttpResponse defines a normalized HTTP response model.\nThis struct contains status code, headers, and body data.",
+        "doc": "HttpResponse 定义规范化的 HTTP 响应模型。\n该结构体包含状态码、响应头和响应体数据。",
         "signature": "type HttpResponse struct",
         "source": {
           "file": "ossys/http_client.go",
@@ -1117,7 +1117,7 @@
           {
             "name": "Body",
             "type": "[]byte",
-            "doc": "Body is the raw response body bytes.",
+            "doc": "Body 是原始响应体字节数据。",
             "type_refs": [
               {
                 "expr": "byte",
@@ -1128,7 +1128,7 @@
           {
             "name": "FinalURL",
             "type": "string",
-            "doc": "FinalURL is the final URL after redirects.",
+            "doc": "FinalURL 是重定向后的最终 URL。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1139,7 +1139,7 @@
           {
             "name": "Headers",
             "type": "map[string]string",
-            "doc": "Headers contains response headers.",
+            "doc": "Headers 包含响应头。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1150,7 +1150,7 @@
           {
             "name": "StatusCode",
             "type": "int",
-            "doc": "StatusCode is the HTTP status code returned by the server.",
+            "doc": "StatusCode 是服务器返回的 HTTP 状态码。",
             "type_refs": [
               {
                 "expr": "int",
@@ -1181,7 +1181,7 @@
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "LocalFilesystem defines capabilities for local filesystem operations.\nThis interface covers common scenarios such as path handling, file I/O, and directory management.\nPath and permission rules:\n1) All relative paths are resolved from DataRoot.\n2) Files and directories under DataRoot are granted full permissions by default.\n3) Files and directories under ScriptRoot are read-only.\n4) Paths outside DataRoot and ScriptRoot require explicit authorization by the implementation.",
+        "doc": "LocalFilesystem 定义本地文件系统操作的能力接口。\n该接口覆盖常见场景，例如路径处理、文件 I/O 和目录管理。\n路径与权限规则：\n1) 所有相对路径都从 DataRoot 解析。\n2) DataRoot 下的文件和目录默认具备完整权限。\n3) ScriptRoot 下的文件和目录为只读。\n4) 位于 DataRoot 和 ScriptRoot 之外的路径需要由实现显式授权。",
         "signature": "type LocalFilesystem interface",
         "source": {
           "file": "ossys/local_filesystem.go",
@@ -1191,7 +1191,7 @@
         "methods": [
           {
             "name": "CopyFile",
-            "doc": "CopyFile copies a file.\nsrc is the source file, and dst is the destination file.\nRelative paths are resolved from DataRoot.",
+            "doc": "CopyFile 复制文件。\nsrc 是源文件，dst 是目标文件。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "src",
@@ -1221,7 +1221,7 @@
           },
           {
             "name": "CreateTmpFile",
-            "doc": "CreateTmpFile creates a temporary file.\nexpiredAt indicates the expiration time of the temporary file; returns the file path.",
+            "doc": "CreateTmpFile 创建临时文件。\nexpiredAt 表示临时文件的过期时间；返回文件路径。",
             "params": [
               {
                 "name": "expiredAt",
@@ -1255,7 +1255,7 @@
           },
           {
             "name": "DataRoot",
-            "doc": "DataRoot gets the root directory for script data storage.\nThis directory is intended for storing script-generated data and files.\nRelative paths in this interface are resolved from this root.",
+            "doc": "DataRoot 获取脚本数据存储根目录。\n该目录用于存放脚本生成的数据和文件。\n该接口中的相对路径均相对于此根目录解析。",
             "params": [],
             "results": [
               {
@@ -1272,7 +1272,7 @@
           },
           {
             "name": "IsDir",
-            "doc": "IsDir checks whether a path is a directory.\nReturns whether it is a directory and any possible error.\nRelative path is resolved from DataRoot.",
+            "doc": "IsDir 检查路径是否为目录。\n返回是否为目录以及可能的错误。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1305,7 +1305,7 @@
           },
           {
             "name": "IsFile",
-            "doc": "IsFile checks whether a path is a file.\nReturns whether it is a file and any possible error.\nRelative path is resolved from DataRoot.",
+            "doc": "IsFile 检查路径是否为文件。\n返回是否为文件以及可能的错误。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1338,7 +1338,7 @@
           },
           {
             "name": "JoinPath",
-            "doc": "JoinPath joins paths starting from the root directory.\nReturns the joined full path string based on DataRoot.",
+            "doc": "JoinPath 从根目录开始拼接路径。\n返回基于 DataRoot 的完整路径字符串。",
             "params": [
               {
                 "name": "path",
@@ -1360,7 +1360,7 @@
           },
           {
             "name": "ListDir",
-            "doc": "ListDir lists entries in a directory.\nReturns entry names under the target directory.\nRelative path is resolved from DataRoot.",
+            "doc": "ListDir 列出目录中的条目。\n返回目标目录下的条目名称。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1389,7 +1389,7 @@
           },
           {
             "name": "Mkdir",
-            "doc": "Mkdir creates a directory.\npath is the directory path to create.\nRelative path is resolved from DataRoot.",
+            "doc": "Mkdir 创建目录。\npath 是要创建的目录路径。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1415,7 +1415,7 @@
           },
           {
             "name": "MkdirAll",
-            "doc": "MkdirAll creates directories recursively.\nIf directories already exist, behavior depends on the implementation.\nRelative path is resolved from DataRoot.",
+            "doc": "MkdirAll 递归创建目录。\n如果目录已存在，行为取决于具体实现。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1441,7 +1441,7 @@
           },
           {
             "name": "PathExists",
-            "doc": "PathExists checks whether a path exists.\nReturns whether it exists and any possible error.\nRelative path is resolved from DataRoot.",
+            "doc": "PathExists 检查路径是否存在。\n返回是否存在以及可能的错误。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1474,7 +1474,7 @@
           },
           {
             "name": "ReadFile",
-            "doc": "ReadFile reads file content.\nReturns the read byte data and any possible error.\nRelative path is resolved from DataRoot.",
+            "doc": "ReadFile 读取文件内容。\n返回读取到的字节数据和可能的错误。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "filePath",
@@ -1507,7 +1507,7 @@
           },
           {
             "name": "Remove",
-            "doc": "Remove deletes a file or directory.\npath is the target path to delete.\nRelative path is resolved from DataRoot.",
+            "doc": "Remove 删除文件或目录。\npath 是要删除的目标路径。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1533,7 +1533,7 @@
           },
           {
             "name": "RemoveAll",
-            "doc": "RemoveAll recursively deletes a directory and all its contents.\npath is the directory path to delete recursively.\nRelative path is resolved from DataRoot.",
+            "doc": "RemoveAll 递归删除目录及其所有内容。\npath 是要递归删除的目录路径。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1559,7 +1559,7 @@
           },
           {
             "name": "Rename",
-            "doc": "Rename renames or moves a file or directory.\nsrc is the source path, and dst is the destination path.\nRelative paths are resolved from DataRoot.",
+            "doc": "Rename 重命名或移动文件或目录。\nsrc 是源路径，dst 是目标路径。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "src",
@@ -1589,7 +1589,7 @@
           },
           {
             "name": "ScriptRoot",
-            "doc": "ScriptRoot gets the root directory for script files.\nThis directory is intended for storing script files.\nPaths under this root are read-only.",
+            "doc": "ScriptRoot 获取脚本文件根目录。\n该目录用于存放脚本文件。\n该根目录下的路径为只读。",
             "params": [],
             "results": [
               {
@@ -1606,7 +1606,7 @@
           },
           {
             "name": "StatPath",
-            "doc": "StatPath gets metadata for a path.\nReturns whether the path exists, whether it is a directory, size in bytes, and last modified time.\nRelative path is resolved from DataRoot.",
+            "doc": "StatPath 获取路径元数据。\n返回该路径是否存在、是否为目录、大小（字节数）和最后修改时间。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "path",
@@ -1662,7 +1662,7 @@
           },
           {
             "name": "WriteFile",
-            "doc": "WriteFile writes content to a file.\ndata is the byte data to write.\nRelative path is resolved from DataRoot.",
+            "doc": "WriteFile 向文件写入内容。\ndata 是要写入的字节数据。\n相对路径从 DataRoot 解析。",
             "params": [
               {
                 "name": "filePath",
@@ -1730,7 +1730,7 @@
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "LocalStorage defines local key-value storage capabilities.\nThis interface supports single and batch read/write operations, as well as expiration settings.",
+        "doc": "LocalStorage 定义本地键值存储能力。\n该接口支持单项和批量读写操作，以及过期时间设置。",
         "signature": "type LocalStorage interface",
         "source": {
           "file": "ossys/local_storage.go",
@@ -1740,7 +1740,7 @@
         "methods": [
           {
             "name": "Del",
-            "doc": "Del deletes one or more keys.\nReturns the number of keys actually deleted.",
+            "doc": "Del 删除一个或多个键。\n返回实际删除的键数量。",
             "params": [
               {
                 "name": "keys",
@@ -1766,7 +1766,7 @@
           },
           {
             "name": "Get",
-            "doc": "Get gets the value for the specified key.\nIf the key does not exist, the return value depends on the implementation.",
+            "doc": "Get 获取指定 key 对应的值。\n如果该 key 不存在，返回值由实现决定。",
             "params": [
               {
                 "name": "key",
@@ -1788,7 +1788,7 @@
           },
           {
             "name": "Keys",
-            "doc": "Keys gets all keys in the current storage.\nReturns a list of key names.",
+            "doc": "Keys 获取当前存储中的所有键。\n返回键名列表。",
             "params": [],
             "results": [
               {
@@ -1805,7 +1805,7 @@
           },
           {
             "name": "MGet",
-            "doc": "MGet gets values for multiple keys in batch.\nReturns a key-value mapping result.",
+            "doc": "MGet 批量获取多个 key 的值。\n返回键值映射结果。",
             "params": [
               {
                 "name": "keys",
@@ -1827,7 +1827,7 @@
           },
           {
             "name": "MSet",
-            "doc": "MSet sets multiple key-value pairs in batch.\ndata is the key-value mapping to write.",
+            "doc": "MSet 批量设置多个键值对。\ndata 是要写入的键值映射。",
             "params": [
               {
                 "name": "data",
@@ -1845,7 +1845,7 @@
           },
           {
             "name": "MSetEx",
-            "doc": "MSetEx sets multiple key-value pairs with expiration in batch.\nexpiredAt is the unified expiration timestamp.",
+            "doc": "MSetEx 批量设置带过期时间的多个键值对。\nexpiredAt 是统一过期时间戳。",
             "params": [
               {
                 "name": "data",
@@ -1871,7 +1871,7 @@
           },
           {
             "name": "Set",
-            "doc": "Set sets a key-value pair.\nkey is the key name, and value is the value.",
+            "doc": "Set 设置键值对。\nkey 是键名，value 是对应的值。",
             "params": [
               {
                 "name": "key",
@@ -1893,7 +1893,7 @@
           },
           {
             "name": "SetEx",
-            "doc": "SetEx sets a key-value pair with an expiration time.\nexpiredAt is the expiration timestamp.",
+            "doc": "SetEx 设置带过期时间的键值对。\nexpiredAt 是过期时间戳。",
             "params": [
               {
                 "name": "key",
@@ -1944,7 +1944,7 @@
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "MonitorInfo defines capabilities for querying monitor information.\nThis interface is used to get bounds, work area, DPI, and primary-screen status.",
+        "doc": "MonitorInfo 定义查询显示器信息的能力接口。\n该接口用于获取边界、工作区、DPI 以及主屏幕状态等信息。",
         "signature": "type MonitorInfo interface",
         "source": {
           "file": "ossys/monitor_info.go",
@@ -1954,7 +1954,7 @@
         "methods": [
           {
             "name": "GetBounds",
-            "doc": "GetBounds gets the monitor bounds position and size.\nReturns the full monitor bounds rectangle.",
+            "doc": "GetBounds 获取显示器的边界位置和尺寸。\n返回完整的显示器边界矩形区域。",
             "params": [],
             "results": [
               {
@@ -1972,7 +1972,7 @@
           },
           {
             "name": "GetDPI",
-            "doc": "GetDPI gets DPI scaling information of the monitor.\nThe return value is horizontal DPI or a related scaling value.",
+            "doc": "GetDPI 获取显示器的 DPI 缩放信息。\n返回值为横向 DPI 或相关缩放值。",
             "params": [],
             "results": [
               {
@@ -1989,7 +1989,7 @@
           },
           {
             "name": "GetWorkArea",
-            "doc": "GetWorkArea gets the monitor work-area position and size.\nThe work area usually excludes system-occupied areas such as the taskbar.",
+            "doc": "GetWorkArea 获取显示器的工作区位置和尺寸。\n工作区通常不包含任务栏等系统占用区域。",
             "params": [],
             "results": [
               {
@@ -2007,7 +2007,7 @@
           },
           {
             "name": "IsPrimary",
-            "doc": "IsPrimary indicates whether this is the primary monitor.\nReturns true when the current monitor is the primary monitor.",
+            "doc": "IsPrimary 表示当前显示器是否为主显示器。\n当当前显示器为主显示器时返回 true。",
             "params": [],
             "results": [
               {
@@ -2046,7 +2046,7 @@
         "kind": "interface",
         "package": "ossys",
         "import_path": "yanlingrpa.com/yanling/protocol/ossys",
-        "doc": "ScriptLogger defines script runtime logging capabilities.\nThis interface provides methods for outputting formatted logs by level.",
+        "doc": "ScriptLogger 定义脚本运行时日志记录能力。\n该接口提供按级别输出格式化日志的方法。",
         "signature": "type ScriptLogger interface",
         "source": {
           "file": "ossys/script_logger.go",
@@ -2056,7 +2056,7 @@
         "methods": [
           {
             "name": "Debug",
-            "doc": "Debug outputs debug-level logs.\nformat is the format string, and args are formatting arguments.",
+            "doc": "Debug 输出调试级别日志。\nformat 是格式化字符串，args 是格式化参数。",
             "params": [
               {
                 "name": "format",
@@ -2082,7 +2082,7 @@
           },
           {
             "name": "Error",
-            "doc": "Error outputs error-level logs.\nformat is the format string, and args are formatting arguments.",
+            "doc": "Error 输出错误级别日志。\nformat 是格式化字符串，args 是格式化参数。",
             "params": [
               {
                 "name": "format",
@@ -2108,7 +2108,7 @@
           },
           {
             "name": "Info",
-            "doc": "Info outputs info-level logs.\nformat is the format string, and args are formatting arguments.",
+            "doc": "Info 输出信息级别日志。\nformat 是格式化字符串，args 是格式化参数。",
             "params": [
               {
                 "name": "format",
@@ -2134,7 +2134,7 @@
           },
           {
             "name": "Warn",
-            "doc": "Warn outputs warning-level logs.\nformat is the format string, and args are formatting arguments.",
+            "doc": "Warn 输出警告级别日志。\nformat 是格式化字符串，args 是格式化参数。",
             "params": [
               {
                 "name": "format",

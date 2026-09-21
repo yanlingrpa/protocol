@@ -7,155 +7,155 @@ import (
 )
 
 /*
-* BrowserElement defines the common operation interface for browser elements.
+* BrowserElement 定义浏览器元素的通用操作接口。
  */
 type BrowserElement interface {
 	/*
-	* Gives the current element input focus, usually for interactive elements such as input boxes and buttons.
+	* 让当前元素获取输入焦点，通常用于输入框和按钮等可交互元素。
 	 */
 	Focus()
 	/*
-	* Scrolls the current element into the visible area of the browser window.
+	* 将当前元素滚动到浏览器窗口可见区域内。
 	 */
 	ScrollIntoView() error
 	/*
-	* Moves the mouse cursor over the current element.
+	* 将鼠标光标移动到当前元素上方。
 	 */
 	Hover() error
 	/*
-	* Moves the mouse cursor out of the current element.
+	* 将鼠标光标移出当前元素。
 	 */
 	MoveMouseOut() error
 	/*
-	* Performs a single-click on the current element.
+	* 对当前元素执行单击操作。
 	 */
 	Click() error
 	/*
-	* Performs a right-click on the current element.
+	* 对当前元素执行右键点击操作。
 	 */
 	RightClick() error
 	/*
-	* Performs a double-click on the current element.
+	* 对当前元素执行双击操作。
 	 */
 	DoubleClick() error
 	/*
-	* Performs a tap action on the current element.
+	* 对当前元素执行轻触操作。
 	 */
 	Tap() error
 	/*
-	* Returns an interactable position coordinate for the current element.
+	* 返回当前元素可交互的位置坐标。
 	 */
 	Interactable() (basic.FPoint, error)
 	/*
-	* Selects text within the current element by a regular-expression rule.
+	* 根据正则规则选中当前元素中的文本。
 	 */
 	SelectText(regex string) error
 	/*
-	* Selects all text within the current element.
+	* 选中当前元素中的全部文本。
 	 */
 	SelectAllText() error
 	/*
-	* Inputs text into the current element.
+	* 向当前元素输入文本。
 	 */
 	Input(text string) error
 	/*
-	* Removes focus from the current element.
+	* 取消当前元素的焦点。
 	 */
 	Blur() error
 	/*
-	* Selects or deselects options by displayed text.
+	* 根据显示文本选择或取消选择选项。
 	 */
 	SelectByText(texts []string, selected bool) error
 	/*
-	* Selects or deselects options by regular-expression rules.
+	* 根据正则规则选择或取消选择选项。
 	 */
 	SelectByRegex(regexes []string, selected bool) error
 	/*
-	* Selects or deselects options by CSS selectors.
+	* 根据 CSS 选择器选择或取消选择选项。
 	 */
 	SelectByCss(selectors []string, selected bool) error
 	/*
-	* Checks whether the current element matches the specified CSS selector.
+	* 检查当前元素是否匹配指定的 CSS 选择器。
 	 */
 	MatchByCss(selector string) (bool, error)
 	/*
-	* Gets the attribute value of the current element.
+	* 获取当前元素的属性值。
 	 */
 	GetAttribute(name string) (string, error)
 	/*
-	* Sets the attribute value of the current element.
+	* 设置当前元素的属性值。
 	 */
 	SetAttribute(name, value string) error
 	/*
-	* Gets the property value of the current element.
+	* 获取当前元素的属性值。
 	 */
 	GetProperty(name string) (any, error)
 	/*
-	* Sets the property value of the current element.
+	* 设置当前元素的属性值。
 	 */
 	SetProperty(name string, value any) error
 	/*
-	* Checks whether the current element is disabled.
+	* 检查当前元素是否被禁用。
 	 */
 	Disabled() (bool, error)
 	/*
-	* Sets the upload file list for file-input elements.
+	* 为文件输入元素设置上传文件列表。
 	 */
 	SetFiles(filePaths []string) error
 	/*
-	* Returns the embedded frame page associated with the current element.
+	* 返回当前元素关联的内嵌框架页面。
 	 */
 	FramePage() (BrowserFramePage, error)
 	/*
-	* Checks whether the current element contains the target element.
+	* 检查当前元素是否包含目标元素。
 	 */
 	ContainsElement(target BrowserElement) (bool, error)
 	/*
-	* Gets the text content of the current element.
+	* 获取当前元素的文本内容。
 	 */
 	Text() (string, error)
 	/*
-	* Gets the HTML content of the current element.
+	* 获取当前元素的 HTML 内容。
 	 */
 	Html() (string, error)
 	/*
-	* Checks whether the current element is visible.
+	* 检查当前元素是否可见。
 	 */
 	Visible() (bool, error)
 	/*
-	* Waits until the current element remains stable for the specified duration.
+	* 等待当前元素在指定时长内保持稳定。
 	 */
 	WaitStable(stableTime time.Duration) error
 	/*
-	* Waits until the current element is stable across requestAnimationFrame ticks.
+	* 等待当前元素在 requestAnimationFrame 周期内保持稳定。
 	 */
 	WaitStableRAF() error
 	/*
-	* Waits until the current element becomes interactable and returns an interactable position.
+	* 等待当前元素可交互，并返回可交互位置。
 	 */
 	WaitInteractable() (basic.FPoint, error)
 	/*
-	* Waits until the current element becomes visible.
+	* 等待当前元素变为可见。
 	 */
 	WaitVisible() error
 	/*
-	* Waits until the current element becomes enabled.
+	* 等待当前元素变为可用。
 	 */
 	WaitEnabled() error
 	/*
-	* Waits until the current element becomes writable.
+	* 等待当前元素变为可写。
 	 */
 	WaitWritable() error
 	/*
-	* Waits until the current element becomes invisible.
+	* 等待当前元素变为不可见。
 	 */
 	WaitInvisible() error
 	/*
-	* Executes JavaScript code in the context of the current element.
+	* 在当前元素上下文中执行 JavaScript 代码。
 	 */
 	Evaluate(jsCode string, arg ...any) (any, error)
 	/*
-	* Gets the XPath expression of the current element.
+	* 获取当前元素的 XPath 表达式。
 	 */
 	GetXPath(optimized bool) (string, error)
 }

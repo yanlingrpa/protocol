@@ -6,43 +6,42 @@ import (
 )
 
 /*
-* AppGuiWindow defines the interface of a mobile app window (screen), providing methods
-* for window information, app operations, and simulated touch/key input.
+* AppGuiWindow 定义移动应用窗口（屏幕）的接口，提供窗口信息、应用操作以及模拟触摸/按键输入相关方法。
  */
 type AppGuiWindow interface {
 	gui.GuiWindow
 
 	/*
-	* Gets the package name (Android) or bundle ID (iOS) of the app.
+	* 获取应用的包名（Android）或绑定标识（iOS）。
 	 */
 	GetAppPackage() string
 	/*
-	* Gets the current activity name (Android) or view controller name (iOS).
+	* 获取当前活动名称（Android）或视图控制器名称（iOS）。
 	 */
 	GetAppActivity() string
 
 	/*
-	* Gets the screen rectangle in device coordinates.
+	* 获取设备坐标系中的屏幕矩形区域。
 	 */
 	GetScreenRect() basic.Rect
 
 	/*
-	* Gets the locator for the window content area.
+	* 获取窗口内容区域的定位器。
 	 */
 	BodyLocator() (AppGuiLocator, error)
 	/*
-	* Gets a locator for the specified rectangle, clipped to the window bounds.
+	* 获取指定矩形区域的定位器，并裁剪到窗口边界内。
 	 */
 	RectLocator(rect basic.Rect) (AppGuiLocator, error)
 
 	/*
-	* Gets the current touch position relative to the window; returns nil if no active touch in the window.
+	* 获取相对于窗口的当前触摸位置；如果窗口内没有活动触摸，则返回 nil。
 	 */
 	GetWindowTouchPos() *basic.Point
 
 	/*
-	* Simulates pressing a hardware or system key.
-	* key: The key to press, as defined by the AppKey type.
+	* 模拟按下硬件或系统按键。
+	* key: 要按下的键，定义于 AppKey 类型中。
 	 */
-	PressKey(key AppKey) error
+	PressKeys(keys ...AppKey) error
 }

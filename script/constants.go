@@ -11,40 +11,40 @@ const (
 )
 
 /*
-* VariableDataType defines data types for script variables.
+* VariableDataType 定义脚本变量的数据类型。
  */
 type VariableDataType string
 
 const (
 	/*
-	* VariableBoolean boolean type.
+	* VariableBoolean 布尔类型。
 	 */
 	VariableBoolean VariableDataType = "boolean"
 	/*
-	* VariableString string type.
+	* VariableString 字符串类型。
 	 */
 	VariableString VariableDataType = "string"
 	/*
-	* VariableFilePath file path type.
+	* VariableFilePath 文件路径类型。
 	 */
 	VariableFilePath VariableDataType = "filepath"
 	/*
-	* VariableInteger integer type.
+	* VariableInteger 整数类型。
 	 */
 	VariableInteger VariableDataType = "integer"
 	/*
-	* VariableNumber floating-point float type.
+	* VariableNumber 浮点数类型。
 	 */
 	VariableNumber VariableDataType = "float"
 	/*
-	* VariableJson JSON object type.
+	* VariableJson JSON 对象类型。
 	 */
 	VariableJson VariableDataType = "json"
 )
 
 /*
-* ToString converts any value into the string representation of the corresponding type.
-* If conversion fails, it returns fmt.Sprintf("%v", value).
+* ToString 将任意值转换为对应类型的字符串表示。
+* 如果转换失败，则返回 fmt.Sprintf("%v", value)。
  */
 func (vdt VariableDataType) ToString(value any) string {
 	switch vdt {

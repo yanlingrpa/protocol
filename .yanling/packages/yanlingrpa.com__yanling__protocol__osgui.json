@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-20T09:41:56Z",
+  "generated_at": "2026-09-21T02:59:13Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "osgui",
@@ -3487,17 +3487,17 @@
         "kind": "interface",
         "package": "osgui",
         "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-        "doc": "OSGuiLocator defines a locator interface that provides methods for retrieving locator information,\noperating on the locator, and simulating input.",
+        "doc": "OSGuiLocator 定义一个定位器接口，提供获取定位器信息、操作定位器以及模拟输入的方法。",
         "signature": "type OSGuiLocator interface",
         "source": {
           "file": "osgui/osgui_locator.go",
-          "line": 14,
+          "line": 13,
           "column": 6
         },
         "methods": [
           {
             "name": "CardLocator",
-            "doc": "Finds card-like sub-locators in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
+            "doc": "在当前定位器区域中查找卡片式子定位器。\n卡片式子定位器是一个独立的卡片形状区域，通常包含图形和文本，常见于列表项和按钮。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按坐标从左到右、从上到下排序。",
             "params": [
               {
                 "name": "min_size",
@@ -3537,7 +3537,7 @@
           },
           {
             "name": "Click",
-            "doc": "Performs a mouse click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
+            "doc": "在定位器内指定位置执行鼠标点击。\nlocator_point: 定位器内的相对位置。\nnil 表示当前鼠标在定位器中的位置。\n如果鼠标不在定位器内，则使用定位器中心。",
             "params": [
               {
                 "name": "locator_point",
@@ -3564,7 +3564,7 @@
           },
           {
             "name": "DoubleClick",
-            "doc": "Performs a mouse double-click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
+            "doc": "在定位器内指定位置执行鼠标双击。\nlocator_point: 定位器内的相对位置。\nnil 表示当前鼠标在定位器中的位置。\n如果鼠标不在定位器内，则使用定位器中心。",
             "params": [
               {
                 "name": "locator_point",
@@ -3591,7 +3591,7 @@
           },
           {
             "name": "DragTo",
-            "doc": "Drags from a start position to an end position within the current locator.\nBoth positions are relative coordinates within the current locator.\nfrom_locator_point: Relative start position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.\nto_locator_point: Relative end position within the locator; nil means the current mouse\nposition in the locator, or the locator center if the mouse is outside.",
+            "doc": "从起始位置拖动到结束位置，范围在当前定位器内。\n两个位置都使用当前定位器内的相对坐标。\nfrom_locator_point: 定位器内的起始相对位置；nil 表示当前鼠标在定位器中的位置，\n如果鼠标不在定位器内，则使用定位器中心。\nto_locator_point: 定位器内的结束相对位置；nil 表示当前鼠标在定位器中的位置，\n如果鼠标不在定位器内，则使用定位器中心。",
             "params": [
               {
                 "name": "from_locator_point",
@@ -3622,7 +3622,7 @@
           },
           {
             "name": "GetLocatorCaretPos",
-            "doc": "Gets the IME caret position inside the current locator; returns nil if unavailable.\nExample: When an input box is focused, the IME caret usually appears inside it,\nand this method can retrieve its relative position in the locator.\nreturn: Relative IME caret position in the locator; returns nil if unavailable.",
+            "doc": "获取当前定位器内 IME 光标的位置；不可用时返回 nil。\n示例：当输入框被聚焦时，IME 光标通常出现在其中，\n该方法可获取其在定位器中的相对位置。\nreturn: 定位器中的相对 IME 光标位置；不可用时返回 nil。",
             "params": [],
             "results": [
               {
@@ -3640,7 +3640,7 @@
           },
           {
             "name": "GetLocatorCursorPos",
-            "doc": "Gets the mouse position relative to the current locator.\nreturn: Relative mouse position in the current locator; returns nil if outside.",
+            "doc": "获取相对于当前定位器的鼠标位置。\nreturn: 当前定位器中的相对鼠标位置；若鼠标在外部则返回 nil。",
             "params": [],
             "results": [
               {
@@ -3658,7 +3658,7 @@
           },
           {
             "name": "ImageLocator",
-            "doc": "Finds sub-locators containing visually similar images within the current locator area.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by similarity descending, and items below the threshold are filtered out.",
+            "doc": "在当前定位器区域中查找与视觉相似的图片对应的子定位器。\nimage: 当前项目相对路径/URL/Base64 图片字符串。\nsim: 相似度阈值，范围 0.1~1.0；值越高表示越相似。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按相似度从高到低排序，低于阈值的项会被过滤掉。",
             "params": [
               {
                 "name": "image",
@@ -3701,7 +3701,7 @@
           },
           {
             "name": "MouseDown",
-            "doc": "Presses the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
+            "doc": "在定位器内当前鼠标位置按下鼠标按钮。\nright: true 表示右键，false 表示左键。",
             "params": [
               {
                 "name": "right",
@@ -3727,7 +3727,7 @@
           },
           {
             "name": "MouseMove",
-            "doc": "Moves the mouse to a specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means the center position of the current locator.",
+            "doc": "将鼠标移动到定位器内的指定位置。\nlocator_point: 定位器内的相对位置。\nnil 表示当前定位器的中心位置。",
             "params": [
               {
                 "name": "locator_point",
@@ -3754,7 +3754,7 @@
           },
           {
             "name": "MouseUp",
-            "doc": "Releases the mouse button at the current mouse position within the locator.\nright: true for right button, false for left button.",
+            "doc": "在定位器内当前鼠标位置释放鼠标按钮。\nright: true 表示右键，false 表示左键。",
             "params": [
               {
                 "name": "right",
@@ -3780,7 +3780,7 @@
           },
           {
             "name": "PressKeys",
-            "doc": "Simulates keyboard input at the current locator.\nThis method first attempts to obtain focus for the locator,\nthen sends the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
+            "doc": "模拟在当前定位器中输入键盘事件。\n该方法会优先尝试为定位器获取焦点，\n然后发送指定的按键序列。\nkeys: 要输入的按键序列（例如：ctrl + alt + del）。\n支持的按键定义于 Keyboard 类型。",
             "params": [
               {
                 "name": "keys",
@@ -3808,7 +3808,7 @@
           },
           {
             "name": "RightClick",
-            "doc": "Performs a mouse right-click at the specified position inside the locator.\nlocator_point: Relative position within the locator.\nnil means current mouse position in the locator.\nIf the mouse is not inside the locator, the locator center is used.",
+            "doc": "在定位器内指定位置执行鼠标右键点击。\nlocator_point: 定位器内的相对位置。\nnil 表示当前鼠标在定位器中的位置。\n如果鼠标不在定位器内，则使用定位器中心。",
             "params": [
               {
                 "name": "locator_point",
@@ -3835,7 +3835,7 @@
           },
           {
             "name": "SubLocator",
-            "doc": "Gets a sub-locator of the current locator, clipped to the intersection with current bounds.\nlocator_point: Relative position of the sub-locator within the current locator.\nsize: Size of the sub-locator.",
+            "doc": "获取当前定位器的子定位器，并裁剪到与当前边界的交集范围内。\nlocator_point: 子定位器在当前定位器中的相对位置。\nsize: 子定位器的大小。",
             "params": [
               {
                 "name": "locator_point",
@@ -3873,7 +3873,7 @@
           },
           {
             "name": "TextLocator",
-            "doc": "Finds sub-locators containing specified text within the current locator area.\ntexts: Text list to find. Multiple texts mean all must be present.\nreturn: List of matched sub-locators; returns nil if none are found.\nOnly locators containing all texts are returned, sorted by area from small to large.",
+            "doc": "在当前定位器区域中查找包含指定文本的子定位器。\ntexts: 要查找的文本列表。多个文本表示必须全部存在。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n仅返回包含所有文本的定位器，并按区域从小到大排序。",
             "params": [
               {
                 "name": "texts",
@@ -3908,7 +3908,7 @@
           },
           {
             "name": "VisionLocator",
-            "doc": "Uses the vision module to find sub-locators with specific visual shapes\nin the current locator area.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: List of matched sub-locators; returns nil if none are found.\nResults are sorted by coordinates from left to right and top to bottom.",
+            "doc": "使用视觉模块在当前定位器区域中查找具有特定视觉形状的子定位器。\ndescription: 目标形状的描述，例如：红色圆形按钮，\n或蓝色矩形输入框。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 匹配到的子定位器列表；未找到时返回 nil。\n结果按坐标从左到右、从上到下排序。",
             "params": [
               {
                 "name": "description",
@@ -3956,7 +3956,7 @@
           },
           {
             "name": "WaitForCard",
-            "doc": "Waits for card-like sub-locators to appear in the current locator area.\nA card-like sub-locator is an independent card-shaped region that usually includes\ngraphics and text, commonly seen in list items and buttons.\ntimeout: Timeout duration.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现卡片式子定位器。\n卡片式子定位器是一个独立的卡片形状区域，通常包含图形和文本，常见于列表项和按钮。\ntimeout: 超时时间。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 成功时返回按坐标从左到右、从上到下排序的匹配子定位器。\n超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -4005,7 +4005,7 @@
           },
           {
             "name": "WaitForEditing",
-            "doc": "Waits until the current locator enters a text-editable state or times out.\ntimeout: Timeout duration.\nreturn: Sub-locator containing the text input caret.\nReturns error on timeout; returns nil if no caret exists in the locator.",
+            "doc": "等待当前定位器进入可文本编辑状态，或在超时后返回。\ntimeout: 超时时间。\nreturn: 包含文本输入光标的子定位器。\n超时时返回错误；若定位器中不存在光标，则返回 nil。",
             "params": [
               {
                 "name": "timeout",
@@ -4041,7 +4041,7 @@
           },
           {
             "name": "WaitForImage",
-            "doc": "Waits for sub-locators containing visually similar images to appear in the current locator area.\ntimeout: Timeout duration.\nimage: Path/URL/Base64 image string relative to the current project.\nsim: Similarity threshold in range 0.1~1.0; higher means more similar.\nreturn: On success, returns matched sub-locators sorted by similarity descending;\nresults below sim are filtered out. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现与视觉相似图片对应的子定位器。\ntimeout: 超时时间。\nimage: 当前项目相对路径/URL/Base64 图片字符串。\nsim: 相似度阈值，范围 0.1~1.0；值越高表示越相似。\nreturn: 成功时返回按相似度降序排序的匹配子定位器；\n低于 sim 的结果会被过滤掉。超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -4093,7 +4093,7 @@
           },
           {
             "name": "WaitForText",
-            "doc": "Waits for sub-locators containing specified text to appear in the current locator area.\ntimeout: Timeout duration.\ntexts: Text list to wait for. Multiple texts mean all must be present.\nreturn: On success, returns matched sub-locators that contain all texts,\nsorted by area from small to large. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现包含指定文本的子定位器。\ntimeout: 超时时间。\ntexts: 要等待的文本列表。多个文本表示必须全部存在。\nreturn: 成功时返回包含所有文本的匹配子定位器，\n按区域从小到大排序。超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -4137,7 +4137,7 @@
           },
           {
             "name": "WaitForVision",
-            "doc": "Waits for sub-locators with specific visual shapes to appear,\nusing the vision module in the current locator area.\ntimeout: Timeout duration.\ndescription: Description of the target shape, for example: a red circular button,\nor a blue rectangular input box.\nmin_size: Minimum size of sub-locators to find; nil means no minimum limit.\nmax_size: Maximum size of sub-locators to find; nil means no maximum limit.\nreturn: On success, returns matched sub-locators sorted by coordinates\nfrom left to right and top to bottom. Returns error on timeout or recognition failure.",
+            "doc": "等待当前定位器区域中出现具有特定视觉形状的子定位器，\n使用视觉模块进行识别。\ntimeout: 超时时间。\ndescription: 目标形状的描述，例如：红色圆形按钮，\n或蓝色矩形输入框。\nmin_size: 要查找的子定位器最小尺寸；nil 表示不设最小限制。\nmax_size: 要查找的子定位器最大尺寸；nil 表示不设最大限制。\nreturn: 成功时返回按坐标从左到右、从上到下排序的匹配子定位器。\n超时或识别失败时返回错误。",
             "params": [
               {
                 "name": "timeout",
@@ -4258,17 +4258,17 @@
         "kind": "interface",
         "package": "osgui",
         "import_path": "yanlingrpa.com/yanling/protocol/osgui",
-        "doc": "OSGuiWindow defines the interface of a GUI window, providing methods for window information,\nwindow operations, and simulated input.",
+        "doc": "OSGuiWindow 定义 GUI 窗口的接口，提供窗口信息、窗口操作以及模拟输入相关方法。",
         "signature": "type OSGuiWindow interface",
         "source": {
           "file": "osgui/osgui_window.go",
-          "line": 13,
+          "line": 12,
           "column": 6
         },
         "methods": [
           {
             "name": "BodyLocator",
-            "doc": "Gets the locator for the window client area.",
+            "doc": "获取窗口客户端区域的定位器。",
             "params": [],
             "results": [
               {
@@ -4294,7 +4294,7 @@
           },
           {
             "name": "GetHwnd",
-            "doc": "Gets the native window handle.",
+            "doc": "获取原生窗口句柄。",
             "params": [],
             "results": [
               {
@@ -4311,7 +4311,7 @@
           },
           {
             "name": "GetInitiatorPath",
-            "doc": "Gets the executable path of the process that launched the window.",
+            "doc": "获取启动该窗口的进程可执行文件路径。",
             "params": [],
             "results": [
               {
@@ -4328,7 +4328,7 @@
           },
           {
             "name": "GetMonitor",
-            "doc": "Gets information about the monitor that contains the window.",
+            "doc": "获取包含该窗口的显示器信息。",
             "params": [],
             "results": [
               {
@@ -4346,7 +4346,7 @@
           },
           {
             "name": "GetWindowCaretPos",
-            "doc": "Gets the current IME caret position relative to the window; returns nil if outside the window.",
+            "doc": "获取相对于当前窗口的 IME 光标位置；若位于窗口外，则返回 nil。",
             "params": [],
             "results": [
               {
@@ -4364,7 +4364,7 @@
           },
           {
             "name": "GetWindowCursorPos",
-            "doc": "Gets the mouse position relative to the current window; returns nil if outside the window.",
+            "doc": "获取相对于当前窗口的鼠标位置；若鼠标位于窗口外，则返回 nil。",
             "params": [],
             "results": [
               {
@@ -4382,7 +4382,7 @@
           },
           {
             "name": "GetWindowRect",
-            "doc": "Gets the window rectangle in screen coordinates.",
+            "doc": "获取屏幕坐标系中的窗口矩形区域。",
             "params": [],
             "results": [
               {
@@ -4400,7 +4400,7 @@
           },
           {
             "name": "GetWindowSchema",
-            "doc": "Gets the application path associated with the window itself.",
+            "doc": "获取与该窗口本身关联的应用路径。",
             "params": [],
             "results": [
               {
@@ -4417,7 +4417,7 @@
           },
           {
             "name": "MoveTo",
-            "doc": "Moves the window to the specified position.",
+            "doc": "将窗口移动到指定位置。",
             "params": [
               {
                 "name": "global_x",
@@ -4454,7 +4454,7 @@
           },
           {
             "name": "PressKeys",
-            "doc": "Simulates keyboard input at the current window.\nThis method will unfocus any control within the window that currently has focus,\nthen set focus to the entire window, and finally send the specified key sequence.\nkeys: Key sequence to input (for example: ctrl + alt + del).\nSupported keys are defined by the Keyboard type.",
+            "doc": "模拟在当前窗口中输入键盘事件。\n该方法会先取消当前窗口中已获得焦点的控件焦点，\n然后将焦点设置到整个窗口，最后发送指定的按键序列。\nkeys: 要输入的按键序列（例如：ctrl + alt + del）。\n支持的按键定义于 Keyboard 类型。",
             "params": [
               {
                 "name": "keys",
@@ -4482,7 +4482,7 @@
           },
           {
             "name": "RectLocator",
-            "doc": "Gets a locator for the specified rectangle, clipped to the window bounds.",
+            "doc": "获取指定矩形区域的定位器，并裁剪到窗口边界内。",
             "params": [
               {
                 "name": "rect",
@@ -4518,7 +4518,7 @@
           },
           {
             "name": "ResizeTo",
-            "doc": "Resizes the window.",
+            "doc": "调整窗口大小。",
             "params": [
               {
                 "name": "width",

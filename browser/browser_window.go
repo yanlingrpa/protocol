@@ -5,24 +5,24 @@ import (
 )
 
 /*
-* BrowserWindow defines the browser window interface.
+* BrowserWindow 定义浏览器窗口接口。
  */
 type BrowserWindow interface {
 	osgui.OSGuiWindow
 	/*
-	* Gets the default tab page.
+	* 获取默认标签页。
 	 */
 	DefaultPage() BrowserTabPage
 	/*
-	* Gets the currently active tab page.
+	* 获取当前激活的标签页。
 	 */
 	CurrentPage() BrowserTabPage
 	/*
-	* Gets a tab page by identifier.
+	* 根据标识符获取标签页。
 	 */
 	IDTabPage(id string) BrowserTabPage
 	/*
-	* Creates a new tab page and opens the specified URL.
+	* 创建一个新标签页，并打开指定 URL。
 	 */
 	NewTabPage(id string, url string) (BrowserTabPage, error)
 }

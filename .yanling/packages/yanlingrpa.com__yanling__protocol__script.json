@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-20T09:41:56Z",
+  "generated_at": "2026-09-21T02:59:13Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -113,7 +113,7 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "Event defines event data for the local event bus.",
+        "doc": "Event 定义本地事件总线中的事件数据。",
         "signature": "type Event struct",
         "source": {
           "file": "script/module_runtime.go",
@@ -124,7 +124,7 @@
           {
             "name": "Data",
             "type": "any",
-            "doc": "Data is the event payload after JSON deserialization.\nBecause it is represented as `any`, consumers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map it into a typed struct, use `JsonStruct(event.Data, \u0026YourStruct{})`.",
+            "doc": "Data 是经过 JSON 反序列化后的事件载荷。\n因为它表示为 `any`，调用方应根据 JSON 结构做类型断言，\n例如：对象使用 `map[string]any`，数组使用 `[]any`，原生类型使用 Go 基础类型。\n若要映射为强类型结构体，可使用 `JsonStruct(event.Data, \u0026YourStruct{})`。",
             "type_refs": [
               {
                 "expr": "any",
@@ -135,7 +135,7 @@
           {
             "name": "ModuleId",
             "type": "string",
-            "doc": "ModuleId is the topic publisher module id.",
+            "doc": "ModuleId 是事件发布者模块 ID。",
             "type_refs": [
               {
                 "expr": "string",
@@ -146,7 +146,7 @@
           {
             "name": "Topic",
             "type": "string",
-            "doc": "Topic is the event topic.",
+            "doc": "Topic 是事件主题。",
             "type_refs": [
               {
                 "expr": "string",
@@ -157,7 +157,7 @@
           {
             "name": "Ts",
             "type": "int64",
-            "doc": "Ts is the event occurrence time in Unix timestamp format.",
+            "doc": "Ts 是事件发生时间，使用 Unix 时间戳格式。",
             "type_refs": [
               {
                 "expr": "int64",
@@ -188,7 +188,7 @@
         "kind": "func_type",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "EventHandler defines the event handler function signature.\nThe `event.Data` field is a JSON-deserialized value represented as `any`.\nTo convert `event.Data` into a typed struct, use `JsonStruct(event.Data, \u0026YourStruct{})`.",
+        "doc": "EventHandler 定义事件处理函数签名。\n`event.Data` 字段是经过 JSON 反序列化后的 `any` 值。\n若要将 `event.Data` 转换为强类型结构体，可使用 `JsonStruct(event.Data, \u0026YourStruct{})`。",
         "signature": "type EventHandler func(event Event)",
         "underlying_type": "func(event Event)",
         "source": {
@@ -908,17 +908,17 @@
         "kind": "interface",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ModuleRuntime defines script runtime context capabilities.\nThis interface provides access to windows, system services, cache, variables,\nand the local event bus.",
+        "doc": "ModuleRuntime 定义脚本运行时上下文能力。\n该接口提供对窗口、系统服务、缓存、变量以及本地事件总线的访问。",
         "signature": "type ModuleRuntime interface",
         "source": {
           "file": "script/module_runtime.go",
-          "line": 67,
+          "line": 66,
           "column": 6
         },
         "methods": [
           {
             "name": "BooleanVariable",
-            "doc": "BooleanVariable gets a boolean script variable value.",
+            "doc": "BooleanVariable 获取布尔脚本变量值。",
             "params": [
               {
                 "name": "name",
@@ -947,7 +947,7 @@
           },
           {
             "name": "BrokerInfo",
-            "doc": "BrokerInfo gets the broker information.",
+            "doc": "BrokerInfo 获取代理信息。",
             "params": [],
             "results": [
               {
@@ -965,7 +965,7 @@
           },
           {
             "name": "BrowserWindow",
-            "doc": "BrowserWindow gets a browser window by window ID.",
+            "doc": "BrowserWindow 根据窗口 ID 获取浏览器窗口。",
             "params": [
               {
                 "name": "id",
@@ -999,7 +999,7 @@
           },
           {
             "name": "CurrentModuleId",
-            "doc": "CurrentModuleId gets the module id of the currently executing script.",
+            "doc": "CurrentModuleId 获取当前正在执行脚本的模块 ID。",
             "params": [],
             "results": [
               {
@@ -1016,7 +1016,7 @@
           },
           {
             "name": "FilePathVariable",
-            "doc": "FilePathVariable gets a file path script variable value.",
+            "doc": "FilePathVariable 获取文件路径脚本变量值。",
             "params": [
               {
                 "name": "name",
@@ -1045,7 +1045,7 @@
           },
           {
             "name": "FileSystem",
-            "doc": "FileSystem gets the local filesystem interface.",
+            "doc": "FileSystem 获取本地文件系统接口。",
             "params": [],
             "results": [
               {
@@ -1063,7 +1063,7 @@
           },
           {
             "name": "FloatVariable",
-            "doc": "FloatVariable gets a float script variable value.",
+            "doc": "FloatVariable 获取浮点脚本变量值。",
             "params": [
               {
                 "name": "name",
@@ -1096,7 +1096,7 @@
           },
           {
             "name": "GetCacheData",
-            "doc": "GetCacheData gets data temporarily stored at runtime.",
+            "doc": "GetCacheData 获取运行时临时存储的数据。",
             "params": [
               {
                 "name": "key",
@@ -1125,7 +1125,7 @@
           },
           {
             "name": "GetWriteBackCache",
-            "doc": "GetWriteBackCache gets the write-back cache map for the current script execution.\nThe write-back cache is used to store data that needs to be written back to the script context after execution.",
+            "doc": "GetWriteBackCache 获取当前脚本执行的回写缓存映射。\n回写缓存用于保存执行结束后需要写回脚本上下文的数据。",
             "params": [],
             "results": [
               {
@@ -1142,7 +1142,7 @@
           },
           {
             "name": "HttpClient",
-            "doc": "HttpClient gets the HTTP client interface.",
+            "doc": "HttpClient 获取 HTTP 客户端接口。",
             "params": [],
             "results": [
               {
@@ -1160,7 +1160,7 @@
           },
           {
             "name": "IntegerVariable",
-            "doc": "IntegerVariable gets an integer script variable value.",
+            "doc": "IntegerVariable 获取整数脚本变量值。",
             "params": [
               {
                 "name": "name",
@@ -1193,7 +1193,7 @@
           },
           {
             "name": "InvokeWorker",
-            "doc": "Invoke calls an exposed method from another local IPC worker.\nThe `moduleId` identifies the target worker, which corresponds to the module name of the worker.\nNote: The `moduleId` does not include the version number, as the system determines the version based on the `go.mod` file.\nThe `route` is the name of the exposed method to call.\nThe `dto` (data transfer object) can be either a primitive type or a struct annotated with JSON tags.\nThe return value is the JSON-deserialized result of the method call.\nBecause the method signature uses `any`, callers should perform type assertions based on JSON shapes,\nfor example: `map[string]any` for objects, `[]any` for arrays, or primitive Go types.\nTo map the result into a typed struct, use `JsonStruct(result, \u0026YourStruct{})`.\nIf the invocation fails, an error is returned.",
+            "doc": "Invoke 调用另一个本地 IPC worker 暴露的方法。\n`moduleId` 标识目标 worker，对应该 worker 的模块名。\n注意：`moduleId` 不包含版本号，因为系统会根据 `go.mod` 文件确定版本。\n`route` 是要调用的暴露方法名。\n`dto`（数据传输对象）可以是原始类型，也可以是带 JSON 标签的结构体。\n返回值是方法调用后的 JSON 反序列化结果。\n因为方法签名使用 `any`，调用方应根据 JSON 结构做类型断言，\n例如：对象使用 `map[string]any`，数组使用 `[]any`，原生类型使用 Go 基础类型。\n若要将结果映射为强类型结构体，可使用 `JsonStruct(result, \u0026YourStruct{})`。\n如果调用失败，将返回错误。",
             "params": [
               {
                 "name": "workerId",
@@ -1234,7 +1234,7 @@
           },
           {
             "name": "JsonVariable",
-            "doc": "JsonVariable gets a JSON script variable value.",
+            "doc": "JsonVariable 获取 JSON 脚本变量值。",
             "params": [
               {
                 "name": "name",
@@ -1267,7 +1267,7 @@
           },
           {
             "name": "Logger",
-            "doc": "Logger gets the script logger.",
+            "doc": "Logger 获取脚本日志记录器。",
             "params": [],
             "results": [
               {
@@ -1285,7 +1285,7 @@
           },
           {
             "name": "MainModuleId",
-            "doc": "MainModuleId gets the module id of the entry point.",
+            "doc": "MainModuleId 获取入口脚本的模块 ID。",
             "params": [],
             "results": [
               {
@@ -1302,7 +1302,7 @@
           },
           {
             "name": "MobileWindow",
-            "doc": "MobileWindow gets a mobile window by window ID.",
+            "doc": "MobileWindow 根据窗口 ID 获取移动端窗口。",
             "params": [
               {
                 "name": "id",
@@ -1336,7 +1336,7 @@
           },
           {
             "name": "OsGuiWindow",
-            "doc": "OsGuiWindow gets an OS GUI window by window ID.",
+            "doc": "OsGuiWindow 根据窗口 ID 获取 OS GUI 窗口。",
             "params": [
               {
                 "name": "id",
@@ -1370,7 +1370,7 @@
           },
           {
             "name": "Publish",
-            "doc": "Publish publishes an event to the local event bus.\nThe topic is the name of the event topic to publish, and the data is the event payload.\nThe `data` must be a JSON-serializable value or object.\nIt returns an error if the publication fails.",
+            "doc": "Publish 向本地事件总线发布事件。\n`topic` 是要发布的事件主题名，`data` 是事件载荷。\n`data` 必须是可 JSON 序列化的值或对象。\n如果发布失败，则返回错误。",
             "params": [
               {
                 "name": "topic",
@@ -1404,7 +1404,7 @@
           },
           {
             "name": "SetCacheData",
-            "doc": "SetCacheData temporarily stores data at runtime.",
+            "doc": "SetCacheData 在运行时临时存储数据。",
             "params": [
               {
                 "name": "key",
@@ -1426,7 +1426,7 @@
           },
           {
             "name": "Storage",
-            "doc": "Storage gets the project local storage interface.",
+            "doc": "Storage 获取项目本地存储接口。",
             "params": [],
             "results": [
               {
@@ -1444,7 +1444,7 @@
           },
           {
             "name": "StringVariable",
-            "doc": "StringVariable gets a string script variable value.",
+            "doc": "StringVariable 获取字符串脚本变量值。",
             "params": [
               {
                 "name": "name",
@@ -1473,7 +1473,7 @@
           },
           {
             "name": "Subscribe",
-            "doc": "Subscribe subscribes to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe `moduleId` identifies the target worker/yscript to subscribe to, and the topic is the name of the event topic to subscribe to.\nThe handler is the function that will be called when the event is published.\nThe `event.Data` received by the `handler` is JSON-deserialized and exposed as `any`,\nso callers should perform type assertions based on expected payload shapes.\nTo map `event.Data` into a typed struct, callers can use `JsonStruct(event.Data, \u0026YourStruct{})`.\nIt returns a Subscriber object representing the subscription or an error if the subscription fails.",
+            "doc": "Subscribe 订阅来自另一个本地 IPC worker/yscript 或当前 worker/yscript 暴露的事件。\n`moduleId` 标识目标 worker/yscript，`topic` 是要订阅的事件主题名。\n`handler` 是事件发布时调用的函数。\n`handler` 接收到的 `event.Data` 是 JSON 反序列化后的 `any`，\n因此调用方应根据预期载荷结构进行类型断言。\n若要将 `event.Data` 映射为强类型结构体，可使用 `JsonStruct(event.Data, \u0026YourStruct{})`。\n它返回一个表示订阅的 Subscriber 对象，若订阅失败则返回错误。",
             "params": [
               {
                 "name": "moduleId",
@@ -1522,7 +1522,7 @@
           },
           {
             "name": "Unsubscribe",
-            "doc": "Unsubscribe cancels a subscription to an exposed event from another local IPC worker/yscript or the current worker/yscript.\nThe `subscriber` is the Subscriber object representing the subscription to cancel.",
+            "doc": "Unsubscribe 取消对另一个本地 IPC worker/yscript 或当前 worker/yscript 暴露事件的订阅。\n`subscriber` 是要取消订阅的 Subscriber 对象。",
             "params": [
               {
                 "name": "subscriber",
@@ -1550,7 +1550,7 @@
           },
           {
             "name": "VisionWorker",
-            "doc": "VisionWorker gets the vision capability worker interface.",
+            "doc": "VisionWorker 获取视觉能力 worker 接口。",
             "params": [],
             "results": [
               {
@@ -2088,7 +2088,7 @@
         "kind": "interface",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "Subscriber defines event subscriber information.\nIt is used to identify subscription source, topic, and status.",
+        "doc": "Subscriber 定义事件订阅者信息。\n用于标识订阅来源、主题和状态。",
         "signature": "type Subscriber interface",
         "source": {
           "file": "script/module_runtime.go",
@@ -2098,7 +2098,7 @@
         "methods": [
           {
             "name": "GetModuleId",
-            "doc": "GetModuleId gets the module id that owns the topic.",
+            "doc": "GetModuleId 获取拥有该主题的模块 ID。",
             "params": [],
             "results": [
               {
@@ -2115,7 +2115,7 @@
           },
           {
             "name": "GetTopic",
-            "doc": "GetTopic gets the subscribed event topic.",
+            "doc": "GetTopic 获取已订阅的事件主题。",
             "params": [],
             "results": [
               {
@@ -2132,7 +2132,7 @@
           },
           {
             "name": "IsActive",
-            "doc": "IsActive indicates whether the subscription is still active.",
+            "doc": "IsActive 表示订阅是否仍然处于激活状态。",
             "params": [],
             "results": [
               {
@@ -2272,7 +2272,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableBoolean boolean type.",
+        "doc": "VariableBoolean 布尔类型。",
         "signature": "const VariableBoolean VariableDataType = \"boolean\"",
         "source": {
           "file": "script/constants.go",
@@ -2297,7 +2297,7 @@
         "kind": "named_type",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableDataType defines data types for script variables.",
+        "doc": "VariableDataType 定义脚本变量的数据类型。",
         "signature": "type VariableDataType string",
         "underlying_type": "string",
         "source": {
@@ -2334,7 +2334,7 @@
           },
           {
             "name": "ToString",
-            "doc": "ToString converts any value into the string representation of the corresponding type.\nIf conversion fails, it returns fmt.Sprintf(\"%v\", value).",
+            "doc": "ToString 将任意值转换为对应类型的字符串表示。\n如果转换失败，则返回 fmt.Sprintf(\"%v\", value)。",
             "params": [
               {
                 "name": "value",
@@ -2377,7 +2377,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableFilePath file path type.",
+        "doc": "VariableFilePath 文件路径类型。",
         "signature": "const VariableFilePath VariableDataType = \"filepath\"",
         "source": {
           "file": "script/constants.go",
@@ -2402,7 +2402,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableInteger integer type.",
+        "doc": "VariableInteger 整数类型。",
         "signature": "const VariableInteger VariableDataType = \"integer\"",
         "source": {
           "file": "script/constants.go",
@@ -2427,7 +2427,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableJson JSON object type.",
+        "doc": "VariableJson JSON 对象类型。",
         "signature": "const VariableJson VariableDataType = \"json\"",
         "source": {
           "file": "script/constants.go",
@@ -2452,7 +2452,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableNumber floating-point float type.",
+        "doc": "VariableNumber 浮点数类型。",
         "signature": "const VariableNumber VariableDataType = \"float\"",
         "source": {
           "file": "script/constants.go",
@@ -2477,7 +2477,7 @@
         "kind": "const",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "VariableString string type.",
+        "doc": "VariableString 字符串类型。",
         "signature": "const VariableString VariableDataType = \"string\"",
         "source": {
           "file": "script/constants.go",
