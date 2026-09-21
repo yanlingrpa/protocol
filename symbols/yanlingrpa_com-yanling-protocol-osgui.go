@@ -195,8 +195,8 @@ type _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator struct {
 	WGetLocatorCursorPos func() *basic.Point
 	WGetScreenRect       func() basic.Rect
 	WGetSize             func() basic.Size
+	WGetWindow           func() osgui.OSGuiWindow
 	WGetWindowRect       func() basic.Rect
-	WGuiWindow           func() osgui.OSGuiWindow
 	WImageLocator        func(image string, sim float32) ([]osgui.OSGuiLocator, error)
 	WIsEditing           func() bool
 	WMouseDown           func(right bool) error
@@ -266,11 +266,11 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetScreenRect() bas
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetSize() basic.Size {
 	return W.WGetSize()
 }
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetWindow() osgui.OSGuiWindow {
+	return W.WGetWindow()
+}
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetWindowRect() basic.Rect {
 	return W.WGetWindowRect()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GuiWindow() osgui.OSGuiWindow {
-	return W.WGuiWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ImageLocator(image string, sim float32) ([]osgui.OSGuiLocator, error) {
 	return W.WImageLocator(image, sim)

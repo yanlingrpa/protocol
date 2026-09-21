@@ -34,7 +34,6 @@ func init() {
 type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 	IValue            interface{}
 	WBlur             func() error
-	WBrowserWindow    func() browser.BrowserWindow
 	WClick            func() error
 	WContainsElement  func(target browser.BrowserElement) (bool, error)
 	WDisabled         func() (bool, error)
@@ -44,6 +43,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 	WFramePage        func() (browser.BrowserFramePage, error)
 	WGetAttribute     func(name string) (string, error)
 	WGetProperty      func(name string) (any, error)
+	WGetWindow        func() browser.BrowserWindow
 	WGetXPath         func(optimized bool) (string, error)
 	WHover            func() error
 	WHtml             func() (string, error)
@@ -84,9 +84,6 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Blur() error {
 	return W.WBlur()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) BrowserWindow() browser.BrowserWindow {
-	return W.WBrowserWindow()
-}
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Click() error {
 	return W.WClick()
 }
@@ -113,6 +110,9 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) GetAttribute(na
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) GetProperty(name string) (any, error) {
 	return W.WGetProperty(name)
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) GetWindow() browser.BrowserWindow {
+	return W.WGetWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) GetXPath(optimized bool) (string, error) {
 	return W.WGetXPath(optimized)
@@ -223,12 +223,12 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) WaitXPathAll(xp
 // _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage is an interface wrapper for BrowserFramePage type
 type _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage struct {
 	IValue            interface{}
-	WBrowserWindow    func() browser.BrowserWindow
 	WEvaluate         func(jsCode string, arg ...any) (any, error)
 	WGetDomain        func() string
 	WGetID            func() string
 	WGetTitle         func() string
 	WGetURL           func() *url.URL
+	WGetWindow        func() browser.BrowserWindow
 	WIsFrame          func() bool
 	WQuerySelector    func(selector string) (browser.BrowserElement, error)
 	WQuerySelectorAll func(selector string) ([]browser.BrowserElement, error)
@@ -241,9 +241,6 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage struct {
 	WWaitXPathAll     func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
 }
 
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) BrowserWindow() browser.BrowserWindow {
-	return W.WBrowserWindow()
-}
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) Evaluate(jsCode string, arg ...any) (any, error) {
 	return W.WEvaluate(jsCode, arg...)
 }
@@ -258,6 +255,9 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetTitle() st
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetURL() *url.URL {
 	return W.WGetURL()
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetWindow() browser.BrowserWindow {
+	return W.WGetWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) IsFrame() bool {
 	return W.WIsFrame()
@@ -294,7 +294,6 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) WaitXPathAll(
 type _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage struct {
 	IValue                interface{}
 	WActivate             func() error
-	WBrowserWindow        func() browser.BrowserWindow
 	WClearAllIndexDBFiles func() error
 	WClearCookies         func() error
 	WClearLocalStorage    func() error
@@ -304,6 +303,7 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage struct {
 	WGetID                func() string
 	WGetTitle             func() string
 	WGetURL               func() *url.URL
+	WGetWindow            func() browser.BrowserWindow
 	WIsFrame              func() bool
 	WLoadCookies          func() error
 	WLoadLocalStorage     func() error
@@ -323,9 +323,6 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage struct {
 
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) Activate() error {
 	return W.WActivate()
-}
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) BrowserWindow() browser.BrowserWindow {
-	return W.WBrowserWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) ClearAllIndexDBFiles() error {
 	return W.WClearAllIndexDBFiles()
@@ -353,6 +350,9 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetTitle() stri
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetURL() *url.URL {
 	return W.WGetURL()
+}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetWindow() browser.BrowserWindow {
+	return W.WGetWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) IsFrame() bool {
 	return W.WIsFrame()

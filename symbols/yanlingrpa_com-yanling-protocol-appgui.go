@@ -128,7 +128,6 @@ func init() {
 // _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator is an interface wrapper for AppGuiLocator type
 type _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator struct {
 	IValue               interface{}
-	WAppWindow           func() appgui.AppGuiWindow
 	WCanScrollHorizontal func() bool
 	WCanScrollVertical   func() bool
 	WCardLocator         func(min_size *basic.Size, max_size *basic.Size) ([]appgui.AppGuiLocator, error)
@@ -139,6 +138,7 @@ type _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator struct {
 	WGetLocatorTouchPos  func() *basic.Point
 	WGetScreenRect       func() basic.Rect
 	WGetSize             func() basic.Size
+	WGetWindow           func() appgui.AppGuiWindow
 	WGetWindowRect       func() basic.Rect
 	WImageLocator        func(image string, sim float32) ([]appgui.AppGuiLocator, error)
 	WIsEditing           func() bool
@@ -173,9 +173,6 @@ type _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator struct {
 	WWriteText           func(text string) error
 }
 
-func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) AppWindow() appgui.AppGuiWindow {
-	return W.WAppWindow()
-}
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) CanScrollHorizontal() bool {
 	return W.WCanScrollHorizontal()
 }
@@ -205,6 +202,9 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GetScreenRect() b
 }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GetSize() basic.Size {
 	return W.WGetSize()
+}
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GetWindow() appgui.AppGuiWindow {
+	return W.WGetWindow()
 }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GetWindowRect() basic.Rect {
 	return W.WGetWindowRect()

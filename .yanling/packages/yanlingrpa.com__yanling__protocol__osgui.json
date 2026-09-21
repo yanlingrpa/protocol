@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:09:26Z",
+  "generated_at": "2026-09-21T07:11:30Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "osgui",
@@ -3657,7 +3657,7 @@
             ]
           },
           {
-            "name": "GuiWindow",
+            "name": "GetWindow",
             "doc": "获取当前定位器所属的窗口。",
             "params": [],
             "results": [
@@ -3665,7 +3665,7 @@
                 "type": "OSGuiWindow"
               }
             ],
-            "signature": "GuiWindow() OSGuiWindow",
+            "signature": "GetWindow() OSGuiWindow",
             "type_refs": [
               {
                 "expr": "OSGuiWindow",

@@ -54,7 +54,7 @@ type BrowserElement interface {
 	/*
 	* 获取当前元素所属的浏览器窗口。
 	 */
-	BrowserWindow() BrowserWindow
+	GetWindow() BrowserWindow
 	/*
 	* 让当前元素获取输入焦点，通常用于输入框和按钮等可交互元素。
 	 */

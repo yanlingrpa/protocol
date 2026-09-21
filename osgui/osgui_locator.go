@@ -16,7 +16,7 @@ type OSGuiLocator interface {
 	/*
 	* 获取当前定位器所属的窗口。
 	 */
-	GuiWindow() OSGuiWindow
+	GetWindow() OSGuiWindow
 
 	/*
 	* 获取当前定位器的子定位器，并裁剪到与当前边界的交集范围内。

@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:09:26Z",
+  "generated_at": "2026-09-21T07:11:30Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "browser",
@@ -80,25 +80,6 @@
               {
                 "expr": "error",
                 "builtin": true
-              }
-            ]
-          },
-          {
-            "name": "BrowserWindow",
-            "doc": "获取当前元素所属的浏览器窗口。",
-            "params": [],
-            "results": [
-              {
-                "type": "BrowserWindow"
-              }
-            ],
-            "signature": "BrowserWindow() BrowserWindow",
-            "type_refs": [
-              {
-                "expr": "BrowserWindow",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
-                "local": true
               }
             ]
           },
@@ -334,6 +315,25 @@
               {
                 "expr": "string",
                 "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetWindow",
+            "doc": "获取当前元素所属的浏览器窗口。",
+            "params": [],
+            "results": [
+              {
+                "type": "BrowserWindow"
+              }
+            ],
+            "signature": "GetWindow() BrowserWindow",
+            "type_refs": [
+              {
+                "expr": "BrowserWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+                "local": true
               }
             ]
           },
@@ -1060,25 +1060,6 @@
         },
         "methods": [
           {
-            "name": "BrowserWindow",
-            "doc": "获取当前页面所属的浏览器窗口。",
-            "params": [],
-            "results": [
-              {
-                "type": "BrowserWindow"
-              }
-            ],
-            "signature": "BrowserWindow() BrowserWindow",
-            "type_refs": [
-              {
-                "expr": "BrowserWindow",
-                "import_path": "yanlingrpa.com/yanling/protocol/browser",
-                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
-                "local": true
-              }
-            ]
-          },
-          {
             "name": "Evaluate",
             "doc": "在当前页面上下文中执行 JavaScript 代码。",
             "params": [
@@ -1181,6 +1162,25 @@
                 "expr": "url.URL",
                 "import_path": "net/url",
                 "qualified_name": "net/url.URL"
+              }
+            ]
+          },
+          {
+            "name": "GetWindow",
+            "doc": "获取当前页面所属的浏览器窗口。",
+            "params": [],
+            "results": [
+              {
+                "type": "BrowserWindow"
+              }
+            ],
+            "signature": "GetWindow() BrowserWindow",
+            "type_refs": [
+              {
+                "expr": "BrowserWindow",
+                "import_path": "yanlingrpa.com/yanling/protocol/browser",
+                "qualified_name": "yanlingrpa.com/yanling/protocol/browser.BrowserWindow",
+                "local": true
               }
             ]
           },

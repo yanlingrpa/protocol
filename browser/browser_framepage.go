@@ -14,7 +14,7 @@ type BrowserFramePage interface {
 	/*
 	* 获取当前页面所属的浏览器窗口。
 	 */
-	BrowserWindow() BrowserWindow
+	GetWindow() BrowserWindow
 
 	/*
 	* 判断当前页面是否为 iframe 或 frame。

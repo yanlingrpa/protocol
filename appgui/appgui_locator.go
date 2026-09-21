@@ -17,7 +17,7 @@ type AppGuiLocator interface {
 	/*
 	* 获取当前定位器所属的App映射窗口。
 	 */
-	AppWindow() AppGuiWindow
+	GetWindow() AppGuiWindow
 
 	/*
 	* 获取当前定位器的子定位器，并裁剪到当前边界的交集范围内。
