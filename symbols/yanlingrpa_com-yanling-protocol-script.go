@@ -56,18 +56,20 @@ type _yanlingrpa_com_yanling_protocol_script_ModuleRuntime struct {
 	WBooleanVariable   func(name string) (bool, bool)
 	WBrokerInfo        func() ossys.BrokerInfo
 	WBrowserWindow     func(id string) (browser.BrowserWindow, bool)
-	WCurrentModuleId   func() string
 	WFilePathVariable  func(name string) (string, bool)
 	WFileSystem        func() ossys.LocalFilesystem
 	WFloatVariable     func(name string) (float64, bool)
 	WGetCacheData      func(key string) (string, bool)
+	WGetModuleId       func() string
+	WGetModuleVersion  func() string
+	WGetProjectId      func() string
+	WGetProjectVersion func() string
 	WGetWriteBackCache func() map[string]string
 	WHttpClient        func() ossys.HttpClient
 	WIntegerVariable   func(name string) (int, bool)
 	WInvokeWorker      func(workerId string, route string, dto any) (any, error)
 	WJsonVariable      func(name string) (map[string]any, bool)
 	WLogger            func() ossys.ScriptLogger
-	WMainModuleId      func() string
 	WMobileWindow      func(id string) (appgui.AppGuiWindow, bool)
 	WOsGuiWindow       func(id string) (osgui.OSGuiWindow, bool)
 	WPublish           func(topic string, data any) error
@@ -88,9 +90,6 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrokerInfo() ossy
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) BrowserWindow(id string) (browser.BrowserWindow, bool) {
 	return W.WBrowserWindow(id)
 }
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) CurrentModuleId() string {
-	return W.WCurrentModuleId()
-}
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FilePathVariable(name string) (string, bool) {
 	return W.WFilePathVariable(name)
 }
@@ -102,6 +101,18 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) FloatVariable(nam
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetCacheData(key string) (string, bool) {
 	return W.WGetCacheData(key)
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetModuleId() string {
+	return W.WGetModuleId()
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetModuleVersion() string {
+	return W.WGetModuleVersion()
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetProjectId() string {
+	return W.WGetProjectId()
+}
+func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetProjectVersion() string {
+	return W.WGetProjectVersion()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) GetWriteBackCache() map[string]string {
 	return W.WGetWriteBackCache()
@@ -120,9 +131,6 @@ func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) JsonVariable(name
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) Logger() ossys.ScriptLogger {
 	return W.WLogger()
-}
-func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MainModuleId() string {
-	return W.WMainModuleId()
 }
 func (W _yanlingrpa_com_yanling_protocol_script_ModuleRuntime) MobileWindow(id string) (appgui.AppGuiWindow, bool) {
 	return W.WMobileWindow(id)
@@ -163,9 +171,5 @@ type _yanlingrpa_com_yanling_protocol_script_Subscriber struct {
 func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetModuleId() string {
 	return W.WGetModuleId()
 }
-func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetTopic() string {
-	return W.WGetTopic()
-}
-func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) IsActive() bool {
-	return W.WIsActive()
-}
+func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) GetTopic() string { return W.WGetTopic() }
+func (W _yanlingrpa_com_yanling_protocol_script_Subscriber) IsActive() bool   { return W.WIsActive() }

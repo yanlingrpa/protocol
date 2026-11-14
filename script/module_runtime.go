@@ -65,13 +65,21 @@ type EventHandler func(event Event)
  */
 type ModuleRuntime interface {
 	/*
-	* MainModuleId 获取入口脚本的模块 ID。
+	* GetProjectId 当前模组所属项目的 ID
 	 */
-	MainModuleId() string
+	GetProjectId() string
 	/*
-	* CurrentModuleId 获取当前正在执行脚本的模块 ID。
+	* GetProjectVersion 当前模组所属项目的版本。
 	 */
-	CurrentModuleId() string
+	GetProjectVersion() string
+	/*
+	* GetModuleId 获取当前正在执行脚本的模块 ID。
+	 */
+	GetModuleId() string
+	/*
+	* GetModuleVersion 获取当前正在执行脚本的模块版本。
+	 */
+	GetModuleVersion() string
 	/*
 	* OsGuiWindow 根据窗口 ID 获取 OS GUI 窗口。
 	 */

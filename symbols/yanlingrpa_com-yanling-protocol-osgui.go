@@ -236,9 +236,7 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) CanScrollVertical()
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) CardLocator(min_size *basic.Size, max_size *basic.Size) ([]osgui.OSGuiLocator, error) {
 	return W.WCardLocator(min_size, max_size)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ClearText() error {
-	return W.WClearText()
-}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ClearText() error { return W.WClearText() }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) Click(locator_point *basic.Point) error {
 	return W.WClick(locator_point)
 }
@@ -248,9 +246,7 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) DoubleClick(locator
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) DragTo(from_locator_point *basic.Point, to_locator_point *basic.Point) error {
 	return W.WDragTo(from_locator_point, to_locator_point)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) Focus() error {
-	return W.WFocus()
-}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) Focus() error { return W.WFocus() }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetBodyRect() basic.Rect {
 	return W.WGetBodyRect()
 }
@@ -275,9 +271,7 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) GetWindowRect() bas
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) ImageLocator(image string, sim float32) ([]osgui.OSGuiLocator, error) {
 	return W.WImageLocator(image, sim)
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) IsEditing() bool {
-	return W.WIsEditing()
-}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) IsEditing() bool { return W.WIsEditing() }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiLocator) MouseDown(right bool) error {
 	return W.WMouseDown(right)
 }
@@ -394,21 +388,15 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Activate() (bool, er
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) BodyLocator() (osgui.OSGuiLocator, error) {
 	return W.WBodyLocator()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Close() error {
-	return W.WClose()
-}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Close() error { return W.WClose() }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) DeActivate() (bool, error) {
 	return W.WDeActivate()
 }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetClientRect() basic.Rect {
 	return W.WGetClientRect()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetHwnd() uintptr {
-	return W.WGetHwnd()
-}
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetID() string {
-	return W.WGetID()
-}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetHwnd() uintptr { return W.WGetHwnd() }
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetID() string    { return W.WGetID() }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) GetInitiatorPath() string {
 	return W.WGetInitiatorPath()
 }
@@ -454,9 +442,7 @@ func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Snapshot(gray bool) 
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) Storage() ossys.LocalStorage {
 	return W.WStorage()
 }
-func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) ToMap() map[string]any {
-	return W.WToMap()
-}
+func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) ToMap() map[string]any { return W.WToMap() }
 func (W _yanlingrpa_com_yanling_protocol_osgui_OSGuiWindow) TransFromScreen(screen_pos *basic.Point) *basic.Point {
 	return W.WTransFromScreen(screen_pos)
 }

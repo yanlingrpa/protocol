@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:11:30Z",
+  "generated_at": "2026-11-14T07:52:28Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -100,7 +100,7 @@
       "interfaces": 2,
       "structs": 10,
       "functions": 2,
-      "methods": 50,
+      "methods": 52,
       "named_types": 1,
       "func_types": 1,
       "consts": 8
@@ -998,23 +998,6 @@
             ]
           },
           {
-            "name": "CurrentModuleId",
-            "doc": "CurrentModuleId 获取当前正在执行脚本的模块 ID。",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "CurrentModuleId() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
-              }
-            ]
-          },
-          {
             "name": "FilePathVariable",
             "doc": "FilePathVariable 获取文件路径脚本变量值。",
             "params": [
@@ -1117,6 +1100,74 @@
                 "expr": "bool",
                 "builtin": true
               },
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetModuleId",
+            "doc": "GetModuleId 获取当前正在执行脚本的模块 ID。",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetModuleId() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetModuleVersion",
+            "doc": "GetModuleVersion 获取当前正在执行脚本的模块版本。",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetModuleVersion() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetProjectId",
+            "doc": "GetProjectId 当前模组所属项目的 ID",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetProjectId() string",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "GetProjectVersion",
+            "doc": "GetProjectVersion 当前模组所属项目的版本。",
+            "params": [],
+            "results": [
+              {
+                "type": "string"
+              }
+            ],
+            "signature": "GetProjectVersion() string",
+            "type_refs": [
               {
                 "expr": "string",
                 "builtin": true
@@ -1280,23 +1331,6 @@
                 "expr": "ossys.ScriptLogger",
                 "import_path": "yanlingrpa.com/yanling/protocol/ossys",
                 "qualified_name": "yanlingrpa.com/yanling/protocol/ossys.ScriptLogger"
-              }
-            ]
-          },
-          {
-            "name": "MainModuleId",
-            "doc": "MainModuleId 获取入口脚本的模块 ID。",
-            "params": [],
-            "results": [
-              {
-                "type": "string"
-              }
-            ],
-            "signature": "MainModuleId() string",
-            "type_refs": [
-              {
-                "expr": "string",
-                "builtin": true
               }
             ]
           },

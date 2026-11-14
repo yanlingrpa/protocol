@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/module.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:11:30Z",
+  "generated_at": "2026-11-14T07:52:28Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -9,7 +9,7 @@
     "interfaces": 18,
     "structs": 19,
     "functions": 7,
-    "methods": 265,
+    "methods": 267,
     "named_types": 3,
     "func_types": 1,
     "consts": 262
@@ -125,7 +125,7 @@
         "interfaces": 2,
         "structs": 10,
         "functions": 2,
-        "methods": 50,
+        "methods": 52,
         "named_types": 1,
         "func_types": 1,
         "consts": 8

@@ -188,9 +188,7 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) ClearText() error
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) DoubleTap(locator_point *basic.Point) error {
 	return W.WDoubleTap(locator_point)
 }
-func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) Focus() error {
-	return W.WFocus()
-}
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) Focus() error { return W.WFocus() }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) GetBodyRect() basic.Rect {
 	return W.WGetBodyRect()
 }
@@ -260,9 +258,7 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) TouchDown() error
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) TouchMove(locator_point *basic.Point) error {
 	return W.WTouchMove(locator_point)
 }
-func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) TouchUp() error {
-	return W.WTouchUp()
-}
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) TouchUp() error { return W.WTouchUp() }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiLocator) TransFromBody(body_pos *basic.Point) *basic.Point {
 	return W.WTransFromBody(body_pos)
 }
@@ -335,9 +331,7 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) Activate() (bool, 
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) BodyLocator() (appgui.AppGuiLocator, error) {
 	return W.WBodyLocator()
 }
-func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) Close() error {
-	return W.WClose()
-}
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) Close() error { return W.WClose() }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) DeActivate() (bool, error) {
 	return W.WDeActivate()
 }
@@ -350,9 +344,7 @@ func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetAppPackage() st
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetClientRect() basic.Rect {
 	return W.WGetClientRect()
 }
-func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetID() string {
-	return W.WGetID()
-}
+func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetID() string { return W.WGetID() }
 func (W _yanlingrpa_com_yanling_protocol_appgui_AppGuiWindow) GetScreenRect() basic.Rect {
 	return W.WGetScreenRect()
 }

@@ -81,12 +81,8 @@ type _yanlingrpa_com_yanling_protocol_browser_BrowserElement struct {
 	WWaitXPathAll     func(xpath string, timeout time.Duration) ([]browser.BrowserElement, error)
 }
 
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Blur() error {
-	return W.WBlur()
-}
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Click() error {
-	return W.WClick()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Blur() error  { return W.WBlur() }
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Click() error { return W.WClick() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) ContainsElement(target browser.BrowserElement) (bool, error) {
 	return W.WContainsElement(target)
 }
@@ -99,9 +95,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) DoubleClick() e
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Evaluate(jsCode string, arg ...any) (any, error) {
 	return W.WEvaluate(jsCode, arg...)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Focus() error {
-	return W.WFocus()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Focus() error { return W.WFocus() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) FramePage() (browser.BrowserFramePage, error) {
 	return W.WFramePage()
 }
@@ -117,9 +111,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) GetWindow() bro
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) GetXPath(optimized bool) (string, error) {
 	return W.WGetXPath(optimized)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Hover() error {
-	return W.WHover()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Hover() error { return W.WHover() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Html() (string, error) {
 	return W.WHtml()
 }
@@ -177,9 +169,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) SetFiles(filePa
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) SetProperty(name string, value any) error {
 	return W.WSetProperty(name, value)
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Tap() error {
-	return W.WTap()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Tap() error { return W.WTap() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserElement) Text() (string, error) {
 	return W.WText()
 }
@@ -247,9 +237,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) Evaluate(jsCo
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetDomain() string {
 	return W.WGetDomain()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetID() string {
-	return W.WGetID()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetID() string { return W.WGetID() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserFramePage) GetTitle() string {
 	return W.WGetTitle()
 }
@@ -333,18 +321,14 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) ClearCookies() 
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) ClearLocalStorage() error {
 	return W.WClearLocalStorage()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) Destroy() error {
-	return W.WDestroy()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) Destroy() error { return W.WDestroy() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) Evaluate(jsCode string, arg ...any) (any, error) {
 	return W.WEvaluate(jsCode, arg...)
 }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetDomain() string {
 	return W.WGetDomain()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetID() string {
-	return W.WGetID()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetID() string { return W.WGetID() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetTitle() string {
 	return W.WGetTitle()
 }
@@ -354,9 +338,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetURL() *url.U
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) GetWindow() browser.BrowserWindow {
 	return W.WGetWindow()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) IsFrame() bool {
-	return W.WIsFrame()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) IsFrame() bool { return W.WIsFrame() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserTabPage) LoadCookies() error {
 	return W.WLoadCookies()
 }
@@ -442,9 +424,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Activate() (bool
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) BodyLocator() (osgui.OSGuiLocator, error) {
 	return W.WBodyLocator()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Close() error {
-	return W.WClose()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) Close() error { return W.WClose() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) CurrentPage() browser.BrowserTabPage {
 	return W.WCurrentPage()
 }
@@ -460,9 +440,7 @@ func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetClientRect() 
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetHwnd() uintptr {
 	return W.WGetHwnd()
 }
-func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetID() string {
-	return W.WGetID()
-}
+func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetID() string { return W.WGetID() }
 func (W _yanlingrpa_com_yanling_protocol_browser_BrowserWindow) GetInitiatorPath() string {
 	return W.WGetInitiatorPath()
 }

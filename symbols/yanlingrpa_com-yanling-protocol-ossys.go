@@ -48,9 +48,7 @@ type _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo struct {
 	WOSVersion         func() string
 }
 
-func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) DeviceId() string {
-	return W.WDeviceId()
-}
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) DeviceId() string { return W.WDeviceId() }
 func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) DeviceName() string {
 	return W.WDeviceName()
 }
@@ -72,15 +70,9 @@ func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) GetUserName() string 
 func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) HasNvidiaGPU() bool {
 	return W.WHasNvidiaGPU()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) NumLogicCPU() int {
-	return W.WNumLogicCPU()
-}
-func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) OS() string {
-	return W.WOS()
-}
-func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) OSVersion() string {
-	return W.WOSVersion()
-}
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) NumLogicCPU() int  { return W.WNumLogicCPU() }
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) OS() string        { return W.WOS() }
+func (W _yanlingrpa_com_yanling_protocol_ossys_BrokerInfo) OSVersion() string { return W.WOSVersion() }
 
 // _yanlingrpa_com_yanling_protocol_ossys_HttpClient is an interface wrapper for HttpClient type
 type _yanlingrpa_com_yanling_protocol_ossys_HttpClient struct {
@@ -241,9 +233,7 @@ func (W _yanlingrpa_com_yanling_protocol_ossys_LocalStorage) Del(keys ...string)
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalStorage) Get(key string) string {
 	return W.WGet(key)
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_LocalStorage) Keys() []string {
-	return W.WKeys()
-}
+func (W _yanlingrpa_com_yanling_protocol_ossys_LocalStorage) Keys() []string { return W.WKeys() }
 func (W _yanlingrpa_com_yanling_protocol_ossys_LocalStorage) MGet(keys ...string) map[string]string {
 	return W.WMGet(keys...)
 }
@@ -272,15 +262,11 @@ type _yanlingrpa_com_yanling_protocol_ossys_MonitorInfo struct {
 func (W _yanlingrpa_com_yanling_protocol_ossys_MonitorInfo) GetBounds() basic.Rect {
 	return W.WGetBounds()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_MonitorInfo) GetDPI() uint32 {
-	return W.WGetDPI()
-}
+func (W _yanlingrpa_com_yanling_protocol_ossys_MonitorInfo) GetDPI() uint32 { return W.WGetDPI() }
 func (W _yanlingrpa_com_yanling_protocol_ossys_MonitorInfo) GetWorkArea() basic.Rect {
 	return W.WGetWorkArea()
 }
-func (W _yanlingrpa_com_yanling_protocol_ossys_MonitorInfo) IsPrimary() bool {
-	return W.WIsPrimary()
-}
+func (W _yanlingrpa_com_yanling_protocol_ossys_MonitorInfo) IsPrimary() bool { return W.WIsPrimary() }
 
 // _yanlingrpa_com_yanling_protocol_ossys_ScriptLogger is an interface wrapper for ScriptLogger type
 type _yanlingrpa_com_yanling_protocol_ossys_ScriptLogger struct {

@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/index.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-09-21T07:11:30Z",
+  "generated_at": "2026-11-14T07:52:28Z",
   "module": {
     "name": "yanlingrpa.com/yanling/protocol",
     "version": "${module_version}",
