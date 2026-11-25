@@ -8,7 +8,7 @@ import (
 )
 
 /*
-* ModuleInfo defines script module metadata.
+* ModuleInfo 定义脚本模组元数据。
  */
 type ModuleInfo struct {
 	/*
@@ -107,59 +107,63 @@ func (info *ModuleInfo) FromMap(data map[string]any) {
 }
 
 /*
-* GuiApplication defines GUI application configuration.
+* GuiApplication 定义图形界面应用配置。
  */
 type GuiApplication struct {
 	/*
-	* Id is the unique identifier of the GUI application.
+	* Id 是图形界面应用的唯一标识。
 	 */
 	Id string `json:"id"`
 	/*
-	* Name is the GUI application name.
+	* Name 是图形界面应用的名称。
 	 */
 	Name string `json:"name"`
 	/*
-	* Launcher is the launcher command or executable path, for example C:\Program Files\App\app.exe or /usr/bin/app.
+	* Requirements 是图形界面应用启动后需要满足的条件，例如已登录。
+	 */
+	Requirements string `json:"requirements,omitempty"`
+	/*
+	* Launcher 是启动命令或可执行文件路径，例如 C:\Program Files\App\app.exe 或 /usr/bin/app。
 	 */
 	Launcher string `json:"launcher"`
 	/*
-	* Args is the command-line arguments passed to the launcher, for example ["--headless", "--no-sandbox"].
+	* Args 是传递给启动器的命令行参数，例如 ["--headless", "--no-sandbox"]。
 	 */
 	Args []string `json:"args,omitempty"`
 	/*
-	* WorkDir is the working directory for the launched application.
-	* If empty, defaults to the directory of the launcher executable.
+	* WorkDir 是应用启动后的工作目录。
+	* 为空时，默认为启动器可执行文件所在目录。
 	 */
 	WorkDir string `json:"work_dir,omitempty"`
 	/*
-	* Env is a list of environment variables in the format KEY=VALUE, for example ["PATH=/usr/bin", "DEBUG=1"].
+	* Env 是环境变量列表，格式为 KEY=VALUE，例如 ["PATH=/usr/bin", "DEBUG=1"]。
 	 */
 	Env []string `json:"env,omitempty"`
 	/*
-	* ProcessName is the process name associated with the GUI window, used for window detection and management.
+	* ProcessName 是与图形界面窗口关联的进程名称，用于检测和管理窗口。
 	 */
 	ProcessName string `json:"process_name"`
 	/*
-	* LaunchUri is the URI used to open the GUI window, for example weixin://launchapplet?appid=xxxx.
-	* If provided, the application will be launched and this URI will be opened.
+	* LaunchUri 是用于打开图形界面窗口的 URI，例如 weixin://launchapplet?appid=xxxx。
+	* 如果提供此值，将启动应用并打开该 URI。
 	 */
 	LaunchUri string `json:"launch_uri,omitempty"`
 	/*
-	* Timeout is the timeout in milliseconds for launching the application.
-	* If 0, no timeout limit is applied.
+	* Timeout 是启动应用的超时时间，单位为毫秒。
+	* 为 0 时不限制超时时间。
 	 */
 	Timeout int `json:"timeout,omitempty"`
 	/*
-	* WaitTime is the wait time in milliseconds after launching the application before returning.
-	* Useful for allowing the GUI to fully initialize.
+	* WaitTime 是应用启动后到返回前的等待时间，单位为毫秒。
+	* 可用于等待图形界面完成初始化。
 	 */
 	WaitTime int `json:"wait_time,omitempty"`
 	/*
-	* WindowWidth is the preferred window width in pixels. If 0, uses default.
+	* WindowWidth 是首选窗口宽度，单位为像素。为 0 时使用默认值。
 	 */
 	WindowWidth int `json:"window_width,omitempty"`
 	/*
-	* WindowHeight is the preferred window height in pixels. If 0, uses default.
+	* WindowHeight 是首选窗口高度，单位为像素。为 0 时使用默认值。
 	 */
 	WindowHeight int `json:"window_height,omitempty"`
 }
@@ -170,6 +174,7 @@ func (app *GuiApplication) ToMap() map[string]any {
 		"name":          app.Name,
 		"launcher":      app.Launcher,
 		"args":          app.Args,
+		"requirements":  app.Requirements,
 		"work_dir":      app.WorkDir,
 		"env":           app.Env,
 		"process_name":  app.ProcessName,
@@ -184,6 +189,7 @@ func (app *GuiApplication) ToMap() map[string]any {
 func (app *GuiApplication) FromMap(data map[string]any) {
 	app.Id = getMapString(data, "id")
 	app.Name = getMapString(data, "name")
+	app.Requirements = getMapString(data, "requirements")
 	app.Launcher = getMapString(data, "launcher")
 	app.Args = getMapStringSlice(data, "args")
 	app.WorkDir = getMapString(data, "work_dir")
@@ -197,55 +203,59 @@ func (app *GuiApplication) FromMap(data map[string]any) {
 }
 
 /*
-* WebApplication defines browser application configuration.
+* WebApplication 定义浏览器应用配置。
  */
 type WebApplication struct {
 	/*
-	* Id is the unique identifier of the browser application.
+	* Id 是浏览器应用的唯一标识。
 	 */
 	Id string `json:"id"`
 	/*
-	* Name is the browser application name.
+	* Name 是浏览器应用的名称。
 	 */
 	Name string `json:"name"`
 	/*
-	* BrowserType is the browser type to use, for example "chrome", "firefox", "edge", "safari".
-	* If empty, defaults to system default browser.
+	* Requirements 指定浏览器应用打开后需要满足的条件，例如已登录。
+	 */
+	Requirements string `json:"requirements,omitempty"`
+	/*
+	* BrowserType 是要使用的浏览器类型，例如 "chrome"、"firefox"、"edge"、"safari"。
+	* 为空时，默认使用系统默认浏览器。
 	 */
 	BrowserType string `json:"browser_type,omitempty"`
 	/*
-	* Url is the browser application URL to open, for example https://www.google.com.
+	* Url 是要打开的浏览器应用 URL，例如 https://www.google.com。
 	 */
 	Url string `json:"url"`
 	/*
-	* Incognito indicates whether to open the browser in private/incognito mode.
+	* Incognito 表示是否以隐私/无痕模式打开浏览器。
 	 */
 	Incognito bool `json:"incognito,omitempty"`
 	/*
-	* Args is a list of additional browser command-line arguments, for example ["--proxy-server=localhost:8080", "--disable-plugins"].
+	* Args 是浏览器的附加命令行参数列表，例如 ["--proxy-server=localhost:8080", "--disable-plugins"]。
 	 */
 	Args []string `json:"args,omitempty"`
 	/*
-	* UserDataDir is the custom user data directory for the browser profile.
-	* If empty, uses the default profile directory.
+	* UserDataDir 是浏览器配置文件的自定义用户数据目录。
+	* 为空时使用默认配置文件目录。
 	 */
 	UserDataDir string `json:"user_data_dir,omitempty"`
 	/*
-	* LoadTimeout is the timeout in milliseconds for page loading.
-	* If 0, no timeout limit is applied.
+	* LoadTimeout 是页面加载的超时时间，单位为毫秒。
+	* 为 0 时不限制超时时间。
 	 */
 	LoadTimeout int `json:"load_timeout,omitempty"`
 	/*
-	* WaitTime is the wait time in milliseconds after opening the URL before returning.
-	* Useful for allowing the page to fully load.
+	* WaitTime 是打开 URL 后到返回前的等待时间，单位为毫秒。
+	* 可用于等待页面完全加载。
 	 */
 	WaitTime int `json:"wait_time,omitempty"`
 	/*
-	* WindowWidth is the preferred window width in pixels. If 0, uses default.
+	* WindowWidth 是首选窗口宽度，单位为像素。为 0 时使用默认值。
 	 */
 	WindowWidth int `json:"window_width,omitempty"`
 	/*
-	* WindowHeight is the preferred window height in pixels. If 0, uses default.
+	* WindowHeight 是首选窗口高度，单位为像素。为 0 时使用默认值。
 	 */
 	WindowHeight int `json:"window_height,omitempty"`
 }
@@ -254,6 +264,7 @@ func (app *WebApplication) ToMap() map[string]any {
 	return map[string]any{
 		"id":            app.Id,
 		"name":          app.Name,
+		"requirements":  app.Requirements,
 		"browser_type":  app.BrowserType,
 		"url":           app.Url,
 		"incognito":     app.Incognito,
@@ -269,6 +280,7 @@ func (app *WebApplication) ToMap() map[string]any {
 func (app *WebApplication) FromMap(data map[string]any) {
 	app.Id = getMapString(data, "id")
 	app.Name = getMapString(data, "name")
+	app.Requirements = getMapString(data, "requirements")
 	app.BrowserType = getMapString(data, "browser_type")
 	app.Url = getMapString(data, "url")
 	app.Incognito = getMapBool(data, "incognito")
@@ -281,70 +293,76 @@ func (app *WebApplication) FromMap(data map[string]any) {
 }
 
 /*
-* MobileApplication defines mobile application configuration for Android/iOS devices.
+* MobileApplication 定义 Android/iOS 设备上的移动应用配置。
  */
 type MobileApplication struct {
 	/*
-	* Id is the unique identifier of the mobile application.
+	* Id 是移动应用的唯一标识。
 	 */
 	Id string `json:"id"`
 	/*
-	* Name is the mobile application name.
+	* Name 是移动应用的名称。
 	 */
 	Name string `json:"name"`
 	/*
-	* Package is the application package name, for example com.example.app.
+	* Requirements 是移动应用启动后需要满足的条件，例如已登录。
+	 */
+	Requirements string `json:"requirements,omitempty"`
+	/*
+	* Package 是应用包名，例如 com.example.app。
 	 */
 	Package string `json:"package"`
 	/*
-	* Activity is the Activity class name to launch, for example .MainActivity.
-	* Used with Package to form the component for adb command: adb shell am start -n package/activity.
+	* Activity 是要启动的 Activity 类名，例如 .MainActivity。
+	* 与 Package 一起组成 adb 命令的组件参数：adb shell am start -n package/activity。
 	 */
 	Activity string `json:"activity"`
 	/*
-	* Action is the Intent action, for example android.intent.action.MAIN or android.intent.action.VIEW.
-	* If empty, defaults to android.intent.action.MAIN.
+	* Action 是 Intent 动作，例如 android.intent.action.MAIN 或 android.intent.action.VIEW。
+	* 为空时，默认为 android.intent.action.MAIN。
 	 */
 	Action string `json:"action,omitempty"`
 	/*
-	* Flags is the Intent flags as a comma-separated list, for example "FLAG_ACTIVITY_NEW_TASK,FLAG_ACTIVITY_CLEAR_TOP".
-	* These are passed to adb with --flags parameter.
+	* Flags 是以逗号分隔的 Intent 标志列表，例如 "FLAG_ACTIVITY_NEW_TASK,FLAG_ACTIVITY_CLEAR_TOP"。
+	* 这些标志通过 --flags 参数传递给 adb。
 	 */
 	Flags string `json:"flags,omitempty"`
 	/*
-	* Extras is a JSON object containing Intent extras (key-value pairs).
-	* For example: {"key1": "value1", "key2": "value2"}.
+	* Extras 是包含 Intent 附加数据（键值对）的 JSON 对象。
+	* 例如：{"key1": "value1", "key2": "value2"}。
 	 */
 	Extras string `json:"extras,omitempty"`
 	/*
-	* Timeout is the timeout in milliseconds for starting the application.
-	* If 0, no timeout limit is applied.
+	* Timeout 是启动应用的超时时间，单位为毫秒。
+	* 为 0 时不限制超时时间。
 	 */
 	Timeout int `json:"timeout,omitempty"`
 	/*
-	* WaitTime is the wait time in milliseconds after launching the application before returning.
-	* Useful for allowing the app to fully initialize.
+	* WaitTime 是应用启动后到返回前的等待时间，单位为毫秒。
+	* 可用于等待应用完成初始化。
 	 */
 	WaitTime int `json:"wait_time,omitempty"`
 }
 
 func (app *MobileApplication) ToMap() map[string]any {
 	return map[string]any{
-		"id":        app.Id,
-		"name":      app.Name,
-		"package":   app.Package,
-		"activity":  app.Activity,
-		"action":    app.Action,
-		"flags":     app.Flags,
-		"extras":    app.Extras,
-		"timeout":   app.Timeout,
-		"wait_time": app.WaitTime,
+		"id":           app.Id,
+		"name":         app.Name,
+		"requirements": app.Requirements,
+		"package":      app.Package,
+		"activity":     app.Activity,
+		"action":       app.Action,
+		"flags":        app.Flags,
+		"extras":       app.Extras,
+		"timeout":      app.Timeout,
+		"wait_time":    app.WaitTime,
 	}
 }
 
 func (app *MobileApplication) FromMap(data map[string]any) {
 	app.Id = getMapString(data, "id")
 	app.Name = getMapString(data, "name")
+	app.Requirements = getMapString(data, "requirements")
 	app.Package = getMapString(data, "package")
 	app.Activity = getMapString(data, "activity")
 	app.Action = getMapString(data, "action")
@@ -355,31 +373,31 @@ func (app *MobileApplication) FromMap(data map[string]any) {
 }
 
 /*
-* ScriptVariable defines script variable configuration.
+* ScriptVariable 定义脚本变量配置。
  */
 type ScriptVariable struct {
 	/*
-	* Name is the variable name.
+	* Name 是变量名称。
 	 */
 	Name string `json:"name"`
 	/*
-	* Description is the variable description.
+	* Description 是变量说明。
 	 */
 	Description string `json:"description"`
 	/*
-	* Type is the variable type, such as string, integer, boolean, or json.
+	* Type 是变量类型，例如 string、integer、boolean 或 json。
 	 */
 	Type VariableDataType `json:"type"`
 	/*
-	* DefaultValue is the default value of the variable.
+	* DefaultValue 是变量的默认值。
 	 */
 	DefaultValue string `json:"default_value"`
 	/*
-	* Required indicates whether the variable is required.
+	* Required 表示该变量是否必填。
 	 */
 	Required bool `json:"required"`
 	/*
-	* Save indicates whether to save the variable to project storage.
+	* Save 表示是否将变量保存到项目存储中。
 	 */
 	Save bool `json:"save"`
 }
@@ -405,8 +423,8 @@ func (sv *ScriptVariable) FromMap(data map[string]any) {
 }
 
 /*
-* Parse parses a string into a value of the corresponding data type.
-* If parsing fails, it returns the original string.
+* Parse 将字符串解析为相应数据类型的值。
+* 如果解析失败，则返回原始字符串。
  */
 func (vdt VariableDataType) Parse(value string) any {
 	switch vdt {
@@ -435,15 +453,15 @@ func (vdt VariableDataType) Parse(value string) any {
 
 type PathPermission struct {
 	/*
-	* Path is the path to the file or directory.
+	* Path 是文件或目录的路径。
 	 */
 	Path string `json:"path"`
 	/*
-	* Permission is the access permission, such as r(read)/w(write)/d(delete)/x(execute)/a(all).
+	* Permission 是访问权限，例如 r(读取)/w(写入)/d(删除)/x(执行)/a(全部)。
 	 */
 	Permission string `json:"permission"`
 	/*
-	* Description is the permission description.
+	* Description 是权限说明。
 	 */
 	Description string `json:"description"`
 }
@@ -463,19 +481,19 @@ func (pp *PathPermission) FromMap(data map[string]any) {
 }
 
 /*
-* UrlPermission defines network access permissions.
+* UrlPermission 定义网络访问权限。
  */
 type UrlPermission struct {
 	/*
-	* Url is the URL pattern, supporting wildcard (*) and script variable ${var_name}.
+	* Url 是 URL 模式，支持通配符 (*) 和脚本变量 ${var_name}。
 	 */
 	Url string `json:"url"`
 	/*
-	* HTTP Methods is the HTTP methods, such as GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH, etc.
+	* HTTP Methods 是 HTTP 请求方法，例如 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 等。
 	 */
 	Methods []string `json:"permission"`
 	/*
-	* Description is the permission description.
+	* Description 是权限说明。
 	 */
 	Description string `json:"description"`
 }
@@ -495,7 +513,7 @@ func (up *UrlPermission) FromMap(data map[string]any) {
 }
 
 /*
-* YScript defines the top-level script configuration structure.
+* YScript 定义顶层脚本配置结构。
  */
 type YScript struct {
 	/*
@@ -539,7 +557,7 @@ type YScript struct {
 }
 
 /*
-* ApplyVariables applies variable values to the script configuration.
+* ApplyVariables 将变量值应用到脚本配置中。
  */
 func (s *YScript) ApplyVariables(variableValues map[string]any) {
 	for i, app := range s.GuiApps {

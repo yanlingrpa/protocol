@@ -1,7 +1,7 @@
 {
   "$schema": "./../schema/yanling.machine-first.v1/package.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-11-14T07:52:28Z",
+  "generated_at": "2026-11-25T06:14:58Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "package": {
     "name": "script",
@@ -218,7 +218,7 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "GuiApplication defines GUI application configuration.",
+        "doc": "GuiApplication 定义图形界面应用配置。",
         "signature": "type GuiApplication struct",
         "source": {
           "file": "script/yanling_script.go",
@@ -230,7 +230,7 @@
             "name": "Args",
             "type": "[]string",
             "tag": "json:\"args,omitempty\"",
-            "doc": "Args is the command-line arguments passed to the launcher, for example [\"--headless\", \"--no-sandbox\"].",
+            "doc": "Args 是传递给启动器的命令行参数，例如 [\"--headless\", \"--no-sandbox\"]。",
             "type_refs": [
               {
                 "expr": "string",
@@ -242,7 +242,7 @@
             "name": "Env",
             "type": "[]string",
             "tag": "json:\"env,omitempty\"",
-            "doc": "Env is a list of environment variables in the format KEY=VALUE, for example [\"PATH=/usr/bin\", \"DEBUG=1\"].",
+            "doc": "Env 是环境变量列表，格式为 KEY=VALUE，例如 [\"PATH=/usr/bin\", \"DEBUG=1\"]。",
             "type_refs": [
               {
                 "expr": "string",
@@ -254,7 +254,7 @@
             "name": "Id",
             "type": "string",
             "tag": "json:\"id\"",
-            "doc": "Id is the unique identifier of the GUI application.",
+            "doc": "Id 是图形界面应用的唯一标识。",
             "type_refs": [
               {
                 "expr": "string",
@@ -266,7 +266,7 @@
             "name": "LaunchUri",
             "type": "string",
             "tag": "json:\"launch_uri,omitempty\"",
-            "doc": "LaunchUri is the URI used to open the GUI window, for example weixin://launchapplet?appid=xxxx.\nIf provided, the application will be launched and this URI will be opened.",
+            "doc": "LaunchUri 是用于打开图形界面窗口的 URI，例如 weixin://launchapplet?appid=xxxx。\n如果提供此值，将启动应用并打开该 URI。",
             "type_refs": [
               {
                 "expr": "string",
@@ -278,7 +278,7 @@
             "name": "Launcher",
             "type": "string",
             "tag": "json:\"launcher\"",
-            "doc": "Launcher is the launcher command or executable path, for example C:\\Program Files\\App\\app.exe or /usr/bin/app.",
+            "doc": "Launcher 是启动命令或可执行文件路径，例如 C:\\Program Files\\App\\app.exe 或 /usr/bin/app。",
             "type_refs": [
               {
                 "expr": "string",
@@ -290,7 +290,7 @@
             "name": "Name",
             "type": "string",
             "tag": "json:\"name\"",
-            "doc": "Name is the GUI application name.",
+            "doc": "Name 是图形界面应用的名称。",
             "type_refs": [
               {
                 "expr": "string",
@@ -302,7 +302,19 @@
             "name": "ProcessName",
             "type": "string",
             "tag": "json:\"process_name\"",
-            "doc": "ProcessName is the process name associated with the GUI window, used for window detection and management.",
+            "doc": "ProcessName 是与图形界面窗口关联的进程名称，用于检测和管理窗口。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Requirements",
+            "type": "string",
+            "tag": "json:\"requirements,omitempty\"",
+            "doc": "Requirements 是图形界面应用启动后需要满足的条件，例如已登录。",
             "type_refs": [
               {
                 "expr": "string",
@@ -314,7 +326,7 @@
             "name": "Timeout",
             "type": "int",
             "tag": "json:\"timeout,omitempty\"",
-            "doc": "Timeout is the timeout in milliseconds for launching the application.\nIf 0, no timeout limit is applied.",
+            "doc": "Timeout 是启动应用的超时时间，单位为毫秒。\n为 0 时不限制超时时间。",
             "type_refs": [
               {
                 "expr": "int",
@@ -326,7 +338,7 @@
             "name": "WaitTime",
             "type": "int",
             "tag": "json:\"wait_time,omitempty\"",
-            "doc": "WaitTime is the wait time in milliseconds after launching the application before returning.\nUseful for allowing the GUI to fully initialize.",
+            "doc": "WaitTime 是应用启动后到返回前的等待时间，单位为毫秒。\n可用于等待图形界面完成初始化。",
             "type_refs": [
               {
                 "expr": "int",
@@ -338,7 +350,7 @@
             "name": "WindowHeight",
             "type": "int",
             "tag": "json:\"window_height,omitempty\"",
-            "doc": "WindowHeight is the preferred window height in pixels. If 0, uses default.",
+            "doc": "WindowHeight 是首选窗口高度，单位为像素。为 0 时使用默认值。",
             "type_refs": [
               {
                 "expr": "int",
@@ -350,7 +362,7 @@
             "name": "WindowWidth",
             "type": "int",
             "tag": "json:\"window_width,omitempty\"",
-            "doc": "WindowWidth is the preferred window width in pixels. If 0, uses default.",
+            "doc": "WindowWidth 是首选窗口宽度，单位为像素。为 0 时使用默认值。",
             "type_refs": [
               {
                 "expr": "int",
@@ -362,7 +374,7 @@
             "name": "WorkDir",
             "type": "string",
             "tag": "json:\"work_dir,omitempty\"",
-            "doc": "WorkDir is the working directory for the launched application.\nIf empty, defaults to the directory of the launcher executable.",
+            "doc": "WorkDir 是应用启动后的工作目录。\n为空时，默认为启动器可执行文件所在目录。",
             "type_refs": [
               {
                 "expr": "string",
@@ -476,11 +488,11 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "MobileApplication defines mobile application configuration for Android/iOS devices.",
+        "doc": "MobileApplication 定义 Android/iOS 设备上的移动应用配置。",
         "signature": "type MobileApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 286,
+          "line": 298,
           "column": 6
         },
         "fields": [
@@ -488,7 +500,7 @@
             "name": "Action",
             "type": "string",
             "tag": "json:\"action,omitempty\"",
-            "doc": "Action is the Intent action, for example android.intent.action.MAIN or android.intent.action.VIEW.\nIf empty, defaults to android.intent.action.MAIN.",
+            "doc": "Action 是 Intent 动作，例如 android.intent.action.MAIN 或 android.intent.action.VIEW。\n为空时，默认为 android.intent.action.MAIN。",
             "type_refs": [
               {
                 "expr": "string",
@@ -500,7 +512,7 @@
             "name": "Activity",
             "type": "string",
             "tag": "json:\"activity\"",
-            "doc": "Activity is the Activity class name to launch, for example .MainActivity.\nUsed with Package to form the component for adb command: adb shell am start -n package/activity.",
+            "doc": "Activity 是要启动的 Activity 类名，例如 .MainActivity。\n与 Package 一起组成 adb 命令的组件参数：adb shell am start -n package/activity。",
             "type_refs": [
               {
                 "expr": "string",
@@ -512,7 +524,7 @@
             "name": "Extras",
             "type": "string",
             "tag": "json:\"extras,omitempty\"",
-            "doc": "Extras is a JSON object containing Intent extras (key-value pairs).\nFor example: {\"key1\": \"value1\", \"key2\": \"value2\"}.",
+            "doc": "Extras 是包含 Intent 附加数据（键值对）的 JSON 对象。\n例如：{\"key1\": \"value1\", \"key2\": \"value2\"}。",
             "type_refs": [
               {
                 "expr": "string",
@@ -524,7 +536,7 @@
             "name": "Flags",
             "type": "string",
             "tag": "json:\"flags,omitempty\"",
-            "doc": "Flags is the Intent flags as a comma-separated list, for example \"FLAG_ACTIVITY_NEW_TASK,FLAG_ACTIVITY_CLEAR_TOP\".\nThese are passed to adb with --flags parameter.",
+            "doc": "Flags 是以逗号分隔的 Intent 标志列表，例如 \"FLAG_ACTIVITY_NEW_TASK,FLAG_ACTIVITY_CLEAR_TOP\"。\n这些标志通过 --flags 参数传递给 adb。",
             "type_refs": [
               {
                 "expr": "string",
@@ -536,7 +548,7 @@
             "name": "Id",
             "type": "string",
             "tag": "json:\"id\"",
-            "doc": "Id is the unique identifier of the mobile application.",
+            "doc": "Id 是移动应用的唯一标识。",
             "type_refs": [
               {
                 "expr": "string",
@@ -548,7 +560,7 @@
             "name": "Name",
             "type": "string",
             "tag": "json:\"name\"",
-            "doc": "Name is the mobile application name.",
+            "doc": "Name 是移动应用的名称。",
             "type_refs": [
               {
                 "expr": "string",
@@ -560,7 +572,19 @@
             "name": "Package",
             "type": "string",
             "tag": "json:\"package\"",
-            "doc": "Package is the application package name, for example com.example.app.",
+            "doc": "Package 是应用包名，例如 com.example.app。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Requirements",
+            "type": "string",
+            "tag": "json:\"requirements,omitempty\"",
+            "doc": "Requirements 是移动应用启动后需要满足的条件，例如已登录。",
             "type_refs": [
               {
                 "expr": "string",
@@ -572,7 +596,7 @@
             "name": "Timeout",
             "type": "int",
             "tag": "json:\"timeout,omitempty\"",
-            "doc": "Timeout is the timeout in milliseconds for starting the application.\nIf 0, no timeout limit is applied.",
+            "doc": "Timeout 是启动应用的超时时间，单位为毫秒。\n为 0 时不限制超时时间。",
             "type_refs": [
               {
                 "expr": "int",
@@ -584,7 +608,7 @@
             "name": "WaitTime",
             "type": "int",
             "tag": "json:\"wait_time,omitempty\"",
-            "doc": "WaitTime is the wait time in milliseconds after launching the application before returning.\nUseful for allowing the app to fully initialize.",
+            "doc": "WaitTime 是应用启动后到返回前的等待时间，单位为毫秒。\n可用于等待应用完成初始化。",
             "type_refs": [
               {
                 "expr": "int",
@@ -658,7 +682,7 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ModuleInfo defines script module metadata.",
+        "doc": "ModuleInfo 定义脚本模组元数据。",
         "signature": "type ModuleInfo struct",
         "source": {
           "file": "script/yanling_script.go",
@@ -1740,7 +1764,7 @@
         "signature": "type PathPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 436,
+          "line": 454,
           "column": 6
         },
         "fields": [
@@ -1748,7 +1772,7 @@
             "name": "Description",
             "type": "string",
             "tag": "json:\"description\"",
-            "doc": "Description is the permission description.",
+            "doc": "Description 是权限说明。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1760,7 +1784,7 @@
             "name": "Path",
             "type": "string",
             "tag": "json:\"path\"",
-            "doc": "Path is the path to the file or directory.",
+            "doc": "Path 是文件或目录的路径。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1772,7 +1796,7 @@
             "name": "Permission",
             "type": "string",
             "tag": "json:\"permission\"",
-            "doc": "Permission is the access permission, such as r(read)/w(write)/d(delete)/x(execute)/a(all).",
+            "doc": "Permission 是访问权限，例如 r(读取)/w(写入)/d(删除)/x(执行)/a(全部)。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1842,11 +1866,11 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "ScriptVariable defines script variable configuration.",
+        "doc": "ScriptVariable 定义脚本变量配置。",
         "signature": "type ScriptVariable struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 360,
+          "line": 378,
           "column": 6
         },
         "fields": [
@@ -1854,7 +1878,7 @@
             "name": "DefaultValue",
             "type": "string",
             "tag": "json:\"default_value\"",
-            "doc": "DefaultValue is the default value of the variable.",
+            "doc": "DefaultValue 是变量的默认值。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1866,7 +1890,7 @@
             "name": "Description",
             "type": "string",
             "tag": "json:\"description\"",
-            "doc": "Description is the variable description.",
+            "doc": "Description 是变量说明。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1878,7 +1902,7 @@
             "name": "Name",
             "type": "string",
             "tag": "json:\"name\"",
-            "doc": "Name is the variable name.",
+            "doc": "Name 是变量名称。",
             "type_refs": [
               {
                 "expr": "string",
@@ -1890,7 +1914,7 @@
             "name": "Required",
             "type": "bool",
             "tag": "json:\"required\"",
-            "doc": "Required indicates whether the variable is required.",
+            "doc": "Required 表示该变量是否必填。",
             "type_refs": [
               {
                 "expr": "bool",
@@ -1902,7 +1926,7 @@
             "name": "Save",
             "type": "bool",
             "tag": "json:\"save\"",
-            "doc": "Save indicates whether to save the variable to project storage.",
+            "doc": "Save 表示是否将变量保存到项目存储中。",
             "type_refs": [
               {
                 "expr": "bool",
@@ -1914,7 +1938,7 @@
             "name": "Type",
             "type": "VariableDataType",
             "tag": "json:\"type\"",
-            "doc": "Type is the variable type, such as string, integer, boolean, or json.",
+            "doc": "Type 是变量类型，例如 string、integer、boolean 或 json。",
             "type_refs": [
               {
                 "expr": "VariableDataType",
@@ -2200,11 +2224,11 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "UrlPermission defines network access permissions.",
+        "doc": "UrlPermission 定义网络访问权限。",
         "signature": "type UrlPermission struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 468,
+          "line": 486,
           "column": 6
         },
         "fields": [
@@ -2212,7 +2236,7 @@
             "name": "Description",
             "type": "string",
             "tag": "json:\"description\"",
-            "doc": "Description is the permission description.",
+            "doc": "Description 是权限说明。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2224,7 +2248,7 @@
             "name": "Methods",
             "type": "[]string",
             "tag": "json:\"permission\"",
-            "doc": "HTTP Methods is the HTTP methods, such as GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH, etc.",
+            "doc": "HTTP Methods 是 HTTP 请求方法，例如 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 等。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2236,7 +2260,7 @@
             "name": "Url",
             "type": "string",
             "tag": "json:\"url\"",
-            "doc": "Url is the URL pattern, supporting wildcard (*) and script variable ${var_name}.",
+            "doc": "Url 是 URL 模式，支持通配符 (*) 和脚本变量 ${var_name}。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2342,7 +2366,7 @@
         "methods": [
           {
             "name": "Parse",
-            "doc": "Parse parses a string into a value of the corresponding data type.\nIf parsing fails, it returns the original string.",
+            "doc": "Parse 将字符串解析为相应数据类型的值。\n如果解析失败，则返回原始字符串。",
             "params": [
               {
                 "name": "value",
@@ -2536,11 +2560,11 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "WebApplication defines browser application configuration.",
+        "doc": "WebApplication 定义浏览器应用配置。",
         "signature": "type WebApplication struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 202,
+          "line": 208,
           "column": 6
         },
         "fields": [
@@ -2548,7 +2572,7 @@
             "name": "Args",
             "type": "[]string",
             "tag": "json:\"args,omitempty\"",
-            "doc": "Args is a list of additional browser command-line arguments, for example [\"--proxy-server=localhost:8080\", \"--disable-plugins\"].",
+            "doc": "Args 是浏览器的附加命令行参数列表，例如 [\"--proxy-server=localhost:8080\", \"--disable-plugins\"]。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2560,7 +2584,7 @@
             "name": "BrowserType",
             "type": "string",
             "tag": "json:\"browser_type,omitempty\"",
-            "doc": "BrowserType is the browser type to use, for example \"chrome\", \"firefox\", \"edge\", \"safari\".\nIf empty, defaults to system default browser.",
+            "doc": "BrowserType 是要使用的浏览器类型，例如 \"chrome\"、\"firefox\"、\"edge\"、\"safari\"。\n为空时，默认使用系统默认浏览器。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2572,7 +2596,7 @@
             "name": "Id",
             "type": "string",
             "tag": "json:\"id\"",
-            "doc": "Id is the unique identifier of the browser application.",
+            "doc": "Id 是浏览器应用的唯一标识。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2584,7 +2608,7 @@
             "name": "Incognito",
             "type": "bool",
             "tag": "json:\"incognito,omitempty\"",
-            "doc": "Incognito indicates whether to open the browser in private/incognito mode.",
+            "doc": "Incognito 表示是否以隐私/无痕模式打开浏览器。",
             "type_refs": [
               {
                 "expr": "bool",
@@ -2596,7 +2620,7 @@
             "name": "LoadTimeout",
             "type": "int",
             "tag": "json:\"load_timeout,omitempty\"",
-            "doc": "LoadTimeout is the timeout in milliseconds for page loading.\nIf 0, no timeout limit is applied.",
+            "doc": "LoadTimeout 是页面加载的超时时间，单位为毫秒。\n为 0 时不限制超时时间。",
             "type_refs": [
               {
                 "expr": "int",
@@ -2608,7 +2632,19 @@
             "name": "Name",
             "type": "string",
             "tag": "json:\"name\"",
-            "doc": "Name is the browser application name.",
+            "doc": "Name 是浏览器应用的名称。",
+            "type_refs": [
+              {
+                "expr": "string",
+                "builtin": true
+              }
+            ]
+          },
+          {
+            "name": "Requirements",
+            "type": "string",
+            "tag": "json:\"requirements,omitempty\"",
+            "doc": "Requirements 指定浏览器应用打开后需要满足的条件，例如已登录。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2620,7 +2656,7 @@
             "name": "Url",
             "type": "string",
             "tag": "json:\"url\"",
-            "doc": "Url is the browser application URL to open, for example https://www.google.com.",
+            "doc": "Url 是要打开的浏览器应用 URL，例如 https://www.google.com。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2632,7 +2668,7 @@
             "name": "UserDataDir",
             "type": "string",
             "tag": "json:\"user_data_dir,omitempty\"",
-            "doc": "UserDataDir is the custom user data directory for the browser profile.\nIf empty, uses the default profile directory.",
+            "doc": "UserDataDir 是浏览器配置文件的自定义用户数据目录。\n为空时使用默认配置文件目录。",
             "type_refs": [
               {
                 "expr": "string",
@@ -2644,7 +2680,7 @@
             "name": "WaitTime",
             "type": "int",
             "tag": "json:\"wait_time,omitempty\"",
-            "doc": "WaitTime is the wait time in milliseconds after opening the URL before returning.\nUseful for allowing the page to fully load.",
+            "doc": "WaitTime 是打开 URL 后到返回前的等待时间，单位为毫秒。\n可用于等待页面完全加载。",
             "type_refs": [
               {
                 "expr": "int",
@@ -2656,7 +2692,7 @@
             "name": "WindowHeight",
             "type": "int",
             "tag": "json:\"window_height,omitempty\"",
-            "doc": "WindowHeight is the preferred window height in pixels. If 0, uses default.",
+            "doc": "WindowHeight 是首选窗口高度，单位为像素。为 0 时使用默认值。",
             "type_refs": [
               {
                 "expr": "int",
@@ -2668,7 +2704,7 @@
             "name": "WindowWidth",
             "type": "int",
             "tag": "json:\"window_width,omitempty\"",
-            "doc": "WindowWidth is the preferred window width in pixels. If 0, uses default.",
+            "doc": "WindowWidth 是首选窗口宽度，单位为像素。为 0 时使用默认值。",
             "type_refs": [
               {
                 "expr": "int",
@@ -2776,11 +2812,11 @@
         "kind": "struct",
         "package": "script",
         "import_path": "yanlingrpa.com/yanling/protocol/script",
-        "doc": "YScript defines the top-level script configuration structure.",
+        "doc": "YScript 定义顶层脚本配置结构。",
         "signature": "type YScript struct",
         "source": {
           "file": "script/yanling_script.go",
-          "line": 500,
+          "line": 518,
           "column": 6
         },
         "fields": [
@@ -2910,7 +2946,7 @@
         "methods": [
           {
             "name": "ApplyVariables",
-            "doc": "ApplyVariables applies variable values to the script configuration.",
+            "doc": "ApplyVariables 将变量值应用到脚本配置中。",
             "params": [
               {
                 "name": "variableValues",

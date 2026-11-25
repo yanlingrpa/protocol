@@ -1,7 +1,7 @@
 {
   "$schema": "./schema/yanling.machine-first.v1/symbols.schema.json",
   "schema_version": "yanling.machine-first/v1",
-  "generated_at": "2026-11-14T07:52:28Z",
+  "generated_at": "2026-11-25T06:14:58Z",
   "module": "yanlingrpa.com/yanling/protocol",
   "counts": {
     "packages": 7,
@@ -7265,7 +7265,7 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "GuiApplication defines GUI application configuration.",
+      "doc": "GuiApplication 定义图形界面应用配置。",
       "signature": "type GuiApplication struct",
       "source": {
         "file": "script/yanling_script.go",
@@ -7288,7 +7288,7 @@
         }
       ],
       "method_count": 2,
-      "field_count": 12
+      "field_count": 13
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#JsonStruct",
@@ -7323,11 +7323,11 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "MobileApplication defines mobile application configuration for Android/iOS devices.",
+      "doc": "MobileApplication 定义 Android/iOS 设备上的移动应用配置。",
       "signature": "type MobileApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 286,
+        "line": 298,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -7346,7 +7346,7 @@
         }
       ],
       "method_count": 2,
-      "field_count": 9
+      "field_count": 10
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#ModuleInfo",
@@ -7355,7 +7355,7 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "ModuleInfo defines script module metadata.",
+      "doc": "ModuleInfo 定义脚本模组元数据。",
       "signature": "type ModuleInfo struct",
       "source": {
         "file": "script/yanling_script.go",
@@ -7524,7 +7524,7 @@
       "signature": "type PathPermission struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 436,
+        "line": 454,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -7548,11 +7548,11 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "ScriptVariable defines script variable configuration.",
+      "doc": "ScriptVariable 定义脚本变量配置。",
       "signature": "type ScriptVariable struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 360,
+        "line": 378,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -7637,11 +7637,11 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "UrlPermission defines network access permissions.",
+      "doc": "UrlPermission 定义网络访问权限。",
       "signature": "type UrlPermission struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 468,
+        "line": 486,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -7836,11 +7836,11 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "WebApplication defines browser application configuration.",
+      "doc": "WebApplication 定义浏览器应用配置。",
       "signature": "type WebApplication struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 202,
+        "line": 208,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
@@ -7863,7 +7863,7 @@
         }
       ],
       "method_count": 2,
-      "field_count": 11
+      "field_count": 12
     },
     {
       "id": "yanlingrpa.com/yanling/protocol/script#YSCRIPT_ROUTE_FINALIZE",
@@ -7902,11 +7902,11 @@
       "kind": "struct",
       "package": "script",
       "import_path": "yanlingrpa.com/yanling/protocol/script",
-      "doc": "YScript defines the top-level script configuration structure.",
+      "doc": "YScript 定义顶层脚本配置结构。",
       "signature": "type YScript struct",
       "source": {
         "file": "script/yanling_script.go",
-        "line": 500,
+        "line": 518,
         "column": 6
       },
       "package_file": "packages/yanlingrpa.com__yanling__protocol__script.json",
